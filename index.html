@@ -3,23 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>3D Dream Home</title>
+    <title>🏗️ 3D Architect Dream — 1000+ предметов</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Подключаем Telegram Web App -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div id="info-panel">
-        <h1>🏡 Дизайн Интерьера</h1>
-        <p>Предметов: <span id="item-count">3</span></p>
-        <button id="add-chair">➕ Добавить кресло</button>
-        <button id="add-lamp">💡 Добавить светильник</button>
+    <!-- Основной интерфейс -->
+    <div class="ui-container">
+        <!-- Левая панель - Каталог предметов -->
+        <div class="catalog-panel glass">
+            <div class="panel-header">
+                <h2><i class="fas fa-couch"></i> Каталог</h2>
+                <span class="badge" id="item-count">0</span>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Поиск предметов..." id="search-input">
+            </div>
+            <div class="categories">
+                <button class="category-btn active" data-category="all">Все</button>
+                <button class="category-btn" data-category="seating">Мебель</button>
+                <button class="category-btn" data-category="lighting">Свет</button>
+                <button class="category-btn" data-category="decor">Декор</button>
+                <button class="category-btn" data-category="electronics">Техника</button>
+                <button class="category-btn" data-category="walls">Стены</button>
+            </div>
+            <div class="items-grid" id="items-grid">
+                <!-- Сюда динамически загружаются предметы -->
+            </div>
+        </div>
+
+        <!-- Правая панель - Инструменты и свойства -->
+        <div class="tools-panel glass">
+            <div class="panel-header">
+                <h2><i class="fas fa-paint-brush"></i> Инструменты</h2>
+            </div>
+            <div class="tool-section">
+                <h3>Режим</h3>
+                <div class="tool-buttons">
+                    <button class="tool-btn active" id="mode-place">
+                        <i class="fas fa-hand"></i> Размещение
+                    </button>
+                    <button class="tool-btn" id="mode-build">
+                        <i class="fas fa-draw-polygon"></i> Строительство
+                    </button>
+                </div>
+            </div>
+            <div class="tool-section" id="build-controls" style="display: none;">
+                <h3>Параметры стены</h3>
+                <label>Длина: <input type="range" id="wall-length" min="1" max="10" step="0.5" value="3"></label>
+                <label>Высота: <input type="range" id="wall-height" min="2" max="6" step="0.5" value="2.5"></label>
+                <label>Цвет: <input type="color" id="wall-color" value="#aaccff"></label>
+                <button class="action-btn" id="build-wall"><i class="fas fa-plus-circle"></i> Построить стену</button>
+            </div>
+            <div class="tool-section" id="place-controls">
+                <h3>Свойства предмета</h3>
+                <label>Цвет: <input type="color" id="item-color" value="#c47e5a"></label>
+                <label>Масштаб: <input type="range" id="item-scale" min="0.5" max="3" step="0.1" value="1"></label>
+                <label>Поворот: <input type="range" id="item-rotate" min="0" max="360" value="0"></label>
+                <button class="action-btn" id="apply-props">Применить</button>
+            </div>
+            <div class="tool-section">
+                <h3>Освещение</h3>
+                <label>Яркость: <input type="range" id="light-intensity" min="0" max="2" step="0.1" value="1.2"></label>
+            </div>
+        </div>
+
+        <!-- Нижняя панель - Статус -->
+        <div class="status-bar glass">
+            <div><i class="fas fa-cube"></i> Объектов: <span id="total-items">0</span></div>
+            <div><i class="fas fa-layer-group"></i> Полигонов: <span id="poly-count">0</span></div>
+            <div><i class="fas fa-tachometer-alt"></i> FPS: <span id="fps-counter">0</span></div>
+        </div>
     </div>
 
-    <!-- Холст для 3D графики -->
+    <!-- 3D Холст -->
     <canvas id="canvas"></canvas>
 
-    <!-- Подключаем Three.js и наш основной скрипт -->
+    <!-- Импорт модулей -->
     <script type="importmap">
         {
             "imports": {
@@ -28,6 +91,8 @@
             }
         }
     </script>
+    <script type="module" src="catalog.js"></script>
+    <script type="module" src="builder.js"></script>
     <script type="module" src="script.js"></script>
 </body>
 </html>
