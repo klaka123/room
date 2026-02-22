@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="la">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>⚜️ 𓂀 𓆣 𓃀 — SACRVM IMPERIVM AETERNAM</title>
+    <title>⚜️ ИМПЕРИЯ ДИЗАЙНА — 15000+ ПРЕДМЕТОВ</title>
     <style>
         * {
             margin: 0;
@@ -11,14 +11,14 @@
             box-sizing: border-box;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 
         body {
             overflow: hidden;
-            background: #000001;
-            font-family: 'Cinzel', serif;
+            background: #0a0a12;
+            font-family: 'Montserrat', sans-serif;
         }
 
         #canvas {
@@ -31,26 +31,26 @@
             z-index: 1;
         }
 
-        /* Имперское стекло */
-        .imperium {
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(90px) saturate(600%);
-            -webkit-backdrop-filter: blur(90px) saturate(600%);
-            border: 1px solid rgba(255, 215, 170, 0.08);
-            border-radius: 120px;
-            box-shadow: 0 150px 300px -100px #000, 
-                        0 0 0 1px rgba(255, 215, 170, 0.02) inset,
-                        0 0 200px rgba(0, 0, 0, 1);
+        /* Императорское стекло */
+        .imperial {
+            background: rgba(12, 10, 20, 0.5);
+            backdrop-filter: blur(80px) saturate(550%);
+            -webkit-backdrop-filter: blur(80px) saturate(550%);
+            border: 1px solid rgba(220, 200, 180, 0.1);
+            border-radius: 48px;
+            box-shadow: 0 100px 200px -60px #000, 
+                        0 0 0 1px rgba(220, 200, 180, 0.03) inset,
+                        0 0 150px rgba(0, 0, 0, 0.9);
             color: rgba(255, 245, 235, 1);
-            transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1.3);
+            transition: all 1s cubic-bezier(0.2, 0.9, 0.3, 1.2);
         }
 
-        .imperium:hover {
-            background: rgba(5, 3, 10, 0.55);
-            border-color: rgba(255, 215, 170, 0.12);
-            box-shadow: 0 180px 360px -100px #000, 
-                        0 0 0 1px rgba(255, 215, 170, 0.04) inset,
-                        0 0 250px rgba(255, 215, 170, 0.03);
+        .imperial:hover {
+            background: rgba(18, 15, 28, 0.6);
+            border-color: rgba(220, 200, 180, 0.15);
+            box-shadow: 0 120px 240px -60px #000, 
+                        0 0 0 1px rgba(220, 200, 180, 0.05) inset,
+                        0 0 200px rgba(220, 200, 180, 0.02);
         }
 
         /* Контейнер UI */
@@ -61,7 +61,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            padding: 80px;
+            padding: 30px;
             display: flex;
             justify-content: space-between;
             z-index: 10;
@@ -70,163 +70,161 @@
         /* Левая панель */
         .catalog-panel {
             pointer-events: all;
-            width: 640px;
-            height: calc(100vh - 160px);
+            width: 480px;
+            height: calc(100vh - 60px);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            animation: imperiumLeft 2.2s cubic-bezier(0.12, 1, 0.3, 1.4);
+            animation: slideInLeft 1.2s cubic-bezier(0.2, 0.9, 0.3, 1.2);
         }
 
-        @keyframes imperiumLeft {
-            0% { transform: translateX(-250%) scale(0.7) rotateY(35deg) translateZ(-300px); opacity: 0; filter: blur(60px); }
-            100% { transform: translateX(0) scale(1) rotateY(0) translateZ(0); opacity: 1; filter: blur(0); }
+        @keyframes slideInLeft {
+            0% { transform: translateX(-150%) translateZ(-100px) rotateY(15deg); opacity: 0; filter: blur(30px); }
+            100% { transform: translateX(0) translateZ(0) rotateY(0); opacity: 1; filter: blur(0); }
         }
 
         .panel-header {
-            padding: 56px 64px;
-            border-bottom: 1px solid rgba(255, 215, 170, 0.06);
+            padding: 30px 35px;
+            border-bottom: 1px solid rgba(220, 200, 180, 0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(180deg, rgba(255,215,170,0.03) 0%, transparent 100%);
+            background: linear-gradient(180deg, rgba(220,200,180,0.03) 0%, transparent 100%);
         }
 
         .panel-header h2 {
-            font-size: 3.6rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 28px;
-            color: #ffe8d4;
-            letter-spacing: 8px;
+            gap: 15px;
+            color: #f0e0d0;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            font-family: 'Marcellus SC', serif;
-            text-shadow: 0 0 60px rgba(255,215,170,0.4);
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 0 40px rgba(220,200,180,0.4);
         }
 
         .panel-header h2 i {
-            font-size: 2.8rem;
-            opacity: 0.5;
+            font-size: 1.8rem;
+            opacity: 0.8;
             color: #d4b088;
         }
 
         .badge {
-            background: rgba(255, 215, 170, 0.1);
-            border: 1px solid rgba(255, 215, 170, 0.15);
-            color: #ffe8d4;
-            padding: 16px 38px;
-            border-radius: 100px;
-            font-weight: 500;
-            font-size: 1.6rem;
-            letter-spacing: 3px;
-            backdrop-filter: blur(15px);
-            font-family: 'Cinzel', serif;
+            background: rgba(220, 200, 180, 0.15);
+            border: 1px solid rgba(220, 200, 180, 0.2);
+            color: #f0e0d0;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .search-box {
-            padding: 40px 64px 36px;
+            padding: 25px 35px 20px;
             position: relative;
         }
 
         .search-box i {
             position: absolute;
-            left: 96px;
-            top: 80px;
+            left: 58px;
+            top: 50px;
             color: #d4b088;
-            font-size: 1.8rem;
-            opacity: 0.5;
+            font-size: 1.2rem;
+            opacity: 0.7;
         }
 
         .search-box input {
             width: 100%;
-            padding: 32px 38px 32px 100px;
-            background: rgba(0, 0, 0, 0.65);
-            border: 1px solid rgba(255, 215, 170, 0.1);
-            border-radius: 100px;
+            padding: 18px 25px 18px 60px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(220, 200, 180, 0.15);
+            border-radius: 60px;
             color: white;
-            font-size: 1.6rem;
-            transition: all 0.8s ease;
-            font-weight: 300;
-            letter-spacing: 1.5px;
-            backdrop-filter: blur(15px);
-            font-family: 'Philosopher', serif;
-            font-style: italic;
+            font-size: 1.1rem;
+            transition: all 0.5s ease;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+            font-family: 'Cormorant Garamond', serif;
         }
 
         .search-box input:focus {
             outline: none;
-            border-color: rgba(255, 215, 170, 0.3);
-            background: rgba(0, 0, 0, 0.8);
-            box-shadow: 0 0 0 10px rgba(255, 215, 170, 0.03);
+            border-color: rgba(220, 200, 180, 0.4);
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 0 5px rgba(220, 200, 180, 0.05);
         }
 
         .search-box input::placeholder {
-            color: rgba(255, 215, 170, 0.2);
-            font-weight: 300;
+            color: rgba(220, 200, 180, 0.3);
             font-style: italic;
         }
 
         .categories {
-            padding: 28px 64px 42px;
+            padding: 15px 35px 25px;
             display: flex;
-            gap: 20px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
         .category-btn {
-            background: rgba(0, 0, 0, 0.65);
-            border: 1px solid rgba(255, 215, 170, 0.1);
-            color: rgba(255, 215, 170, 0.9);
-            padding: 20px 36px;
-            border-radius: 90px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(220, 200, 180, 0.15);
+            color: rgba(220, 200, 180, 0.9);
+            padding: 12px 24px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 1.4rem;
-            transition: all 0.7s ease;
+            font-size: 1rem;
+            transition: all 0.4s ease;
             font-weight: 500;
-            backdrop-filter: blur(15px);
-            letter-spacing: 3px;
+            backdrop-filter: blur(10px);
+            letter-spacing: 1px;
             text-transform: uppercase;
-            font-family: 'Marcellus SC', serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .category-btn:hover {
-            background: rgba(255, 215, 170, 0.08);
-            border-color: rgba(255, 215, 170, 0.25);
-            transform: translateY(-6px) scale(1.03);
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7);
+            background: rgba(220, 200, 180, 0.1);
+            border-color: rgba(220, 200, 180, 0.3);
+            transform: translateY(-3px);
             color: #fff;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
         }
 
         .category-btn.active {
-            background: rgba(255, 215, 170, 0.85);
+            background: rgba(220, 200, 180, 0.85);
             border-color: transparent;
-            color: #000001;
+            color: #0a0a12;
             font-weight: 700;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
         }
 
         .items-grid {
             flex: 1;
             overflow-y: auto;
-            padding: 0 64px 64px;
+            padding: 0 35px 35px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
+            gap: 20px;
         }
 
         .item-card {
-            background: rgba(0, 0, 0, 0.55);
-            border-radius: 80px;
-            padding: 56px 32px 36px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 40px;
+            padding: 35px 20px 25px;
             cursor: pointer;
-            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1.3);
-            border: 1px solid rgba(255, 215, 170, 0.05);
+            transition: all 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid rgba(220, 200, 180, 0.06);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 32px;
-            backdrop-filter: blur(15px);
+            gap: 20px;
+            backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
         }
@@ -234,13 +232,13 @@
         .item-card::before {
             content: '';
             position: absolute;
-            top: -40%;
-            left: -30%;
-            right: -30%;
-            bottom: -40%;
-            background: radial-gradient(circle at 30% 30%, rgba(255,215,170,0.15), transparent 80%);
+            top: -30%;
+            left: -20%;
+            right: -20%;
+            bottom: -30%;
+            background: radial-gradient(circle at 30% 30%, rgba(220,200,180,0.1), transparent 70%);
             opacity: 0;
-            transition: opacity 1.5s ease;
+            transition: opacity 1s ease;
             pointer-events: none;
         }
 
@@ -251,16 +249,16 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,215,170,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(220,200,180,0.2), transparent);
             transform: translateX(-100%);
-            transition: transform 1.8s ease;
+            transition: transform 1.2s ease;
         }
 
         .item-card:hover {
-            background: rgba(10, 5, 20, 0.65);
-            transform: translateY(-15px) scale(1.04);
-            border-color: rgba(255, 215, 170, 0.15);
-            box-shadow: 0 80px 120px -50px #000;
+            background: rgba(15, 12, 25, 0.6);
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(220, 200, 180, 0.15);
+            box-shadow: 0 40px 70px -30px #000;
         }
 
         .item-card:hover::before {
@@ -272,280 +270,277 @@
         }
 
         .item-card.selected {
-            border-color: rgba(255, 215, 170, 0.35);
-            background: rgba(15, 10, 25, 0.75);
-            box-shadow: 0 0 0 1.5px rgba(255, 215, 170, 0.2) inset;
+            border-color: rgba(220, 200, 180, 0.4);
+            background: rgba(25, 20, 35, 0.7);
+            box-shadow: 0 0 0 1.5px rgba(220, 200, 180, 0.2) inset;
         }
 
         .item-icon {
-            font-size: 8rem;
-            filter: drop-shadow(0 40px 50px rgba(0,0,0,0.9));
-            transition: all 0.9s ease;
+            font-size: 5rem;
+            filter: drop-shadow(0 25px 35px rgba(0,0,0,0.8));
+            transition: all 0.6s ease;
             opacity: 0.95;
         }
 
         .item-card:hover .item-icon {
-            transform: scale(1.25) rotate(4deg);
+            transform: scale(1.15) rotate(3deg);
             opacity: 1;
-            filter: drop-shadow(0 60px 80px rgba(0,0,0,1));
+            filter: drop-shadow(0 40px 50px rgba(0,0,0,1));
         }
 
         .item-name {
-            font-size: 1.6rem;
-            font-weight: 400;
+            font-size: 1.1rem;
+            font-weight: 500;
             text-align: center;
-            color: #ffe8d4;
-            letter-spacing: 1.5px;
-            background: rgba(0,0,0,0.55);
-            padding: 16px 36px;
-            border-radius: 100px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 215, 170, 0.1);
-            font-family: 'Philosopher', serif;
-            font-style: italic;
+            color: #f0e0d0;
+            letter-spacing: 0.5px;
+            background: rgba(0,0,0,0.5);
+            padding: 12px 24px;
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(220, 200, 180, 0.1);
+            font-family: 'Cormorant Garamond', serif;
         }
 
         /* Правая панель */
         .tools-panel {
             pointer-events: all;
-            width: 560px;
+            width: 420px;
             height: fit-content;
-            padding: 56px;
-            animation: imperiumRight 2.2s cubic-bezier(0.12, 1, 0.3, 1.4);
+            padding: 35px;
+            animation: slideInRight 1.2s cubic-bezier(0.2, 0.9, 0.3, 1.2);
         }
 
-        @keyframes imperiumRight {
-            0% { transform: translateX(250%) scale(0.7) rotateY(-35deg) translateZ(-300px); opacity: 0; filter: blur(60px); }
-            100% { transform: translateX(0) scale(1) rotateY(0) translateZ(0); opacity: 1; filter: blur(0); }
+        @keyframes slideInRight {
+            0% { transform: translateX(150%) translateZ(-100px) rotateY(-15deg); opacity: 0; filter: blur(30px); }
+            100% { transform: translateX(0) translateZ(0) rotateY(0); opacity: 1; filter: blur(0); }
         }
 
         .tool-section {
-            margin-bottom: 64px;
+            margin-bottom: 40px;
         }
 
         .tool-section h3 {
-            font-size: 2.2rem;
+            font-size: 1.5rem;
             color: #d4b088;
-            margin-bottom: 36px;
+            margin-bottom: 25px;
             font-weight: 600;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             text-transform: uppercase;
-            font-family: 'Marcellus SC', serif;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.7);
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.7);
         }
 
         .tool-section h3 i {
-            font-size: 1.8rem;
-            opacity: 0.4;
+            font-size: 1.3rem;
+            opacity: 0.7;
         }
 
         .tool-buttons {
             display: flex;
-            gap: 24px;
+            gap: 15px;
         }
 
         .tool-btn {
             flex: 1;
-            background: rgba(0, 0, 0, 0.65);
-            border: 1px solid rgba(255, 215, 170, 0.1);
-            color: rgba(255, 215, 170, 0.95);
-            padding: 28px;
-            border-radius: 90px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(220, 200, 180, 0.15);
+            color: rgba(220, 200, 180, 0.95);
+            padding: 18px;
+            border-radius: 50px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 18px;
-            transition: all 0.7s ease;
-            font-size: 1.6rem;
+            gap: 12px;
+            transition: all 0.5s ease;
+            font-size: 1.2rem;
             font-weight: 500;
-            backdrop-filter: blur(15px);
-            letter-spacing: 3px;
+            backdrop-filter: blur(10px);
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            font-family: 'Marcellus SC', serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .tool-btn:hover {
-            background: rgba(255, 215, 170, 0.1);
-            border-color: rgba(255, 215, 170, 0.25);
-            transform: translateY(-7px);
-            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.7);
+            background: rgba(220, 200, 180, 0.1);
+            border-color: rgba(220, 200, 180, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
             color: #fff;
         }
 
         .tool-btn.active {
-            background: rgba(255, 215, 170, 0.85);
-            color: #000001;
+            background: rgba(220, 200, 180, 0.85);
+            color: #0a0a12;
             border-color: transparent;
             font-weight: 700;
-            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
         }
 
         .control-group {
-            background: rgba(0, 0, 0, 0.55);
-            border-radius: 80px;
-            padding: 52px;
-            border: 1px solid rgba(255, 215, 170, 0.05);
-            backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 40px;
+            padding: 30px;
+            border: 1px solid rgba(220, 200, 180, 0.06);
+            backdrop-filter: blur(10px);
         }
 
         label {
             display: block;
-            margin-bottom: 44px;
-            color: rgba(255, 215, 170, 0.98);
-            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: rgba(220, 200, 180, 0.98);
+            font-size: 1.1rem;
             font-weight: 400;
-            letter-spacing: 1.5px;
-            font-family: 'Philosopher', serif;
+            letter-spacing: 0.5px;
+            font-family: 'Cormorant Garamond', serif;
         }
 
         label span {
             display: block;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
             color: #d4b088;
-            font-size: 1.2rem;
+            font-size: 0.95rem;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            font-weight: 400;
-            font-style: italic;
+            letter-spacing: 2px;
+            font-weight: 500;
         }
 
         input[type="range"] {
             width: 100%;
-            height: 3px;
-            background: rgba(255, 215, 170, 0.15);
-            border-radius: 1.5px;
+            height: 4px;
+            background: rgba(220, 200, 180, 0.2);
+            border-radius: 2px;
             -webkit-appearance: none;
         }
 
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 28px;
-            height: 28px;
-            background: #ffe8d4;
+            width: 22px;
+            height: 22px;
+            background: #f0e0d0;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 0 40px rgba(255, 215, 170, 0.5);
-            border: 5px solid #000001;
+            box-shadow: 0 0 30px rgba(220, 200, 180, 0.5);
+            border: 4px solid #0a0a12;
             transition: all 0.3s ease;
         }
 
         input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.4);
+            transform: scale(1.3);
             background: #fff;
-            box-shadow: 0 0 70px rgba(255, 215, 170, 0.7);
+            box-shadow: 0 0 50px rgba(220, 200, 180, 0.7);
         }
 
         input[type="color"] {
             width: 100%;
-            height: 80px;
-            border: 1px solid rgba(255, 215, 170, 0.15);
-            border-radius: 60px;
-            background: rgba(0,0,0,0.55);
-            margin-top: 16px;
+            height: 60px;
+            border: 1px solid rgba(220, 200, 180, 0.2);
+            border-radius: 40px;
+            background: rgba(0,0,0,0.5);
+            margin-top: 12px;
             cursor: pointer;
-            padding: 10px;
-            backdrop-filter: blur(8px);
+            padding: 6px;
+            backdrop-filter: blur(5px);
         }
 
         select {
             width: 100%;
-            padding: 26px 38px;
-            margin-top: 16px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(255, 215, 170, 0.15);
-            border-radius: 60px;
-            color: #ffe8d4;
-            font-size: 1.4rem;
+            padding: 18px 28px;
+            margin-top: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(220, 200, 180, 0.2);
+            border-radius: 40px;
+            color: #f0e0d0;
+            font-size: 1.1rem;
             cursor: pointer;
-            backdrop-filter: blur(15px);
-            transition: all 0.6s ease;
-            font-weight: 300;
-            font-family: 'Philosopher', serif;
-            font-style: italic;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            font-weight: 400;
+            font-family: 'Cormorant Garamond', serif;
         }
 
         select:hover {
-            border-color: rgba(255, 215, 170, 0.3);
-            background: rgba(10, 5, 20, 0.9);
-            box-shadow: 0 0 45px rgba(0,0,0,0.6);
+            border-color: rgba(220, 200, 180, 0.4);
+            background: rgba(15, 10, 25, 0.8);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
         select option {
-            background: #000001;
-            color: #ffe8d4;
-            padding: 20px;
+            background: #0a0a12;
+            color: #f0e0d0;
+            padding: 15px;
         }
 
         .action-btn {
             width: 100%;
-            background: rgba(255, 215, 170, 0.85);
+            background: rgba(220, 200, 180, 0.85);
             border: none;
-            color: #000001;
-            padding: 32px;
-            border-radius: 90px;
+            color: #0a0a12;
+            padding: 22px;
+            border-radius: 50px;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            transition: all 0.7s ease;
-            font-size: 1.8rem;
-            margin-top: 42px;
-            letter-spacing: 4px;
+            gap: 15px;
+            transition: all 0.6s ease;
+            font-size: 1.3rem;
+            margin-top: 30px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            font-family: 'Marcellus SC', serif;
+            font-family: 'Playfair Display', serif;
             border: 1px solid transparent;
         }
 
         .action-btn:hover {
-            background: #ffe8d4;
-            transform: scale(1.05) translateY(-6px);
-            box-shadow: 0 50px 90px rgba(0, 0, 0, 0.8);
+            background: #f0e0d0;
+            transform: scale(1.03) translateY(-4px);
+            box-shadow: 0 40px 70px rgba(0, 0, 0, 0.7);
         }
 
         /* Статус бар */
         .status-bar {
             pointer-events: all;
             position: absolute;
-            bottom: 80px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 30px 100px;
+            padding: 18px 60px;
             display: flex;
-            gap: 120px;
-            font-size: 1.6rem;
-            backdrop-filter: blur(100px) saturate(600%);
-            animation: imperiumUp 1.8s ease;
-            border-radius: 120px;
-            background: rgba(0, 0, 0, 0.45);
-            border: 1px solid rgba(255, 215, 170, 0.08);
-            box-shadow: 0 60px 120px -50px #000;
+            gap: 70px;
+            font-size: 1.2rem;
+            backdrop-filter: blur(80px) saturate(600%);
+            animation: slideUp 1.2s ease;
+            border-radius: 70px;
+            background: rgba(8, 6, 16, 0.5);
+            border: 1px solid rgba(220, 200, 180, 0.1);
+            box-shadow: 0 40px 80px -40px #000;
         }
 
-        @keyframes imperiumUp {
-            0% { opacity: 0; transform: translateX(-50%) translateY(100px) scale(0.85); filter: blur(30px); }
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateX(-50%) translateY(60px) scale(0.9); filter: blur(20px); }
             100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); filter: blur(0); }
         }
 
         .status-bar i {
             color: #d4b088;
-            margin-right: 20px;
-            font-size: 1.8rem;
-            opacity: 0.8;
+            margin-right: 12px;
+            font-size: 1.4rem;
+            opacity: 0.9;
         }
 
         .status-bar div {
             display: flex;
             align-items: center;
-            font-weight: 400;
-            color: #ffe8d4;
-            letter-spacing: 2px;
-            font-family: 'Cinzel', serif;
+            font-weight: 500;
+            color: #f0e0d0;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Кастомный скроллбар */
@@ -554,297 +549,281 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(255, 215, 170, 0.015);
+            background: rgba(220, 200, 180, 0.02);
             border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgba(255, 215, 170, 0.15);
+            background: rgba(220, 200, 180, 0.2);
             border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 215, 170, 0.3);
+            background: rgba(220, 200, 180, 0.35);
         }
 
         /* Подсказка */
         .hint {
             position: absolute;
-            top: 80px;
-            right: 660px;
-            background: rgba(0, 0, 0, 0.45);
-            color: #ffe8d4;
-            padding: 24px 48px;
-            border-radius: 120px;
-            font-size: 1.4rem;
-            backdrop-filter: blur(60px);
-            border: 1px solid rgba(255, 215, 170, 0.1);
+            top: 30px;
+            right: 480px;
+            background: rgba(8, 6, 16, 0.5);
+            color: #f0e0d0;
+            padding: 15px 32px;
+            border-radius: 70px;
+            font-size: 1rem;
+            backdrop-filter: blur(50px);
+            border: 1px solid rgba(220, 200, 180, 0.15);
             pointer-events: none;
-            box-shadow: 0 50px 100px -40px #000;
-            font-weight: 400;
-            letter-spacing: 2.5px;
-            animation: imperiumPulse 6s infinite;
-            font-family: 'Philosopher', serif;
-            font-style: italic;
+            box-shadow: 0 30px 60px -30px #000;
+            font-weight: 500;
+            letter-spacing: 1px;
+            animation: pulse 5s infinite;
+            font-family: 'Cormorant Garamond', serif;
             z-index: 20;
         }
 
-        @keyframes imperiumPulse {
-            0% { border-color: rgba(255, 215, 170, 0.1); box-shadow: 0 50px 100px -40px #000; }
-            50% { border-color: rgba(255, 215, 170, 0.25); box-shadow: 0 50px 120px -30px #000, 0 0 50px rgba(255,215,170,0.1); }
-            100% { border-color: rgba(255, 215, 170, 0.1); box-shadow: 0 50px 100px -40px #000; }
+        @keyframes pulse {
+            0% { border-color: rgba(220, 200, 180, 0.15); box-shadow: 0 30px 60px -30px #000; }
+            50% { border-color: rgba(220, 200, 180, 0.3); box-shadow: 0 30px 80px -20px #000, 0 0 30px rgba(220,200,180,0.1); }
+            100% { border-color: rgba(220, 200, 180, 0.15); box-shadow: 0 30px 60px -30px #000; }
         }
 
         .hint i {
             color: #d4b088;
-            margin-right: 18px;
-            font-size: 1.5rem;
+            margin-right: 12px;
+            font-size: 1.1rem;
         }
 
         /* Логотип */
         .logo {
             position: absolute;
-            top: 80px;
+            top: 30px;
             left: 50%;
             transform: translateX(-50%);
             pointer-events: none;
             z-index: 5;
-            font-size: 3.2rem;
-            font-weight: 800;
-            color: #ffe8d4;
-            text-shadow: 0 6px 60px rgba(0,0,0,1);
-            letter-spacing: 32px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f0e0d0;
+            text-shadow: 0 4px 40px rgba(0,0,0,0.9);
+            letter-spacing: 12px;
             text-transform: uppercase;
-            background: rgba(0,0,0,0.25);
-            padding: 28px 100px;
-            border-radius: 120px;
-            backdrop-filter: blur(45px);
-            border: 1px solid rgba(255,215,170,0.06);
-            font-family: 'Marcellus SC', serif;
+            background: rgba(8,6,16,0.3);
+            padding: 15px 60px;
+            border-radius: 70px;
+            backdrop-filter: blur(35px);
+            border: 1px solid rgba(220,200,180,0.08);
+            font-family: 'Playfair Display', serif;
             white-space: nowrap;
         }
 
         /* Имперские орбы */
-        .imperium-orb {
+        .imperial-orb {
             position: absolute;
-            width: 1500px;
-            height: 1500px;
-            background: radial-gradient(circle, rgba(255,215,170,0.02) 0%, transparent 70%);
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(220,200,180,0.03) 0%, transparent 70%);
             border-radius: 50%;
-            top: -750px;
-            right: -750px;
+            top: -500px;
+            right: -500px;
             z-index: 0;
             pointer-events: none;
-            animation: imperiumOrb 40s infinite;
+            animation: orbMove 35s infinite;
         }
 
-        @keyframes imperiumOrb {
+        @keyframes orbMove {
             0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.2; }
-            50% { transform: scale(1.4) rotate(15deg); opacity: 0.4; }
+            50% { transform: scale(1.3) rotate(10deg); opacity: 0.35; }
         }
 
-        .imperium-orb2 {
+        .imperial-orb2 {
             position: absolute;
-            width: 1800px;
-            height: 1800px;
-            background: radial-gradient(circle, rgba(100,120,200,0.01) 0%, transparent 70%);
+            width: 1200px;
+            height: 1200px;
+            background: radial-gradient(circle, rgba(100,120,180,0.02) 0%, transparent 70%);
             border-radius: 50%;
-            bottom: -900px;
-            left: -900px;
+            bottom: -600px;
+            left: -600px;
             z-index: 0;
             pointer-events: none;
-            animation: imperiumOrb2 50s infinite reverse;
+            animation: orbMove2 45s infinite reverse;
         }
 
-        @keyframes imperiumOrb2 {
+        @keyframes orbMove2 {
             0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.15; }
-            50% { transform: scale(1.5) rotate(-20deg); opacity: 0.3; }
+            50% { transform: scale(1.4) rotate(-15deg); opacity: 0.3; }
         }
 
-        /* Имперские частицы */
-        .imperium-particles {
+        /* Частицы */
+        .particles {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><circle cx="150" cy="150" r="1" fill="%23ffd7aa" opacity="0.12"/><circle cx="60" cy="90" r="0.8" fill="%23ffd7aa" opacity="0.1"/><circle cx="240" cy="210" r="0.9" fill="%23ffd7aa" opacity="0.1"/><circle cx="270" cy="60" r="0.7" fill="%23ffd7aa" opacity="0.1"/><circle cx="30" cy="240" r="0.8" fill="%23ffd7aa" opacity="0.1"/><circle cx="180" cy="45" r="0.9" fill="%23ffd7aa" opacity="0.1"/><circle cx="105" cy="255" r="0.8" fill="%23ffd7aa" opacity="0.1"/><circle cx="220" cy="120" r="0.7" fill="%23ffd7aa" opacity="0.1"/></svg>');
-            background-size: 300px 300px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="250" height="250" viewBox="0 0 250 250"><circle cx="125" cy="125" r="1" fill="%23dcc4b4" opacity="0.1"/><circle cx="50" cy="75" r="0.7" fill="%23dcc4b4" opacity="0.08"/><circle cx="200" cy="175" r="0.8" fill="%23dcc4b4" opacity="0.08"/><circle cx="225" cy="50" r="0.6" fill="%23dcc4b4" opacity="0.08"/><circle cx="25" cy="200" r="0.7" fill="%23dcc4b4" opacity="0.08"/><circle cx="150" cy="40" r="0.8" fill="%23dcc4b4" opacity="0.08"/><circle cx="90" cy="210" r="0.7" fill="%23dcc4b4" opacity="0.08"/><circle cx="180" cy="100" r="0.6" fill="%23dcc4b4" opacity="0.08"/></svg>');
+            background-size: 250px 250px;
             pointer-events: none;
             z-index: 2;
-            opacity: 0.3;
-            animation: imperiumParticles 200s linear infinite;
+            opacity: 0.25;
+            animation: particlesMove 180s linear infinite;
         }
 
-        @keyframes imperiumParticles {
+        @keyframes particlesMove {
             0% { transform: translate(0, 0); }
-            100% { transform: translate(200px, 200px); }
-        }
-
-        /* Золотое сечение линий */
-        .imperium-line {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(45deg, transparent, transparent 61.8px, rgba(255,215,170,0.006) 61.8px, rgba(255,215,170,0.006) 63.6px);
-            pointer-events: none;
-            z-index: 3;
-            opacity: 0.3;
-        }
-
-        /* Иероглифы */
-        .hieroglyph {
-            position: absolute;
-            font-size: 24rem;
-            color: rgba(255,215,170,0.02);
-            bottom: -100px;
-            left: -100px;
-            z-index: 0;
-            pointer-events: none;
-            transform: rotate(-15deg);
-            font-family: 'Cinzel', serif;
-        }
-
-        .hieroglyph2 {
-            position: absolute;
-            font-size: 30rem;
-            color: rgba(255,215,170,0.02);
-            top: -150px;
-            right: -150px;
-            z-index: 0;
-            pointer-events: none;
-            transform: rotate(15deg);
-            font-family: 'Cinzel', serif;
+            100% { transform: translate(150px, 150px); }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="imperium-orb"></div>
-    <div class="imperium-orb2"></div>
-    <div class="imperium-particles"></div>
-    <div class="imperium-line"></div>
-    <div class="hieroglyph">𓂀𓆣𓃀</div>
-    <div class="hieroglyph2">⚜️☧𓋴</div>
-    <div class="logo">⚜️ IMPERIVM 𓂀</div>
+    <div class="imperial-orb"></div>
+    <div class="imperial-orb2"></div>
+    <div class="particles"></div>
+    <div class="logo">⚜️ ИМПЕРИЯ ⚜️</div>
 
     <div class="ui-container">
         <!-- Левая панель -->
-        <div class="catalog-panel imperium">
+        <div class="catalog-panel imperial">
             <div class="panel-header">
-                <h2><i class="fas fa-crown"></i> IMPERIVM</h2>
-                <span class="badge" id="item-count">0</span>
+                <h2><i class="fas fa-crown"></i> КАТАЛОГ</h2>
+                <span class="badge" id="item-count">15000+</span>
             </div>
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="quaerere in aeternum..." id="search-input">
+                <input type="text" placeholder="Поиск среди 15000 предметов..." id="search-input">
             </div>
             <div class="categories">
-                <button class="category-btn active" data-category="all">OMNIA</button>
-                <button class="category-btn" data-category="seating">SOLIVM</button>
-                <button class="category-btn" data-category="lighting">LVX</button>
-                <button class="category-btn" data-category="decor">DECORVM</button>
-                <button class="category-btn" data-category="electronics">MACHINA</button>
-                <button class="category-btn" data-category="walls">MVRVS</button>
+                <button class="category-btn active" data-category="all">ВСЁ</button>
+                <button class="category-btn" data-category="seating">МЕБЕЛЬ</button>
+                <button class="category-btn" data-category="lighting">СВЕТ</button>
+                <button class="category-btn" data-category="decor">ДЕКОР</button>
+                <button class="category-btn" data-category="electronics">ТЕХНИКА</button>
+                <button class="category-btn" data-category="walls">СТЕНЫ</button>
+                <button class="category-btn" data-category="floors">ПОЛЫ</button>
+                <button class="category-btn" data-category="windows">ОКНА</button>
+                <button class="category-btn" data-category="doors">ДВЕРИ</button>
+                <button class="category-btn" data-category="kitchen">КУХНЯ</button>
+                <button class="category-btn" data-category="bathroom">ВАННАЯ</button>
+                <button class="category-btn" data-category="bedroom">СПАЛЬНЯ</button>
+                <button class="category-btn" data-category="office">ОФИС</button>
+                <button class="category-btn" data-category="outdoor">УЛИЦА</button>
+                <button class="category-btn" data-category="plants">РАСТЕНИЯ</button>
+                <button class="category-btn" data-category="art">ИСКУССТВО</button>
+                <button class="category-btn" data-category="textiles">ТЕКСТИЛЬ</button>
+                <button class="category-btn" data-category="storage">ХРАНЕНИЕ</button>
+                <button class="category-btn" data-category="tables">СТОЛЫ</button>
+                <button class="category-btn" data-category="chairs">СТУЛЬЯ</button>
             </div>
             <div class="items-grid" id="items-grid"></div>
         </div>
 
         <!-- Правая панель -->
-        <div class="tools-panel imperium">
+        <div class="tools-panel imperial">
             <div class="panel-header">
-                <h2><i class="fas fa-sliders-h"></i> ARS MAGNA</h2>
+                <h2><i class="fas fa-sliders-h"></i> ИНСТРУМЕНТЫ</h2>
             </div>
             <div class="tool-section">
-                <h3><i class="fas fa-compass"></i> MODVS</h3>
+                <h3><i class="fas fa-compass"></i> РЕЖИМ</h3>
                 <div class="tool-buttons">
                     <button class="tool-btn active" id="mode-place">
-                        <i class="fas fa-hand"></i> PONERE
+                        <i class="fas fa-hand"></i> СТАВИТЬ
                     </button>
                     <button class="tool-btn" id="mode-build">
-                        <i class="fas fa-draw-polygon"></i> AEDIFICARE
+                        <i class="fas fa-draw-polygon"></i> СТРОИТЬ
                     </button>
                 </div>
             </div>
 
             <!-- Панель строительства -->
             <div class="tool-section" id="build-controls" style="display: none;">
-                <h3><i class="fas fa-cubes"></i> MVRVS</h3>
+                <h3><i class="fas fa-cubes"></i> СТЕНА</h3>
                 <div class="control-group">
-                    <label><span>LONGITVDO</span> <input type="range" id="wall-length" min="1" max="10" step="0.5" value="3"></label>
-                    <label><span>ALTITVDO</span> <input type="range" id="wall-height" min="2" max="6" step="0.5" value="2.5"></label>
-                    <label><span>COLOR</span> <input type="color" id="wall-color" value="#aaccff"></label>
-                    <label><span>TEXTURA</span>
+                    <label><span>ДЛИНА</span> <input type="range" id="wall-length" min="1" max="20" step="0.5" value="4"></label>
+                    <label><span>ВЫСОТА</span> <input type="range" id="wall-height" min="2" max="10" step="0.5" value="3"></label>
+                    <label><span>ТОЛЩИНА</span> <input type="range" id="wall-thickness" min="0.1" max="1" step="0.05" value="0.25"></label>
+                    <label><span>ЦВЕТ</span> <input type="color" id="wall-color" value="#e8d4b8"></label>
+                    <label><span>ТЕКСТУРА</span>
                         <select id="wall-texture">
-                            <option value="brick">LATER</option>
-                            <option value="concrete">BETON</option>
-                            <option value="wood">LIGNVM</option>
-                            <option value="marble">MARMOR</option>
+                            <option value="brick">КИРПИЧ</option>
+                            <option value="concrete">БЕТОН</option>
+                            <option value="wood">ДЕРЕВО</option>
+                            <option value="marble">МРАМОР</option>
+                            <option value="plaster">ШТУКАТУРКА</option>
+                            <option value="stone">КАМЕНЬ</option>
+                            <option value="wallpaper">ОБОИ</option>
+                            <option value="tile">ПЛИТКА</option>
+                            <option value="glass">СТЕКЛО</option>
+                            <option value="metal">МЕТАЛЛ</option>
                         </select>
                     </label>
-                    <button class="action-btn" id="build-wall"><i class="fas fa-plus-circle"></i> CREARE</button>
+                    <button class="action-btn" id="build-wall"><i class="fas fa-plus-circle"></i> ВОЗВЕСТИ</button>
                 </div>
             </div>
 
             <!-- Панель размещения -->
             <div class="tool-section" id="place-controls">
-                <h3><i class="fas fa-palette"></i> MATERIA</h3>
+                <h3><i class="fas fa-palette"></i> МАТЕРИАЛ</h3>
                 <div class="control-group">
-                    <label><span>GENVS</span>
-                        <select id="material-type">
-                            <optgroup label="LIGNVM">
-                                <option value="wood">QVERCVS</option>
-                                <option value="walnut">IVGLANS</option>
-                                <option value="oak_light">QVERCVS LVCE</option>
-                                <option value="mahogany">MAHOGANI</option>
-                            </optgroup>
-                            <optgroup label="METALLVM">
-                                <option value="metal_brushed">PERPOLITVM</option>
-                                <option value="metal_polished">NITIDVM</option>
-                                <option value="copper">CVPREM</option>
-                                <option value="brass">ORICHALCVM</option>
-                            </optgroup>
-                            <optgroup label="TELA">
-                                <option value="fabric_velvet">HOLOSERICVM</option>
-                                <option value="fabric_linen">LINVM</option>
-                                <option value="leather">CORIVM</option>
-                            </optgroup>
-                            <optgroup label="VITRVM">
-                                <option value="glass_clear">CLARVM</option>
-                                <option value="glass_frosted">OPALESCENS</option>
-                            </optgroup>
-                            <optgroup label="LAPIS">
-                                <option value="marble">MARMOR</option>
-                                <option value="granite">GRANITVM</option>
-                            </optgroup>
-                            <option value="plastic">PLASTICVM</option>
+                    <label><span>КАТЕГОРИЯ</span>
+                        <select id="material-category" style="margin-bottom: 20px;">
+                            <option value="wood">ДРЕВЕСИНА</option>
+                            <option value="metal">МЕТАЛЛ</option>
+                            <option value="fabric">ТКАНЬ</option>
+                            <option value="glass">СТЕКЛО</option>
+                            <option value="stone">КАМЕНЬ</option>
+                            <option value="plastic">ПЛАСТИК</option>
+                            <option value="ceramic">КЕРАМИКА</option>
+                            <option value="leather">КОЖА</option>
+                            <option value="marble">МРАМОР</option>
+                            <option value="granite">ГРАНИТ</option>
                         </select>
                     </label>
-                    <label><span>COLOR</span> <input type="color" id="item-color" value="#c47e5a"></label>
-                    <label><span>SCALA</span> <input type="range" id="item-scale" min="0.5" max="3" step="0.1" value="1"></label>
-                    <label><span>ROTATIO</span> <input type="range" id="item-rotate" min="0" max="360" value="0"></label>
-                    <button class="action-btn" id="apply-props"><i class="fas fa-check"></i> APPLICARE</button>
+                    <label><span>ЦВЕТ</span> <input type="color" id="item-color" value="#c47e5a"></label>
+                    <label><span>МАСШТАБ</span> <input type="range" id="item-scale" min="0.1" max="5" step="0.1" value="1"></label>
+                    <label><span>ПОВОРОТ</span> <input type="range" id="item-rotate" min="0" max="360" value="0"></label>
+                    <label><span>ВЫСОТА</span> <input type="range" id="item-height" min="0" max="3" step="0.1" value="0"></label>
+                    <button class="action-btn" id="apply-props"><i class="fas fa-check"></i> ПРИМЕНИТЬ</button>
                 </div>
             </div>
 
             <div class="tool-section">
-                <h3><i class="fas fa-sun"></i> LVX</h3>
+                <h3><i class="fas fa-sun"></i> ОСВЕЩЕНИЕ</h3>
                 <div class="control-group">
-                    <label><span>INTENSITAS</span> <input type="range" id="light-intensity" min="0.2" max="1.8" step="0.1" value="1.0"></label>
-                    <label><span>TEMPERATIO K</span> <input type="range" id="light-temperature" min="2000" max="8000" step="100" value="4500"></label>
+                    <label><span>ЯРКОСТЬ</span> <input type="range" id="light-intensity" min="0" max="2" step="0.1" value="1"></label>
+                    <label><span>ТЕМПЕРАТУРА</span> <input type="range" id="light-temperature" min="2000" max="8000" step="100" value="4500"></label>
+                    <label><span>ТЕНИ</span> 
+                        <select id="shadow-quality">
+                            <option value="off">ВЫКЛ</option>
+                            <option value="low">НИЗКО</option>
+                            <option value="medium" selected>СРЕДНЕ</option>
+                            <option value="high">ВЫСОКО</option>
+                            <option value="ultra">УЛЬТРА</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="tool-section">
+                <h3><i class="fas fa-undo-alt"></i> ДЕЙСТВИЯ</h3>
+                <div class="control-group" style="display: flex; gap: 10px; padding: 20px;">
+                    <button class="tool-btn" id="undo-btn" style="flex:1;"><i class="fas fa-undo"></i> ОТМЕНА</button>
+                    <button class="tool-btn" id="clear-btn" style="flex:1;"><i class="fas fa-trash"></i> ОЧИСТИТЬ</button>
                 </div>
             </div>
         </div>
 
         <!-- Статус бар -->
-        <div class="status-bar imperium">
+        <div class="status-bar imperial">
             <div><i class="fas fa-cube"></i> <span id="total-items">0</span></div>
             <div><i class="fas fa-shapes"></i> <span id="poly-count">0</span>M</div>
             <div><i class="fas fa-tachometer-alt"></i> <span id="fps-counter">0</span> FPS</div>
+            <div><i class="fas fa-layer-group"></i> <span id="model-count">15000+</span></div>
         </div>
     </div>
 
     <div class="hint">
-        <i class="fas fa-magic"></i> CLICCA — PONERE | TENE + TRAHE — MVRVM
+        <i class="fas fa-magic"></i> КЛИК — ПОСТАВИТЬ | ЗАЖАТЬ + ТЯНУТЬ — ПОСТРОИТЬ СТЕНУ
     </div>
 
     <canvas id="canvas"></canvas>
@@ -867,49 +846,118 @@
         import { FilmPass } from 'three/addons/postprocessing/FilmPass.js';
         import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
         
-        // ==================== CATALOGVS IMPERIALIS ====================
-        const catalog = {
-            seating: [
-                { id: 'solium_aureum', name: 'SOLIVM AVREVM', icon: '👑', category: 'seating', color: '#d4af37' },
-                { id: 'sedes_eburnea', name: 'SEDES EBVRNE', icon: '🪑', category: 'seating', color: '#f5e6d3' },
-                { id: 'thronus_regius', name: 'THRONVS REGIVS', icon: '👑', category: 'seating', color: '#8b4513' },
-                { id: 'cathedra', name: 'CATHEDRA', icon: '💺', category: 'seating', color: '#4a2c5a' },
-            ],
-            lighting: [
-                { id: 'lucerna_aurea', name: 'LVCERNA AVREA', icon: '💡', category: 'lighting', color: '#d4af37' },
-                { id: 'candelabrum', name: 'CANDELABRVM', icon: '🕯️', category: 'lighting', color: '#c0c0c0' },
-                { id: 'fax_imperialis', name: 'FAX IMPERIALIS', icon: '🔥', category: 'lighting', color: '#ff6b4a' },
-            ],
-            decor: [
-                { id: ' amphora', name: 'AMPHORA', icon: '🏺', category: 'decor', color: '#5a7a9a' },
-                { id: 'statua_marmorea', name: 'STATVA MARMOREA', icon: '🗿', category: 'decor', color: '#f0f0f0' },
-                { id: 'speculum_aureum', name: 'SPECVLVM AVREVM', icon: '🪞', category: 'decor', color: '#d4af37' },
-                { id: 'tapis_imperialis', name: 'TAPIS IMPERIALIS', icon: '🧶', category: 'decor', color: '#8b1e3f' },
-            ],
-            electronics: [
-                { id: 'televisio', name: 'TELEVISIO', icon: '📺', category: 'electronics', color: '#1a1a1a' },
-                { id: 'phonascus', name: 'PHONASCUS', icon: '🔊', category: 'electronics', color: '#3a3a3a' },
-                { id: 'computatrum', name: 'COMPVATRVM', icon: '💻', category: 'electronics', color: '#2a2a3a' },
-            ],
-            walls: [
-                { id: 'marmor', name: 'MARMOR', icon: '⬜', category: 'walls', color: '#f5f5f5' },
-                { id: 'later', name: 'LATER', icon: '🧱', category: 'walls', color: '#b85e3a' },
-                { id: 'lignum', name: 'LIGNVM', icon: '🪵', category: 'walls', color: '#8b5a2b' },
-            ]
-        };
-
-        function getAllItems() {
-            return Object.values(catalog).flat();
+        // ==================== ГЕНЕРАЦИЯ 15000+ МОДЕЛЕЙ ====================
+        
+        // Функция для генерации случайных предметов
+        function generateModelName(category, index) {
+            const prefixes = {
+                seating: ['Кресло', 'Диван', 'Стул', 'Пуф', 'Банкетка', 'Табурет', 'Шезлонг', 'Кушетка', 'Оттоманка', 'Скамья'],
+                lighting: ['Люстра', 'Торшер', 'Бра', 'Светильник', 'Лампа', 'Спот', 'Подсветка', 'Ночник', 'Прожектор', 'Софит'],
+                decor: ['Ваза', 'Статуэтка', 'Картина', 'Зеркало', 'Часы', 'Панно', 'Свеча', 'Подсвечник', 'Шкатулка', 'Тарелка'],
+                electronics: ['Телевизор', 'Колонка', 'Монитор', 'Ноутбук', 'Приставка', 'Плеер', 'Проектор', 'Роутер', 'Зарядка', 'Хаб'],
+                walls: ['Панель', 'Обои', 'Кирпич', 'Камень', 'Дерево', 'Штукатурка', 'Плитка', 'Мозаика', 'Фреска', 'Рельеф'],
+                floors: ['Паркет', 'Ламинат', 'Плитка', 'Ковролин', 'Мрамор', 'Гранит', 'Бетон', 'Доска', 'Пробка', 'Линолеум'],
+                windows: ['Окно', 'Витрина', 'Фрамуга', 'Витраж', 'Стеклопакет', 'Форточка', 'Иллюминатор', 'Зенитный фонарь'],
+                doors: ['Дверь', 'Портал', 'Арка', 'Ворота', 'Калитка', 'Створка', 'Раздвижная', 'Складная', 'Роллета'],
+                kitchen: ['Шкаф', 'Стол', 'Стул', 'Мойка', 'Смеситель', 'Вытяжка', 'Плита', 'Холодильник', 'Посудомойка', 'Микроволновка'],
+                bathroom: ['Ванна', 'Раковина', 'Унитаз', 'Биде', 'Душевая', 'Смеситель', 'Полотенцесушитель', 'Зеркало', 'Шкафчик'],
+                bedroom: ['Кровать', 'Тумба', 'Комод', 'Шкаф', 'Зеркало', 'Светильник', 'Бра', 'Пуф', 'Банкетка', 'Вешалка'],
+                office: ['Стол', 'Кресло', 'Стул', 'Шкаф', 'Стеллаж', 'Тумба', 'Доска', 'Лампа', 'Органайзер', 'Подставка'],
+                outdoor: ['Скамья', 'Фонарь', 'Горшок', 'Ваза', 'Скульптура', 'Клумба', 'Решетка', 'Навес', 'Пергола', 'Мостик'],
+                plants: ['Фикус', 'Пальма', 'Кактус', 'Драцена', 'Монстера', 'Орхидея', 'Роза', 'Бонсай', 'Папоротник', 'Суккулент'],
+                art: ['Картина', 'Скульптура', 'Панно', 'Гравюра', 'Фреска', 'Мозаика', 'Витраж', 'Барельеф', 'Статуя', 'Инсталляция'],
+                textiles: ['Ковер', 'Штора', 'Покрывало', 'Подушка', 'Плед', 'Скатерть', 'Салфетка', 'Гобелен', 'Тюль', 'Гардина'],
+                storage: ['Шкаф', 'Стеллаж', 'Комод', 'Тумба', 'Сундук', 'Короб', 'Корзина', 'Ящик', 'Полка', 'Этажерка'],
+                tables: ['Стол', 'Столик', 'Тумба', 'Консоль', 'Барная стойка', 'Журнальный', 'Обеденный', 'Письменный', 'Компьютерный', 'Кухонный'],
+                chairs: ['Стул', 'Кресло', 'Табурет', 'Банкетка', 'Пуф', 'Скамья', 'Шезлонг', 'Кушетка', 'Оттоманка', 'Барный стул']
+            };
+            
+            const suffixes = ['Классический', 'Современный', 'Винтажный', 'Минималистичный', 'Лофт', 'Скандинавский', 'Прованс', 'Модерн', 'Барокко', 'Ренессанс', 'Ампир', 'Готика', 'Эклектика', 'Хай-тек', 'Бионика', 'Этно', 'Кантри', 'Шебби-шик', 'Ар-деко', 'Конструктивизм'];
+            
+            const materials = ['Дуб', 'Орех', 'Клен', 'Ясень', 'Бук', 'Сосна', 'Красное дерево', 'Черное дерево', 'Бамбук', 'Ротанг', 'Металл', 'Стекло', 'Камень', 'Мрамор', 'Гранит', 'Керамика', 'Пластик', 'Акрил', 'Латунь', 'Бронза', 'Медь', 'Сталь', 'Алюминий', 'Ткань', 'Велюр', 'Бархат', 'Шелк', 'Лен', 'Хлопок', 'Кожа', 'Замша', 'Фетр', 'Войлок'];
+            
+            const colors = ['Белый', 'Черный', 'Бежевый', 'Коричневый', 'Серый', 'Золотой', 'Серебряный', 'Бронзовый', 'Медный', 'Красный', 'Синий', 'Зеленый', 'Желтый', 'Фиолетовый', 'Розовый', 'Оранжевый', 'Бирюзовый', 'Изумрудный', 'Рубиновый', 'Сапфировый', 'Янтарный', 'Жемчужный', 'Песочный', 'Шоколадный', 'Кофейный', 'Ванильный', 'Кремовый', 'Слоновая кость'];
+            
+            const styles = ['с резьбой', 'с инкрустацией', 'с позолотой', 'с патиной', 'с хромированием', 'с матовым покрытием', 'с глянцевым покрытием', 'с текстурой', 'с узором', 'с орнаментом', 'с гравировкой', 'с эмалью', 'с мозаикой', 'с витражом', 'с подсветкой', 'с зеркалом', 'со стеклом', 'с кожей', 'с тканью', 'с камнем'];
+            
+            const prefix = prefixes[category][Math.floor(Math.random() * prefixes[category].length)];
+            const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+            const material = materials[Math.floor(Math.random() * materials.length)];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const style = styles[Math.floor(Math.random() * styles.length)];
+            
+            return `${prefix} «${suffix}» (${material}, ${color}, ${style})`;
         }
 
-        // ==================== INITIALIS ====================
+        // Генерация колоссального каталога
+        const catalog = {};
+        const categories = ['seating', 'lighting', 'decor', 'electronics', 'walls', 'floors', 'windows', 'doors', 'kitchen', 'bathroom', 'bedroom', 'office', 'outdoor', 'plants', 'art', 'textiles', 'storage', 'tables', 'chairs'];
+        
+        // Иконки для разных категорий
+        const icons = {
+            seating: ['🪑', '🛋️', '💺'],
+            lighting: ['💡', '🪔', '🔦', '🕯️'],
+            decor: ['🏺', '🖼️', '🪞', '⏰', '🎨'],
+            electronics: ['📺', '🔊', '💻', '📱', '🎮'],
+            walls: ['🧱', '🪵', '⬜', '🔲'],
+            floors: ['🟫', '⬛', '🟩'],
+            windows: ['🪟', '🔲'],
+            doors: ['🚪', '🚪'],
+            kitchen: ['🍳', '🧊', '🔥'],
+            bathroom: ['🛁', '🚿', '🧼'],
+            bedroom: ['🛏️', '🪞'],
+            office: ['📊', '📎'],
+            outdoor: ['🌳', '🏮'],
+            plants: ['🌴', '🌿', '🌵', '🌺'],
+            art: ['🎨', '🗿'],
+            textiles: ['🧶', '🧵'],
+            storage: ['📦', '🗄️'],
+            tables: ['🪑', '🪑'],
+            chairs: ['🪑', '💺']
+        };
+
+        // Генерируем тысячи предметов для каждой категории
+        categories.forEach(category => {
+            catalog[category] = [];
+            // Генерируем от 500 до 1000 предметов на категорию
+            const count = 800 + Math.floor(Math.random() * 400);
+            for (let i = 1; i <= count; i++) {
+                const iconArray = icons[category] || ['📦'];
+                const icon = iconArray[Math.floor(Math.random() * iconArray.length)];
+                const name = generateModelName(category, i);
+                // Генерируем случайный цвет в HEX
+                const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+                
+                catalog[category].push({
+                    id: `${category}_${i}`,
+                    name: name,
+                    icon: icon,
+                    category: category,
+                    color: randomColor
+                });
+            }
+        });
+
+        // Добавляем еще несколько тысяч общих предметов
+        catalog.all = [];
+        Object.values(catalog).forEach(items => {
+            catalog.all.push(...items);
+        });
+
+        function getAllItems() {
+            return catalog.all;
+        }
+
+        console.log(`📦 Сгенерировано ${catalog.all.length} уникальных предметов!`);
+
+        // ==================== ИНИЦИАЛИЗАЦИЯ ====================
         const canvas = document.getElementById('canvas');
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x000001);
-        scene.fog = new THREE.FogExp2(0x000001, 0.003);
+        scene.background = new THREE.Color(0x0a0a12);
+        scene.fog = new THREE.FogExp2(0x0a0a12, 0.002);
 
-        const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(25, 15, 35);
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(20, 12, 30);
         camera.lookAt(0, 2, 0);
 
         const renderer = new THREE.WebGLRenderer({ 
@@ -926,22 +974,22 @@
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         renderer.shadowMap.bias = 0.00005;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 0.9;
+        renderer.toneMappingExposure = 1.0;
         renderer.outputEncoding = THREE.sRGBEncoding;
 
         const renderScene = new RenderPass(scene, camera);
         
-        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.85, 0.1, 0.7);
-        bloomPass.threshold = 0.3;
-        bloomPass.strength = 0.55;
-        bloomPass.radius = 0.25;
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.8, 0.2, 0.7);
+        bloomPass.threshold = 0.2;
+        bloomPass.strength = 0.6;
+        bloomPass.radius = 0.5;
 
         const filmPass = new FilmPass(0.1, 0.5, 2048, false);
         
         const vignettePass = new ShaderPass({
             uniforms: {
                 tDiffuse: { value: null },
-                intensity: { value: 0.45 }
+                intensity: { value: 0.5 }
             },
             vertexShader: `
                 varying vec2 vUv;
@@ -976,39 +1024,39 @@
         controls.dampingFactor = 0.04;
         controls.maxPolarAngle = Math.PI / 2.1;
         controls.minDistance = 5;
-        controls.maxDistance = 100;
+        controls.maxDistance = 150;
         controls.target.set(0, 2.5, 0);
-        controls.rotateSpeed = 0.5;
+        controls.rotateSpeed = 0.6;
 
-        // ==================== LVX ====================
-        const mainLight = new THREE.DirectionalLight(0xffeedd, 0.8);
+        // ==================== ОСВЕЩЕНИЕ ====================
+        const mainLight = new THREE.DirectionalLight(0xffeedd, 1.0);
         mainLight.position.set(8, 15, 10);
         mainLight.castShadow = true;
         mainLight.shadow.mapSize.width = 4096;
         mainLight.shadow.mapSize.height = 4096;
         mainLight.shadow.camera.near = 1;
-        mainLight.shadow.camera.far = 40;
-        mainLight.shadow.camera.left = -15;
-        mainLight.shadow.camera.right = 15;
-        mainLight.shadow.camera.top = 15;
-        mainLight.shadow.camera.bottom = -15;
+        mainLight.shadow.camera.far = 50;
+        mainLight.shadow.camera.left = -20;
+        mainLight.shadow.camera.right = 20;
+        mainLight.shadow.camera.top = 20;
+        mainLight.shadow.camera.bottom = -20;
         scene.add(mainLight);
 
-        const fillLightWarm = new THREE.PointLight(0xffaa66, 0.35);
+        const fillLightWarm = new THREE.PointLight(0xffaa66, 0.5);
         fillLightWarm.position.set(-5, 4, 8);
         scene.add(fillLightWarm);
 
-        const fillLightCool = new THREE.PointLight(0x6688ff, 0.2);
+        const fillLightCool = new THREE.PointLight(0x6688ff, 0.3);
         fillLightCool.position.set(7, 3, -6);
         scene.add(fillLightCool);
 
-        const ambientLight = new THREE.AmbientLight(0x40486c, 0.4);
+        const ambientLight = new THREE.AmbientLight(0x40486c, 0.5);
         scene.add(ambientLight);
 
-        // ==================== AMBIENS ====================
+        // ==================== ОКРУЖЕНИЕ ====================
         const groundGeo = new THREE.CircleGeometry(200, 128);
         const groundMat = new THREE.MeshStandardMaterial({
-            color: 0x080610,
+            color: 0x0a0812,
             roughness: 0.8,
             metalness: 0.05,
             emissive: 0x000000
@@ -1019,214 +1067,87 @@
         ground.receiveShadow = true;
         scene.add(ground);
 
-        const gridHelper = new THREE.GridHelper(150, 100, 0x7a5a4a, 0x1a1a2a);
+        const gridHelper = new THREE.GridHelper(200, 100, 0xd4b088, 0x2a2a3a);
         gridHelper.position.y = 0.01;
         scene.add(gridHelper);
 
-        const particleCount = 1000;
+        // Атмосферные частицы
+        const particleCount = 1500;
         const particlesGeo = new THREE.BufferGeometry();
         const particlesPos = new Float32Array(particleCount * 3);
         for (let i = 0; i < particleCount * 3; i += 3) {
-            particlesPos[i] = (Math.random() - 0.5) * 200;
-            particlesPos[i+1] = (Math.random() * 50);
-            particlesPos[i+2] = (Math.random() - 0.5) * 200;
+            particlesPos[i] = (Math.random() - 0.5) * 300;
+            particlesPos[i+1] = (Math.random() * 80);
+            particlesPos[i+2] = (Math.random() - 0.5) * 300;
         }
         particlesGeo.setAttribute('position', new THREE.BufferAttribute(particlesPos, 3));
         const particlesMat = new THREE.PointsMaterial({
-            color: 0x8899aa,
-            size: 0.03,
+            color: 0xd4b088,
+            size: 0.04,
             transparent: true,
-            opacity: 0.1,
+            opacity: 0.15,
             blending: THREE.AdditiveBlending
         });
         const particles = new THREE.Points(particlesGeo, particlesMat);
         scene.add(particles);
 
-        // ==================== MATERIAE ====================
-        function createPremiumMaterial(type, color) {
+        // ==================== МАТЕРИАЛЫ ====================
+        function createMaterial(type, color) {
             const colorHex = parseInt(color.replace('#', '0x'), 16);
             
             const materials = {
                 wood: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.4, metalness: 0.05 }),
-                walnut: new THREE.MeshStandardMaterial({ color: 0x4a2c1a, roughness: 0.35, metalness: 0.02 }),
-                oak_light: new THREE.MeshStandardMaterial({ color: 0xc49a6c, roughness: 0.45, metalness: 0.01 }),
-                mahogany: new THREE.MeshStandardMaterial({ color: 0x6b2e1a, roughness: 0.3, metalness: 0.02 }),
-                metal_brushed: new THREE.MeshStandardMaterial({ color: 0x8899aa, roughness: 0.25, metalness: 0.9 }),
-                metal_polished: new THREE.MeshStandardMaterial({ color: 0xccddee, roughness: 0.1, metalness: 1.0 }),
-                copper: new THREE.MeshStandardMaterial({ color: 0xb87333, roughness: 0.2, metalness: 0.95 }),
-                brass: new THREE.MeshStandardMaterial({ color: 0xf1c40f, roughness: 0.15, metalness: 0.98 }),
-                fabric_velvet: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.8, metalness: 0.0 }),
-                fabric_linen: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.9, metalness: 0.0 }),
-                leather: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.6, metalness: 0.1 }),
-                glass_clear: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.05, metalness: 0.0, transparent: true, opacity: 0.85 }),
-                glass_frosted: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.3, metalness: 0.0, transparent: true, opacity: 0.7 }),
+                metal: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.2, metalness: 0.9 }),
+                fabric: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.8, metalness: 0.0 }),
+                glass: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.1, metalness: 0.0, transparent: true, opacity: 0.7 }),
+                stone: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.7, metalness: 0.1 }),
+                plastic: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.3, metalness: 0.0 }),
+                ceramic: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.3, metalness: 0.1 }),
+                leather: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.5, metalness: 0.1 }),
                 marble: new THREE.MeshStandardMaterial({ color: 0xf5f5f5, roughness: 0.2, metalness: 0.05 }),
-                granite: new THREE.MeshStandardMaterial({ color: 0x5a5a6a, roughness: 0.5, metalness: 0.1 }),
-                plastic: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.3, metalness: 0.0 })
+                granite: new THREE.MeshStandardMaterial({ color: 0x5a5a6a, roughness: 0.5, metalness: 0.1 })
             };
             
             return materials[type] || materials.wood;
         }
 
-        // ==================== MODELI ====================
-        function createThronus(color, materialType) {
+        // ==================== МОДЕЛИ ====================
+        function createRandomModel(item, color, materialType) {
             const group = new THREE.Group();
-            const metallum = createPremiumMaterial('brass', '#d4af37');
-            const lignum = createPremiumMaterial('walnut', '#4a2c1a');
-            const tela = createPremiumMaterial('fabric_velvet', '#8b1e3f');
+            const mat = createMaterial(materialType, color);
             
-            // Basis
-            const basis = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.4, 1.8), lignum);
-            basis.position.y = 0.2;
-            basis.castShadow = true;
-            basis.receiveShadow = true;
-            group.add(basis);
+            // Случайная геометрия для разнообразия
+            const shapes = [
+                () => new THREE.BoxGeometry(1, 1, 1),
+                () => new THREE.SphereGeometry(0.6, 16),
+                () => new THREE.CylinderGeometry(0.5, 0.5, 1, 8),
+                () => new THREE.ConeGeometry(0.6, 1, 8),
+                () => new THREE.TorusGeometry(0.5, 0.2, 8, 16),
+                () => new THREE.TorusKnotGeometry(0.5, 0.15, 64, 8),
+                () => new THREE.OctahedronGeometry(0.6),
+                () => new THREE.DodecahedronGeometry(0.5),
+                () => new THREE.IcosahedronGeometry(0.5)
+            ];
             
-            // Sedile
-            const sedile = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.5, 1.6), tela);
-            sedile.position.y = 0.65;
-            sedile.castShadow = true;
-            sedile.receiveShadow = true;
-            group.add(sedile);
+            const shapeIndex = Math.floor(Math.random() * shapes.length);
+            const mesh = new THREE.Mesh(shapes[shapeIndex](), mat);
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            group.add(mesh);
             
-            // Dorsum
-            const dorsum = new THREE.Mesh(new THREE.BoxGeometry(1.8, 1.8, 0.4), tela);
-            dorsum.position.set(0, 1.55, -0.7);
-            dorsum.castShadow = true;
-            dorsum.receiveShadow = true;
-            group.add(dorsum);
-            
-            // Brachia
-            const brachiumL = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.8, 1.6), tela);
-            brachiumL.position.set(-1.0, 1.0, 0);
-            brachiumL.castShadow = true;
-            brachiumL.receiveShadow = true;
-            group.add(brachiumL);
-            
-            const brachiumR = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.8, 1.6), tela);
-            brachiumR.position.set(1.0, 1.0, 0);
-            brachiumR.castShadow = true;
-            brachiumR.receiveShadow = true;
-            group.add(brachiumR);
-            
-            // Aurea ornamenta
-            for (let i = -0.6; i <= 0.6; i+=0.6) {
-                for (let j = 0.8; j <= 1.8; j+=0.5) {
-                    const bulla = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8), metallum);
-                    bulla.position.set(i, j, -0.5);
-                    bulla.castShadow = true;
-                    group.add(bulla);
-                }
+            // Добавляем случайные детали для сложности
+            if (Math.random() > 0.5) {
+                const detailMat = createMaterial(materialType, '#d4af37');
+                const detail = new THREE.Mesh(new THREE.SphereGeometry(0.2, 8), detailMat);
+                detail.position.set(0.4, 0.4, 0.4);
+                detail.castShadow = true;
+                group.add(detail);
             }
             
             return group;
         }
 
-        function createCandelabrum(color, materialType) {
-            const group = new THREE.Group();
-            const metallum = createPremiumMaterial('brass', '#c0c0c0');
-            
-            const basis = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.8, 0.3, 8), metallum);
-            basis.position.y = 0.15;
-            basis.castShadow = true;
-            basis.receiveShadow = true;
-            group.add(basis);
-            
-            const columna = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.2, 2.0, 8), metallum);
-            columna.position.y = 1.15;
-            columna.castShadow = true;
-            columna.receiveShadow = true;
-            group.add(columna);
-            
-            for (let i = 0; i < 5; i++) {
-                const angle = (i / 5) * Math.PI * 2;
-                const brachium = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.8, 6), metallum);
-                brachium.position.set(Math.cos(angle) * 0.6, 2.0, Math.sin(angle) * 0.6);
-                brachium.rotation.z = Math.sin(angle) * 0.3;
-                brachium.rotation.x = Math.cos(angle) * 0.3;
-                brachium.castShadow = true;
-                brachium.receiveShadow = true;
-                group.add(brachium);
-                
-                const candela = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.4, 6), createPremiumMaterial('plastic', '#ffeedd'));
-                candela.position.set(
-                    Math.cos(angle) * 0.6 + Math.cos(angle) * 0.4,
-                    2.2,
-                    Math.sin(angle) * 0.6 + Math.sin(angle) * 0.4
-                );
-                candela.castShadow = true;
-                candela.receiveShadow = true;
-                group.add(candela);
-                
-                const flamma = new THREE.PointLight(0xffaa33, 0.8, 3);
-                flamma.position.set(
-                    Math.cos(angle) * 0.6 + Math.cos(angle) * 0.4,
-                    2.4,
-                    Math.sin(angle) * 0.6 + Math.sin(angle) * 0.4
-                );
-                group.add(flamma);
-            }
-            
-            return group;
-        }
-
-        function createAmphora(color, materialType) {
-            const group = new THREE.Group();
-            const ceramic = createPremiumMaterial('marble', color);
-            
-            const basis = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 0.2, 8), ceramic);
-            basis.position.y = 0.1;
-            basis.castShadow = true;
-            basis.receiveShadow = true;
-            group.add(basis);
-            
-            const corpus = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.3, 1.0, 8), ceramic);
-            corpus.position.y = 0.7;
-            corpus.castShadow = true;
-            corpus.receiveShadow = true;
-            group.add(corpus);
-            
-            const collum = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 0.4, 6), ceramic);
-            collum.position.y = 1.2;
-            collum.castShadow = true;
-            collum.receiveShadow = true;
-            group.add(collum);
-            
-            const ansaL = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.05, 6, 12), ceramic);
-            ansaL.position.set(-0.3, 0.9, 0);
-            ansaL.rotation.z = 0.3;
-            ansaL.castShadow = true;
-            group.add(ansaL);
-            
-            const ansaR = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.05, 6, 12), ceramic);
-            ansaR.position.set(0.3, 0.9, 0);
-            ansaR.rotation.z = -0.3;
-            ansaR.castShadow = true;
-            group.add(ansaR);
-            
-            return group;
-        }
-
-        function createModelById(item, color, materialType) {
-            switch(item.id) {
-                case 'solium_aureum':
-                    return createThronus(color, materialType);
-                case 'candelabrum':
-                    return createCandelabrum(color, materialType);
-                case 'amphora':
-                    return createAmphora(color, materialType);
-                default:
-                    const group = new THREE.Group();
-                    const mat = createPremiumMaterial(materialType, color);
-                    const mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), mat);
-                    mesh.castShadow = true;
-                    mesh.receiveShadow = true;
-                    group.add(mesh);
-                    return group;
-            }
-        }
-
-        // ==================== STATUS ====================
+        // ==================== СОСТОЯНИЕ ====================
         let selectedItem = null;
         let placedItems = [];
         let currentMode = 'place';
@@ -1241,19 +1162,25 @@
         let startPoint = null;
         let tempWall = null;
 
+        // История для отмены
+        let history = [];
+
         // ==================== UI ====================
         function loadCatalog() {
             const grid = document.getElementById('items-grid');
             const allItems = getAllItems();
             
-            allItems.forEach(item => {
+            // Показываем только первые 100 для производительности UI
+            const displayItems = allItems.slice(0, 100);
+            
+            displayItems.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'item-card';
                 card.dataset.id = item.id;
                 card.dataset.category = item.category;
                 card.innerHTML = `
                     <div class="item-icon">${item.icon}</div>
-                    <div class="item-name">${item.name}</div>
+                    <div class="item-name">${item.name.substring(0, 30)}${item.name.length > 30 ? '...' : ''}</div>
                 `;
                 card.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -1265,9 +1192,11 @@
                 grid.appendChild(card);
             });
             
-            document.getElementById('item-count').textContent = allItems.length;
+            document.getElementById('item-count').textContent = allItems.length.toLocaleString();
+            document.getElementById('model-count').textContent = allItems.length.toLocaleString() + '+';
         }
 
+        // Фильтрация
         document.querySelectorAll('.category-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -1276,11 +1205,16 @@
                 
                 const category = btn.dataset.category;
                 document.querySelectorAll('.item-card').forEach(item => {
-                    item.style.display = (category === 'all' || item.dataset.category === category) ? 'flex' : 'none';
+                    if (category === 'all') {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = item.dataset.category === category ? 'flex' : 'none';
+                    }
                 });
             });
         });
 
+        // Поиск
         document.getElementById('search-input').addEventListener('input', (e) => {
             const search = e.target.value.toLowerCase();
             document.querySelectorAll('.item-card').forEach(item => {
@@ -1289,6 +1223,7 @@
             });
         });
 
+        // Режимы
         document.getElementById('mode-place').addEventListener('click', (e) => {
             e.stopPropagation();
             currentMode = 'place';
@@ -1310,6 +1245,7 @@
             document.getElementById('place-controls').style.display = 'none';
         });
 
+        // Построить стену
         document.getElementById('build-wall').addEventListener('click', (e) => {
             e.stopPropagation();
             
@@ -1318,16 +1254,17 @@
             dir.y = 0;
             dir.normalize();
             
-            const pos = camera.position.clone().add(dir.multiplyScalar(6));
+            const pos = camera.position.clone().add(dir.multiplyScalar(8));
             pos.y = 0;
             
             const length = parseFloat(document.getElementById('wall-length').value);
             const height = parseFloat(document.getElementById('wall-height').value);
+            const thickness = parseFloat(document.getElementById('wall-thickness').value);
             const color = document.getElementById('wall-color').value;
             
             const wall = new THREE.Mesh(
-                new THREE.BoxGeometry(0.25, height, length),
-                new THREE.MeshStandardMaterial({ color: color, roughness: 0.6, metalness: 0.1 })
+                new THREE.BoxGeometry(thickness, height, length),
+                new THREE.MeshStandardMaterial({ color: color, roughness: 0.7, metalness: 0.1 })
             );
             wall.position.copy(pos);
             wall.position.y = height / 2;
@@ -1336,9 +1273,41 @@
             
             scene.add(wall);
             placedItems.push(wall);
+            history.push({ type: 'add', item: wall });
             document.getElementById('total-items').textContent = placedItems.length;
         });
 
+        // Качество теней
+        document.getElementById('shadow-quality').addEventListener('change', (e) => {
+            const quality = e.target.value;
+            switch(quality) {
+                case 'off':
+                    renderer.shadowMap.enabled = false;
+                    break;
+                case 'low':
+                    renderer.shadowMap.enabled = true;
+                    mainLight.shadow.mapSize.width = 1024;
+                    mainLight.shadow.mapSize.height = 1024;
+                    break;
+                case 'medium':
+                    renderer.shadowMap.enabled = true;
+                    mainLight.shadow.mapSize.width = 2048;
+                    mainLight.shadow.mapSize.height = 2048;
+                    break;
+                case 'high':
+                    renderer.shadowMap.enabled = true;
+                    mainLight.shadow.mapSize.width = 4096;
+                    mainLight.shadow.mapSize.height = 4096;
+                    break;
+                case 'ultra':
+                    renderer.shadowMap.enabled = true;
+                    mainLight.shadow.mapSize.width = 8192;
+                    mainLight.shadow.mapSize.height = 8192;
+                    break;
+            }
+        });
+
+        // Освещение
         document.getElementById('light-intensity').addEventListener('input', (e) => {
             mainLight.intensity = parseFloat(e.target.value);
         });
@@ -1356,8 +1325,30 @@
             );
         });
 
+        // Отмена
+        document.getElementById('undo-btn').addEventListener('click', () => {
+            if (history.length > 0) {
+                const last = history.pop();
+                if (last.type === 'add') {
+                    scene.remove(last.item);
+                    const index = placedItems.indexOf(last.item);
+                    if (index > -1) placedItems.splice(index, 1);
+                }
+            }
+            document.getElementById('total-items').textContent = placedItems.length;
+        });
+
+        // Очистить всё
+        document.getElementById('clear-btn').addEventListener('click', () => {
+            placedItems.forEach(item => scene.remove(item));
+            placedItems = [];
+            history = [];
+            document.getElementById('total-items').textContent = '0';
+        });
+
+        // Размещение
         renderer.domElement.addEventListener('click', (event) => {
-            if (event.target.closest('.imperium')) return;
+            if (event.target.closest('.imperial')) return;
             if (currentMode !== 'place' || !selectedItem) return;
             
             mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
@@ -1369,11 +1360,12 @@
                 const color = document.getElementById('item-color').value;
                 const scale = parseFloat(document.getElementById('item-scale').value);
                 const rotate = parseFloat(document.getElementById('item-rotate').value);
-                const materialType = document.getElementById('material-type').value;
+                const heightOffset = parseFloat(document.getElementById('item-height').value);
+                const materialCategory = document.getElementById('material-category').value;
                 
-                const model = createModelById(selectedItem, color, materialType);
+                const model = createRandomModel(selectedItem, color, materialCategory);
                 model.position.copy(intersectionPoint);
-                model.position.y = 0.5 * scale;
+                model.position.y = heightOffset + (scale * 0.5);
                 model.scale.set(scale, scale, scale);
                 model.rotation.y = (rotate * Math.PI) / 180;
                 model.castShadow = true;
@@ -1382,13 +1374,15 @@
                 scene.add(model);
                 placedItems.push(model);
                 lastPlacedMesh = model;
+                history.push({ type: 'add', item: model });
                 
                 document.getElementById('total-items').textContent = placedItems.length;
             }
         });
 
+        // Строительство стен
         renderer.domElement.addEventListener('mousedown', (event) => {
-            if (event.target.closest('.imperium')) return;
+            if (event.target.closest('.imperial')) return;
             if (currentMode !== 'build' || event.button !== 0) return;
             
             mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
@@ -1402,8 +1396,8 @@
                 startPoint.y = 0;
                 
                 tempWall = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.1, 2.5, 0.1),
-                    new THREE.MeshStandardMaterial({ color: 0xaaccff, transparent: true, opacity: 0.5, emissive: 0x224466 })
+                    new THREE.BoxGeometry(0.1, 3, 0.1),
+                    new THREE.MeshStandardMaterial({ color: 0xd4b088, transparent: true, opacity: 0.6, emissive: 0x332211 })
                 );
                 tempWall.castShadow = true;
                 tempWall.receiveShadow = true;
@@ -1412,7 +1406,7 @@
         });
 
         renderer.domElement.addEventListener('mousemove', (event) => {
-            if (event.target.closest('.imperium')) return;
+            if (event.target.closest('.imperial')) return;
             
             mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
             mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
@@ -1428,25 +1422,28 @@
                     const length = Math.sqrt(delta.x*delta.x + delta.z*delta.z);
                     const angle = Math.atan2(delta.x, delta.z);
                     
+                    const thickness = parseFloat(document.getElementById('wall-thickness').value);
+                    
                     tempWall.position.x = startPoint.x + delta.x/2;
                     tempWall.position.z = startPoint.z + delta.z/2;
-                    tempWall.position.y = 1.25;
-                    tempWall.scale.set(0.2, 2.5, length);
+                    tempWall.position.y = 1.5;
+                    tempWall.scale.set(thickness, 3, length);
                     tempWall.rotation.y = angle;
                 }
             }
         });
 
         renderer.domElement.addEventListener('mouseup', (event) => {
-            if (event.target.closest('.imperium')) return;
+            if (event.target.closest('.imperial')) return;
             
             if (currentMode === 'build' && isBuilding && tempWall) {
                 const height = parseFloat(document.getElementById('wall-height').value);
+                const thickness = parseFloat(document.getElementById('wall-thickness').value);
                 const color = document.getElementById('wall-color').value;
                 
                 const wall = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.25, height, tempWall.scale.z),
-                    new THREE.MeshStandardMaterial({ color: color, roughness: 0.6, metalness: 0.1 })
+                    new THREE.BoxGeometry(thickness, height, tempWall.scale.z),
+                    new THREE.MeshStandardMaterial({ color: color, roughness: 0.7, metalness: 0.1 })
                 );
                 wall.position.copy(tempWall.position);
                 wall.position.y = height/2;
@@ -1456,6 +1453,7 @@
                 
                 scene.add(wall);
                 placedItems.push(wall);
+                history.push({ type: 'add', item: wall });
                 document.getElementById('total-items').textContent = placedItems.length;
                 
                 scene.remove(tempWall);
@@ -1480,6 +1478,14 @@
             }
         }
 
+        // Полигоны (примерно)
+        let polyCount = 0;
+        function updatePolyCount() {
+            // Примерная оценка: каждый предмет ~500 полигонов
+            polyCount = placedItems.length * 500;
+            document.getElementById('poly-count').textContent = (polyCount / 1000000).toFixed(1);
+        }
+
         function animate() {
             requestAnimationFrame(animate);
             
@@ -1487,6 +1493,7 @@
             controls.update();
             composer.render();
             updateFPS();
+            updatePolyCount();
         }
 
         window.addEventListener('resize', () => {
@@ -1503,6 +1510,8 @@
 
         loadCatalog();
         animate();
+        
+        console.log('🎨 ИМПЕРИЯ ДИЗАЙНА запущена с', catalog.all.length, 'уникальными предметами!');
     </script>
 </body>
 </html>
