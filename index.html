@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🏛️ ИМПЕРИЯ ИНТЕРЬЕРА — 15000+ РЕАЛЬНЫХ 3D МОДЕЛЕЙ</title>
+    <title>⚡ NEOLITH — ХАЙ-ТЕК ДИЗАЙН</title>
     <style>
         * {
             margin: 0;
@@ -11,14 +11,13 @@
             box-sizing: border-box;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
         body {
             overflow: hidden;
-            background: #0a0a12;
-            font-family: 'Montserrat', sans-serif;
+            background: #0a0c10;
+            font-family: 'Inter', sans-serif;
         }
 
         #canvas {
@@ -31,26 +30,25 @@
             z-index: 1;
         }
 
-        /* Императорское стекло */
-        .imperial {
-            background: rgba(12, 10, 20, 0.5);
-            backdrop-filter: blur(80px) saturate(550%);
-            -webkit-backdrop-filter: blur(80px) saturate(550%);
-            border: 1px solid rgba(220, 200, 180, 0.1);
-            border-radius: 48px;
-            box-shadow: 0 100px 200px -60px #000, 
-                        0 0 0 1px rgba(220, 200, 180, 0.03) inset,
-                        0 0 150px rgba(0, 0, 0, 0.9);
-            color: rgba(255, 245, 235, 1);
-            transition: all 1s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+        /* Минеральное стекло */
+        .mineral {
+            background: rgba(18, 22, 28, 0.65);
+            backdrop-filter: blur(40px) saturate(300%);
+            -webkit-backdrop-filter: blur(40px) saturate(300%);
+            border: 1px solid rgba(100, 150, 255, 0.08);
+            border-radius: 32px;
+            box-shadow: 0 40px 80px -40px #000, 
+                        0 0 0 1px rgba(100, 150, 255, 0.02) inset,
+                        0 0 100px rgba(0, 0, 0, 0.8);
+            color: #eef5ff;
+            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.3, 1);
         }
 
-        .imperial:hover {
-            background: rgba(18, 15, 28, 0.6);
-            border-color: rgba(220, 200, 180, 0.15);
-            box-shadow: 0 120px 240px -60px #000, 
-                        0 0 0 1px rgba(220, 200, 180, 0.05) inset,
-                        0 0 200px rgba(220, 200, 180, 0.02);
+        .mineral:hover {
+            background: rgba(24, 30, 38, 0.75);
+            border-color: rgba(100, 150, 255, 0.15);
+            box-shadow: 0 60px 120px -40px #000, 
+                        0 0 0 1px rgba(100, 150, 255, 0.04) inset;
         }
 
         /* Контейнер UI */
@@ -61,7 +59,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            padding: 30px;
+            padding: 24px;
             display: flex;
             justify-content: space-between;
             z-index: 10;
@@ -70,639 +68,566 @@
         /* Левая панель */
         .catalog-panel {
             pointer-events: all;
-            width: 480px;
-            height: calc(100vh - 60px);
+            width: 400px;
+            height: calc(100vh - 48px);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            animation: slideInLeft 1.2s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+            animation: fadeLeft 0.8s cubic-bezier(0.2, 0.9, 0.3, 1);
         }
 
-        @keyframes slideInLeft {
-            0% { transform: translateX(-150%) translateZ(-100px) rotateY(15deg); opacity: 0; filter: blur(30px); }
-            100% { transform: translateX(0) translateZ(0) rotateY(0); opacity: 1; filter: blur(0); }
+        @keyframes fadeLeft {
+            0% { transform: translateX(-120%) scale(0.95); opacity: 0; }
+            100% { transform: translateX(0) scale(1); opacity: 1; }
         }
 
         .panel-header {
-            padding: 30px 35px;
-            border-bottom: 1px solid rgba(220, 200, 180, 0.08);
+            padding: 24px 28px;
+            border-bottom: 1px solid rgba(100, 150, 255, 0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(180deg, rgba(220,200,180,0.03) 0%, transparent 100%);
         }
 
         .panel-header h2 {
-            font-size: 2rem;
-            font-weight: 600;
+            font-size: 1.4rem;
+            font-weight: 400;
             display: flex;
             align-items: center;
-            gap: 15px;
-            color: #f0e0d0;
-            letter-spacing: 2px;
+            gap: 12px;
+            color: #b0d0ff;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            font-family: 'Playfair Display', serif;
-            text-shadow: 0 0 40px rgba(220,200,180,0.4);
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .panel-header h2 i {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             opacity: 0.8;
-            color: #d4b088;
+            color: #88aaff;
         }
 
         .badge {
-            background: rgba(220, 200, 180, 0.15);
-            border: 1px solid rgba(220, 200, 180, 0.2);
-            color: #f0e0d0;
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            backdrop-filter: blur(10px);
-            font-family: 'Montserrat', sans-serif;
+            background: rgba(100, 150, 255, 0.15);
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            color: #b0d0ff;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .search-box {
-            padding: 25px 35px 20px;
+            padding: 20px 28px 16px;
             position: relative;
         }
 
         .search-box i {
             position: absolute;
-            left: 58px;
-            top: 50px;
-            color: #d4b088;
-            font-size: 1.2rem;
-            opacity: 0.7;
+            left: 48px;
+            top: 40px;
+            color: #88aaff;
+            font-size: 1rem;
+            opacity: 0.6;
         }
 
         .search-box input {
             width: 100%;
-            padding: 18px 25px 18px 60px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(220, 200, 180, 0.15);
-            border-radius: 60px;
+            padding: 14px 20px 14px 48px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(100, 150, 255, 0.1);
+            border-radius: 40px;
             color: white;
-            font-size: 1.1rem;
-            transition: all 0.5s ease;
-            font-weight: 400;
-            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            font-weight: 300;
+            letter-spacing: 0.3px;
             backdrop-filter: blur(10px);
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Inter', sans-serif;
         }
 
         .search-box input:focus {
             outline: none;
-            border-color: rgba(220, 200, 180, 0.4);
-            background: rgba(0, 0, 0, 0.7);
-            box-shadow: 0 0 0 5px rgba(220, 200, 180, 0.05);
+            border-color: rgba(100, 150, 255, 0.4);
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 0 3px rgba(100, 150, 255, 0.05);
         }
 
         .search-box input::placeholder {
-            color: rgba(220, 200, 180, 0.3);
-            font-style: italic;
+            color: rgba(255, 255, 255, 0.2);
+            font-weight: 300;
         }
 
         .categories {
-            padding: 15px 35px 25px;
+            padding: 12px 28px 20px;
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
-            max-height: 200px;
-            overflow-y: auto;
         }
 
         .category-btn {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(220, 200, 180, 0.15);
-            color: rgba(220, 200, 180, 0.9);
-            padding: 10px 18px;
-            border-radius: 50px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(100, 150, 255, 0.1);
+            color: rgba(200, 220, 255, 0.8);
+            padding: 8px 16px;
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.4s ease;
-            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            font-weight: 400;
             backdrop-filter: blur(10px);
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            font-family: 'Montserrat', sans-serif;
-            white-space: nowrap;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .category-btn:hover {
-            background: rgba(220, 200, 180, 0.1);
-            border-color: rgba(220, 200, 180, 0.3);
+            background: rgba(100, 150, 255, 0.1);
+            border-color: rgba(100, 150, 255, 0.3);
             transform: translateY(-2px);
             color: #fff;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
 
         .category-btn.active {
-            background: rgba(220, 200, 180, 0.85);
+            background: rgba(100, 150, 255, 0.9);
             border-color: transparent;
-            color: #0a0a12;
-            font-weight: 700;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            color: #0a0c10;
+            font-weight: 500;
         }
 
         .items-grid {
             flex: 1;
             overflow-y: auto;
-            padding: 0 35px 35px;
+            padding: 0 28px 28px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 12px;
         }
 
         .item-card {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 30px;
-            padding: 25px 15px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            padding: 20px 12px 16px;
             cursor: pointer;
-            transition: all 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            border: 1px solid rgba(220, 200, 180, 0.06);
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
+            border: 1px solid rgba(100, 150, 255, 0.05);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .item-card::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            left: -20%;
-            right: -20%;
-            bottom: -30%;
-            background: radial-gradient(circle at 30% 30%, rgba(220,200,180,0.1), transparent 70%);
-            opacity: 0;
-            transition: opacity 1s ease;
-            pointer-events: none;
-        }
-
-        .item-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(220,200,180,0.2), transparent);
-            transform: translateX(-100%);
-            transition: transform 1.2s ease;
         }
 
         .item-card:hover {
-            background: rgba(15, 12, 25, 0.6);
-            transform: translateY(-5px) scale(1.02);
-            border-color: rgba(220, 200, 180, 0.15);
-            box-shadow: 0 30px 50px -25px #000;
-        }
-
-        .item-card:hover::before {
-            opacity: 1;
-        }
-
-        .item-card:hover::after {
-            transform: translateX(100%);
+            background: rgba(20, 30, 45, 0.6);
+            transform: translateY(-4px);
+            border-color: rgba(100, 150, 255, 0.2);
+            box-shadow: 0 20px 30px -20px #000;
         }
 
         .item-card.selected {
-            border-color: rgba(220, 200, 180, 0.4);
-            background: rgba(25, 20, 35, 0.7);
-            box-shadow: 0 0 0 1.5px rgba(220, 200, 180, 0.2) inset;
+            border-color: rgba(100, 150, 255, 0.6);
+            background: rgba(30, 40, 60, 0.7);
+            box-shadow: 0 0 0 1px rgba(100, 150, 255, 0.3) inset;
         }
 
         .item-icon {
-            font-size: 4rem;
-            filter: drop-shadow(0 20px 25px rgba(0,0,0,0.8));
-            transition: all 0.6s ease;
-            opacity: 0.95;
+            font-size: 2.8rem;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+            transition: all 0.4s ease;
+            opacity: 0.9;
         }
 
         .item-card:hover .item-icon {
-            transform: scale(1.1) rotate(2deg);
+            transform: scale(1.1);
             opacity: 1;
-            filter: drop-shadow(0 30px 40px rgba(0,0,0,1));
+            filter: drop-shadow(0 15px 20px rgba(0,0,0,0.8));
         }
 
         .item-name {
-            font-size: 0.95rem;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: 400;
             text-align: center;
-            color: #f0e0d0;
+            color: #ccdfff;
             letter-spacing: 0.3px;
-            background: rgba(0,0,0,0.5);
-            padding: 8px 16px;
-            border-radius: 40px;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(220, 200, 180, 0.1);
-            font-family: 'Cormorant Garamond', serif;
+            background: rgba(0,0,0,0.3);
+            padding: 6px 12px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(100, 150, 255, 0.1);
             width: 100%;
+            font-family: 'Inter', sans-serif;
         }
 
         /* Правая панель */
         .tools-panel {
             pointer-events: all;
-            width: 420px;
+            width: 360px;
             height: fit-content;
-            padding: 30px;
-            animation: slideInRight 1.2s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+            padding: 24px;
+            animation: fadeRight 0.8s cubic-bezier(0.2, 0.9, 0.3, 1);
         }
 
-        @keyframes slideInRight {
-            0% { transform: translateX(150%) translateZ(-100px) rotateY(-15deg); opacity: 0; filter: blur(30px); }
-            100% { transform: translateX(0) translateZ(0) rotateY(0); opacity: 1; filter: blur(0); }
+        @keyframes fadeRight {
+            0% { transform: translateX(120%) scale(0.95); opacity: 0; }
+            100% { transform: translateX(0) scale(1); opacity: 1; }
         }
 
         .tool-section {
-            margin-bottom: 30px;
+            margin-bottom: 28px;
         }
 
         .tool-section h3 {
-            font-size: 1.3rem;
-            color: #d4b088;
-            margin-bottom: 20px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
+            font-size: 1rem;
+            color: #88aaff;
+            margin-bottom: 16px;
+            font-weight: 400;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             text-transform: uppercase;
-            font-family: 'Playfair Display', serif;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.7);
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .tool-section h3 i {
-            font-size: 1.2rem;
+            font-size: 0.95rem;
             opacity: 0.7;
         }
 
         .tool-buttons {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .tool-btn {
             flex: 1;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(220, 200, 180, 0.15);
-            color: rgba(220, 200, 180, 0.95);
-            padding: 15px;
-            border-radius: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(100, 150, 255, 0.15);
+            color: rgba(200, 220, 255, 0.9);
+            padding: 12px;
+            border-radius: 28px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            transition: all 0.5s ease;
-            font-size: 1.1rem;
-            font-weight: 500;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 400;
             backdrop-filter: blur(10px);
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .tool-btn:hover {
-            background: rgba(220, 200, 180, 0.1);
-            border-color: rgba(220, 200, 180, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+            background: rgba(100, 150, 255, 0.1);
+            border-color: rgba(100, 150, 255, 0.3);
+            transform: translateY(-2px);
             color: #fff;
         }
 
         .tool-btn.active {
-            background: rgba(220, 200, 180, 0.85);
-            color: #0a0a12;
+            background: rgba(100, 150, 255, 0.9);
+            color: #0a0c10;
             border-color: transparent;
-            font-weight: 700;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            font-weight: 500;
         }
 
         .control-group {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 30px;
-            padding: 25px;
-            border: 1px solid rgba(220, 200, 180, 0.06);
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            padding: 20px;
+            border: 1px solid rgba(100, 150, 255, 0.05);
             backdrop-filter: blur(10px);
         }
 
         label {
             display: block;
-            margin-bottom: 20px;
-            color: rgba(220, 200, 180, 0.98);
-            font-size: 1rem;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 18px;
+            color: rgba(200, 220, 255, 0.9);
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+            font-family: 'Inter', sans-serif;
         }
 
         label span {
             display: block;
             margin-bottom: 8px;
-            color: #d4b088;
-            font-size: 0.85rem;
+            color: #88aaff;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 500;
+            letter-spacing: 1px;
+            font-weight: 400;
         }
 
         input[type="range"] {
             width: 100%;
-            height: 4px;
-            background: rgba(220, 200, 180, 0.2);
-            border-radius: 2px;
+            height: 3px;
+            background: rgba(100, 150, 255, 0.2);
+            border-radius: 1.5px;
             -webkit-appearance: none;
         }
 
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
-            background: #f0e0d0;
+            width: 16px;
+            height: 16px;
+            background: #88aaff;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(220, 200, 180, 0.5);
-            border: 3px solid #0a0a12;
-            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(100, 150, 255, 0.5);
+            border: 2px solid #0a0c10;
+            transition: all 0.2s ease;
         }
 
         input[type="range"]::-webkit-slider-thumb:hover {
             transform: scale(1.2);
-            background: #fff;
-            box-shadow: 0 0 30px rgba(220, 200, 180, 0.7);
+            background: #aaccff;
         }
 
         input[type="color"] {
             width: 100%;
-            height: 50px;
-            border: 1px solid rgba(220, 200, 180, 0.2);
-            border-radius: 30px;
-            background: rgba(0,0,0,0.5);
-            margin-top: 8px;
+            height: 40px;
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            border-radius: 20px;
+            background: rgba(0,0,0,0.3);
+            margin-top: 6px;
             cursor: pointer;
-            padding: 5px;
+            padding: 3px;
             backdrop-filter: blur(5px);
         }
 
         select {
             width: 100%;
-            padding: 15px 20px;
-            margin-top: 8px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(220, 200, 180, 0.2);
-            border-radius: 30px;
-            color: #f0e0d0;
-            font-size: 1rem;
+            padding: 12px 18px;
+            margin-top: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(100, 150, 255, 0.2);
+            border-radius: 24px;
+            color: #eef5ff;
+            font-size: 0.9rem;
             cursor: pointer;
             backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            font-weight: 400;
-            font-family: 'Cormorant Garamond', serif;
+            transition: all 0.3s ease;
+            font-weight: 300;
+            font-family: 'Inter', sans-serif;
         }
 
         select:hover {
-            border-color: rgba(220, 200, 180, 0.4);
-            background: rgba(15, 10, 25, 0.8);
-            box-shadow: 0 0 25px rgba(0,0,0,0.5);
+            border-color: rgba(100, 150, 255, 0.4);
+            background: rgba(15, 20, 30, 0.7);
         }
 
         select option {
-            background: #0a0a12;
-            color: #f0e0d0;
-            padding: 12px;
+            background: #0a0c10;
+            color: #eef5ff;
+            padding: 10px;
         }
 
         .action-btn {
             width: 100%;
-            background: rgba(220, 200, 180, 0.85);
+            background: rgba(100, 150, 255, 0.9);
             border: none;
-            color: #0a0a12;
-            padding: 18px;
-            border-radius: 40px;
-            font-weight: 700;
+            color: #0a0c10;
+            padding: 16px;
+            border-radius: 28px;
+            font-weight: 500;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            transition: all 0.6s ease;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            letter-spacing: 1.5px;
+            gap: 10px;
+            transition: all 0.4s ease;
+            font-size: 1rem;
+            margin-top: 16px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            font-family: 'Playfair Display', serif;
-            border: 1px solid transparent;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .action-btn:hover {
-            background: #f0e0d0;
-            transform: scale(1.02) translateY(-3px);
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7);
+            background: #aaccff;
+            transform: scale(1.02) translateY(-2px);
+            box-shadow: 0 20px 30px -15px #000;
         }
 
         /* Статус бар */
         .status-bar {
             pointer-events: all;
             position: absolute;
-            bottom: 30px;
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 15px 40px;
+            padding: 12px 40px;
             display: flex;
-            gap: 50px;
-            font-size: 1.1rem;
-            backdrop-filter: blur(80px) saturate(600%);
-            animation: slideUp 1.2s ease;
-            border-radius: 60px;
-            background: rgba(8, 6, 16, 0.5);
-            border: 1px solid rgba(220, 200, 180, 0.1);
-            box-shadow: 0 30px 60px -30px #000;
+            gap: 40px;
+            font-size: 0.95rem;
+            backdrop-filter: blur(50px) saturate(400%);
+            animation: fadeUp 0.8s ease;
+            border-radius: 50px;
+            background: rgba(10, 15, 22, 0.6);
+            border: 1px solid rgba(100, 150, 255, 0.1);
+            box-shadow: 0 20px 40px -30px #000;
         }
 
-        @keyframes slideUp {
-            0% { opacity: 0; transform: translateX(-50%) translateY(50px) scale(0.9); filter: blur(15px); }
-            100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); filter: blur(0); }
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateX(-50%) translateY(30px); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
         .status-bar i {
-            color: #d4b088;
-            margin-right: 10px;
-            font-size: 1.2rem;
+            color: #88aaff;
+            margin-right: 8px;
+            font-size: 1rem;
             opacity: 0.9;
         }
 
         .status-bar div {
             display: flex;
             align-items: center;
-            font-weight: 500;
-            color: #f0e0d0;
-            letter-spacing: 0.5px;
-            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            color: #d0e0ff;
+            letter-spacing: 0.3px;
+            font-family: 'Inter', sans-serif;
         }
 
         /* Кастомный скроллбар */
         ::-webkit-scrollbar {
-            width: 4px;
+            width: 3px;
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(220, 200, 180, 0.02);
+            background: rgba(100, 150, 255, 0.02);
             border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgba(220, 200, 180, 0.2);
+            background: rgba(100, 150, 255, 0.2);
             border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(220, 200, 180, 0.35);
         }
 
         /* Подсказка */
         .hint {
             position: absolute;
-            top: 30px;
-            right: 480px;
-            background: rgba(8, 6, 16, 0.5);
-            color: #f0e0d0;
-            padding: 12px 28px;
-            border-radius: 60px;
-            font-size: 0.95rem;
-            backdrop-filter: blur(50px);
-            border: 1px solid rgba(220, 200, 180, 0.15);
+            top: 24px;
+            right: 400px;
+            background: rgba(10, 15, 22, 0.6);
+            color: #d0e0ff;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(100, 150, 255, 0.15);
             pointer-events: none;
-            box-shadow: 0 25px 50px -25px #000;
-            font-weight: 500;
-            letter-spacing: 0.8px;
-            animation: pulse 5s infinite;
-            font-family: 'Cormorant Garamond', serif;
+            box-shadow: 0 15px 30px -20px #000;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            animation: glow 4s infinite;
+            font-family: 'Inter', sans-serif;
             z-index: 20;
         }
 
-        @keyframes pulse {
-            0% { border-color: rgba(220, 200, 180, 0.15); box-shadow: 0 25px 50px -25px #000; }
-            50% { border-color: rgba(220, 200, 180, 0.3); box-shadow: 0 25px 70px -20px #000, 0 0 25px rgba(220,200,180,0.1); }
-            100% { border-color: rgba(220, 200, 180, 0.15); box-shadow: 0 25px 50px -25px #000; }
+        @keyframes glow {
+            0% { border-color: rgba(100, 150, 255, 0.15); }
+            50% { border-color: rgba(100, 150, 255, 0.4); }
+            100% { border-color: rgba(100, 150, 255, 0.15); }
         }
 
         .hint i {
-            color: #d4b088;
-            margin-right: 10px;
-            font-size: 1rem;
+            color: #88aaff;
+            margin-right: 8px;
+            font-size: 0.9rem;
         }
 
         /* Логотип */
         .logo {
             position: absolute;
-            top: 30px;
+            top: 24px;
             left: 50%;
             transform: translateX(-50%);
             pointer-events: none;
             z-index: 5;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #f0e0d0;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.9);
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: #b0d0ff;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.8);
             letter-spacing: 8px;
             text-transform: uppercase;
-            background: rgba(8,6,16,0.3);
-            padding: 12px 50px;
-            border-radius: 60px;
-            backdrop-filter: blur(35px);
-            border: 1px solid rgba(220,200,180,0.08);
-            font-family: 'Playfair Display', serif;
-            white-space: nowrap;
+            background: rgba(10,15,22,0.3);
+            padding: 10px 40px;
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(100,150,255,0.1);
+            font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Атмосферные орбы */
-        .atmos-orb {
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(220,200,180,0.03) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -400px;
-            right: -400px;
-            z-index: 0;
-            pointer-events: none;
-            animation: orbFloat 30s infinite;
-        }
-
-        @keyframes orbFloat {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.2; }
-            50% { transform: scale(1.2) rotate(8deg); opacity: 0.3; }
-        }
-
-        .atmos-orb2 {
-            position: absolute;
-            width: 1000px;
-            height: 1000px;
-            background: radial-gradient(circle, rgba(100,120,160,0.02) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -500px;
-            left: -500px;
-            z-index: 0;
-            pointer-events: none;
-            animation: orbFloat2 40s infinite reverse;
-        }
-
-        @keyframes orbFloat2 {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.15; }
-            50% { transform: scale(1.3) rotate(-12deg); opacity: 0.25; }
-        }
-
-        /* Частицы */
-        .atmos-particles {
+        /* Хай-тек декор */
+        .tech-grid {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><circle cx="100" cy="100" r="0.8" fill="%23dcc4b4" opacity="0.08"/><circle cx="40" cy="60" r="0.6" fill="%23dcc4b4" opacity="0.06"/><circle cx="160" cy="140" r="0.7" fill="%23dcc4b4" opacity="0.06"/><circle cx="180" cy="40" r="0.5" fill="%23dcc4b4" opacity="0.06"/><circle cx="20" cy="160" r="0.6" fill="%23dcc4b4" opacity="0.06"/></svg>');
-            background-size: 200px 200px;
+            background: repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(100,150,255,0.02) 49px, rgba(100,150,255,0.02) 50px);
             pointer-events: none;
             z-index: 2;
-            opacity: 0.2;
-            animation: particlesDrift 150s linear infinite;
+            opacity: 0.3;
         }
 
-        @keyframes particlesDrift {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(120px, 120px); }
+        .tech-orb {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(100,150,255,0.02) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -300px;
+            right: -300px;
+            z-index: 0;
+            pointer-events: none;
+            animation: orbPulse 20s infinite;
+        }
+
+        @keyframes orbPulse {
+            0%, 100% { transform: scale(1); opacity: 0.2; }
+            50% { transform: scale(1.2); opacity: 0.3; }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="atmos-orb"></div>
-    <div class="atmos-orb2"></div>
-    <div class="atmos-particles"></div>
-    <div class="logo">⚜️ ИМПЕРИЯ ⚜️</div>
+    <div class="tech-grid"></div>
+    <div class="tech-orb"></div>
+    <div class="logo">NEOLITH</div>
 
     <div class="ui-container">
         <!-- Левая панель -->
-        <div class="catalog-panel imperial">
+        <div class="catalog-panel mineral">
             <div class="panel-header">
-                <h2><i class="fas fa-crown"></i> КОЛЛЕКЦИЯ</h2>
+                <h2><i class="fas fa-microchip"></i> КАТАЛОГ</h2>
                 <span class="badge" id="item-count">0</span>
             </div>
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Поиск среди тысяч предметов..." id="search-input">
+                <input type="text" placeholder="Поиск..." id="search-input">
             </div>
-            <div class="categories" id="categories-container"></div>
+            <div class="categories">
+                <button class="category-btn active" data-category="all">ВСЁ</button>
+                <button class="category-btn" data-category="lighting">СВЕТ</button>
+                <button class="category-btn" data-category="seating">СИДЕНЬЯ</button>
+                <button class="category-btn" data-category="tables">СТОЛЫ</button>
+                <button class="category-btn" data-category="shelves">СТЕЛЛАЖИ</button>
+                <button class="category-btn" data-category="decor">ДЕКОР</button>
+                <button class="category-btn" data-category="tech">ТЕХНИКА</button>
+            </div>
             <div class="items-grid" id="items-grid"></div>
         </div>
 
         <!-- Правая панель -->
-        <div class="tools-panel imperial">
+        <div class="tools-panel mineral">
             <div class="panel-header">
                 <h2><i class="fas fa-sliders-h"></i> ПАРАМЕТРЫ</h2>
             </div>
@@ -710,10 +635,10 @@
                 <h3><i class="fas fa-compass"></i> РЕЖИМ</h3>
                 <div class="tool-buttons">
                     <button class="tool-btn active" id="mode-place">
-                        <i class="fas fa-hand"></i> РАЗМЕСТИТЬ
+                        <i class="fas fa-hand"></i> СТАВИТЬ
                     </button>
                     <button class="tool-btn" id="mode-build">
-                        <i class="fas fa-draw-polygon"></i> СТРОИТЬ
+                        <i class="fas fa-draw-polygon"></i> СТЕНА
                     </button>
                 </div>
             </div>
@@ -722,25 +647,18 @@
             <div class="tool-section" id="build-controls" style="display: none;">
                 <h3><i class="fas fa-cubes"></i> СТЕНА</h3>
                 <div class="control-group">
-                    <label><span>ДЛИНА (м)</span> <input type="range" id="wall-length" min="1" max="15" step="0.5" value="4"></label>
-                    <label><span>ВЫСОТА (м)</span> <input type="range" id="wall-height" min="2" max="8" step="0.5" value="3"></label>
-                    <label><span>ТОЛЩИНА (м)</span> <input type="range" id="wall-thickness" min="0.1" max="1" step="0.05" value="0.3"></label>
-                    <label><span>ЦВЕТ</span> <input type="color" id="wall-color" value="#d4b088"></label>
+                    <label><span>ДЛИНА</span> <input type="range" id="wall-length" min="1" max="10" step="0.5" value="4"></label>
+                    <label><span>ВЫСОТА</span> <input type="range" id="wall-height" min="2" max="6" step="0.5" value="3"></label>
+                    <label><span>ЦВЕТ</span> <input type="color" id="wall-color" value="#88aaff"></label>
                     <label><span>МАТЕРИАЛ</span>
                         <select id="wall-texture">
-                            <option value="brick">Кирпич</option>
                             <option value="concrete">Бетон</option>
-                            <option value="wood">Дерево</option>
-                            <option value="marble">Мрамор</option>
-                            <option value="plaster">Штукатурка</option>
-                            <option value="stone">Камень</option>
-                            <option value="wallpaper">Обои</option>
-                            <option value="tile">Плитка</option>
-                            <option value="glass">Стекло</option>
                             <option value="metal">Металл</option>
+                            <option value="glass">Стекло</option>
+                            <option value="panel">Панели</option>
                         </select>
                     </label>
-                    <button class="action-btn" id="build-wall"><i class="fas fa-plus-circle"></i> ВОЗВЕСТИ</button>
+                    <button class="action-btn" id="build-wall"><i class="fas fa-plus-circle"></i> СОЗДАТЬ</button>
                 </div>
             </div>
 
@@ -750,70 +668,38 @@
                 <div class="control-group">
                     <label><span>МАТЕРИАЛ</span>
                         <select id="material-type">
-                            <option value="wood">Дерево (дуб)</option>
-                            <option value="walnut">Дерево (орех)</option>
-                            <option value="oak_light">Дерево (светлый дуб)</option>
-                            <option value="mahogany">Красное дерево</option>
                             <option value="metal_brushed">Металл (щетка)</option>
                             <option value="metal_polished">Металл (полировка)</option>
-                            <option value="copper">Медь</option>
-                            <option value="brass">Латунь</option>
-                            <option value="fabric_velvet">Ткань (бархат)</option>
-                            <option value="fabric_linen">Ткань (лен)</option>
-                            <option value="leather">Кожа</option>
-                            <option value="glass_clear">Стекло (прозрачное)</option>
-                            <option value="glass_frosted">Стекло (матовое)</option>
-                            <option value="marble">Мрамор</option>
-                            <option value="granite">Гранит</option>
-                            <option value="ceramic">Керамика</option>
+                            <option value="glass">Стекло</option>
                             <option value="plastic">Пластик</option>
+                            <option value="concrete">Бетон</option>
+                            <option value="carbon">Карбон</option>
                         </select>
                     </label>
-                    <label><span>ЦВЕТ</span> <input type="color" id="item-color" value="#c47e5a"></label>
-                    <label><span>МАСШТАБ</span> <input type="range" id="item-scale" min="0.2" max="3" step="0.1" value="1"></label>
+                    <label><span>ЦВЕТ</span> <input type="color" id="item-color" value="#88aaff"></label>
+                    <label><span>МАСШТАБ</span> <input type="range" id="item-scale" min="0.5" max="2" step="0.1" value="1"></label>
                     <label><span>ПОВОРОТ</span> <input type="range" id="item-rotate" min="0" max="360" value="0"></label>
-                    <label><span>ВЫСОТА (над полом)</span> <input type="range" id="item-height" min="0" max="2" step="0.1" value="0"></label>
                     <button class="action-btn" id="apply-props"><i class="fas fa-check"></i> ПРИМЕНИТЬ</button>
                 </div>
             </div>
 
             <div class="tool-section">
-                <h3><i class="fas fa-sun"></i> ОСВЕЩЕНИЕ</h3>
+                <h3><i class="fas fa-sun"></i> СВЕТ</h3>
                 <div class="control-group">
-                    <label><span>ЯРКОСТЬ</span> <input type="range" id="light-intensity" min="0" max="2" step="0.1" value="1"></label>
-                    <label><span>ТЕМПЕРАТУРА (K)</span> <input type="range" id="light-temperature" min="2000" max="8000" step="100" value="4500"></label>
-                    <label><span>КАЧЕСТВО ТЕНЕЙ</span> 
-                        <select id="shadow-quality">
-                            <option value="off">Выкл</option>
-                            <option value="low">Низкое</option>
-                            <option value="medium" selected>Среднее</option>
-                            <option value="high">Высокое</option>
-                            <option value="ultra">Ультра</option>
-                        </select>
-                    </label>
-                </div>
-            </div>
-            
-            <div class="tool-section">
-                <h3><i class="fas fa-undo-alt"></i> ДЕЙСТВИЯ</h3>
-                <div class="control-group" style="display: flex; gap: 8px; padding: 15px;">
-                    <button class="tool-btn" id="undo-btn" style="flex:1; padding:12px;"><i class="fas fa-undo"></i> ОТМЕНА</button>
-                    <button class="tool-btn" id="clear-btn" style="flex:1; padding:12px;"><i class="fas fa-trash"></i> ОЧИСТИТЬ</button>
+                    <label><span>ЯРКОСТЬ</span> <input type="range" id="light-intensity" min="0.2" max="1.8" step="0.1" value="1.2"></label>
                 </div>
             </div>
         </div>
 
         <!-- Статус бар -->
-        <div class="status-bar imperial">
+        <div class="status-bar mineral">
             <div><i class="fas fa-cube"></i> <span id="total-items">0</span></div>
-            <div><i class="fas fa-shapes"></i> <span id="poly-count">0</span>M</div>
             <div><i class="fas fa-tachometer-alt"></i> <span id="fps-counter">0</span> FPS</div>
-            <div><i class="fas fa-layer-group"></i> <span id="model-count">0</span></div>
         </div>
     </div>
 
     <div class="hint">
-        <i class="fas fa-magic"></i> КЛИК — ПОСТАВИТЬ ПРЕДМЕТ | ЗАЖАТЬ + ТЯНУТЬ — ПОСТРОИТЬ СТЕНУ
+        <i class="fas fa-mouse-pointer"></i> КЛИК — СТАВИТЬ | ЗАЖАТЬ + ТЯНУТЬ — СТЕНА
     </div>
 
     <canvas id="canvas"></canvas>
@@ -833,287 +719,116 @@
         import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
         import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
         import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-        import { FilmPass } from 'three/addons/postprocessing/FilmPass.js';
         import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
         
-        // ==================== РЕАЛЬНЫЙ КАТАЛОГ 3D МОДЕЛЕЙ ====================
+        // ==================== КАТАЛОГ ХАЙ-ТЕК МОДЕЛЕЙ ====================
         
-        // Категории и их реальные предметы
-        const catalogData = {
-            // МЕБЕЛЬ ДЛЯ СИДЕНИЯ
-            seating: [
-                { id: 'armchair_chesterfield', name: 'Кресло Честерфилд', icon: '🪑', category: 'seating', style: 'classic', color: '#8b4513' },
-                { id: 'sofa_velvet', name: 'Диван бархатный', icon: '🛋️', category: 'seating', style: 'modern', color: '#4a2c5a' },
-                { id: 'chair_eames', name: 'Кресло Eames', icon: '💺', category: 'seating', style: 'midcentury', color: '#2a3a4a' },
-                { id: 'chaise_longue', name: 'Шезлонг', icon: '🛋️', category: 'seating', style: 'luxury', color: '#8a6d5a' },
-                { id: 'stool_bar', name: 'Барный стул', icon: '🪑', category: 'seating', style: 'industrial', color: '#5a3a2a' },
-                { id: 'bench_wood', name: 'Скамья деревянная', icon: '🪑', category: 'seating', style: 'rustic', color: '#8b5a2b' },
-                { id: 'pouf_ottoman', name: 'Пуф Ottoman', icon: '🪑', category: 'seating', style: 'oriental', color: '#c47e5a' },
-                { id: 'rocking_chair', name: 'Кресло-качалка', icon: '🪑', category: 'seating', style: 'vintage', color: '#6b4f3c' },
-                { id: 'wing_chair', name: 'Кресло с крыльями', icon: '🪑', category: 'seating', style: 'traditional', color: '#5a4a3a' },
-                { id: 'loveseat', name: 'Лав-сит', icon: '🛋️', category: 'seating', style: 'romantic', color: '#7a5a6a' }
-            ],
-            
-            // ОСВЕЩЕНИЕ
+        const catalog = {
             lighting: [
-                { id: 'chandelier_crystal', name: 'Люстра хрустальная', icon: '💡', category: 'lighting', style: 'luxury', color: '#ffffff' },
-                { id: 'floor_lamp_arc', name: 'Торшер Arc', icon: '💡', category: 'lighting', style: 'modern', color: '#aaaaaa' },
-                { id: 'table_lamp', name: 'Настольная лампа', icon: '💡', category: 'lighting', style: 'classic', color: '#d4b088' },
-                { id: 'wall_sconce', name: 'Бра настенное', icon: '💡', category: 'lighting', style: 'artdeco', color: '#c9b037' },
-                { id: 'pendant_light', name: 'Подвесной светильник', icon: '💡', category: 'lighting', style: 'minimal', color: '#333333' },
-                { id: 'track_light', name: 'Трековый светильник', icon: '💡', category: 'lighting', style: 'industrial', color: '#555555' },
-                { id: 'led_strip', name: 'Светодиодная лента', icon: '✨', category: 'lighting', style: 'modern', color: '#88aaff' },
-                { id: 'floor_lamp_tripod', name: 'Торшер на треноге', icon: '💡', category: 'lighting', style: 'scandinavian', color: '#8b8b8b' },
-                { id: 'candle_holder', name: 'Канделябр', icon: '🕯️', category: 'lighting', style: 'baroque', color: '#d4af37' },
-                { id: 'paper_lamp', name: 'Бумажный светильник', icon: '💡', category: 'lighting', style: 'japanese', color: '#f5f0e0' }
+                { id: 'lamp_arc', name: 'Торшер Arc', icon: '💡', category: 'lighting', style: 'arc', color: '#88aaff' },
+                { id: 'lamp_floor', name: 'Торшер Minimal', icon: '💡', category: 'lighting', style: 'minimal', color: '#cccccc' },
+                { id: 'lamp_table', name: 'Лампа настольная', icon: '💡', category: 'lighting', style: 'desk', color: '#ffffff' },
+                { id: 'lamp_pendant', name: 'Подвес', icon: '💡', category: 'lighting', style: 'pendant', color: '#aaaaaa' },
+                { id: 'lamp_track', name: 'Трековый свет', icon: '💡', category: 'lighting', style: 'track', color: '#333333' },
             ],
-            
-            // ДЕКОР
-            decor: [
-                { id: 'vase_porcelain', name: 'Ваза фарфоровая', icon: '🏺', category: 'decor', style: 'classic', color: '#5a7a9a' },
-                { id: 'sculpture_bronze', name: 'Скульптура бронзовая', icon: '🗿', category: 'decor', style: 'renaissance', color: '#b87333' },
-                { id: 'mirror_gold', name: 'Зеркало в золотой раме', icon: '🪞', category: 'decor', style: 'baroque', color: '#d4af37' },
-                { id: 'painting_oil', name: 'Картина маслом', icon: '🖼️', category: 'decor', style: 'classic', color: '#9a7a5a' },
-                { id: 'clock_grandfather', name: 'Напольные часы', icon: '⏰', category: 'decor', style: 'vintage', color: '#8b5a2b' },
-                { id: 'candle_holder_set', name: 'Набор подсвечников', icon: '🕯️', category: 'decor', style: 'modern', color: '#c0c0c0' },
-                { id: 'bowl_ceramic', name: 'Керамическая чаша', icon: '🥣', category: 'decor', style: 'artisan', color: '#7a5a4a' },
-                { id: 'figurine_porcelain', name: 'Фарфоровая статуэтка', icon: '👤', category: 'decor', style: 'rococo', color: '#f5f0e0' },
-                { id: 'tapestry_wall', name: 'Гобелен настенный', icon: '🖼️', category: 'decor', style: 'medieval', color: '#8b1e3f' },
-                { id: 'vase_floor', name: 'Напольная ваза', icon: '🏺', category: 'decor', style: 'modern', color: '#2a3a4a' }
+            seating: [
+                { id: 'chair_dining', name: 'Стул Dining', icon: '🪑', category: 'seating', style: 'dining', color: '#3a3a3a' },
+                { id: 'chair_lounge', name: 'Кресло Lounge', icon: '💺', category: 'seating', style: 'lounge', color: '#4a4a5a' },
+                { id: 'stool_bar', name: 'Барный стул', icon: '🪑', category: 'seating', style: 'bar', color: '#2a2a3a' },
+                { id: 'bench', name: 'Скамья', icon: '🪑', category: 'seating', style: 'bench', color: '#5a5a6a' },
             ],
-            
-            // РАСТЕНИЯ
-            plants: [
-                { id: 'ficus', name: 'Фикус Бенджамина', icon: '🌿', category: 'plants', style: 'tropical', color: '#2e8b57' },
-                { id: 'palm_areca', name: 'Пальма Арека', icon: '🌴', category: 'plants', style: 'tropical', color: '#228b22' },
-                { id: 'cactus_saguaro', name: 'Кактус Сагуаро', icon: '🌵', category: 'plants', style: 'desert', color: '#5f9f4f' },
-                { id: 'bonsai', name: 'Бонсай', icon: '🎍', category: 'plants', style: 'japanese', color: '#6b8e23' },
-                { id: 'orchid', name: 'Орхидея', icon: '🌸', category: 'plants', style: 'exotic', color: '#d87093' },
-                { id: 'fern', name: 'Папоротник', icon: '🌿', category: 'plants', style: 'forest', color: '#3cb371' },
-                { id: 'succulent_set', name: 'Набор суккулентов', icon: '🌱', category: 'plants', style: 'modern', color: '#7ccd7c' },
-                { id: 'monstera', name: 'Монстера', icon: '🌿', category: 'plants', style: 'tropical', color: '#32cd32' },
-                { id: 'bamboo', name: 'Бамбук', icon: '🎋', category: 'plants', style: 'asian', color: '#9acd32' },
-                { id: 'rose_bush', name: 'Розовый куст', icon: '🌹', category: 'plants', style: 'romantic', color: '#ff69b4' }
-            ],
-            
-            // ТЕХНИКА
-            electronics: [
-                { id: 'tv_oled', name: 'Телевизор OLED 65"', icon: '📺', category: 'electronics', style: 'modern', color: '#1a1a1a' },
-                { id: 'speaker_floor', name: 'Напольная акустика', icon: '🔊', category: 'electronics', style: 'audiophile', color: '#3a3a3a' },
-                { id: 'laptop', name: 'Ноутбук', icon: '💻', category: 'electronics', style: 'modern', color: '#2a2a3a' },
-                { id: 'monitor', name: 'Монитор', icon: '🖥️', category: 'electronics', style: 'modern', color: '#1a1a2a' },
-                { id: 'speaker_bluetooth', name: 'Bluetooth колонка', icon: '🔊', category: 'electronics', style: 'portable', color: '#4a4a5a' },
-                { id: 'projector', name: 'Проектор', icon: '📽️', category: 'electronics', style: 'home theater', color: '#2a2a2a' },
-                { id: 'game_console', name: 'Игровая приставка', icon: '🎮', category: 'electronics', style: 'gaming', color: '#1a2a3a' },
-                { id: 'vr_headset', name: 'VR шлем', icon: '🥽', category: 'electronics', style: 'futuristic', color: '#ffffff' },
-                { id: 'smart_display', name: 'Умный дисплей', icon: '📱', category: 'electronics', style: 'modern', color: '#2a2a2a' },
-                { id: 'router', name: 'WiFi роутер', icon: '📶', category: 'electronics', style: 'tech', color: '#1a1a1a' }
-            ],
-            
-            // КУХНЯ
-            kitchen: [
-                { id: 'refrigerator', name: 'Холодильник', icon: '🧊', category: 'kitchen', style: 'modern', color: '#f0f0f0' },
-                { id: 'oven', name: 'Духовой шкаф', icon: '🔥', category: 'kitchen', style: 'modern', color: '#3a3a3a' },
-                { id: 'microwave', name: 'Микроволновая печь', icon: '📻', category: 'kitchen', style: 'modern', color: '#d3d3d3' },
-                { id: 'dishwasher', name: 'Посудомоечная машина', icon: '🧼', category: 'kitchen', style: 'modern', color: '#e0e0e0' },
-                { id: 'coffee_machine', name: 'Кофемашина', icon: '☕', category: 'kitchen', style: 'modern', color: '#4a4a4a' },
-                { id: 'toaster', name: 'Тостер', icon: '🍞', category: 'kitchen', style: 'retro', color: '#c47e5a' },
-                { id: 'kettle', name: 'Чайник', icon: '🫖', category: 'kitchen', style: 'modern', color: '#c0c0c0' },
-                { id: 'mixer', name: 'Миксер', icon: '🥄', category: 'kitchen', style: 'modern', color: '#ff69b4' },
-                { id: 'blender', name: 'Блендер', icon: '🥤', category: 'kitchen', style: 'modern', color: '#2a2a2a' },
-                { id: 'kitchen_scale', name: 'Кухонные весы', icon: '⚖️', category: 'kitchen', style: 'modern', color: '#c0c0c0' }
-            ],
-            
-            // СТОЛЫ
             tables: [
-                { id: 'dining_table', name: 'Обеденный стол', icon: '🪑', category: 'tables', style: 'classic', color: '#8b5a2b' },
-                { id: 'coffee_table', name: 'Журнальный столик', icon: '🪑', category: 'tables', style: 'modern', color: '#5a3a2a' },
-                { id: 'desk', name: 'Письменный стол', icon: '📝', category: 'tables', style: 'office', color: '#4a3a2a' },
-                { id: 'console_table', name: 'Стол-консоль', icon: '🪑', category: 'tables', style: 'elegant', color: '#c49a6c' },
-                { id: 'nightstand', name: 'Прикроватная тумба', icon: '🪑', category: 'tables', style: 'bedroom', color: '#8b5a2b' },
-                { id: 'side_table', name: 'Приставной столик', icon: '🪑', category: 'tables', style: 'modern', color: '#5a5a5a' },
-                { id: 'bar_table', name: 'Барный стол', icon: '🍷', category: 'tables', style: 'industrial', color: '#3a3a3a' },
-                { id: 'computer_desk', name: 'Компьютерный стол', icon: '💻', category: 'tables', style: 'gaming', color: '#1a1a1a' },
-                { id: 'folding_table', name: 'Складной стол', icon: '🪑', category: 'tables', style: 'practical', color: '#8b5a2b' },
-                { id: 'picnic_table', name: 'Стол для пикника', icon: '🧺', category: 'tables', style: 'outdoor', color: '#8b5a2b' }
+                { id: 'table_dining', name: 'Стол обеденный', icon: '🪑', category: 'tables', style: 'dining', color: '#2a2a2a' },
+                { id: 'table_coffee', name: 'Журнальный столик', icon: '🪑', category: 'tables', style: 'coffee', color: '#3a3a4a' },
+                { id: 'table_side', name: 'Приставной столик', icon: '🪑', category: 'tables', style: 'side', color: '#4a4a5a' },
+                { id: 'desk', name: 'Письменный стол', icon: '📝', category: 'tables', style: 'desk', color: '#1a1a2a' },
             ],
-            
-            // ХРАНЕНИЕ
-            storage: [
-                { id: 'wardrobe', name: 'Шкаф-купе', icon: '🚪', category: 'storage', style: 'modern', color: '#8b5a2b' },
-                { id: 'bookshelf', name: 'Книжный стеллаж', icon: '📚', category: 'storage', style: 'library', color: '#5a3a2a' },
-                { id: 'dresser', name: 'Комод', icon: '🗄️', category: 'storage', style: 'classic', color: '#c49a6c' },
-                { id: 'cabinet', name: 'Тумба', icon: '🗄️', category: 'storage', style: 'modern', color: '#4a4a4a' },
-                { id: 'shelf_wall', name: 'Настенная полка', icon: '📦', category: 'storage', style: 'minimal', color: '#8b5a2b' },
-                { id: 'chest', name: 'Сундук', icon: '🧰', category: 'storage', style: 'vintage', color: '#8b4513' },
-                { id: 'basket', name: 'Корзина', icon: '🧺', category: 'storage', style: 'rustic', color: '#d2b48c' },
-                { id: 'shoe_cabinet', name: 'Обувница', icon: '👞', category: 'storage', style: 'modern', color: '#5a5a5a' },
-                { id: 'display_cabinet', name: 'Витрина', icon: '🏛️', category: 'storage', style: 'luxury', color: '#d4af37' },
-                { id: 'nightstand_drawer', name: 'Тумба с ящиками', icon: '🗄️', category: 'storage', style: 'bedroom', color: '#8b5a2b' }
+            shelves: [
+                { id: 'shelf_wall', name: 'Полка настенная', icon: '📦', category: 'shelves', style: 'wall', color: '#3a3a4a' },
+                { id: 'shelf_floor', name: 'Стеллаж', icon: '📚', category: 'shelves', style: 'floor', color: '#2a2a3a' },
+                { id: 'shelf_corner', name: 'Угловая полка', icon: '📦', category: 'shelves', style: 'corner', color: '#4a4a5a' },
             ],
-            
-            // ВАННАЯ
-            bathroom: [
-                { id: 'bathtub', name: 'Ванна', icon: '🛁', category: 'bathroom', style: 'luxury', color: '#f0f0f0' },
-                { id: 'sink', name: 'Раковина', icon: '🚰', category: 'bathroom', style: 'modern', color: '#f0f0f0' },
-                { id: 'toilet', name: 'Унитаз', icon: '🚽', category: 'bathroom', style: 'modern', color: '#f0f0f0' },
-                { id: 'shower', name: 'Душевая кабина', icon: '🚿', category: 'bathroom', style: 'modern', color: '#c0c0c0' },
-                { id: 'bidet', name: 'Биде', icon: '🚽', category: 'bathroom', style: 'modern', color: '#f0f0f0' },
-                { id: 'bathroom_cabinet', name: 'Шкафчик для ванной', icon: '🗄️', category: 'bathroom', style: 'modern', color: '#ffffff' },
-                { id: 'mirror_bathroom', name: 'Зеркало с подсветкой', icon: '🪞', category: 'bathroom', style: 'modern', color: '#c0c0c0' },
-                { id: 'towel_rack', name: 'Полотенцесушитель', icon: '🧣', category: 'bathroom', style: 'modern', color: '#c0c0c0' },
-                { id: 'soap_dispenser', name: 'Дозатор для мыла', icon: '🧴', category: 'bathroom', style: 'modern', color: '#ffffff' },
-                { id: 'toilet_brush', name: 'Ершик для унитаза', icon: '🧹', category: 'bathroom', style: 'practical', color: '#2a2a2a' }
+            decor: [
+                { id: 'vase', name: 'Ваза', icon: '🏺', category: 'decor', style: 'vase', color: '#88aaff' },
+                { id: 'bowl', name: 'Чаша', icon: '🥣', category: 'decor', style: 'bowl', color: '#cccccc' },
+                { id: 'sphere', name: 'Сфера', icon: '⚪', category: 'decor', style: 'sphere', color: '#aaaaaa' },
+                { id: 'cube', name: 'Куб', icon: '🧊', category: 'decor', style: 'cube', color: '#5a5a6a' },
             ],
-            
-            // ТЕКСТИЛЬ
-            textiles: [
-                { id: 'carpet_persian', name: 'Персидский ковер', icon: '🧶', category: 'textiles', style: 'oriental', color: '#8b1e3f' },
-                { id: 'curtains', name: 'Шторы', icon: '🪟', category: 'textiles', style: 'elegant', color: '#d4b088' },
-                { id: 'blanket', name: 'Плед', icon: '🧣', category: 'textiles', style: 'cozy', color: '#8b5a2b' },
-                { id: 'pillow_decorative', name: 'Декоративная подушка', icon: '🛏️', category: 'textiles', style: 'modern', color: '#c47e5a' },
-                { id: 'tablecloth', name: 'Скатерть', icon: '🧵', category: 'textiles', style: 'classic', color: '#f0e0d0' },
-                { id: 'towel_set', name: 'Набор полотенец', icon: '🧣', category: 'textiles', style: 'bath', color: '#87ceeb' },
-                { id: 'bedspread', name: 'Покрывало', icon: '🛏️', category: 'textiles', style: 'bedroom', color: '#dda0dd' },
-                { id: 'runner', name: 'Дорожка на стол', icon: '🧵', category: 'textiles', style: 'traditional', color: '#d4b088' },
-                { id: 'napkins', name: 'Салфетки', icon: '🧻', category: 'textiles', style: 'dinner', color: '#f0f0f0' },
-                { id: 'ottoman_cover', name: 'Чехол для пуфа', icon: '🪑', category: 'textiles', style: 'modern', color: '#c47e5a' }
-            ],
-            
-            // ОФИС
-            office: [
-                { id: 'office_chair', name: 'Офисное кресло', icon: '💺', category: 'office', style: 'ergonomic', color: '#2a3a4a' },
-                { id: 'filing_cabinet', name: 'Картотечный шкаф', icon: '🗄️', category: 'office', style: 'practical', color: '#5a5a5a' },
-                { id: 'whiteboard', name: 'Белая доска', icon: '📋', category: 'office', style: 'meeting', color: '#f0f0f0' },
-                { id: 'bookshelf_office', name: 'Офисный стеллаж', icon: '📚', category: 'office', style: 'modern', color: '#4a3a2a' },
-                { id: 'desk_lamp', name: 'Офисная лампа', icon: '💡', category: 'office', style: 'practical', color: '#3a3a3a' },
-                { id: 'paper_tray', name: 'Лоток для бумаг', icon: '📄', category: 'office', style: 'organization', color: '#2a2a2a' },
-                { id: 'pencil_holder', name: 'Подставка для ручек', icon: '✏️', category: 'office', style: 'desk', color: '#8b5a2b' },
-                { id: 'calendar', name: 'Настенный календарь', icon: '📅', category: 'office', style: 'planning', color: '#f0f0f0' },
-                { id: 'printer', name: 'Принтер', icon: '🖨️', category: 'office', style: 'tech', color: '#3a3a3a' },
-                { id: 'waste_basket', name: 'Корзина для бумаг', icon: '🗑️', category: 'office', style: 'practical', color: '#2a2a2a' }
+            tech: [
+                { id: 'speaker', name: 'Колонка', icon: '🔊', category: 'tech', style: 'speaker', color: '#1a1a2a' },
+                { id: 'display', name: 'Дисплей', icon: '📺', category: 'tech', style: 'display', color: '#2a2a3a' },
+                { id: 'console', name: 'Приставка', icon: '🎮', category: 'tech', style: 'console', color: '#3a3a4a' },
             ]
         };
 
-        // Собираем все предметы в один массив
         const allItems = [];
-        for (const category in catalogData) {
-            allItems.push(...catalogData[category]);
+        for (const cat in catalog) {
+            allItems.push(...catalog[cat]);
         }
-
-        console.log(`📦 Загружено ${allItems.length} уникальных 3D моделей`);
 
         // ==================== ИНИЦИАЛИЗАЦИЯ ====================
         const canvas = document.getElementById('canvas');
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x0a0a12);
-        scene.fog = new THREE.FogExp2(0x0a0a12, 0.002);
+        scene.background = new THREE.Color(0x0a0c10);
+        scene.fog = new THREE.FogExp2(0x0a0c10, 0.003);
 
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(20, 10, 30);
+        camera.position.set(15, 8, 25);
         camera.lookAt(0, 2, 0);
 
         const renderer = new THREE.WebGLRenderer({ 
             canvas: canvas, 
             antialias: true,
             powerPreference: "high-performance",
-            stencil: false,
-            depth: true,
             alpha: false
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        renderer.shadowMap.bias = 0.00005;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.0;
-        renderer.outputEncoding = THREE.sRGBEncoding;
+        renderer.toneMappingExposure = 1.2;
 
         const renderScene = new RenderPass(scene, camera);
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.5, 0.2, 0.5);
+        bloomPass.threshold = 0.3;
         
-        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.7, 0.2, 0.7);
-        bloomPass.threshold = 0.2;
-        bloomPass.strength = 0.6;
-        bloomPass.radius = 0.5;
-
-        const filmPass = new FilmPass(0.1, 0.5, 2048, false);
-        
-        const vignettePass = new ShaderPass({
-            uniforms: {
-                tDiffuse: { value: null },
-                intensity: { value: 0.5 }
-            },
-            vertexShader: `
-                varying vec2 vUv;
-                void main() {
-                    vUv = uv;
-                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                }
-            `,
-            fragmentShader: `
-                uniform sampler2D tDiffuse;
-                uniform float intensity;
-                varying vec2 vUv;
-                
-                void main() {
-                    vec4 color = texture2D(tDiffuse, vUv);
-                    float dist = distance(vUv, vec2(0.5, 0.5));
-                    float vignette = 1.0 - dist * intensity;
-                    gl_FragColor = vec4(color.rgb * vignette, color.a);
-                }
-            `
-        });
-
         const composer = new EffectComposer(renderer);
         composer.addPass(renderScene);
         composer.addPass(bloomPass);
-        composer.addPass(vignettePass);
-        filmPass.renderToScreen = true;
-        composer.addPass(filmPass);
 
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
-        controls.dampingFactor = 0.04;
-        controls.maxPolarAngle = Math.PI / 2.1;
-        controls.minDistance = 3;
-        controls.maxDistance = 100;
+        controls.dampingFactor = 0.05;
+        controls.maxPolarAngle = Math.PI / 2.2;
+        controls.minDistance = 5;
+        controls.maxDistance = 50;
         controls.target.set(0, 2, 0);
-        controls.rotateSpeed = 0.6;
+        controls.rotateSpeed = 0.8;
 
         // ==================== ОСВЕЩЕНИЕ ====================
-        const mainLight = new THREE.DirectionalLight(0xffeedd, 1.0);
-        mainLight.position.set(8, 15, 10);
+        const mainLight = new THREE.DirectionalLight(0xfff5e6, 1.2);
+        mainLight.position.set(5, 15, 10);
         mainLight.castShadow = true;
-        mainLight.shadow.mapSize.width = 4096;
-        mainLight.shadow.mapSize.height = 4096;
+        mainLight.shadow.mapSize.width = 2048;
+        mainLight.shadow.mapSize.height = 2048;
         mainLight.shadow.camera.near = 1;
-        mainLight.shadow.camera.far = 50;
-        mainLight.shadow.camera.left = -20;
-        mainLight.shadow.camera.right = 20;
-        mainLight.shadow.camera.top = 20;
-        mainLight.shadow.camera.bottom = -20;
-        mainLight.shadow.bias = -0.0001;
-        mainLight.shadow.normalBias = 0.02;
+        mainLight.shadow.camera.far = 30;
         scene.add(mainLight);
 
-        const fillLightWarm = new THREE.PointLight(0xffaa66, 0.5);
-        fillLightWarm.position.set(-5, 4, 8);
-        scene.add(fillLightWarm);
-
-        const fillLightCool = new THREE.PointLight(0x6688ff, 0.3);
-        fillLightCool.position.set(7, 3, -6);
-        scene.add(fillLightCool);
+        const fillLight = new THREE.PointLight(0x88aaff, 0.5);
+        fillLight.position.set(-3, 5, 5);
+        scene.add(fillLight);
 
         const ambientLight = new THREE.AmbientLight(0x40486c, 0.5);
         scene.add(ambientLight);
 
-        // ==================== ОКРУЖЕНИЕ ====================
-        const groundGeo = new THREE.CircleGeometry(200, 128);
+        // ==================== ПОЛ ====================
+        const groundGeo = new THREE.CircleGeometry(100, 64);
         const groundMat = new THREE.MeshStandardMaterial({
-            color: 0x0a0812,
-            roughness: 0.8,
-            metalness: 0.05,
+            color: 0x1a1e28,
+            roughness: 0.7,
+            metalness: 0.2,
             emissive: 0x000000
         });
         const ground = new THREE.Mesh(groundGeo, groundMat);
@@ -1122,347 +837,183 @@
         ground.receiveShadow = true;
         scene.add(ground);
 
-        const gridHelper = new THREE.GridHelper(200, 100, 0xd4b088, 0x2a2a3a);
+        const gridHelper = new THREE.GridHelper(50, 30, 0x88aaff, 0x2a3a5a);
         gridHelper.position.y = 0.01;
         scene.add(gridHelper);
 
-        // Атмосферные частицы
-        const particleCount = 1000;
-        const particlesGeo = new THREE.BufferGeometry();
-        const particlesPos = new Float32Array(particleCount * 3);
-        for (let i = 0; i < particleCount * 3; i += 3) {
-            particlesPos[i] = (Math.random() - 0.5) * 200;
-            particlesPos[i+1] = (Math.random() * 50);
-            particlesPos[i+2] = (Math.random() - 0.5) * 200;
-        }
-        particlesGeo.setAttribute('position', new THREE.BufferAttribute(particlesPos, 3));
-        const particlesMat = new THREE.PointsMaterial({
-            color: 0xd4b088,
-            size: 0.05,
-            transparent: true,
-            opacity: 0.15,
-            blending: THREE.AdditiveBlending
-        });
-        const particles = new THREE.Points(particlesGeo, particlesMat);
-        scene.add(particles);
-
         // ==================== МАТЕРИАЛЫ ====================
-        function createPremiumMaterial(type, color) {
+        function createMaterial(type, color) {
             const colorHex = parseInt(color.replace('#', '0x'), 16);
             
             const materials = {
-                wood: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.4, metalness: 0.05 }),
-                walnut: new THREE.MeshStandardMaterial({ color: 0x4a2c1a, roughness: 0.35, metalness: 0.02 }),
-                oak_light: new THREE.MeshStandardMaterial({ color: 0xc49a6c, roughness: 0.45, metalness: 0.01 }),
-                mahogany: new THREE.MeshStandardMaterial({ color: 0x6b2e1a, roughness: 0.3, metalness: 0.02 }),
-                metal_brushed: new THREE.MeshStandardMaterial({ color: 0x8899aa, roughness: 0.25, metalness: 0.9 }),
-                metal_polished: new THREE.MeshStandardMaterial({ color: 0xccddee, roughness: 0.1, metalness: 1.0 }),
-                copper: new THREE.MeshStandardMaterial({ color: 0xb87333, roughness: 0.2, metalness: 0.95 }),
-                brass: new THREE.MeshStandardMaterial({ color: 0xf1c40f, roughness: 0.15, metalness: 0.98 }),
-                fabric_velvet: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.8, metalness: 0.0 }),
-                fabric_linen: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.9, metalness: 0.0 }),
-                leather: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.6, metalness: 0.1 }),
-                glass_clear: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.05, metalness: 0.0, transparent: true, opacity: 0.85 }),
-                glass_frosted: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.3, metalness: 0.0, transparent: true, opacity: 0.7 }),
-                marble: new THREE.MeshStandardMaterial({ color: 0xf5f5f5, roughness: 0.2, metalness: 0.05 }),
-                granite: new THREE.MeshStandardMaterial({ color: 0x5a5a6a, roughness: 0.5, metalness: 0.1 }),
-                ceramic: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.4, metalness: 0.0 }),
-                plastic: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.3, metalness: 0.0 })
+                metal_brushed: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.3, metalness: 0.9 }),
+                metal_polished: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.1, metalness: 1.0 }),
+                glass: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.1, metalness: 0.1, transparent: true, opacity: 0.7 }),
+                plastic: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.4, metalness: 0.0 }),
+                concrete: new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.8, metalness: 0.1 }),
+                carbon: new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.2, metalness: 0.3, emissive: 0x111122 })
             };
             
-            return materials[type] || materials.wood;
+            return materials[type] || materials.plastic;
         }
 
-        // ==================== РЕАЛЬНЫЕ 3D МОДЕЛИ ====================
+        // ==================== ХАЙ-ТЕК МОДЕЛИ ====================
         
-        // Кресло Честерфилд
-        function createChesterfield(color, materialType) {
+        function createArcLamp(color, materialType) {
             const group = new THREE.Group();
-            const leatherMat = createPremiumMaterial('leather', color);
-            const woodMat = createPremiumMaterial('walnut', '#5a3a2a');
-            const metalMat = createPremiumMaterial('metal_brushed', '#aaa');
+            const metalMat = createMaterial(materialType, color);
             
             // Основание
-            const base = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.2, 1.1), woodMat);
-            base.position.y = 0.1;
-            base.castShadow = true;
-            base.receiveShadow = true;
-            group.add(base);
-            
-            // Сиденье
-            const seat = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.3, 1.0), leatherMat);
-            seat.position.y = 0.35;
-            seat.castShadow = true;
-            seat.receiveShadow = true;
-            group.add(seat);
-            
-            // Спинка
-            const back = new THREE.Mesh(new THREE.BoxGeometry(1.1, 1.0, 0.3), leatherMat);
-            back.position.set(0, 0.9, -0.4);
-            back.castShadow = true;
-            back.receiveShadow = true;
-            group.add(back);
-            
-            // Капитоне (пуговицы)
-            for (let i = -0.4; i <= 0.4; i+=0.4) {
-                for (let j = 0.6; j <= 1.1; j+=0.25) {
-                    const button = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8), metalMat);
-                    button.position.set(i, j, -0.25);
-                    button.castShadow = true;
-                    group.add(button);
-                }
-            }
-            
-            // Подлокотники
-            const armLeft = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.5, 1.0), leatherMat);
-            armLeft.position.set(-0.7, 0.6, 0);
-            armLeft.castShadow = true;
-            armLeft.receiveShadow = true;
-            group.add(armLeft);
-            
-            const armRight = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.5, 1.0), leatherMat);
-            armRight.position.set(0.7, 0.6, 0);
-            armRight.castShadow = true;
-            armRight.receiveShadow = true;
-            group.add(armRight);
-            
-            // Ножки
-            const legGeo = new THREE.CylinderGeometry(0.08, 0.1, 0.2, 6);
-            for (let x = -0.4; x <= 0.4; x+=0.8) {
-                for (let z = -0.4; z <= 0.4; z+=0.8) {
-                    const leg = new THREE.Mesh(legGeo, woodMat);
-                    leg.position.set(x, 0.1, z);
-                    leg.castShadow = true;
-                    leg.receiveShadow = true;
-                    group.add(leg);
-                }
-            }
-            
-            return group;
-        }
-
-        // Диван бархатный
-        function createVelvetSofa(color, materialType) {
-            const group = new THREE.Group();
-            const fabricMat = createPremiumMaterial('fabric_velvet', color);
-            const woodMat = createPremiumMaterial('walnut', '#5a3a2a');
-            
-            // Основа
-            const base = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.4, 1.0), woodMat);
-            base.position.y = 0.2;
-            base.castShadow = true;
-            base.receiveShadow = true;
-            group.add(base);
-            
-            // Сиденье
-            const seat = new THREE.Mesh(new THREE.BoxGeometry(2.1, 0.4, 0.9), fabricMat);
-            seat.position.y = 0.5;
-            seat.castShadow = true;
-            seat.receiveShadow = true;
-            group.add(seat);
-            
-            // Подушки сиденья
-            for (let i = -0.7; i <= 0.7; i+=0.7) {
-                const cushion = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.2, 0.8), fabricMat);
-                cushion.position.set(i, 0.7, 0);
-                cushion.castShadow = true;
-                cushion.receiveShadow = true;
-                group.add(cushion);
-            }
-            
-            // Спинка
-            const back = new THREE.Mesh(new THREE.BoxGeometry(2.2, 1.0, 0.3), fabricMat);
-            back.position.set(0, 1.0, -0.4);
-            back.castShadow = true;
-            back.receiveShadow = true;
-            group.add(back);
-            
-            // Подушки спинки
-            for (let i = -0.7; i <= 0.7; i+=0.7) {
-                const backCushion = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.7, 0.2), fabricMat);
-                backCushion.position.set(i, 1.1, -0.3);
-                backCushion.castShadow = true;
-                backCushion.receiveShadow = true;
-                group.add(backCushion);
-            }
-            
-            // Ножки
-            const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.2, 6);
-            for (let x = -1.0; x <= 1.0; x+=2.0) {
-                for (let z = -0.4; z <= 0.4; z+=0.8) {
-                    const leg = new THREE.Mesh(legGeo, woodMat);
-                    leg.position.set(x, 0.1, z);
-                    leg.castShadow = true;
-                    leg.receiveShadow = true;
-                    group.add(leg);
-                }
-            }
-            
-            return group;
-        }
-
-        // Кресло Eames
-        function createEamesChair(color, materialType) {
-            const group = new THREE.Group();
-            const plasticMat = createPremiumMaterial('plastic', color);
-            const woodMat = createPremiumMaterial('walnut', '#5a3a2a');
-            
-            // Основание-качалка
-            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.1, 16), woodMat);
-            base.scale.set(1.5, 1, 1.2);
-            base.rotation.x = 0.1;
-            base.position.y = 0.05;
-            base.castShadow = true;
-            base.receiveShadow = true;
-            group.add(base);
-            
-            // Сиденье
-            const seat = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16), plasticMat);
-            seat.scale.set(1.3, 0.4, 1.1);
-            seat.position.y = 0.4;
-            seat.castShadow = true;
-            seat.receiveShadow = true;
-            group.add(seat);
-            
-            // Спинка
-            const back = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16), plasticMat);
-            back.scale.set(1.3, 0.8, 0.3);
-            back.position.set(0, 0.8, -0.4);
-            back.castShadow = true;
-            back.receiveShadow = true;
-            group.add(back);
-            
-            // Подлокотники
-            const armGeo = new THREE.CylinderGeometry(0.1, 0.1, 0.5, 6);
-            const armLeft = new THREE.Mesh(armGeo, woodMat);
-            armLeft.position.set(-0.7, 0.6, 0);
-            armLeft.rotation.z = 0.2;
-            armLeft.castShadow = true;
-            armLeft.receiveShadow = true;
-            group.add(armLeft);
-            
-            const armRight = new THREE.Mesh(armGeo, woodMat);
-            armRight.position.set(0.7, 0.6, 0);
-            armRight.rotation.z = -0.2;
-            armRight.castShadow = true;
-            armRight.receiveShadow = true;
-            group.add(armRight);
-            
-            return group;
-        }
-
-        // Хрустальная люстра
-        function createCrystalChandelier(color, materialType) {
-            const group = new THREE.Group();
-            const metalMat = createPremiumMaterial('brass', '#d4af37');
-            const glassMat = createPremiumMaterial('glass_clear', '#ffffff');
-            
-            // Крепление
-            const mount = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.3, 0.2, 6), metalMat);
-            mount.position.y = 0.1;
-            mount.castShadow = true;
-            mount.receiveShadow = true;
-            group.add(mount);
-            
-            // Центральная часть
-            const center = new THREE.Mesh(new THREE.SphereGeometry(0.4, 8), metalMat);
-            center.position.y = 0;
-            center.castShadow = true;
-            center.receiveShadow = true;
-            group.add(center);
-            
-            // Кристаллы
-            for (let i = 0; i < 12; i++) {
-                const angle = (i / 12) * Math.PI * 2;
-                const crystal = new THREE.Mesh(new THREE.ConeGeometry(0.15, 0.8, 6), glassMat);
-                crystal.position.set(Math.cos(angle) * 0.8, -0.4, Math.sin(angle) * 0.8);
-                crystal.castShadow = true;
-                crystal.receiveShadow = true;
-                group.add(crystal);
-                
-                // Добавляем свет
-                const light = new THREE.PointLight(0xffeedd, 0.5, 5);
-                light.position.set(Math.cos(angle) * 0.8, 0, Math.sin(angle) * 0.8);
-                group.add(light);
-            }
-            
-            return group;
-        }
-
-        // Торшер Arc
-        function createArcFloorLamp(color, materialType) {
-            const group = new THREE.Group();
-            const metalMat = createPremiumMaterial('metal_polished', '#aaaaaa');
-            const lampMat = createPremiumMaterial('plastic', '#ffffff');
-            
-            // Основание
-            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.5, 0.1, 8), metalMat);
+            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.5, 0.1, 16), metalMat);
             base.position.y = 0.05;
             base.castShadow = true;
             base.receiveShadow = true;
             group.add(base);
             
             // Стойка
-            const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 2.0, 8), metalMat);
-            pole.position.y = 1.05;
+            const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.06, 2.2, 8), metalMat);
+            pole.position.y = 1.15;
             pole.castShadow = true;
             pole.receiveShadow = true;
             group.add(pole);
             
             // Дуга
-            const arc = new THREE.Mesh(new THREE.TorusGeometry(0.8, 0.05, 8, 32), metalMat);
+            const arc = new THREE.Mesh(new THREE.TorusGeometry(0.7, 0.04, 8, 32), metalMat);
             arc.rotation.x = Math.PI / 2;
             arc.rotation.z = 0.3;
-            arc.position.set(0.5, 1.8, 0);
+            arc.position.set(0.4, 2.0, 0);
             arc.castShadow = true;
             arc.receiveShadow = true;
             group.add(arc);
             
             // Плафон
-            const shade = new THREE.Mesh(new THREE.ConeGeometry(0.4, 0.5, 8), lampMat);
-            shade.position.set(1.2, 1.6, 0);
-            shade.rotation.z = -0.3;
+            const shade = new THREE.Mesh(new THREE.SphereGeometry(0.25, 16), createMaterial('glass', '#ffffff'));
+            shade.position.set(1.1, 1.8, 0);
             shade.castShadow = true;
             shade.receiveShadow = true;
             group.add(shade);
             
             // Свет
-            const light = new THREE.PointLight(0xffeedd, 1.0, 6);
-            light.position.set(1.2, 1.5, 0);
+            const light = new THREE.PointLight(0xffeedd, 1.0, 5);
+            light.position.set(1.1, 1.8, 0);
             group.add(light);
             
             return group;
         }
 
-        // Ваза фарфоровая
-        function createPorcelainVase(color, materialType) {
+        function createMinimalLamp(color, materialType) {
             const group = new THREE.Group();
-            const ceramicMat = createPremiumMaterial('ceramic', color);
+            const metalMat = createMaterial(materialType, color);
             
             // Основание
-            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.5, 0.2, 8), ceramicMat);
-            base.position.y = 0.1;
+            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.35, 0.1, 12), metalMat);
+            base.position.y = 0.05;
             base.castShadow = true;
             base.receiveShadow = true;
             group.add(base);
             
-            // Тело вазы
-            const body = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.4, 0.8, 8), ceramicMat);
-            body.position.y = 0.6;
-            body.castShadow = true;
-            body.receiveShadow = true;
-            group.add(body);
+            // Стойка
+            const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.8, 8), metalMat);
+            pole.position.y = 0.95;
+            pole.castShadow = true;
+            pole.receiveShadow = true;
+            group.add(pole);
             
-            // Горлышко
-            const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.35, 0.3, 8), ceramicMat);
-            neck.position.y = 1.15;
-            neck.castShadow = true;
-            neck.receiveShadow = true;
-            group.add(neck);
+            // Плафон
+            const shade = new THREE.Mesh(new THREE.ConeGeometry(0.3, 0.4, 12), createMaterial('glass', '#ffffff'));
+            shade.position.y = 1.8;
+            shade.castShadow = true;
+            shade.receiveShadow = true;
+            group.add(shade);
             
-            // Горлышко верх
-            const top = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 0.2, 8), ceramicMat);
-            top.position.y = 1.4;
+            const light = new THREE.PointLight(0xffeedd, 0.8, 4);
+            light.position.y = 1.7;
+            group.add(light);
+            
+            return group;
+        }
+
+        function createDiningChair(color, materialType) {
+            const group = new THREE.Group();
+            const metalMat = createMaterial(materialType, color);
+            
+            // Ножки
+            const legGeo = new THREE.BoxGeometry(0.06, 0.8, 0.06);
+            for (let x = -0.3; x <= 0.3; x+=0.6) {
+                for (let z = -0.3; z <= 0.3; z+=0.6) {
+                    const leg = new THREE.Mesh(legGeo, metalMat);
+                    leg.position.set(x, 0.4, z);
+                    leg.castShadow = true;
+                    leg.receiveShadow = true;
+                    group.add(leg);
+                }
+            }
+            
+            // Сиденье
+            const seat = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.1, 0.7), metalMat);
+            seat.position.y = 0.8;
+            seat.castShadow = true;
+            seat.receiveShadow = true;
+            group.add(seat);
+            
+            // Спинка
+            const back = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.5, 0.1), metalMat);
+            back.position.set(0, 1.1, -0.3);
+            back.castShadow = true;
+            back.receiveShadow = true;
+            group.add(back);
+            
+            return group;
+        }
+
+        function createLoungeChair(color, materialType) {
+            const group = new THREE.Group();
+            const metalMat = createMaterial(materialType, color);
+            
+            // Основание
+            const base = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.1, 0.9), metalMat);
+            base.position.y = 0.2;
+            base.castShadow = true;
+            base.receiveShadow = true;
+            group.add(base);
+            
+            // Сиденье
+            const seat = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.2, 0.8), metalMat);
+            seat.position.y = 0.45;
+            seat.castShadow = true;
+            seat.receiveShadow = true;
+            group.add(seat);
+            
+            // Спинка
+            const back = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.6, 0.2), metalMat);
+            back.position.set(0, 0.8, -0.4);
+            back.rotation.x = -0.2;
+            back.castShadow = true;
+            back.receiveShadow = true;
+            group.add(back);
+            
+            return group;
+        }
+
+        function createDiningTable(color, materialType) {
+            const group = new THREE.Group();
+            const metalMat = createMaterial(materialType, color);
+            
+            // Ножки
+            const legGeo = new THREE.BoxGeometry(0.1, 1.0, 0.1);
+            for (let x = -0.8; x <= 0.8; x+=1.6) {
+                for (let z = -0.4; z <= 0.4; z+=0.8) {
+                    const leg = new THREE.Mesh(legGeo, metalMat);
+                    leg.position.set(x, 0.5, z);
+                    leg.castShadow = true;
+                    leg.receiveShadow = true;
+                    group.add(leg);
+                }
+            }
+            
+            // Столешница
+            const top = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.1, 1.0), metalMat);
+            top.position.y = 1.0;
             top.castShadow = true;
             top.receiveShadow = true;
             group.add(top);
@@ -1470,165 +1021,153 @@
             return group;
         }
 
-        // Фикус
-        function createFicus(color, materialType) {
+        function createCoffeeTable(color, materialType) {
             const group = new THREE.Group();
-            const potMat = createPremiumMaterial('ceramic', '#8b5a2b');
-            const leafMat = createPremiumMaterial('fabric_velvet', '#2e8b57');
-            const woodMat = createPremiumMaterial('wood', '#8b5a2b');
-            
-            // Горшок
-            const potBase = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.4, 0.3, 8), potMat);
-            potBase.position.y = 0.15;
-            potBase.castShadow = true;
-            potBase.receiveShadow = true;
-            group.add(potBase);
-            
-            const potTop = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.5, 0.2, 8), potMat);
-            potTop.position.y = 0.4;
-            potTop.castShadow = true;
-            potTop.receiveShadow = true;
-            group.add(potTop);
-            
-            // Земля
-            const soil = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.1, 6), woodMat);
-            soil.position.y = 0.55;
-            soil.castShadow = true;
-            soil.receiveShadow = true;
-            group.add(soil);
-            
-            // Ствол
-            const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.15, 1.0, 6), woodMat);
-            trunk.position.y = 1.1;
-            trunk.castShadow = true;
-            trunk.receiveShadow = true;
-            group.add(trunk);
-            
-            // Листья
-            for (let i = 0; i < 8; i++) {
-                const angle = (i / 8) * Math.PI * 2;
-                const leafGroup = new THREE.Group();
-                
-                for (let j = 0; j < 4; j++) {
-                    const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.5, 5), leafMat);
-                    leaf.position.set(0.3 + j*0.1, 0, 0);
-                    leaf.rotation.z = -0.2;
-                    leaf.castShadow = true;
-                    leaf.receiveShadow = true;
-                    leafGroup.add(leaf);
-                }
-                
-                leafGroup.position.set(Math.cos(angle) * 0.5, 1.4, Math.sin(angle) * 0.5);
-                leafGroup.rotation.y = angle;
-                leafGroup.rotation.z = 0.2;
-                group.add(leafGroup);
-            }
-            
-            return group;
-        }
-
-        // Шезлонг
-        function createChaiseLongue(color, materialType) {
-            const group = new THREE.Group();
-            const fabricMat = createPremiumMaterial('fabric_velvet', color);
-            const metalMat = createPremiumMaterial('metal_brushed', '#cccccc');
-            
-            // Каркас
-            const frame = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.1, 0.8), metalMat);
-            frame.position.y = 0.2;
-            frame.castShadow = true;
-            frame.receiveShadow = true;
-            group.add(frame);
-            
-            // Сиденье
-            const seat = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.3, 0.7), fabricMat);
-            seat.position.set(-0.3, 0.45, 0);
-            seat.castShadow = true;
-            seat.receiveShadow = true;
-            group.add(seat);
-            
-            // Спинка
-            const back = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.8, 0.7), fabricMat);
-            back.position.set(0.7, 0.7, 0);
-            back.rotation.z = -0.2;
-            back.castShadow = true;
-            back.receiveShadow = true;
-            group.add(back);
+            const metalMat = createMaterial(materialType, color);
             
             // Ножки
-            const legGeo = new THREE.CylinderGeometry(0.08, 0.1, 0.2, 6);
-            for (let x = -0.8; x <= 0.8; x+=1.6) {
+            const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.3, 8);
+            for (let x = -0.5; x <= 0.5; x+=1.0) {
                 for (let z = -0.3; z <= 0.3; z+=0.6) {
                     const leg = new THREE.Mesh(legGeo, metalMat);
-                    leg.position.set(x, 0.1, z);
+                    leg.position.set(x, 0.15, z);
                     leg.castShadow = true;
                     leg.receiveShadow = true;
                     group.add(leg);
                 }
             }
             
+            // Столешница
+            const top = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.1, 0.8), createMaterial('glass', '#ffffff'));
+            top.position.y = 0.35;
+            top.castShadow = true;
+            top.receiveShadow = true;
+            group.add(top);
+            
             return group;
         }
 
-        // Фабрика моделей
+        function createWallShelf(color, materialType) {
+            const group = new THREE.Group();
+            const metalMat = createMaterial(materialType, color);
+            
+            // Полка
+            const shelf = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.1, 0.3), metalMat);
+            shelf.position.y = 0.05;
+            shelf.castShadow = true;
+            shelf.receiveShadow = true;
+            group.add(shelf);
+            
+            // Крепления
+            const bracket = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.2, 0.1), metalMat);
+            bracket.position.set(-0.5, 0.2, -0.1);
+            bracket.castShadow = true;
+            bracket.receiveShadow = true;
+            group.add(bracket);
+            
+            const bracket2 = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.2, 0.1), metalMat);
+            bracket2.position.set(0.5, 0.2, -0.1);
+            bracket2.castShadow = true;
+            bracket2.receiveShadow = true;
+            group.add(bracket2);
+            
+            return group;
+        }
+
+        function createSpeaker(color, materialType) {
+            const group = new THREE.Group();
+            const metalMat = createMaterial(materialType, color);
+            
+            // Корпус
+            const body = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.6, 0.3), metalMat);
+            body.position.y = 0.3;
+            body.castShadow = true;
+            body.receiveShadow = true;
+            group.add(body);
+            
+            // Динамик
+            const driver = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.25, 0.05, 16), createMaterial('metal_brushed', '#cccccc'));
+            driver.position.set(0, 0.3, 0.16);
+            driver.rotation.x = 0;
+            driver.castShadow = true;
+            driver.receiveShadow = true;
+            group.add(driver);
+            
+            return group;
+        }
+
+        function createDisplay(color, materialType) {
+            const group = new THREE.Group();
+            const metalMat = createMaterial(materialType, color);
+            
+            // Экран
+            const screen = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.6, 0.05), metalMat);
+            screen.position.y = 0.4;
+            screen.castShadow = true;
+            screen.receiveShadow = true;
+            group.add(screen);
+            
+            // Подставка
+            const stand = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.2, 0.2), metalMat);
+            stand.position.y = 0.1;
+            stand.castShadow = true;
+            stand.receiveShadow = true;
+            group.add(stand);
+            
+            return group;
+        }
+
+        function createVase(color, materialType) {
+            const group = new THREE.Group();
+            const mat = createMaterial(materialType, color);
+            
+            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.35, 0.1, 8), mat);
+            base.position.y = 0.05;
+            base.castShadow = true;
+            base.receiveShadow = true;
+            group.add(base);
+            
+            const body = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.3, 0.6, 8), mat);
+            body.position.y = 0.4;
+            body.castShadow = true;
+            body.receiveShadow = true;
+            group.add(body);
+            
+            return group;
+        }
+
+        function createSphere(color, materialType) {
+            const group = new THREE.Group();
+            const mat = createMaterial(materialType, color);
+            
+            const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.4, 24), mat);
+            sphere.castShadow = true;
+            sphere.receiveShadow = true;
+            group.add(sphere);
+            
+            return group;
+        }
+
         function createModelById(item, color, materialType) {
             switch(item.id) {
-                case 'armchair_chesterfield':
-                    return createChesterfield(color, materialType);
-                case 'sofa_velvet':
-                    return createVelvetSofa(color, materialType);
-                case 'chair_eames':
-                    return createEamesChair(color, materialType);
-                case 'chaise_longue':
-                    return createChaiseLongue(color, materialType);
-                case 'chandelier_crystal':
-                    return createCrystalChandelier(color, materialType);
-                case 'floor_lamp_arc':
-                    return createArcFloorLamp(color, materialType);
-                case 'vase_porcelain':
-                    return createPorcelainVase(color, materialType);
-                case 'ficus':
-                    return createFicus(color, materialType);
+                case 'lamp_arc': return createArcLamp(color, materialType);
+                case 'lamp_floor': return createMinimalLamp(color, materialType);
+                case 'chair_dining': return createDiningChair(color, materialType);
+                case 'chair_lounge': return createLoungeChair(color, materialType);
+                case 'table_dining': return createDiningTable(color, materialType);
+                case 'table_coffee': return createCoffeeTable(color, materialType);
+                case 'shelf_wall': return createWallShelf(color, materialType);
+                case 'speaker': return createSpeaker(color, materialType);
+                case 'display': return createDisplay(color, materialType);
+                case 'vase': return createVase(color, materialType);
+                case 'sphere': return createSphere(color, materialType);
                 default:
-                    // Базовая модель для остальных
                     const group = new THREE.Group();
-                    const mat = createPremiumMaterial(materialType, color);
-                    
-                    // Создаем простую, но красивую форму
-                    if (item.category === 'tables' || item.category === 'storage') {
-                        const mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 0.8, 0.6), mat);
-                        mesh.castShadow = true;
-                        mesh.receiveShadow = true;
-                        group.add(mesh);
-                        
-                        // Добавляем ножки
-                        const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.2, 6);
-                        const legMat = createPremiumMaterial('wood', '#8b5a2b');
-                        for (let x = -0.4; x <= 0.4; x+=0.8) {
-                            for (let z = -0.25; z <= 0.25; z+=0.5) {
-                                const leg = new THREE.Mesh(legGeo, legMat);
-                                leg.position.set(x, -0.3, z);
-                                leg.castShadow = true;
-                                leg.receiveShadow = true;
-                                group.add(leg);
-                            }
-                        }
-                    } else if (item.category === 'lighting') {
-                        const mesh = new THREE.Mesh(new THREE.ConeGeometry(0.5, 1, 8), mat);
-                        mesh.castShadow = true;
-                        mesh.receiveShadow = true;
-                        group.add(mesh);
-                        
-                        const light = new THREE.PointLight(0xffeedd, 0.8, 5);
-                        light.position.y = 0.5;
-                        group.add(light);
-                    } else {
-                        const mesh = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.8, 0.8), mat);
-                        mesh.castShadow = true;
-                        mesh.receiveShadow = true;
-                        group.add(mesh);
-                    }
-                    
+                    const mat = createMaterial(materialType, color);
+                    const mesh = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.8, 0.8), mat);
+                    mesh.castShadow = true;
+                    mesh.receiveShadow = true;
+                    group.add(mesh);
                     return group;
             }
         }
@@ -1636,52 +1175,7 @@
         // ==================== UI ====================
         function loadCatalog() {
             const grid = document.getElementById('items-grid');
-            const categoriesContainer = document.getElementById('categories-container');
             
-            // Создаем кнопки категорий
-            const categories = ['all', ...Object.keys(catalogData)];
-            categories.forEach(cat => {
-                const btn = document.createElement('button');
-                btn.className = 'category-btn' + (cat === 'all' ? ' active' : '');
-                btn.dataset.category = cat;
-                
-                // Русские названия категорий
-                const catNames = {
-                    'all': 'ВСЁ',
-                    'seating': 'МЕБЕЛЬ',
-                    'lighting': 'СВЕТ',
-                    'decor': 'ДЕКОР',
-                    'plants': 'РАСТЕНИЯ',
-                    'electronics': 'ТЕХНИКА',
-                    'kitchen': 'КУХНЯ',
-                    'tables': 'СТОЛЫ',
-                    'storage': 'ХРАНЕНИЕ',
-                    'bathroom': 'ВАННАЯ',
-                    'textiles': 'ТЕКСТИЛЬ',
-                    'office': 'ОФИС'
-                };
-                
-                btn.textContent = catNames[cat] || cat.toUpperCase();
-                
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    
-                    const category = btn.dataset.category;
-                    document.querySelectorAll('.item-card').forEach(item => {
-                        if (category === 'all') {
-                            item.style.display = 'flex';
-                        } else {
-                            item.style.display = item.dataset.category === category ? 'flex' : 'none';
-                        }
-                    });
-                });
-                
-                categoriesContainer.appendChild(btn);
-            });
-            
-            // Загружаем предметы
             allItems.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'item-card';
@@ -1702,10 +1196,25 @@
             });
             
             document.getElementById('item-count').textContent = allItems.length;
-            document.getElementById('model-count').textContent = allItems.length;
         }
 
-        // Поиск
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                document.querySelectorAll('.item-card').forEach(item => {
+                    if (category === 'all') {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = item.dataset.category === category ? 'flex' : 'none';
+                    }
+                });
+            });
+        });
+
         document.getElementById('search-input').addEventListener('input', (e) => {
             const search = e.target.value.toLowerCase();
             document.querySelectorAll('.item-card').forEach(item => {
@@ -1745,16 +1254,17 @@
             dir.y = 0;
             dir.normalize();
             
-            const pos = camera.position.clone().add(dir.multiplyScalar(6));
+            const pos = camera.position.clone().add(dir.multiplyScalar(5));
             pos.y = 0;
             
             const length = parseFloat(document.getElementById('wall-length').value);
             const height = parseFloat(document.getElementById('wall-height').value);
-            const thickness = parseFloat(document.getElementById('wall-thickness').value);
             const color = document.getElementById('wall-color').value;
             
-            const wallMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.7, metalness: 0.1 });
-            const wall = new THREE.Mesh(new THREE.BoxGeometry(thickness, height, length), wallMat);
+            const wall = new THREE.Mesh(
+                new THREE.BoxGeometry(0.2, height, length),
+                new THREE.MeshStandardMaterial({ color: color, roughness: 0.6, metalness: 0.3 })
+            );
             wall.position.copy(pos);
             wall.position.y = height / 2;
             wall.castShadow = true;
@@ -1762,38 +1272,7 @@
             
             scene.add(wall);
             placedItems.push(wall);
-            history.push({ type: 'add', item: wall });
             document.getElementById('total-items').textContent = placedItems.length;
-        });
-
-        // Качество теней
-        document.getElementById('shadow-quality').addEventListener('change', (e) => {
-            const quality = e.target.value;
-            switch(quality) {
-                case 'off':
-                    renderer.shadowMap.enabled = false;
-                    break;
-                case 'low':
-                    renderer.shadowMap.enabled = true;
-                    mainLight.shadow.mapSize.width = 1024;
-                    mainLight.shadow.mapSize.height = 1024;
-                    break;
-                case 'medium':
-                    renderer.shadowMap.enabled = true;
-                    mainLight.shadow.mapSize.width = 2048;
-                    mainLight.shadow.mapSize.height = 2048;
-                    break;
-                case 'high':
-                    renderer.shadowMap.enabled = true;
-                    mainLight.shadow.mapSize.width = 4096;
-                    mainLight.shadow.mapSize.height = 4096;
-                    break;
-                case 'ultra':
-                    renderer.shadowMap.enabled = true;
-                    mainLight.shadow.mapSize.width = 8192;
-                    mainLight.shadow.mapSize.height = 8192;
-                    break;
-            }
         });
 
         // Освещение
@@ -1801,46 +1280,10 @@
             mainLight.intensity = parseFloat(e.target.value);
         });
 
-        document.getElementById('light-temperature').addEventListener('input', (e) => {
-            const temp = parseFloat(e.target.value);
-            const r = temp <= 6600 ? 255 : (329.698727446 * Math.pow(temp / 100 - 60, -0.1332047592));
-            const g = temp <= 6600 ? (99.4708025861 * Math.log(temp / 100) - 161.1195681661) : 288.1221695283 * Math.pow(temp / 100 - 60, -0.0755148492);
-            const b = temp >= 6600 ? 255 : (138.5177312231 * Math.log(temp / 100 - 10) + 305.0447927307);
-            
-            mainLight.color.setRGB(
-                Math.min(255, Math.max(0, r)) / 255,
-                Math.min(255, Math.max(0, g)) / 255,
-                Math.min(255, Math.max(0, b)) / 255
-            );
-        });
-
-        // Отмена
-        document.getElementById('undo-btn').addEventListener('click', () => {
-            if (history.length > 0) {
-                const last = history.pop();
-                if (last.type === 'add') {
-                    scene.remove(last.item);
-                    const index = placedItems.indexOf(last.item);
-                    if (index > -1) placedItems.splice(index, 1);
-                }
-            }
-            document.getElementById('total-items').textContent = placedItems.length;
-        });
-
-        // Очистить всё
-        document.getElementById('clear-btn').addEventListener('click', () => {
-            placedItems.forEach(item => scene.remove(item));
-            placedItems = [];
-            history = [];
-            document.getElementById('total-items').textContent = '0';
-        });
-
         // Состояние
         let selectedItem = null;
         let placedItems = [];
         let currentMode = 'place';
-        let lastPlacedMesh = null;
-        let history = [];
         
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
@@ -1853,7 +1296,7 @@
 
         // Размещение
         renderer.domElement.addEventListener('click', (event) => {
-            if (event.target.closest('.imperial')) return;
+            if (event.target.closest('.mineral')) return;
             if (currentMode !== 'place' || !selectedItem) return;
             
             mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
@@ -1865,12 +1308,11 @@
                 const color = document.getElementById('item-color').value;
                 const scale = parseFloat(document.getElementById('item-scale').value);
                 const rotate = parseFloat(document.getElementById('item-rotate').value);
-                const heightOffset = parseFloat(document.getElementById('item-height').value);
                 const materialType = document.getElementById('material-type').value;
                 
                 const model = createModelById(selectedItem, color, materialType);
                 model.position.copy(intersectionPoint);
-                model.position.y = heightOffset;
+                model.position.y = 0.5 * scale;
                 model.scale.set(scale, scale, scale);
                 model.rotation.y = (rotate * Math.PI) / 180;
                 model.castShadow = true;
@@ -1878,8 +1320,6 @@
                 
                 scene.add(model);
                 placedItems.push(model);
-                lastPlacedMesh = model;
-                history.push({ type: 'add', item: model });
                 
                 document.getElementById('total-items').textContent = placedItems.length;
             }
@@ -1887,7 +1327,7 @@
 
         // Строительство стен
         renderer.domElement.addEventListener('mousedown', (event) => {
-            if (event.target.closest('.imperial')) return;
+            if (event.target.closest('.mineral')) return;
             if (currentMode !== 'build' || event.button !== 0) return;
             
             mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
@@ -1900,10 +1340,9 @@
                 startPoint = intersectionPoint.clone();
                 startPoint.y = 0;
                 
-                const thickness = parseFloat(document.getElementById('wall-thickness').value);
                 tempWall = new THREE.Mesh(
-                    new THREE.BoxGeometry(thickness, 3, 0.1),
-                    new THREE.MeshStandardMaterial({ color: 0xd4b088, transparent: true, opacity: 0.6, emissive: 0x332211 })
+                    new THREE.BoxGeometry(0.2, 2.5, 0.1),
+                    new THREE.MeshStandardMaterial({ color: 0x88aaff, transparent: true, opacity: 0.5 })
                 );
                 tempWall.castShadow = true;
                 tempWall.receiveShadow = true;
@@ -1912,7 +1351,7 @@
         });
 
         renderer.domElement.addEventListener('mousemove', (event) => {
-            if (event.target.closest('.imperial')) return;
+            if (event.target.closest('.mineral')) return;
             
             mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
             mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
@@ -1928,28 +1367,28 @@
                     const length = Math.sqrt(delta.x*delta.x + delta.z*delta.z);
                     const angle = Math.atan2(delta.x, delta.z);
                     
-                    const thickness = parseFloat(document.getElementById('wall-thickness').value);
                     const height = parseFloat(document.getElementById('wall-height').value);
                     
                     tempWall.position.x = startPoint.x + delta.x/2;
                     tempWall.position.z = startPoint.z + delta.z/2;
                     tempWall.position.y = height/2;
-                    tempWall.scale.set(1, height/3, length);
+                    tempWall.scale.set(1, height/2.5, length);
                     tempWall.rotation.y = angle;
                 }
             }
         });
 
         renderer.domElement.addEventListener('mouseup', (event) => {
-            if (event.target.closest('.imperial')) return;
+            if (event.target.closest('.mineral')) return;
             
             if (currentMode === 'build' && isBuilding && tempWall) {
                 const height = parseFloat(document.getElementById('wall-height').value);
-                const thickness = parseFloat(document.getElementById('wall-thickness').value);
                 const color = document.getElementById('wall-color').value;
                 
-                const wallMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.7, metalness: 0.1 });
-                const wall = new THREE.Mesh(new THREE.BoxGeometry(thickness, height, tempWall.scale.z), wallMat);
+                const wall = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.2, height, tempWall.scale.z),
+                    new THREE.MeshStandardMaterial({ color: color, roughness: 0.6, metalness: 0.3 })
+                );
                 wall.position.copy(tempWall.position);
                 wall.position.y = height/2;
                 wall.rotation.copy(tempWall.rotation);
@@ -1958,7 +1397,6 @@
                 
                 scene.add(wall);
                 placedItems.push(wall);
-                history.push({ type: 'add', item: wall });
                 document.getElementById('total-items').textContent = placedItems.length;
                 
                 scene.remove(tempWall);
@@ -1983,22 +1421,12 @@
             }
         }
 
-        // Полигоны (примерно)
-        function updatePolyCount() {
-            // Каждая модель ~500-1000 полигонов
-            const avgPolys = 750;
-            const totalPolys = placedItems.length * avgPolys;
-            document.getElementById('poly-count').textContent = (totalPolys / 1000000).toFixed(1);
-        }
-
         function animate() {
             requestAnimationFrame(animate);
             
-            particles.rotation.y += 0.00002;
             controls.update();
             composer.render();
             updateFPS();
-            updatePolyCount();
         }
 
         window.addEventListener('resize', () => {
@@ -2015,8 +1443,6 @@
 
         loadCatalog();
         animate();
-        
-        console.log('🏛️ ИМПЕРИЯ ИНТЕРЬЕРА запущена с', allItems.length, 'реальными 3D моделями!');
     </script>
 </body>
 </html>
