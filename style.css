@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#canvas {
+    display: block; /* Убираем лишние отступы */
+    width: 100vw;
+    height: 100vh;
+    background-color: #111; /* Черный фон, пока не загрузится сцена */
+}
+
+/* Панель управления (интерфейс) */
+#info-panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(30, 30, 40, 0.85);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 100; /* Поверх 3D */
+    pointer-events: all;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+#info-panel h1 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #ffd966;
+    margin-right: 10px;
+}
+
+#info-panel button {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(5px);
+}
+
+#info-panel button:hover {
+    background: rgba(255, 215, 100, 0.3);
+    border-color: #ffd966;
+    transform: scale(1.02);
+}
+
+#item-count {
+    font-weight: bold;
+    color: #ffd966;
+    font-size: 1.4rem;
+}
