@@ -1,246 +1,369 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { WallBuilder } from './builder.js';
+import { catalog, getAllItems } from './catalog.js';
 
-// --- Инициализация ---
+// --- Инициализация сцены ---
 const canvas = document.getElementById('canvas');
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x111122); // Глубокий синеватый цвет фона
+scene.background = new THREE.Color(0x080814);
+scene.fog = new THREE.Fog(0x080814, 20, 50);
 
-// --- Камера (вид от первого лица, но с возможностью вращения) ---
+// --- Камера с физическими параметрами ---
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(8, 5, 12);
+camera.position.set(15, 8, 20);
 camera.lookAt(0, 2, 0);
 
-// --- Рендерер (для 3D) ---
-const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, powerPreference: "high-performance" });
+// --- Рендерер с максимальным качеством ---
+const renderer = new THREE.WebGLRenderer({ 
+    canvas: canvas, 
+    antialias: true,
+    powerPreference: "high-performance",
+    stencil: false,
+    depth: true
+});
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Ограничим для производительности, но можно убрать min для ультра-качества
-renderer.shadowMap.enabled = true; // ВКЛЮЧАЕМ ТЕНИ (must have для реализма)
-renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Мягкие тени
-renderer.toneMapping = THREE.ACESFilmicToneMapping; // Киношная цветокоррекция
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.2;
+renderer.outputEncoding = THREE.sRGBEncoding;
 
-// --- Рендерер для 2D текста (CSS2DRenderer) ---
-const labelRenderer = new CSS2DRenderer();
-labelRenderer.setSize(window.innerWidth, window.innerHeight);
-labelRenderer.domElement.style.position = 'absolute';
-labelRenderer.domElement.style.top = '0px';
-labelRenderer.domElement.style.left = '0px';
-labelRenderer.domElement.style.pointerEvents = 'none'; // Текст не мешает нажатиям
-document.body.appendChild(labelRenderer.domElement);
+// --- Пост-обработка (Bloom эффект) ---
+const renderScene = new RenderPass(scene, camera);
+const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+bloomPass.threshold = 0.1;
+bloomPass.strength = 0.6;
+bloomPass.radius = 0.5;
 
-// --- ОрбитКонтрол (управление мышью) ---
+const composer = new EffectComposer(renderer);
+composer.addPass(renderScene);
+composer.addPass(bloomPass);
+
+// --- Управление ---
 const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true; // Плавность
+controls.enableDamping = true;
 controls.dampingFactor = 0.05;
-controls.maxPolarAngle = Math.PI / 2; // Не даем уйти под пол
-controls.enableZoom = true;
-controls.autoRotate = false;
+controls.maxPolarAngle = Math.PI / 2.2;
+controls.minDistance = 5;
+controls.maxDistance = 30;
 controls.target.set(0, 2, 0);
-controls.maxDistance = 20;
 
-// --- Свет (основа качественной картинки) ---
+// --- Освещение мирового класса ---
 
-// 1. Основной направленный свет (имитация солнца/окна)
-const dirLight = new THREE.DirectionalLight(0xfff5e6, 1.5);
-dirLight.position.set(5, 10, 7);
-dirLight.castShadow = true;
-dirLight.receiveShadow = true;
-dirLight.shadow.mapSize.width = 2048; // Качество теней
-dirLight.shadow.mapSize.height = 2048;
-const d = 10;
-dirLight.shadow.camera.left = -d;
-dirLight.shadow.camera.right = d;
-dirLight.shadow.camera.top = d;
-dirLight.shadow.camera.bottom = -d;
-dirLight.shadow.camera.near = 1;
-dirLight.shadow.camera.far = 15;
-dirLight.shadow.bias = -0.0005;
-scene.add(dirLight);
+// Основной направленный свет (солнце)
+const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.2);
+sunLight.position.set(10, 20, 5);
+sunLight.castShadow = true;
+sunLight.shadow.mapSize.width = 4096;
+sunLight.shadow.mapSize.height = 4096;
+sunLight.shadow.camera.near = 0.5;
+sunLight.shadow.camera.far = 50;
+sunLight.shadow.camera.left = -15;
+sunLight.shadow.camera.right = 15;
+sunLight.shadow.camera.top = 15;
+sunLight.shadow.camera.bottom = -15;
+sunLight.shadow.bias = -0.0001;
+scene.add(sunLight);
 
-// 2. Заполняющий свет (снизу и сзади, чтобы убрать черноту)
-const fillLight = new THREE.PointLight(0x4466aa, 0.5);
-fillLight.position.set(-3, 1, 5);
-scene.add(fillLight);
+// Заполняющий свет (окружение)
+const fillLight1 = new THREE.PointLight(0x4466aa, 0.8);
+fillLight1.position.set(-5, 5, 10);
+scene.add(fillLight1);
 
-// 3. Мягкий свет сверху (ambient)
-const ambientLight = new THREE.AmbientLight(0x404060); // Цветной ambient для настроения
+const fillLight2 = new THREE.PointLight(0xaa6644, 0.5);
+fillLight2.position.set(8, 3, -5);
+scene.add(fillLight2);
+
+// Ambient с текстурой окружения
+const ambientLight = new THREE.AmbientLight(0x404060);
 scene.add(ambientLight);
 
-// Визуализация источника света (для красоты - невидимая сфера не нужна, просто лампочка)
-// Но можно добавить вспомогательные объекты позже.
+// Добавляем звезды/окружение для красоты
+const starsGeometry = new THREE.BufferGeometry();
+const starsCount = 2000;
+const starsPositions = new Float32Array(starsCount * 3);
+for (let i = 0; i < starsCount * 3; i += 3) {
+    starsPositions[i] = (Math.random() - 0.5) * 200;
+    starsPositions[i+1] = (Math.random() - 0.5) * 200;
+    starsPositions[i+2] = (Math.random() - 0.5) * 200 - 50;
+}
+starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
+const starsMaterial = new THREE.PointsMaterial({color: 0x88aaff, size: 0.1});
+const stars = new THREE.Points(starsGeometry, starsMaterial);
+scene.add(stars);
 
-// --- Пол и стены (основа комнаты) ---
-
-// Пол
-const floorGeometry = new THREE.CircleGeometry(10, 32);
-const floorMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0x3a3f5a,
-    roughness: 0.4,
+// --- Пол (большая площадь) ---
+const groundGeometry = new THREE.CircleGeometry(50, 64);
+const groundMaterial = new THREE.MeshStandardMaterial({ 
+    color: 0x2a2a3a,
+    roughness: 0.7,
     metalness: 0.1,
-    emissive: new THREE.Color(0x000022)
+    emissive: new THREE.Color(0x111122)
 });
-const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-floor.rotation.x = -Math.PI / 2;
-floor.position.y = 0;
-floor.receiveShadow = true;
-floor.castShadow = false;
-scene.add(floor);
+const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = 0;
+ground.receiveShadow = true;
+scene.add(ground);
 
-// Разметка на полу (плитка/паркет) для красоты
-const gridHelper = new THREE.GridHelper(20, 20, 0xffaa88, 0x444466);
-gridHelper.position.y = 0.01; // Чуть выше пола, чтобы не мерцало
+// Сетка для ориентации
+const gridHelper = new THREE.GridHelper(100, 40, 0xffaa88, 0x334466);
+gridHelper.position.y = 0.01;
 scene.add(gridHelper);
 
-// Небольшая стена или колонна для фона
-const wallMat = new THREE.MeshStandardMaterial({ color: 0x5a5f7a, roughness: 0.6, emissive: new THREE.Color(0x111122) });
-const pillar = new THREE.Mesh(new THREE.BoxGeometry(1, 4, 1), wallMat);
-pillar.position.set(-4, 2, -3);
-pillar.castShadow = true;
-pillar.receiveShadow = true;
-scene.add(pillar);
+// --- Система строительства ---
+const builder = new WallBuilder(scene);
 
-// --- Мебель (предметы интерьера) ---
-// Создадим фабрику объектов, чтобы легко добавлять новые
+// --- Состояние приложения ---
+let selectedItem = null;
+let placedItems = [];
+let currentMode = 'place'; // 'place' или 'build'
+let raycaster = new THREE.Raycaster();
+let mouse = new THREE.Vector2();
+let plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+let intersectionPoint = new THREE.Vector3();
 
-function createChair(x, z, color = 0xc47e5a) {
-    const group = new THREE.Group();
+// --- Загрузка каталога в UI ---
+function loadCatalog() {
+    const grid = document.getElementById('items-grid');
+    const allItems = getAllItems();
+    
+    allItems.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.dataset.id = item.id;
+        card.dataset.category = item.category;
+        card.innerHTML = `
+            <div class="item-icon">${item.icon}</div>
+            <div class="item-name">${item.name}</div>
+        `;
+        card.addEventListener('click', () => {
+            document.querySelectorAll('.item-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedItem = item;
+        });
+        grid.appendChild(card);
+    });
+    
+    document.getElementById('total-items').textContent = allItems.length;
+}
 
-    // Сиденье
-    const seatMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.3 });
-    const seat = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.2, 1.2), seatMat);
-    seat.position.y = 0.5;
-    seat.castShadow = true;
-    seat.receiveShadow = true;
-    group.add(seat);
+// --- Фильтрация каталога ---
+document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const category = btn.dataset.category;
+        const items = document.querySelectorAll('.item-card');
+        
+        items.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
 
-    // Спинка
-    const back = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.2, 0.2), seatMat);
-    back.position.set(0, 1.1, -0.6);
-    back.castShadow = true;
-    back.receiveShadow = true;
-    group.add(back);
+// --- Поиск ---
+document.getElementById('search-input').addEventListener('input', (e) => {
+    const search = e.target.value.toLowerCase();
+    const items = document.querySelectorAll('.item-card');
+    
+    items.forEach(item => {
+        const name = item.querySelector('.item-name').textContent.toLowerCase();
+        if (name.includes(search)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+});
 
-    // Ножки (металлик)
-    const legMat = new THREE.MeshStandardMaterial({ color: 0xccccdd, roughness: 0.2, metalness: 0.8 });
-    for (let i = -0.4; i <= 0.4; i+=0.8) {
-        for (let j = -0.4; j <= 0.4; j+=0.8) {
-            const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.5), legMat);
-            leg.position.set(i, 0.25, j);
-            leg.castShadow = true;
-            leg.receiveShadow = true;
-            group.add(leg);
+// --- Переключение режимов ---
+document.getElementById('mode-place').addEventListener('click', () => {
+    currentMode = 'place';
+    document.getElementById('mode-place').classList.add('active');
+    document.getElementById('mode-build').classList.remove('active');
+    document.getElementById('build-controls').style.display = 'none';
+    document.getElementById('place-controls').style.display = 'block';
+    builder.cancelBuild();
+});
+
+document.getElementById('mode-build').addEventListener('click', () => {
+    currentMode = 'build';
+    document.getElementById('mode-build').classList.add('active');
+    document.getElementById('mode-place').classList.remove('active');
+    document.getElementById('build-controls').style.display = 'block';
+    document.getElementById('place-controls').style.display = 'none';
+});
+
+// --- Построить стену (кнопка) ---
+document.getElementById('build-wall').addEventListener('click', () => {
+    // Создаем стену в центре камеры
+    const direction = new THREE.Vector3();
+    camera.getWorldDirection(direction);
+    direction.y = 0;
+    direction.normalize();
+    
+    const position = camera.position.clone().add(direction.multiplyScalar(5));
+    position.y = 0;
+    
+    const length = parseFloat(document.getElementById('wall-length').value);
+    const height = parseFloat(document.getElementById('wall-height').value);
+    const color = document.getElementById('wall-color').value;
+    
+    const wallGeo = new THREE.BoxGeometry(0.2, height, length);
+    const wallMat = new THREE.MeshStandardMaterial({ color: color });
+    const wall = new THREE.Mesh(wallGeo, wallMat);
+    wall.position.copy(position);
+    wall.position.y = height / 2;
+    wall.castShadow = true;
+    wall.receiveShadow = true;
+    
+    scene.add(wall);
+    placedItems.push(wall);
+    updateStats();
+});
+
+// --- Применить свойства к выбранному предмету ---
+document.getElementById('apply-props').addEventListener('click', () => {
+    // Здесь можно реализовать изменение свойств последнего размещенного предмета
+});
+
+// --- Обработка кликов для размещения ---
+renderer.domElement.addEventListener('click', (event) => {
+    if (currentMode === 'place' && selectedItem) {
+        // Получаем позицию под курсором
+        mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+        mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+        
+        raycaster.setFromCamera(mouse, camera);
+        
+        if (raycaster.ray.intersectPlane(plane, intersectionPoint)) {
+            // Создаем предмет (для демо используем простую геометрию)
+            const color = document.getElementById('item-color').value;
+            const scale = parseFloat(document.getElementById('item-scale').value);
+            
+            const geometry = new THREE.BoxGeometry(1, 1, 1);
+            const material = new THREE.MeshStandardMaterial({ color: color });
+            const mesh = new THREE.Mesh(geometry, material);
+            mesh.position.copy(intersectionPoint);
+            mesh.position.y = 0.5;
+            mesh.scale.set(scale, scale, scale);
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            
+            scene.add(mesh);
+            placedItems.push(mesh);
+            updateStats();
         }
     }
-
-    group.position.set(x, 0, z);
-    return group;
-}
-
-function createLamp(x, z) {
-    const group = new THREE.Group();
-    const metalMat = new THREE.MeshStandardMaterial({ color: 0xeeddcc, roughness: 0.3, metalness: 0.7 });
-    const glassMat = new THREE.MeshStandardMaterial({ color: 0xffeedd, roughness: 0.1, metalness: 0.0, emissive: new THREE.Color(0x442200) });
-
-    // Столб
-    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.15, 2.5), metalMat);
-    pole.position.y = 1.25;
-    pole.castShadow = true;
-    pole.receiveShadow = true;
-    group.add(pole);
-
-    // Абажур (низ)
-    const shadeBase = new THREE.Mesh(new THREE.ConeGeometry(0.8, 0.4, 16), glassMat);
-    shadeBase.position.y = 2.5;
-    shadeBase.castShadow = true;
-    shadeBase.receiveShadow = true;
-    group.add(shadeBase);
-
-    // Лампочка (светящаяся)
-    const bulbMat = new THREE.MeshStandardMaterial({ color: 0xffaa55, emissive: new THREE.Color(0xff8800) });
-    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.25, 16), bulbMat);
-    bulb.position.y = 2.5;
-    bulb.castShadow = true;
-    bulb.receiveShadow = true;
-    group.add(bulb);
-
-    // Добавим точечный свет от лампы (чтобы светила реально)
-    const pointLight = new THREE.PointLight(0xffaa66, 1, 5);
-    pointLight.position.set(0, 2.5, 0);
-    group.add(pointLight);
-
-    group.position.set(x, 0, z);
-    return group;
-}
-
-// Добавляем стартовые предметы
-const chair1 = createChair(1, 1, 0xb86f56);
-scene.add(chair1);
-const chair2 = createChair(-1, 2, 0x6f8b56);
-scene.add(chair2);
-const lamp1 = createLamp(2, -1);
-scene.add(lamp1);
-
-// Счетчик предметов
-const itemCountSpan = document.getElementById('item-count');
-let itemCount = 3;
-
-// --- Обработчики кнопок (добавление новых предметов) ---
-document.getElementById('add-chair').addEventListener('click', () => {
-    const angle = Math.random() * Math.PI * 2;
-    const radius = 3 + Math.random() * 2;
-    const x = Math.cos(angle) * radius;
-    const z = Math.sin(angle) * radius;
-    const newChair = createChair(x, z, Math.random() * 0xffffff);
-    scene.add(newChair);
-    itemCount++;
-    itemCountSpan.textContent = itemCount;
 });
 
-document.getElementById('add-lamp').addEventListener('click', () => {
-    const angle = Math.random() * Math.PI * 2;
-    const radius = 2 + Math.random() * 3;
-    const x = Math.cos(angle) * radius;
-    const z = Math.sin(angle) * radius;
-    const newLamp = createLamp(x, z);
-    scene.add(newLamp);
-    itemCount++;
-    itemCountSpan.textContent = itemCount;
+// --- Обработка движения мыши для строительства ---
+renderer.domElement.addEventListener('mousemove', (event) => {
+    mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+    mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+    
+    raycaster.setFromCamera(mouse, camera);
+    
+    if (raycaster.ray.intersectPlane(plane, intersectionPoint)) {
+        if (currentMode === 'build') {
+            if (builder.isBuilding) {
+                builder.updateBuild(intersectionPoint);
+            }
+        }
+    }
 });
 
-// --- Вспомогательные элементы (CSS лейблы для предметов - не обязательно, но красиво) ---
-// Создадим лейбл "Новинка" для новых предметов? Пока пропустим.
+// --- Начало строительства (зажатие мыши) ---
+renderer.domElement.addEventListener('mousedown', (event) => {
+    if (currentMode === 'build' && event.button === 0) {
+        mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+        mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+        
+        raycaster.setFromCamera(mouse, camera);
+        
+        if (raycaster.ray.intersectPlane(plane, intersectionPoint)) {
+            builder.startBuild(intersectionPoint);
+        }
+    }
+});
+
+// --- Завершение строительства ---
+renderer.domElement.addEventListener('mouseup', (event) => {
+    if (currentMode === 'build' && builder.isBuilding) {
+        const options = {
+            height: parseFloat(document.getElementById('wall-height').value),
+            color: document.getElementById('wall-color').value
+        };
+        const wall = builder.finishBuild(options);
+        if (wall) {
+            placedItems.push(wall);
+            updateStats();
+        }
+    }
+});
+
+// --- Обновление статистики ---
+function updateStats() {
+    document.getElementById('total-items').textContent = placedItems.length;
+    // Здесь можно добавить подсчет полигонов
+}
+
+// --- FPS счетчик ---
+let lastTime = performance.now();
+let frames = 0;
+
+function updateFPS() {
+    frames++;
+    const now = performance.now();
+    const delta = now - lastTime;
+    
+    if (delta >= 1000) {
+        const fps = Math.round((frames * 1000) / delta);
+        document.getElementById('fps-counter').textContent = fps;
+        frames = 0;
+        lastTime = now;
+    }
+}
 
 // --- Анимация ---
 function animate() {
     requestAnimationFrame(animate);
-
-    // Плавное управление
+    
+    // Вращаем звезды
+    stars.rotation.y += 0.0001;
+    
     controls.update();
-
-    // Рендерим основную сцену
-    renderer.render(scene, camera);
-
-    // Рендерим CSS лейблы (если будут)
-    labelRenderer.render(scene, camera);
+    composer.render();
+    updateFPS();
 }
 
-animate();
-
-// --- Адаптация под размер окна ---
-window.addEventListener('resize', onWindowResize, false);
-function onWindowResize() {
+// --- Resize handler ---
+window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    labelRenderer.setSize(window.innerWidth, window.innerHeight);
-}
+    composer.setSize(window.innerWidth, window.innerHeight);
+});
 
-// --- Интеграция с Telegram ---
+// --- Telegram Integration ---
 const tg = window.Telegram.WebApp;
-tg.expand(); // Разворачиваем на весь экран
-tg.enableClosingConfirmation(); // Спрашиваем при закрытии
-tg.ready(); // Говорим, что приложение готово
+tg.expand();
+tg.ready();
 
-console.log('Telegram Web App initialized', tg.initDataUnsafe);
+// --- Инициализация ---
+loadCatalog();
+animate();
+updateStats();
+
+console.log('3D Architect Dream запущен!');
