@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>✦ ULTIMATE REALITY — ФИНАЛЬНЫЙ ШЕДЕВР</title>
+    <title>✦ УМНЫЙ ДИЗАЙН ИНТЕРЬЕРА</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
 
         body {
             overflow: hidden;
-            background: #020208;
-            color: #f0f4fc;
+            background: #1a1e2a;
         }
 
         #canvas {
@@ -30,611 +27,202 @@
             z-index: 1;
         }
 
-        .glass {
-            background: rgba(5, 8, 16, 0.65);
-            backdrop-filter: blur(40px) saturate(350%);
-            border: 1px solid rgba(255, 215, 140, 0.15);
-            border-radius: 56px;
-            box-shadow: 0 60px 120px -50px #000;
-            transition: 0.3s;
-        }
-
-        .glass:hover {
-            border-color: rgba(255, 215, 140, 0.3);
-        }
-
-        .ui-container {
+        /* Панель управления */
+        .panel {
             position: absolute;
             top: 20px;
             left: 20px;
             right: 20px;
-            bottom: 20px;
             pointer-events: none;
-            display: flex;
-            flex-direction: column;
             z-index: 10;
         }
 
-        .top-bar {
-            pointer-events: all;
+        .toolbar {
+            background: rgba(30, 35, 45, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid #4a5a7a;
+            border-radius: 50px;
+            padding: 10px 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 38px;
-            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            pointer-events: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        .logo {
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffd966, #ffaa66, #ff8866, #ff6688, #ff66aa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
+        .toolbar button {
+            background: #2a3a5a;
+            border: none;
+            color: #ccddf9;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #4a6a8a;
+        }
+
+        .toolbar button:hover {
+            background: #3a5a7a;
+            color: white;
+        }
+
+        .toolbar button.active {
+            background: #f0b064;
+            color: #1a1e2a;
+            border-color: #f0b064;
         }
 
         .stats {
+            background: rgba(30, 35, 45, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid #4a5a7a;
+            border-radius: 50px;
+            padding: 10px 25px;
+            margin-top: 10px;
+            color: #ccddf9;
             display: flex;
-            gap: 70px;
-            font-size: 1.2rem;
+            gap: 30px;
+            justify-content: center;
+            pointer-events: auto;
+            font-size: 14px;
         }
 
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .stats i {
+            color: #f0b064;
+            margin-right: 5px;
         }
 
-        .stat-item i {
-            color: #ffd966;
+        .right-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            background: rgba(30, 35, 45, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid #4a5a7a;
+            border-radius: 30px;
+            padding: 20px;
+            pointer-events: auto;
+            color: #ccddf9;
         }
 
-        .panels {
-            flex: 1;
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            pointer-events: none;
-        }
-
-        .tools-panel {
-            pointer-events: all;
-            width: 440px;
-            background: rgba(5, 8, 16, 0.65);
-            backdrop-filter: blur(40px);
-            border-radius: 56px;
-            padding: 32px;
-            border: 1px solid rgba(255,215,140,0.1);
-            height: fit-content;
-            max-height: calc(100vh - 120px);
-            overflow-y: auto;
-        }
-
-        .tools-section {
-            margin-bottom: 32px;
-        }
-
-        .tools-section h4 {
-            font-weight: 600;
-            font-size: 1.3rem;
-            color: #ffd966;
-            margin-bottom: 18px;
+        .right-panel h3 {
+            margin-bottom: 15px;
+            color: #f0b064;
             display: flex;
             align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid rgba(255,215,140,0.2);
+            gap: 8px;
+            border-bottom: 1px solid #4a5a7a;
             padding-bottom: 8px;
         }
 
-        .mode-buttons {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .mode-btn {
-            flex: 1 0 auto;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #ccc;
-            padding: 12px 20px;
-            border-radius: 60px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .mode-btn:hover {
-            border-color: #ffd966;
-            color: white;
-        }
-
-        .mode-btn.active {
-            background: #ffd966;
-            border-color: transparent;
-            color: #020208;
-            font-weight: 600;
-        }
-
-        .control-group {
-            background: rgba(0,0,0,0.2);
-            border-radius: 36px;
-            padding: 24px;
-        }
-
-        .control-row {
-            margin-bottom: 20px;
-        }
-
-        .control-row label {
+        .right-panel label {
             display: block;
-            font-size: 0.9rem;
+            margin-top: 15px;
+            font-size: 13px;
             color: #aaa;
-            margin-bottom: 5px;
         }
 
-        .control-row input[type="range"] {
+        .right-panel input, .right-panel select {
             width: 100%;
-            height: 5px;
-            background: rgba(255,215,140,0.2);
-            border-radius: 2.5px;
-            -webkit-appearance: none;
-        }
-
-        .control-row input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 22px;
-            height: 22px;
-            background: #ffd966;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid #020208;
-            box-shadow: 0 0 20px #ffd966;
-        }
-
-        .control-row input[type="color"] {
-            width: 100%;
-            height: 52px;
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 60px;
-            padding: 5px;
-            cursor: pointer;
-        }
-
-        .control-row select {
-            width: 100%;
-            padding: 14px 20px;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 60px;
+            padding: 8px 12px;
+            margin-top: 4px;
+            background: #1e2636;
+            border: 1px solid #4a5a7a;
+            border-radius: 30px;
             color: white;
-            font-size: 1rem;
-            cursor: pointer;
         }
 
-        .checkbox-row {
+        .right-panel input[type="range"] {
+            padding: 0;
+        }
+
+        .right-panel .checkbox {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 1rem;
-            color: #ccc;
-            margin-bottom: 14px;
-        }
-
-        .checkbox-row input {
-            width: 18px;
-            height: 18px;
-            accent-color: #ffd966;
-        }
-
-        .action-btn {
-            width: 100%;
-            background: #ffd966;
-            border: none;
-            color: #020208;
-            padding: 18px;
-            border-radius: 60px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            transition: 0.2s;
-            font-size: 1.1rem;
-            margin-top: 8px;
-        }
-
-        .action-btn:hover {
-            background: #ffe082;
-            transform: translateY(-3px);
-            box-shadow: 0 25px 35px -10px #000;
-        }
-
-        .catalog-panel {
-            pointer-events: all;
-            width: 460px;
-            background: rgba(5, 8, 16, 0.65);
-            backdrop-filter: blur(40px);
-            border-radius: 56px;
-            padding: 32px;
-            border: 1px solid rgba(255,215,140,0.1);
-            height: fit-content;
-            max-height: calc(100vh - 120px);
-            overflow-y: auto;
-        }
-
-        .catalog-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 22px;
-        }
-
-        .catalog-header h3 {
-            font-weight: 600;
-            font-size: 1.4rem;
-            color: #ffd966;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .badge {
-            background: rgba(255,215,140,0.15);
-            border: 1px solid rgba(255,215,140,0.3);
-            padding: 6px 20px;
-            border-radius: 60px;
-            font-size: 1rem;
-            color: #ffd966;
-        }
-
-        .search-box {
-            position: relative;
-            margin-bottom: 24px;
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 22px;
-            top: 16px;
-            color: #aaa;
-            font-size: 1.1rem;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 16px 16px 16px 54px;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 60px;
-            color: white;
-            font-size: 1rem;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: #ffd966;
-        }
-
-        .categories {
-            display: flex;
-            flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 26px;
+            margin-top: 15px;
         }
 
-        .category-btn {
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #ccc;
-            padding: 8px 22px;
-            border-radius: 60px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.2s;
-            text-transform: uppercase;
+        .right-panel .checkbox input {
+            width: auto;
         }
 
-        .category-btn:hover {
-            border-color: #ffd966;
-            color: white;
-        }
-
-        .category-btn.active {
-            background: #ffd966;
-            border-color: transparent;
-            color: #020208;
-            font-weight: 600;
-        }
-
-        .items-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-        }
-
-        .item-card {
-            background: rgba(0,0,0,0.25);
-            border-radius: 36px;
-            padding: 24px 8px 16px;
-            cursor: pointer;
-            transition: 0.25s;
-            border: 1px solid rgba(255,255,255,0.02);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .item-card:hover {
-            background: rgba(50,60,80,0.5);
-            transform: translateY(-5px);
-            border-color: rgba(255,215,140,0.3);
-            box-shadow: 0 25px 35px -10px #000;
-        }
-
-        .item-card.selected {
-            border-color: #ffd966;
-            background: rgba(255,215,140,0.15);
-            box-shadow: inset 0 0 0 1px #ffd966;
-        }
-
-        .item-icon {
-            font-size: 3.8rem;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
-        }
-
-        .item-name {
-            font-size: 0.9rem;
-            text-align: center;
-            color: #ddd;
-            font-weight: 500;
-        }
-
-        .hint-bar {
-            pointer-events: all;
+        .hint {
             position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(30px);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
             color: white;
-            padding: 18px 50px;
-            border-radius: 80px;
-            font-size: 1.1rem;
-            border: 1px solid rgba(255,215,140,0.3);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            white-space: nowrap;
-            box-shadow: 0 25px 45px -10px #000;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 14px;
+            border: 1px solid #f0b064;
+            pointer-events: none;
         }
-
-        .hint-bar i {
-            color: #ffd966;
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
-        ::-webkit-scrollbar-thumb { background: rgba(255,215,140,0.3); border-radius: 10px; }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="ui-container">
-        <div class="top-bar glass">
-            <div class="logo">✦ FINAL ULTIMATE REALITY</div>
-            <div class="stats">
-                <div class="stat-item"><i class="fas fa-cube"></i> <span id="stat-items">0</span></div>
-                <div class="stat-item"><i class="fas fa-shapes"></i> <span id="stat-polys">0</span>K</div>
-                <div class="stat-item"><i class="fas fa-tachometer-alt"></i> <span id="stat-fps">0</span> FPS</div>
-            </div>
+    <div class="panel">
+        <div class="toolbar">
+            <button id="modePlace" class="active"><i class="fas fa-hand"></i> Предметы</button>
+            <button id="modeWallDrag"><i class="fas fa-draw-polygon"></i> Стена (drag)</button>
+            <button id="modeWallClick"><i class="fas fa-mouse-pointer"></i> Стена (2 клика)</button>
+            <button id="modeMove"><i class="fas fa-arrows-alt"></i> Переместить</button>
+            <button id="undoBtn"><i class="fas fa-undo"></i> Отмена</button>
+            <button id="clearBtn"><i class="fas fa-trash"></i> Очистить</button>
         </div>
-
-        <div class="panels">
-            <div class="tools-panel">
-                <div class="tools-section">
-                    <h4><i class="fas fa-compass"></i> РЕЖИМ</h4>
-                    <div class="mode-buttons">
-                        <button class="mode-btn active" id="mode-place"><i class="fas fa-hand"></i> Предметы</button>
-                        <button class="mode-btn" id="mode-wall"><i class="fas fa-draw-polygon"></i> Стена (drag)</button>
-                        <button class="mode-btn" id="mode-wall2"><i class="fas fa-mouse-pointer"></i> Стена (2 клика)</button>
-                        <button class="mode-btn" id="mode-move"><i class="fas fa-arrows-alt"></i> Переместить</button>
-                    </div>
-                </div>
-
-                <div class="tools-section" id="wall-controls" style="display: none;">
-                    <h4><i class="fas fa-cubes"></i> ПАРАМЕТРЫ СТЕНЫ</h4>
-                    <div class="control-group">
-                        <div class="control-row">
-                            <label>ДЛИНА</label>
-                            <input type="range" id="wall-length" min="0.5" max="100" step="0.1" value="4">
-                        </div>
-                        <div class="control-row">
-                            <label>ВЫСОТА</label>
-                            <input type="range" id="wall-height" min="1" max="30" step="0.1" value="2.8">
-                        </div>
-                        <div class="control-row">
-                            <label>ТОЛЩИНА</label>
-                            <input type="range" id="wall-thick" min="0.1" max="5" step="0.05" value="0.2">
-                        </div>
-                        <div class="control-row">
-                            <label>ЦВЕТ</label>
-                            <input type="color" id="wall-color" value="#c0b8b0">
-                        </div>
-                        <div class="control-row">
-                            <label>МАТЕРИАЛ</label>
-                            <select id="wall-material">
-                                <option value="brick">Кирпич</option>
-                                <option value="concrete">Бетон</option>
-                                <option value="wood">Дерево</option>
-                                <option value="marble">Мрамор</option>
-                                <option value="plaster">Штукатурка</option>
-                                <option value="stone">Камень</option>
-                            </select>
-                        </div>
-                        <!-- Привязка к сетке всегда включена -->
-                        <button class="action-btn" id="build-wall-btn"><i class="fas fa-plus-circle"></i> ПОСТРОИТЬ</button>
-                    </div>
-                </div>
-
-                <div class="tools-section" id="item-controls">
-                    <h4><i class="fas fa-palette"></i> МАТЕРИАЛ ПРЕДМЕТА</h4>
-                    <div class="control-group">
-                        <div class="control-row">
-                            <label>ТИП</label>
-                            <select id="item-material">
-                                <optgroup label="Древесина">
-                                    <option value="woodOak">Дуб</option>
-                                    <option value="woodWalnut">Орех</option>
-                                    <option value="woodLight">Светлый дуб</option>
-                                    <option value="woodDark">Венге</option>
-                                    <option value="woodMahogany">Красное дерево</option>
-                                </optgroup>
-                                <optgroup label="Металл">
-                                    <option value="metalBrushed">Щётка</option>
-                                    <option value="metalPolished">Полировка</option>
-                                    <option value="metalCopper">Медь</option>
-                                    <option value="metalBrass">Латунь</option>
-                                    <option value="metalChrome">Хром</option>
-                                </optgroup>
-                                <optgroup label="Ткань">
-                                    <option value="fabricVelvet">Бархат</option>
-                                    <option value="fabricLinen">Лён</option>
-                                    <option value="fabricWool">Шерсть</option>
-                                    <option value="leather">Кожа</option>
-                                </optgroup>
-                                <optgroup label="Стекло">
-                                    <option value="glassClear">Прозрачное</option>
-                                    <option value="glassFrosted">Матовое</option>
-                                    <option value="glassTinted">Тонированное</option>
-                                </optgroup>
-                                <optgroup label="Камень">
-                                    <option value="marble">Мрамор</option>
-                                    <option value="granite">Гранит</option>
-                                    <option value="onyx">Оникс</option>
-                                </optgroup>
-                                <optgroup label="Пластик">
-                                    <option value="plastic">Пластик</option>
-                                </optgroup>
-                            </select>
-                        </div>
-                        <div class="control-row">
-                            <label>ЦВЕТ</label>
-                            <input type="color" id="item-color" value="#b09a80">
-                        </div>
-                        <div class="control-row">
-                            <label>МАСШТАБ</label>
-                            <input type="range" id="item-scale" min="0.2" max="10" step="0.05" value="1">
-                        </div>
-                        <div class="control-row">
-                            <label>ПОВОРОТ</label>
-                            <input type="range" id="item-rotate" min="0" max="360" value="0">
-                        </div>
-                        <div class="control-row">
-                            <label>ВЫСОТА НАД ПОЛОМ</label>
-                            <input type="range" id="item-elev" min="0" max="10" step="0.05" value="0">
-                        </div>
-                        <div class="checkbox-row">
-                            <input type="checkbox" id="snap-grid" checked>
-                            <label>Привязка к сетке (0.5м) для предметов</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tools-section">
-                    <h4><i class="fas fa-sun"></i> ОСВЕЩЕНИЕ</h4>
-                    <div class="control-group">
-                        <div class="control-row">
-                            <label>ИНТЕНСИВНОСТЬ</label>
-                            <input type="range" id="light-int" min="0.2" max="6" step="0.1" value="1.3">
-                        </div>
-                        <div class="control-row">
-                            <label>ТЕМПЕРАТУРА (K)</label>
-                            <input type="range" id="light-temp" min="2000" max="8000" step="100" value="5500">
-                        </div>
-                        <div class="mode-buttons" style="margin-top:10px;">
-                            <button class="mode-btn" id="preset-day"><i class="fas fa-sun"></i> День</button>
-                            <button class="mode-btn" id="preset-evening"><i class="fas fa-cloud-sun"></i> Вечер</button>
-                            <button class="mode-btn" id="preset-night"><i class="fas fa-moon"></i> Ночь</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tools-section">
-                    <h4><i class="fas fa-camera"></i> ПОСТ-ЭФФЕКТЫ</h4>
-                    <div class="control-group">
-                        <div class="checkbox-row">
-                            <input type="checkbox" id="fx-bloom" checked>
-                            <label>Bloom (свечение)</label>
-                        </div>
-                        <div class="checkbox-row">
-                            <input type="checkbox" id="fx-ao" checked>
-                            <label>Ambient Occlusion</label>
-                        </div>
-                        <div class="checkbox-row">
-                            <input type="checkbox" id="fx-dof" checked>
-                            <label>Глубина резкости</label>
-                        </div>
-                        <div class="checkbox-row">
-                            <input type="checkbox" id="fx-film" checked>
-                            <label>Зернистость</label>
-                        </div>
-                        <div class="checkbox-row">
-                            <input type="checkbox" id="fx-ssr" checked>
-                            <label>Отражения (SSR)</label>
-                        </div>
-                        <div class="checkbox-row">
-                            <input type="checkbox" id="fx-lensflare" checked>
-                            <label>Блики линз</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tools-section">
-                    <h4><i class="fas fa-save"></i> ПРОЕКТ</h4>
-                    <div class="mode-buttons" style="gap:8px;">
-                        <button class="mode-btn" id="save-project" style="flex:1;"><i class="fas fa-save"></i> Сохранить</button>
-                        <button class="mode-btn" id="load-project" style="flex:1;"><i class="fas fa-folder-open"></i> Загрузить</button>
-                        <button class="mode-btn" id="export-file" style="flex:1;"><i class="fas fa-file-export"></i> Экспорт в файл</button>
-                        <button class="mode-btn" id="import-file" style="flex:1;"><i class="fas fa-file-import"></i> Импорт из файла</button>
-                    </div>
-                    <div style="display:flex; gap:8px; margin-top:8px;">
-                        <button class="mode-btn" id="undo-btn" style="flex:1;"><i class="fas fa-undo"></i> Отмена</button>
-                        <button class="mode-btn" id="clear-btn" style="flex:1;"><i class="fas fa-trash"></i> Очистить</button>
-                        <button class="mode-btn" id="copy-btn" style="flex:1;"><i class="fas fa-copy"></i> Копировать</button>
-                    </div>
-                    <div style="margin-top:8px; color:#aaa; font-size:0.9rem;">
-                        <i class="fas fa-keyboard"></i> Del: удалить | Ctrl+D: дублировать | Ctrl+Z: отмена
-                    </div>
-                </div>
-            </div>
-
-            <div class="catalog-panel">
-                <div class="catalog-header">
-                    <h3><i class="fas fa-couch"></i> КАТАЛОГ ПРЕДМЕТОВ (30+)</h3>
-                    <span class="badge" id="catalog-count">0</span>
-                </div>
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Поиск..." id="search-input">
-                </div>
-                <div class="categories" id="categories"></div>
-                <div class="items-grid" id="items-grid"></div>
-            </div>
-        </div>
-
-        <div class="hint-bar" id="hint">
-            <i class="fas fa-mouse-pointer"></i> Режим: ПРЕДМЕТЫ — клик для размещения | Стены всегда по сетке 0.5м
+        <div class="stats">
+            <span><i class="fas fa-cube"></i> Предметов: <span id="statItems">0</span></span>
+            <span><i class="fas fa-tachometer-alt"></i> FPS: <span id="statFps">0</span></span>
         </div>
     </div>
+
+    <div class="right-panel" id="itemPanel">
+        <h3><i class="fas fa-couch"></i> Параметры предмета</h3>
+        <label>Тип</label>
+        <select id="itemType">
+            <option value="cube">Куб</option>
+            <option value="sphere">Сфера</option>
+            <option value="cylinder">Цилиндр</option>
+            <option value="chair">Стул (упрощ.)</option>
+        </select>
+        <label>Цвет</label>
+        <input type="color" id="itemColor" value="#c47e5a">
+        <label>Масштаб</label>
+        <input type="range" id="itemScale" min="0.3" max="3" step="0.1" value="1">
+        <label>Поворот</label>
+        <input type="range" id="itemRotate" min="0" max="360" value="0">
+        <div class="checkbox">
+            <input type="checkbox" id="snapGrid" checked>
+            <label>Привязка к сетке (0.5м)</label>
+        </div>
+    </div>
+
+    <div class="right-panel" id="wallPanel" style="display:none;">
+        <h3><i class="fas fa-cubes"></i> Параметры стены</h3>
+        <label>Длина</label>
+        <input type="range" id="wallLength" min="0.5" max="10" step="0.1" value="3">
+        <label>Высота</label>
+        <input type="range" id="wallHeight" min="1" max="5" step="0.1" value="2.5">
+        <label>Толщина</label>
+        <input type="range" id="wallThick" min="0.1" max="1" step="0.05" value="0.2">
+        <label>Цвет</label>
+        <input type="color" id="wallColor" value="#aaccff">
+        <button id="buildWallBtn" style="width:100%; margin-top:15px; background:#f0b064; border:none; padding:10px; border-radius:30px; font-weight:bold;"><i class="fas fa-plus-circle"></i> Построить</button>
+    </div>
+
+    <div class="hint" id="hint">Режим: Предметы — клик для размещения</div>
 
     <canvas id="canvas"></canvas>
 
@@ -650,1241 +238,394 @@
     <script type="module">
         import * as THREE from 'three';
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-        import { SAOPass } from 'three/addons/postprocessing/SAOPass.js';
-        import { FilmPass } from 'three/addons/postprocessing/FilmPass.js';
-        import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
-        import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
-        import { SSRPass } from 'three/addons/postprocessing/SSRPass.js';
 
-        // -------------------- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ --------------------
+        // --- Инициализация сцены ---
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x020208);
-        scene.fog = new THREE.FogExp2(0x020208, 0.0005);
+        scene.background = new THREE.Color(0x1a1e2a);
+        scene.fog = new THREE.FogExp2(0x1a1e2a, 0.005);
 
-        const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(28, 20, 36);
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(15, 8, 20);
         camera.lookAt(0, 2, 0);
 
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true, powerPreference: "high-performance" });
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        renderer.shadowMap.bias = 0.00005;
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.6;
-        renderer.outputEncoding = THREE.sRGBEncoding;
-
-        // -------------------- ПОСТ-ОБРАБОТКА --------------------
-        const composer = new EffectComposer(renderer);
-        const renderPass = new RenderPass(scene, camera);
-        composer.addPass(renderPass);
-
-        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.0, 0.5, 0.6);
-        bloomPass.threshold = 0.2;
-        bloomPass.strength = 1.0;
-        bloomPass.radius = 0.6;
-        composer.addPass(bloomPass);
-
-        const saoPass = new SAOPass(scene, camera, false, true);
-        saoPass.params.saoBias = 0.5;
-        saoPass.params.saoIntensity = 0.8;
-        saoPass.params.saoScale = 12;
-        saoPass.params.saoKernelRadius = 70;
-        saoPass.params.saoMinResolution = 0;
-        saoPass.params.saoBlur = true;
-        saoPass.params.saoBlurRadius = 4;
-        saoPass.params.saoBlurStdDev = 4;
-        saoPass.params.saoBlurDepthCutoff = 0.01;
-        composer.addPass(saoPass);
-
-        const ssrPass = new SSRPass({
-            renderer,
-            scene,
-            camera,
-            width: window.innerWidth,
-            height: window.innerHeight,
-            selects: null,
-            groundReflector: null
-        });
-        ssrPass.enabled = true;
-        composer.addPass(ssrPass);
-
-        const dofPass = new ShaderPass({
-            uniforms: {
-                tDiffuse: { value: null },
-                tDepth: { value: null },
-                cameraNear: { value: camera.near },
-                cameraFar: { value: camera.far },
-                focus: { value: 8 },
-                aperture: { value: 0.008 }
-            },
-            vertexShader: `
-                varying vec2 vUv;
-                void main() {
-                    vUv = uv;
-                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                }
-            `,
-            fragmentShader: `
-                uniform sampler2D tDiffuse;
-                uniform float cameraNear;
-                uniform float cameraFar;
-                uniform float focus;
-                uniform float aperture;
-                varying vec2 vUv;
-                void main() {
-                    vec4 color = texture2D(tDiffuse, vUv);
-                    gl_FragColor = color;
-                }
-            `
-        });
-        dofPass.enabled = true;
-        composer.addPass(dofPass);
-
-        const filmPass = new FilmPass(0.15, 0.5, 2048, false);
-        filmPass.renderToScreen = true;
-        composer.addPass(filmPass);
-
-        const lensflarePass = new ShaderPass({
-            uniforms: {
-                tDiffuse: { value: null },
-                sunPosition: { value: new THREE.Vector2(0.7, 0.7) }
-            },
-            vertexShader: `
-                varying vec2 vUv;
-                void main() {
-                    vUv = uv;
-                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                }
-            `,
-            fragmentShader: `
-                uniform sampler2D tDiffuse;
-                uniform vec2 sunPosition;
-                varying vec2 vUv;
-                void main() {
-                    vec4 color = texture2D(tDiffuse, vUv);
-                    float dist = distance(vUv, sunPosition);
-                    float flare = pow(1.0 - dist, 2.0) * 0.3;
-                    gl_FragColor = vec4(color.rgb + flare, 1.0);
-                }
-            `
-        });
-        lensflarePass.enabled = true;
-        composer.addPass(lensflarePass);
 
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
         controls.maxPolarAngle = Math.PI / 2.2;
         controls.minDistance = 3;
-        controls.maxDistance = 250;
+        controls.maxDistance = 50;
         controls.target.set(0, 2, 0);
 
-        // -------------------- HDR ОКРУЖЕНИЕ (процедурное небо) --------------------
-        const sky = new THREE.Mesh(
-            new THREE.SphereGeometry(500, 32, 16),
-            new THREE.MeshBasicMaterial({ color: 0x1a1f2a, side: THREE.BackSide })
-        );
-        scene.add(sky);
-
-        // -------------------- ОСВЕЩЕНИЕ --------------------
-        const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.3);
-        sunLight.position.set(5, 40, 15);
+        // --- Освещение ---
+        const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.2);
+        sunLight.position.set(5, 15, 8);
         sunLight.castShadow = true;
-        sunLight.shadow.mapSize.width = 32768;
-        sunLight.shadow.mapSize.height = 32768;
+        sunLight.shadow.mapSize.width = 2048;
+        sunLight.shadow.mapSize.height = 2048;
         sunLight.shadow.camera.near = 1;
-        sunLight.shadow.camera.far = 80;
-        sunLight.shadow.camera.left = -30;
-        sunLight.shadow.camera.right = 30;
-        sunLight.shadow.camera.top = 30;
-        sunLight.shadow.camera.bottom = -30;
-        sunLight.shadow.bias = -0.0005;
-        sunLight.shadow.normalBias = 0.02;
+        sunLight.shadow.camera.far = 30;
+        sunLight.shadow.camera.left = -10;
+        sunLight.shadow.camera.right = 10;
+        sunLight.shadow.camera.top = 10;
+        sunLight.shadow.camera.bottom = -10;
         scene.add(sunLight);
 
-        const pointLights = [];
-        for (let i = 0; i < 6; i++) {
-            const color = i % 2 === 0 ? 0xffaa66 : 0x88aaff;
-            const light = new THREE.PointLight(color, 0.7 + i*0.1, 25);
-            light.position.set(Math.sin(i)*5, 2.5 + i*0.5, Math.cos(i)*5);
-            light.castShadow = true;
-            light.shadow.mapSize.width = 2048;
-            light.shadow.mapSize.height = 2048;
-            scene.add(light);
-            pointLights.push(light);
-        }
+        const ambientLight = new THREE.AmbientLight(0x40486c, 0.5);
+        scene.add(ambientLight);
 
-        // -------------------- ПОЛ --------------------
-        const groundMat = new THREE.MeshStandardMaterial({ color: 0x2a2e3a, roughness: 0.8, metalness: 0.05 });
-        const groundGeo = new THREE.CircleGeometry(300, 128);
+        const fillLight = new THREE.PointLight(0x88aaff, 0.5);
+        fillLight.position.set(-4, 5, 6);
+        scene.add(fillLight);
+
+        // --- Пол и сетка ---
+        const groundGeo = new THREE.CircleGeometry(50, 32);
+        const groundMat = new THREE.MeshStandardMaterial({ color: 0x2a2e3a, roughness: 0.8 });
         const ground = new THREE.Mesh(groundGeo, groundMat);
         ground.rotation.x = -Math.PI / 2;
         ground.position.y = 0;
         ground.receiveShadow = true;
         scene.add(ground);
 
-        const gridHelper = new THREE.GridHelper(150, 75, 0xffd966, 0x2a3a5a);
+        const gridHelper = new THREE.GridHelper(30, 20, 0xf0b064, 0x3a4a6a);
         gridHelper.position.y = 0.01;
         scene.add(gridHelper);
 
-        // -------------------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ ТЕКСТУР --------------------
-        function createWoodTexture(baseColor, stripeColor) {
-            const canvas = document.createElement('canvas');
-            canvas.width = 4096;
-            canvas.height = 4096;
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = baseColor;
-            ctx.fillRect(0, 0, 4096, 4096);
-            for (let i = 0; i < 200; i++) {
-                ctx.strokeStyle = stripeColor;
-                ctx.lineWidth = 30 + Math.random()*25;
-                ctx.beginPath();
-                ctx.moveTo(0, i * 50 + Math.random()*25);
-                ctx.lineTo(4096, i * 50 + Math.random()*25);
-                ctx.stroke();
-            }
-            for (let i = 0; i < 80000; i++) {
-                ctx.fillStyle = `rgba(80,60,40,${Math.random()*0.3})`;
-                ctx.fillRect(Math.random()*4096, Math.random()*4096, 5, 5);
-            }
-            return new THREE.CanvasTexture(canvas);
-        }
-
-        function createWoodNormal() {
-            const canvas = document.createElement('canvas');
-            canvas.width = 4096;
-            canvas.height = 4096;
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#8080ff';
-            ctx.fillRect(0, 0, 4096, 4096);
-            for (let i = 0; i < 200; i++) {
-                ctx.strokeStyle = `#${Math.floor(0x7f7fff - i*0x1111).toString(16)}`;
-                ctx.lineWidth = 32;
-                ctx.beginPath();
-                ctx.moveTo(0, i * 50);
-                ctx.lineTo(4096, i * 50 + 30);
-                ctx.stroke();
-            }
-            return new THREE.CanvasTexture(canvas);
-        }
-
-        function createFabricTexture() {
-            const canvas = document.createElement('canvas');
-            canvas.width = 4096;
-            canvas.height = 4096;
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#b0a090';
-            ctx.fillRect(0, 0, 4096, 4096);
-            for (let i = 0; i < 150000; i++) {
-                ctx.fillStyle = `rgba(140,130,120,${Math.random()*0.2})`;
-                ctx.beginPath();
-                ctx.arc(Math.random()*4096, Math.random()*4096, Math.random()*18, 0, Math.PI*2);
-                ctx.fill();
-            }
-            return new THREE.CanvasTexture(canvas);
-        }
-
-        function createMarbleTexture() {
-            const canvas = document.createElement('canvas');
-            canvas.width = 4096;
-            canvas.height = 4096;
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#f5f5f5';
-            ctx.fillRect(0, 0, 4096, 4096);
-            for (let i = 0; i < 1500; i++) {
-                ctx.strokeStyle = `rgba(128,128,128,${Math.random()*0.5})`;
-                ctx.lineWidth = Math.random()*100;
-                ctx.beginPath();
-                ctx.moveTo(Math.random()*4096, Math.random()*4096);
-                ctx.lineTo(Math.random()*4096, Math.random()*4096);
-                ctx.stroke();
-            }
-            return new THREE.CanvasTexture(canvas);
-        }
-
-        function createMaterial(type, colorHex) {
-            let map, normalMap, roughness, metalness, transparent, opacity, emissive;
-            const color = colorHex;
-            switch(type) {
-                case 'woodOak':
-                    map = createWoodTexture('#c0a890', '#8b5a2b');
-                    normalMap = createWoodNormal();
-                    roughness = 0.6; metalness = 0.05; break;
-                case 'woodWalnut':
-                    map = createWoodTexture('#8b5a2b', '#4a2a1a');
-                    normalMap = createWoodNormal();
-                    roughness = 0.7; metalness = 0.05; break;
-                case 'woodLight':
-                    map = createWoodTexture('#e0c8b0', '#b09070');
-                    normalMap = createWoodNormal();
-                    roughness = 0.5; metalness = 0.02; break;
-                case 'woodDark':
-                    map = createWoodTexture('#5a3a2a', '#2a1a10');
-                    normalMap = createWoodNormal();
-                    roughness = 0.7; metalness = 0.05; break;
-                case 'woodMahogany':
-                    map = createWoodTexture('#8b3a2a', '#5a2a1a');
-                    normalMap = createWoodNormal();
-                    roughness = 0.6; metalness = 0.05; break;
-                case 'metalBrushed':
-                    map = null; normalMap = null; roughness = 0.25; metalness = 0.95; break;
-                case 'metalPolished':
-                    map = null; normalMap = null; roughness = 0.1; metalness = 1.0; break;
-                case 'metalCopper':
-                    map = null; normalMap = null; roughness = 0.2; metalness = 0.95; break;
-                case 'metalBrass':
-                    map = null; normalMap = null; roughness = 0.15; metalness = 0.98; break;
-                case 'metalChrome':
-                    map = null; normalMap = null; roughness = 0.05; metalness = 1.0; break;
-                case 'fabricVelvet':
-                    map = createFabricTexture(); roughness = 0.9; metalness = 0.0; break;
-                case 'fabricLinen':
-                    map = createFabricTexture(); roughness = 0.8; metalness = 0.0; break;
-                case 'fabricWool':
-                    map = createFabricTexture(); roughness = 0.85; metalness = 0.0; break;
-                case 'leather':
-                    map = createFabricTexture(); roughness = 0.6; metalness = 0.1; emissive = 0x111111; break;
-                case 'glassClear':
-                    map = null; normalMap = null; roughness = 0.1; metalness = 0.0; transparent = true; opacity = 0.7; break;
-                case 'glassFrosted':
-                    map = null; normalMap = null; roughness = 0.3; metalness = 0.0; transparent = true; opacity = 0.6; break;
-                case 'glassTinted':
-                    map = null; normalMap = null; roughness = 0.15; metalness = 0.0; transparent = true; opacity = 0.8; break;
-                case 'marble':
-                    map = createMarbleTexture(); roughness = 0.2; metalness = 0.05; break;
-                case 'granite':
-                    map = createMarbleTexture(); roughness = 0.5; metalness = 0.1; break;
-                case 'onyx':
-                    map = createMarbleTexture(); roughness = 0.15; metalness = 0.0; break;
-                case 'plastic':
-                    map = null; normalMap = null; roughness = 0.4; metalness = 0.0; break;
-                default:
-                    map = null; normalMap = null; roughness = 0.5; metalness = 0.0;
-            }
-            return new THREE.MeshStandardMaterial({
-                color: color,
-                map: map,
-                normalMap: normalMap,
-                roughness: roughness,
-                metalness: metalness,
-                emissive: emissive || 0x000000,
-                transparent: transparent || false,
-                opacity: opacity || 1.0
-            });
-        }
-
-        // -------------------- УЛЬТРА-ДЕТАЛИЗИРОВАННЫЕ МОДЕЛИ --------------------
-        function createChairChester(color, materialType) {
-            const group = new THREE.Group();
-            const leather = createMaterial(materialType, color);
-            const wood = createMaterial('woodDark', 0x5a3a2a);
-            const metal = createMaterial('metalBrushed', 0x888888);
-
-            // Основание
-            const base = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.15, 0.9), wood);
-            base.position.y = 0.075; base.castShadow = true; base.receiveShadow = true;
-            group.add(base);
-
-            // Ножки с колёсиками
-            const legGeo = new THREE.CylinderGeometry(0.09, 0.11, 0.2, 16);
-            const wheelGeo = new THREE.TorusGeometry(0.045, 0.012, 8, 16);
-            [-0.4, 0.4].forEach(x => {
-                [-0.4, 0.4].forEach(z => {
-                    const leg = new THREE.Mesh(legGeo, wood);
-                    leg.position.set(x, 0.15, z); leg.castShadow = true; leg.receiveShadow = true;
-                    group.add(leg);
-                    const wheel = new THREE.Mesh(wheelGeo, metal);
-                    wheel.position.set(x, 0.05, z); wheel.rotation.x = Math.PI/2; wheel.castShadow = true;
-                    group.add(wheel);
-                });
-            });
-
-            // Сиденье
-            const seatBase = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.1, 0.85), wood);
-            seatBase.position.y = 0.25; seatBase.castShadow = true; seatBase.receiveShadow = true;
-            group.add(seatBase);
-            const cushion = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.15, 0.8), leather);
-            cushion.position.y = 0.35; cushion.castShadow = true; cushion.receiveShadow = true;
-            group.add(cushion);
-
-            // Спинка
-            const backFrame = new THREE.Mesh(new THREE.BoxGeometry(0.85, 1.0, 0.15), wood);
-            backFrame.position.set(0, 0.9, -0.35); backFrame.castShadow = true; backFrame.receiveShadow = true;
-            group.add(backFrame);
-            const backCushion = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.9, 0.1), leather);
-            backCushion.position.set(0, 0.9, -0.3); backCushion.castShadow = true; backCushion.receiveShadow = true;
-            group.add(backCushion);
-
-            // Пуговицы
-            for (let i = -0.3; i <= 0.3; i+=0.3) {
-                for (let j = 0.5; j <= 1.2; j+=0.3) {
-                    const btn = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16), metal);
-                    btn.position.set(i, j, -0.25); btn.castShadow = true;
-                    group.add(btn);
-                }
-            }
-
-            // Подлокотники
-            const armLeft = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.5, 0.85), wood);
-            armLeft.position.set(-0.55, 0.6, 0); armLeft.castShadow = true; armLeft.receiveShadow = true;
-            group.add(armLeft);
-            const armLeftCushion = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.8, 12), leather);
-            armLeftCushion.position.set(-0.55, 0.6, 0); armLeftCushion.rotation.x = Math.PI/2; armLeftCushion.castShadow = true; armLeftCushion.receiveShadow = true;
-            group.add(armLeftCushion);
-            
-            const armRight = armLeft.clone(); armRight.position.set(0.55, 0.6, 0); group.add(armRight);
-            const armRightCushion = armLeftCushion.clone(); armRightCushion.position.set(0.55, 0.6, 0); group.add(armRightCushion);
-
-            return group;
-        }
-
-        function createSofaClassic(color, materialType) {
-            const group = new THREE.Group();
-            const fabric = createMaterial(materialType, color);
-            const wood = createMaterial('woodDark', 0x5a3a2a);
-
-            const base = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.2, 0.95), wood);
-            base.position.y = 0.1; base.castShadow = true; base.receiveShadow = true;
-            group.add(base);
-
-            // Три подушки сиденья
-            for (let i = -0.8; i <= 0.8; i+=0.8) {
-                const cushion = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.3, 0.85), fabric);
-                cushion.position.set(i, 0.35, 0); cushion.castShadow = true; cushion.receiveShadow = true;
-                group.add(cushion);
-            }
-
-            // Спинка с тремя подушками
-            for (let i = -0.8; i <= 0.8; i+=0.8) {
-                const backCushion = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.8, 0.25), fabric);
-                backCushion.position.set(i, 0.9, -0.35); backCushion.castShadow = true; backCushion.receiveShadow = true;
-                group.add(backCushion);
-            }
-
-            // Подлокотники с валиками
-            const armGeo = new THREE.BoxGeometry(0.2, 0.6, 0.95);
-            const armLeft = new THREE.Mesh(armGeo, fabric);
-            armLeft.position.set(-1.2, 0.5, 0); armLeft.castShadow = true; armLeft.receiveShadow = true;
-            group.add(armLeft);
-            const armRight = armLeft.clone(); armRight.position.set(1.2, 0.5, 0); group.add(armRight);
-
-            // Декоративные пуговицы
-            const metal = createMaterial('metalBrushed', 0xaaaaaa);
-            for (let i = -0.8; i <= 0.8; i+=0.8) {
-                for (let j = 0.6; j <= 1.1; j+=0.25) {
-                    const btn = new THREE.Mesh(new THREE.SphereGeometry(0.04, 12), metal);
-                    btn.position.set(i, j, -0.25); btn.castShadow = true;
-                    group.add(btn);
-                }
-            }
-
-            return group;
-        }
-
-        function createTableDining(color, materialType) {
-            const group = new THREE.Group();
-            const wood = createMaterial(materialType, color);
-            const metal = createMaterial('metalPolished', 0x888888);
-
-            const top = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.05, 1.2), wood);
-            top.position.y = 0.8; top.castShadow = true; top.receiveShadow = true;
-            group.add(top);
-
-            const legGeoBase = new THREE.CylinderGeometry(0.15, 0.18, 0.1, 16);
-            const legGeoTop = new THREE.CylinderGeometry(0.12, 0.15, 0.6, 16);
-            const legGeoFoot = new THREE.CylinderGeometry(0.12, 0.15, 0.1, 16);
-            [-0.8, 0.8].forEach(x => {
-                [-0.5, 0.5].forEach(z => {
-                    const base = new THREE.Mesh(legGeoBase, metal);
-                    base.position.set(x, 0.05, z); base.castShadow = true; base.receiveShadow = true;
-                    group.add(base);
-                    const stem = new THREE.Mesh(legGeoTop, wood);
-                    stem.position.set(x, 0.45, z); stem.castShadow = true; stem.receiveShadow = true;
-                    group.add(stem);
-                    const foot = new THREE.Mesh(legGeoFoot, metal);
-                    foot.position.set(x, 0.8, z); foot.castShadow = true; foot.receiveShadow = true;
-                    group.add(foot);
-                });
-            });
-
-            return group;
-        }
-
-        function createTableCoffee(color, materialType) {
-            const group = new THREE.Group();
-            const wood = createMaterial(materialType, color);
-            const glass = createMaterial('glassClear', 0xffffff);
-
-            const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.3, 12);
-            [-0.6, 0.6].forEach(x => {
-                [-0.4, 0.4].forEach(z => {
-                    const leg = new THREE.Mesh(legGeo, wood);
-                    leg.position.set(x, 0.15, z); leg.castShadow = true; leg.receiveShadow = true;
-                    group.add(leg);
-                });
-            });
-
-            const top = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.05, 1.0), glass);
-            top.position.y = 0.35; top.castShadow = true; top.receiveShadow = true;
-            group.add(top);
-            return group;
-        }
-
-        function createLampFloor(color, materialType) {
-            const group = new THREE.Group();
-            const metal = createMaterial(materialType, color);
-            const fabric = createMaterial('fabricVelvet', 0xffeedd);
-
-            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.5, 0.15, 16), metal);
-            base.position.y = 0.075; base.castShadow = true; base.receiveShadow = true;
-            group.add(base);
-
-            const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.08, 2.2, 16), metal);
-            pole.position.y = 1.2; pole.castShadow = true; pole.receiveShadow = true;
-            group.add(pole);
-
-            const shade = new THREE.Mesh(new THREE.ConeGeometry(0.45, 0.6, 16), fabric);
-            shade.position.y = 2.3; shade.castShadow = true; shade.receiveShadow = true;
-            group.add(shade);
-
-            const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.1, 12), createMaterial('glassClear', 0xffeedd));
-            bulb.position.y = 2.2; bulb.castShadow = true; bulb.receiveShadow = true;
-            group.add(bulb);
-
-            const light = new THREE.PointLight(0xffeedd, 0.9, 7);
-            light.position.y = 2.2; group.add(light);
-            return group;
-        }
-
-        function createLampTable(color, materialType) {
-            const group = new THREE.Group();
-            const metal = createMaterial(materialType, color);
-            const fabric = createMaterial('fabricVelvet', 0xffeedd);
-
-            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.3, 0.15, 16), metal);
-            base.position.y = 0.075; base.castShadow = true; base.receiveShadow = true;
-            group.add(base);
-
-            const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 0.8, 12), metal);
-            stem.position.y = 0.55; stem.castShadow = true; stem.receiveShadow = true;
-            group.add(stem);
-
-            const shade = new THREE.Mesh(new THREE.ConeGeometry(0.35, 0.4, 16), fabric);
-            shade.position.y = 1.0; shade.castShadow = true; shade.receiveShadow = true;
-            group.add(shade);
-
-            const light = new THREE.PointLight(0xffeedd, 0.6, 5);
-            light.position.y = 0.9; group.add(light);
-            return group;
-        }
-
-        function createShelf(color, materialType) {
-            const group = new THREE.Group();
-            const wood = createMaterial(materialType, color);
-            const bookMat = createMaterial('fabricLinen', 0x8b4513);
-            const bookMat2 = createMaterial('leather', 0x4a2c1a);
-
-            const left = new THREE.Mesh(new THREE.BoxGeometry(0.1, 2.0, 0.45), wood);
-            left.position.set(-0.7, 1.0, 0); left.castShadow = true; left.receiveShadow = true;
-            group.add(left);
-            const right = left.clone(); right.position.set(0.7, 1.0, 0); group.add(right);
-
-            for (let i = 0; i < 4; i++) {
-                const shelf = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.05, 0.45), wood);
-                shelf.position.set(0, 0.25 + i*0.5, 0); shelf.castShadow = true; shelf.receiveShadow = true;
-                group.add(shelf);
-            }
-
-            // Книги
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 4; j++) {
-                    const book = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.3, 0.3), [bookMat, bookMat2][j%2]);
-                    book.position.set(-0.5 + j*0.3, 0.45 + i*0.5, 0.15); book.castShadow = true; book.receiveShadow = true;
-                    group.add(book);
-                }
-            }
-
-            return group;
-        }
-
-        function createVase(color, materialType) {
-            const group = new THREE.Group();
-            const mat = createMaterial(materialType, color);
-
-            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.35, 0.15, 16), mat);
-            base.position.y = 0.075; base.castShadow = true; base.receiveShadow = true;
-            group.add(base);
-
-            const body = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.3, 0.8, 16), mat);
-            body.position.y = 0.55; body.castShadow = true; body.receiveShadow = true;
-            group.add(body);
-
-            const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.2, 0.25, 16), mat);
-            neck.position.y = 1.1; neck.castShadow = true; neck.receiveShadow = true;
-            group.add(neck);
-
-            const rim = new THREE.Mesh(new THREE.TorusGeometry(0.15, 0.03, 8, 16), mat);
-            rim.position.y = 1.25; rim.rotation.x = Math.PI/2; rim.castShadow = true;
-            group.add(rim);
-
-            return group;
-        }
-
-        function createMirror(color, materialType) {
-            const group = new THREE.Group();
-            const frameMat = createMaterial(materialType, color);
-            const glassMat = createMaterial('glassClear', 0xffffff);
-
-            const frame = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.8, 0.15), frameMat);
-            frame.position.y = 0.9; frame.castShadow = true; frame.receiveShadow = true;
-            group.add(frame);
-
-            const glass = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.6, 0.05), glassMat);
-            glass.position.y = 0.9; glass.position.z = 0.06; glass.castShadow = true; glass.receiveShadow = true;
-            group.add(glass);
-
-            // Декоративный элемент
-            const ornament = new THREE.Mesh(new THREE.TorusKnotGeometry(0.1, 0.02, 64, 8), frameMat);
-            ornament.position.set(0, 1.7, 0.06); ornament.castShadow = true;
-            group.add(ornament);
-
-            return group;
-        }
-
-        function createPlant(color, materialType) {
-            const group = new THREE.Group();
-            const potMat = createMaterial('marble', 0x8b5a2b);
-            const leafMat = createMaterial('fabricVelvet', 0x2e8b57);
-            const stemMat = createMaterial('woodDark', 0x5a3a2a);
-
-            const potBase = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.5, 0.35, 16), potMat);
-            potBase.position.y = 0.175; potBase.castShadow = true; potBase.receiveShadow = true;
-            group.add(potBase);
-            const potTop = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.45, 0.2, 16), potMat);
-            potTop.position.y = 0.45; potTop.castShadow = true; potTop.receiveShadow = true;
-            group.add(potTop);
-
-            const soil = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 0.1, 12), stemMat);
-            soil.position.y = 0.6; soil.castShadow = true; soil.receiveShadow = true;
-            group.add(soil);
-
-            const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.18, 1.4, 12), stemMat);
-            trunk.position.y = 1.2; trunk.castShadow = true; trunk.receiveShadow = true;
-            group.add(trunk);
-
-            for (let i = 0; i < 8; i++) {
-                const angle = (i/8)*Math.PI*2;
-                const leafGroup = new THREE.Group();
-                for (let j = 0; j < 4; j++) {
-                    const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.12, 0.5, 8), leafMat);
-                    leaf.position.set(0.3 + j*0.12, 0, 0);
-                    leaf.rotation.z = -0.2; leaf.castShadow = true; leaf.receiveShadow = true;
-                    leafGroup.add(leaf);
-                }
-                leafGroup.position.set(Math.cos(angle)*0.6, 1.7, Math.sin(angle)*0.6);
-                leafGroup.rotation.y = angle; leafGroup.rotation.z = 0.3;
-                group.add(leafGroup);
-            }
-            group.userData = { speed: 0.5 + Math.random()*0.5 };
-            return group;
-        }
-
-        function createTV(color, materialType) {
-            const group = new THREE.Group();
-            const bodyMat = createMaterial(materialType, color);
-            const screenMat = createMaterial('glassClear', 0x111122);
-
-            const body = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.9, 0.15), bodyMat);
-            body.position.y = 0.6; body.castShadow = true; body.receiveShadow = true;
-            group.add(body);
-
-            const screen = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.7, 0.05), screenMat);
-            screen.position.y = 0.6; screen.position.z = 0.09; screen.castShadow = true; screen.receiveShadow = true;
-            group.add(screen);
-
-            const stand = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.15, 0.25), bodyMat);
-            stand.position.y = 0.1; stand.castShadow = true; stand.receiveShadow = true;
-            group.add(stand);
-
-            return group;
-        }
-
-        function createCarpet(color, materialType) {
-            const group = new THREE.Group();
-            const mat = createMaterial(materialType, color);
-            const carpet = new THREE.Mesh(new THREE.BoxGeometry(2, 0.05, 1.5), mat);
-            carpet.position.y = 0.025; carpet.castShadow = true; carpet.receiveShadow = true;
-            group.add(carpet);
-            return group;
-        }
-
-        function createPainting(color, materialType) {
-            const group = new THREE.Group();
-            const frameMat = createMaterial(materialType, color);
-            const canvasMat = createMaterial('plastic', 0xffffff);
-            const frame = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.05, 0.1), frameMat);
-            frame.position.y = 0.8; frame.castShadow = true; frame.receiveShadow = true;
-            group.add(frame);
-            const canvas = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.8, 0.02), canvasMat);
-            canvas.position.y = 0.8; canvas.position.z = 0.06; canvas.castShadow = true; canvas.receiveShadow = true;
-            group.add(canvas);
-            return group;
-        }
-
-        function createClock(color, materialType) {
-            const group = new THREE.Group();
-            const mat = createMaterial(materialType, color);
-            const body = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.05, 32), mat);
-            body.rotation.x = 0; body.castShadow = true; body.receiveShadow = true;
-            group.add(body);
-            // Стрелки
-            const handMat = createMaterial('metalPolished', 0x888888);
-            const hour = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.15, 0.02), handMat);
-            hour.position.set(0.1, 0.1, 0.03); hour.castShadow = true;
-            group.add(hour);
-            const minute = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.2, 0.02), handMat);
-            minute.position.set(0.15, 0, 0.03); minute.castShadow = true;
-            group.add(minute);
-            return group;
-        }
-
-        function createBook(color, materialType) {
-            const group = new THREE.Group();
-            const mat = createMaterial(materialType, color);
-            const book = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.3, 0.3), mat);
-            book.castShadow = true; book.receiveShadow = true;
-            group.add(book);
-            return group;
-        }
-
-        // Фабрика моделей
-        function createModel(item, color, materialType) {
-            switch(item.category) {
-                case 'chairs': return createChairChester(parseInt(color.slice(1),16), materialType);
-                case 'sofas': return createSofaClassic(parseInt(color.slice(1),16), materialType);
-                case 'tables': return item.id.includes('coffee') ? createTableCoffee(parseInt(color.slice(1),16), materialType) : createTableDining(parseInt(color.slice(1),16), materialType);
-                case 'lighting': return item.id.includes('floor') ? createLampFloor(parseInt(color.slice(1),16), materialType) : createLampTable(parseInt(color.slice(1),16), materialType);
-                case 'cabinets': return createShelf(parseInt(color.slice(1),16), materialType);
-                case 'decor': 
-                    if (item.id.includes('vase')) return createVase(parseInt(color.slice(1),16), materialType);
-                    else if (item.id.includes('mirror')) return createMirror(parseInt(color.slice(1),16), materialType);
-                    else if (item.id.includes('plant')) return createPlant(parseInt(color.slice(1),16), materialType);
-                    else if (item.id.includes('carpet')) return createCarpet(parseInt(color.slice(1),16), materialType);
-                    else if (item.id.includes('painting')) return createPainting(parseInt(color.slice(1),16), materialType);
-                    else if (item.id.includes('clock')) return createClock(parseInt(color.slice(1),16), materialType);
-                case 'tech': return createTV(parseInt(color.slice(1),16), materialType);
-                case 'books': return createBook(parseInt(color.slice(1),16), materialType);
-                default: return createTableDining(parseInt(color.slice(1),16), materialType);
-            }
-        }
-
-        // -------------------- КАТАЛОГ (расширенный) --------------------
-        const catalog = [
-            { id: 'chair_chester', name: 'Кресло Честер', icon: '🪑', category: 'chairs', color: '#8b4513' },
-            { id: 'sofa_classic', name: 'Диван Classic', icon: '🛋️', category: 'sofas', color: '#5a6b7a' },
-            { id: 'table_dining', name: 'Стол обеденный', icon: '🪑', category: 'tables', color: '#8b5a2b' },
-            { id: 'table_coffee', name: 'Журнальный столик', icon: '🪑', category: 'tables', color: '#a58b6f' },
-            { id: 'lamp_floor', name: 'Торшер', icon: '💡', category: 'lighting', color: '#c0c0c0' },
-            { id: 'lamp_table', name: 'Настольная лампа', icon: '💡', category: 'lighting', color: '#88aadd' },
-            { id: 'shelf', name: 'Стеллаж', icon: '📚', category: 'cabinets', color: '#8b5a2b' },
-            { id: 'vase', name: 'Ваза', icon: '🏺', category: 'decor', color: '#5a7a9a' },
-            { id: 'mirror', name: 'Зеркало', icon: '🪞', category: 'decor', color: '#d4af37' },
-            { id: 'plant', name: 'Фикус', icon: '🌿', category: 'decor', color: '#2e8b57' },
-            { id: 'tv', name: 'Телевизор', icon: '📺', category: 'tech', color: '#1a1a1a' },
-            { id: 'carpet', name: 'Ковёр', icon: '🧶', category: 'decor', color: '#8b4513' },
-            { id: 'painting', name: 'Картина', icon: '🖼️', category: 'decor', color: '#9a7a5a' },
-            { id: 'clock', name: 'Часы', icon: '⏰', category: 'decor', color: '#8b5a2b' },
-            { id: 'book', name: 'Книга', icon: '📖', category: 'books', color: '#8b4513' },
-        ];
-
-        // -------------------- UI --------------------
-        function loadCatalog() {
-            const grid = document.getElementById('items-grid');
-            const catDiv = document.getElementById('categories');
-            const cats = new Set(catalog.map(i => i.category));
-            const catNames = { chairs: 'Стулья', sofas: 'Диваны', tables: 'Столы', lighting: 'Свет', cabinets: 'Шкафы', decor: 'Декор', tech: 'Техника', books: 'Книги' };
-
-            const allBtn = document.createElement('button');
-            allBtn.className = 'category-btn active';
-            allBtn.dataset.cat = 'all';
-            allBtn.textContent = 'ВСЁ';
-            allBtn.addEventListener('click', () => filter('all', allBtn));
-            catDiv.appendChild(allBtn);
-
-            cats.forEach(cat => {
-                const btn = document.createElement('button');
-                btn.className = 'category-btn';
-                btn.dataset.cat = cat;
-                btn.textContent = catNames[cat] || cat;
-                btn.addEventListener('click', () => filter(cat, btn));
-                catDiv.appendChild(btn);
-            });
-
-            catalog.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'item-card';
-                card.dataset.id = item.id;
-                card.dataset.category = item.category;
-                card.innerHTML = `<div class="item-icon">${item.icon}</div><div class="item-name">${item.name}</div>`;
-                card.addEventListener('click', () => {
-                    document.querySelectorAll('.item-card').forEach(c => c.classList.remove('selected'));
-                    card.classList.add('selected');
-                    selectedItem = item;
-                    document.getElementById('item-color').value = item.color;
-                });
-                grid.appendChild(card);
-            });
-            document.getElementById('catalog-count').textContent = catalog.length;
-        }
-
-        function filter(cat, activeBtn) {
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-            activeBtn.classList.add('active');
-            document.querySelectorAll('.item-card').forEach(card => {
-                card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'flex' : 'none';
-            });
-        }
-
-        document.getElementById('search-input').addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            document.querySelectorAll('.item-card').forEach(card => {
-                const name = card.querySelector('.item-name').innerText.toLowerCase();
-                card.style.display = name.includes(val) ? 'flex' : 'none';
-            });
-        });
-
-        // -------------------- РЕЖИМЫ --------------------
-        const modePlace = document.getElementById('mode-place');
-        const modeWall = document.getElementById('mode-wall');
-        const modeWall2 = document.getElementById('mode-wall2');
-        const modeMove = document.getElementById('mode-move');
-        const wallControls = document.getElementById('wall-controls');
-        const itemControls = document.getElementById('item-controls');
-        const hint = document.getElementById('hint');
-
-        modePlace.addEventListener('click', () => setMode('place'));
-        modeWall.addEventListener('click', () => setMode('wall-drag'));
-        modeWall2.addEventListener('click', () => setMode('wall-click'));
-        modeMove.addEventListener('click', () => setMode('move'));
-
-        function setMode(mode) {
-            currentMode = mode;
-            modePlace.classList.remove('active');
-            modeWall.classList.remove('active');
-            modeWall2.classList.remove('active');
-            modeMove.classList.remove('active');
-            if (mode === 'place') {
-                modePlace.classList.add('active');
-                wallControls.style.display = 'none';
-                itemControls.style.display = 'block';
-                hint.innerHTML = '<i class="fas fa-mouse-pointer"></i> Режим: ПРЕДМЕТЫ — клик для размещения';
-            } else if (mode === 'wall-drag') {
-                modeWall.classList.add('active');
-                wallControls.style.display = 'block';
-                itemControls.style.display = 'none';
-                hint.innerHTML = '<i class="fas fa-arrows-alt"></i> Режим: СТЕНА (DRAG) — зажмите и тяните (всегда по сетке 0.5м)';
-            } else if (mode === 'wall-click') {
-                modeWall2.classList.add('active');
-                wallControls.style.display = 'block';
-                itemControls.style.display = 'none';
-                hint.innerHTML = '<i class="fas fa-mouse-pointer"></i> Режим: СТЕНА (2 КЛИКА) — первый клик начало, второй конец (сетка 0.5м)';
-                buildClickPhase = 0;
-            } else if (mode === 'move') {
-                modeMove.classList.add('active');
-                wallControls.style.display = 'none';
-                itemControls.style.display = 'block';
-                hint.innerHTML = '<i class="fas fa-arrows-alt"></i> Режим: ПЕРЕМЕЩЕНИЕ — зажмите Ctrl+клик по предмету и перетаскивайте';
-            }
-            if (tempWall) scene.remove(tempWall);
-            tempWall = null;
-            isDragging = false;
-        }
-
-        // -------------------- ПОСТРОЕНИЕ СТЕНЫ (кнопка) --------------------
-        document.getElementById('build-wall-btn').addEventListener('click', () => {
-            const dir = new THREE.Vector3();
-            camera.getWorldDirection(dir);
-            dir.y = 0; dir.normalize();
-            let pos = camera.position.clone().add(dir.multiplyScalar(6));
-            pos = snapPosition(pos, 0.5);
-            pos.y = 0;
-
-            const length = parseFloat(document.getElementById('wall-length').value);
-            const height = parseFloat(document.getElementById('wall-height').value);
-            const thick = parseFloat(document.getElementById('wall-thick').value);
-            const color = document.getElementById('wall-color').value;
-
-            const wallMat = new THREE.MeshStandardMaterial({ color, roughness: 0.7 });
-            const wall = new THREE.Mesh(new THREE.BoxGeometry(thick, height, length), wallMat);
-            wall.position.copy(pos);
-            wall.position.y = height/2;
-            wall.castShadow = true; wall.receiveShadow = true;
-            scene.add(wall);
-            placedItems.push(wall);
-            saveState();
-            updateStats();
-        });
-
-        // -------------------- ОСВЕЩЕНИЕ ПРЕСЕТЫ --------------------
-        document.getElementById('preset-day').addEventListener('click', () => {
-            sunLight.color.setHex(0xfff5e6);
-            sunLight.intensity = 1.3;
-            document.getElementById('light-int').value = 1.3;
-            document.getElementById('light-temp').value = 5500;
-        });
-        document.getElementById('preset-evening').addEventListener('click', () => {
-            sunLight.color.setHex(0xffaa66);
-            sunLight.intensity = 0.8;
-            document.getElementById('light-int').value = 0.8;
-            document.getElementById('light-temp').value = 3500;
-        });
-        document.getElementById('preset-night').addEventListener('click', () => {
-            sunLight.color.setHex(0x4466aa);
-            sunLight.intensity = 0.4;
-            document.getElementById('light-int').value = 0.4;
-            document.getElementById('light-temp').value = 2500;
-        });
-
-        // -------------------- СОХРАНЕНИЕ/ЗАГРУЗКА В LOCALSTORAGE --------------------
-        function saveState() {
-            const data = placedItems.map(item => ({
-                type: 'mesh',
-                position: [item.position.x, item.position.y, item.position.z],
-                rotation: [item.rotation.x, item.rotation.y, item.rotation.z],
-                scale: [item.scale.x, item.scale.y, item.scale.z],
-                color: item.material.color.getHex()
-            }));
-            localStorage.setItem('ultimate_scene', JSON.stringify(data));
-        }
-
-        document.getElementById('save-project').addEventListener('click', () => {
-            saveState();
-            alert('Проект сохранён в localStorage');
-        });
-
-        document.getElementById('load-project').addEventListener('click', () => {
-            const data = JSON.parse(localStorage.getItem('ultimate_scene'));
-            if (data) {
-                placedItems.forEach(i => scene.remove(i));
-                placedItems = [];
-                data.forEach(d => {
-                    const mat = new THREE.MeshStandardMaterial({ color: d.color, roughness: 0.7 });
-                    const geo = new THREE.BoxGeometry(1,1,1);
-                    const mesh = new THREE.Mesh(geo, mat);
-                    mesh.position.set(d.position[0], d.position[1], d.position[2]);
-                    mesh.rotation.set(d.rotation[0], d.rotation[1], d.rotation[2]);
-                    mesh.scale.set(d.scale[0], d.scale[1], d.scale[2]);
-                    scene.add(mesh);
-                    placedItems.push(mesh);
-                });
-                updateStats();
-            }
-        });
-
-        // -------------------- ЭКСПОРТ/ИМПОРТ ЧЕРЕЗ ФАЙЛ --------------------
-        document.getElementById('export-file').addEventListener('click', () => {
-            const data = placedItems.map(item => ({
-                position: [item.position.x, item.position.y, item.position.z],
-                rotation: [item.rotation.x, item.rotation.y, item.rotation.z],
-                scale: [item.scale.x, item.scale.y, item.scale.z],
-                color: item.material.color.getHex()
-            }));
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'project.json';
-            a.click();
-        });
-
-        document.getElementById('import-file').addEventListener('click', () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const data = JSON.parse(e.target.result);
-                    placedItems.forEach(i => scene.remove(i));
-                    placedItems = [];
-                    data.forEach(d => {
-                        const mat = new THREE.MeshStandardMaterial({ color: d.color, roughness: 0.7 });
-                        const geo = new THREE.BoxGeometry(1,1,1);
-                        const mesh = new THREE.Mesh(geo, mat);
-                        mesh.position.set(d.position[0], d.position[1], d.position[2]);
-                        mesh.rotation.set(d.rotation[0], d.rotation[1], d.rotation[2]);
-                        mesh.scale.set(d.scale[0], d.scale[1], d.scale[2]);
-                        scene.add(mesh);
-                        placedItems.push(mesh);
-                    });
-                    updateStats();
-                };
-                reader.readAsText(file);
-            };
-            input.click();
-        });
-
-        // -------------------- КОПИРОВАНИЕ --------------------
-        document.getElementById('copy-btn').addEventListener('click', () => {
-            if (lastSelectedMesh) {
-                const clone = lastSelectedMesh.clone();
-                clone.position.x += 1;
-                scene.add(clone);
-                placedItems.push(clone);
-                lastSelectedMesh = clone;
-                saveState();
-                updateStats();
-            }
-        });
-
-        // -------------------- ОСВЕЩЕНИЕ СЛАЙДЕРЫ --------------------
-        document.getElementById('light-int').addEventListener('input', (e) => sunLight.intensity = parseFloat(e.target.value));
-        document.getElementById('light-temp').addEventListener('input', (e) => {
-            const t = parseFloat(e.target.value);
-            const r = t <= 6600 ? 255 : 329.698 * Math.pow(t/100-60, -0.1332);
-            const g = t <= 6600 ? 99.47 * Math.log(t/100) - 161.12 : 288.122 * Math.pow(t/100-60, -0.0755);
-            const b = t >= 6600 ? 255 : 138.518 * Math.log(t/100-10) + 305.045;
-            sunLight.color.setRGB(Math.min(255,r)/255, Math.min(255,g)/255, Math.min(255,b)/255);
-        });
-
-        // -------------------- ПОСТ-ЭФФЕКТЫ ЧЕКБОКСЫ --------------------
-        document.getElementById('fx-bloom').addEventListener('change', (e) => bloomPass.enabled = e.target.checked);
-        document.getElementById('fx-ao').addEventListener('change', (e) => saoPass.enabled = e.target.checked);
-        document.getElementById('fx-dof').addEventListener('change', (e) => dofPass.enabled = e.target.checked);
-        document.getElementById('fx-film').addEventListener('change', (e) => filmPass.enabled = e.target.checked);
-        document.getElementById('fx-ssr').addEventListener('change', (e) => ssrPass.enabled = e.target.checked);
-        document.getElementById('fx-lensflare').addEventListener('change', (e) => lensflarePass.enabled = e.target.checked);
-
-        // -------------------- ОТМЕНА/ОЧИСТКА --------------------
-        document.getElementById('undo-btn').addEventListener('click', () => {
-            if (placedItems.length) {
-                scene.remove(placedItems.pop());
-                saveState();
-                updateStats();
-            }
-        });
-        document.getElementById('clear-btn').addEventListener('click', () => {
-            placedItems.forEach(i => scene.remove(i));
-            placedItems = [];
-            saveState();
-            updateStats();
-        });
-
-        // -------------------- КЛАВИАТУРА --------------------
-        document.addEventListener('keydown', (e) => {
-            if (e.target.closest('input, select')) return;
-            if (e.key === 'Delete' || e.key === 'Del') {
-                if (lastSelectedMesh) {
-                    scene.remove(lastSelectedMesh);
-                    placedItems = placedItems.filter(i => i !== lastSelectedMesh);
-                    lastSelectedMesh = null;
-                    saveState();
-                    updateStats();
-                }
-            }
-            if (e.ctrlKey && e.key === 'd') {
-                e.preventDefault();
-                if (lastSelectedMesh) {
-                    const clone = lastSelectedMesh.clone();
-                    clone.position.x += 1;
-                    scene.add(clone);
-                    placedItems.push(clone);
-                    lastSelectedMesh = clone;
-                    saveState();
-                    updateStats();
-                }
-            }
-            if (e.ctrlKey && e.key === 'z') {
-                e.preventDefault();
-                if (placedItems.length) {
-                    scene.remove(placedItems.pop());
-                    saveState();
-                    updateStats();
-                }
-            }
-        });
-
-        // -------------------- МЫШЬ --------------------
-        const raycaster = new THREE.Raycaster();
-        const mouse = new THREE.Vector2();
-        const plane = new THREE.Plane(new THREE.Vector3(0,1,0), 0);
-        const intersect = new THREE.Vector3();
-
+        // --- Состояние приложения ---
+        let placedItems = [];
+        let currentMode = 'place'; // 'place', 'wallDrag', 'wallClick', 'move'
+        let selectedItemType = 'cube';
+        let selectedItemColor = '#c47e5a';
+        let selectedItemScale = 1;
+        let selectedItemRotate = 0;
+        let snapEnabled = true;
+
+        // Для строительства стен
+        let isDragging = false;
+        let wallStart = null;
+        let tempWall = null;
+        let wallClickPhase = 0; // 0 - ожидание первого клика, 1 - ожидание второго
+        let wallClickStart = null;
+
+        // Для перемещения
+        let movingObject = null;
+        let moveOffset = new THREE.Vector3();
+
+        // Для выделения последнего объекта (для отмены/копирования)
+        let lastSelectedMesh = null;
+
+        // --- Вспомогательные функции ---
         function snapPosition(pos, gridSize = 0.5) {
+            if (!snapEnabled) return pos;
             return new THREE.Vector3(
                 Math.round(pos.x / gridSize) * gridSize,
-                pos.y,
+                Math.round(pos.y / gridSize) * gridSize,
                 Math.round(pos.z / gridSize) * gridSize
             );
         }
 
-        let selectedItem = catalog[0];
-        let placedItems = [];
-        let lastSelectedMesh = null;
-        let currentMode = 'place';
-        let isDragging = false;
-        let wallStart = null;
-        let tempWall = null;
-        let buildClickPhase = 0;
-        let clickStartPoint = null;
-        let moveStartPoint = null;
-        let movingObject = null;
+        function createItem(type, color, scale = 1) {
+            const mat = new THREE.MeshStandardMaterial({ color: parseInt(color.slice(1), 16) });
+            let geo;
+            switch(type) {
+                case 'sphere': geo = new THREE.SphereGeometry(0.5, 16); break;
+                case 'cylinder': geo = new THREE.CylinderGeometry(0.5, 0.5, 1, 16); break;
+                case 'chair':
+                    const group = new THREE.Group();
+                    const seatGeo = new THREE.BoxGeometry(0.8, 0.1, 0.8);
+                    const seat = new THREE.Mesh(seatGeo, mat);
+                    seat.position.y = 0.3;
+                    seat.castShadow = true; seat.receiveShadow = true;
+                    group.add(seat);
+                    const backGeo = new THREE.BoxGeometry(0.8, 0.6, 0.1);
+                    const back = new THREE.Mesh(backGeo, mat);
+                    back.position.set(0, 0.8, -0.3);
+                    back.castShadow = true; back.receiveShadow = true;
+                    group.add(back);
+                    const legGeo = new THREE.BoxGeometry(0.1, 0.3, 0.1);
+                    for (let x = -0.3; x <= 0.3; x+=0.6) {
+                        for (let z = -0.3; z <= 0.3; z+=0.6) {
+                            const leg = new THREE.Mesh(legGeo, mat);
+                            leg.position.set(x, 0.15, z);
+                            leg.castShadow = true; leg.receiveShadow = true;
+                            group.add(leg);
+                        }
+                    }
+                    group.scale.set(scale, scale, scale);
+                    return group;
+                default: geo = new THREE.BoxGeometry(1, 1, 1);
+            }
+            if (type !== 'chair') {
+                const mesh = new THREE.Mesh(geo, mat);
+                mesh.castShadow = true; mesh.receiveShadow = true;
+                mesh.scale.set(scale, scale, scale);
+                return mesh;
+            }
+        }
+
+        // --- Обновление статистики ---
+        function updateStats() {
+            document.getElementById('statItems').textContent = placedItems.length;
+        }
+
+        // --- Обработчики кнопок режимов ---
+        document.getElementById('modePlace').addEventListener('click', () => {
+            setMode('place');
+        });
+        document.getElementById('modeWallDrag').addEventListener('click', () => {
+            setMode('wallDrag');
+        });
+        document.getElementById('modeWallClick').addEventListener('click', () => {
+            setMode('wallClick');
+        });
+        document.getElementById('modeMove').addEventListener('click', () => {
+            setMode('move');
+        });
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.toolbar button').forEach(btn => btn.classList.remove('active'));
+            if (mode === 'place') {
+                document.getElementById('modePlace').classList.add('active');
+                document.getElementById('itemPanel').style.display = 'block';
+                document.getElementById('wallPanel').style.display = 'none';
+                document.getElementById('hint').innerHTML = 'Режим: Предметы — клик для размещения';
+            } else if (mode === 'wallDrag') {
+                document.getElementById('modeWallDrag').classList.add('active');
+                document.getElementById('itemPanel').style.display = 'none';
+                document.getElementById('wallPanel').style.display = 'block';
+                document.getElementById('hint').innerHTML = 'Режим: Стена (drag) — зажмите и тяните';
+            } else if (mode === 'wallClick') {
+                document.getElementById('modeWallClick').classList.add('active');
+                document.getElementById('itemPanel').style.display = 'none';
+                document.getElementById('wallPanel').style.display = 'block';
+                document.getElementById('hint').innerHTML = 'Режим: Стена (2 клика) — первый клик начало, второй конец';
+                wallClickPhase = 0;
+            } else if (mode === 'move') {
+                document.getElementById('modeMove').classList.add('active');
+                document.getElementById('itemPanel').style.display = 'block';
+                document.getElementById('wallPanel').style.display = 'none';
+                document.getElementById('hint').innerHTML = 'Режим: Перемещение — зажмите Ctrl+клик по предмету и перетаскивайте';
+            }
+            if (tempWall) scene.remove(tempWall);
+            tempWall = null;
+            isDragging = false;
+            movingObject = null;
+        }
+
+        // --- Обновление параметров предмета ---
+        document.getElementById('itemType').addEventListener('change', (e) => selectedItemType = e.target.value);
+        document.getElementById('itemColor').addEventListener('input', (e) => selectedItemColor = e.target.value);
+        document.getElementById('itemScale').addEventListener('input', (e) => selectedItemScale = parseFloat(e.target.value));
+        document.getElementById('itemRotate').addEventListener('input', (e) => selectedItemRotate = parseFloat(e.target.value));
+        document.getElementById('snapGrid').addEventListener('change', (e) => snapEnabled = e.target.checked);
+
+        // --- Построить стену (кнопка) ---
+        document.getElementById('buildWallBtn').addEventListener('click', () => {
+            const dir = new THREE.Vector3();
+            camera.getWorldDirection(dir);
+            dir.y = 0; dir.normalize();
+            let pos = camera.position.clone().add(dir.multiplyScalar(5));
+            pos.y = 0;
+            if (snapEnabled) pos = snapPosition(pos, 0.5);
+
+            const length = parseFloat(document.getElementById('wallLength').value);
+            const height = parseFloat(document.getElementById('wallHeight').value);
+            const thick = parseFloat(document.getElementById('wallThick').value);
+            const color = document.getElementById('wallColor').value;
+
+            const wallMat = new THREE.MeshStandardMaterial({ color, roughness: 0.7 });
+            const wall = new THREE.Mesh(new THREE.BoxGeometry(thick, height, length), wallMat);
+            wall.position.copy(pos);
+            wall.position.y = height / 2;
+            wall.castShadow = true; wall.receiveShadow = true;
+            scene.add(wall);
+            placedItems.push(wall);
+            lastSelectedMesh = wall;
+            updateStats();
+        });
+
+        // --- Отмена и очистка ---
+        document.getElementById('undoBtn').addEventListener('click', () => {
+            if (placedItems.length) {
+                scene.remove(placedItems.pop());
+                updateStats();
+            }
+        });
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            placedItems.forEach(i => scene.remove(i));
+            placedItems = [];
+            lastSelectedMesh = null;
+            updateStats();
+        });
+
+        // --- Работа с мышью ---
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+        const intersect = new THREE.Vector3();
 
         renderer.domElement.addEventListener('mousedown', (e) => {
-            if (e.target.closest('.glass, .catalog-panel, .tools-panel, .top-bar')) return;
-            
-            if (currentMode === 'wall-drag' && e.button === 0) {
-                mouse.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
-                mouse.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
-                raycaster.setFromCamera(mouse, camera);
-                if (raycaster.ray.intersectPlane(plane, intersect)) {
+            if (e.target.closest('.toolbar, .right-panel, .stats')) return;
+
+            mouse.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
+            mouse.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+
+            // Режим перемещения (Ctrl + клик)
+            if (currentMode === 'move' && e.ctrlKey) {
+                const intersects = raycaster.intersectObjects(placedItems);
+                if (intersects.length) {
+                    movingObject = intersects[0].object;
+                    lastSelectedMesh = movingObject;
+                    // Вычисляем смещение относительно камеры? Просто запоминаем точку пересечения
+                    raycaster.ray.intersectPlane(plane, moveOffset);
+                    if (snapEnabled) moveOffset = snapPosition(moveOffset, 0.5);
+                    isDragging = true;
+                    e.preventDefault();
+                }
+                return;
+            }
+
+            // Режим wallDrag
+            if (currentMode === 'wallDrag' && e.button === 0) {
+                raycaster.ray.intersectPlane(plane, intersect);
+                if (intersect) {
                     isDragging = true;
                     wallStart = snapPosition(intersect.clone(), 0.5);
                     wallStart.y = 0;
-                    const thick = parseFloat(document.getElementById('wall-thick').value);
-                    const height = parseFloat(document.getElementById('wall-height').value);
-                    const color = document.getElementById('wall-color').value;
+                    const thick = parseFloat(document.getElementById('wallThick').value);
+                    const height = parseFloat(document.getElementById('wallHeight').value);
+                    const color = document.getElementById('wallColor').value;
                     tempWall = new THREE.Mesh(
                         new THREE.BoxGeometry(thick, height, 0.1),
                         new THREE.MeshStandardMaterial({ color, transparent: true, opacity: 0.5 })
                     );
                     tempWall.castShadow = true; tempWall.receiveShadow = true;
                     scene.add(tempWall);
-                }
-            }
-
-            if (currentMode === 'move' && e.ctrlKey) {
-                mouse.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
-                mouse.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
-                raycaster.setFromCamera(mouse, camera);
-                const intersects = raycaster.intersectObjects(placedItems);
-                if (intersects.length > 0) {
-                    movingObject = intersects[0].object;
-                    lastSelectedMesh = movingObject;
-                    isDragging = true;
-                    moveStartPoint = intersect.clone();
                 }
             }
         });
 
         renderer.domElement.addEventListener('mousemove', (e) => {
-            if (e.target.closest('.glass, .catalog-panel, .tools-panel, .top-bar')) return;
+            if (e.target.closest('.toolbar, .right-panel, .stats')) return;
             mouse.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
             mouse.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
             raycaster.setFromCamera(mouse, camera);
+
             if (!raycaster.ray.intersectPlane(plane, intersect)) return;
 
-            if (currentMode === 'wall-drag' && isDragging && tempWall) {
+            // Перемещение объекта
+            if (currentMode === 'move' && isDragging && movingObject) {
+                let pos = intersect.clone();
+                if (snapEnabled) pos = snapPosition(pos, 0.5);
+                movingObject.position.x = pos.x;
+                movingObject.position.z = pos.z;
+                movingObject.position.y = pos.y + movingObject.scale.y * 0.5;
+                return;
+            }
+
+            // Строительство стены drag
+            if (currentMode === 'wallDrag' && isDragging && tempWall) {
                 let end = snapPosition(intersect.clone(), 0.5);
                 end.y = 0;
                 const delta = new THREE.Vector3().subVectors(end, wallStart);
                 const length = Math.sqrt(delta.x*delta.x + delta.z*delta.z);
                 const angle = Math.atan2(delta.x, delta.z);
-                const height = parseFloat(document.getElementById('wall-height').value);
+                const height = parseFloat(document.getElementById('wallHeight').value);
                 tempWall.position.x = wallStart.x + delta.x/2;
                 tempWall.position.z = wallStart.z + delta.z/2;
                 tempWall.position.y = height/2;
                 tempWall.scale.set(1, height / (tempWall.geometry.parameters.height || 1), length);
                 tempWall.rotation.y = angle;
-            } else if (currentMode === 'wall-click' && buildClickPhase === 1 && tempWall) {
+            }
+
+            // Предпросмотр стены при 2 кликах
+            if (currentMode === 'wallClick' && wallClickPhase === 1 && tempWall) {
                 let end = snapPosition(intersect.clone(), 0.5);
                 end.y = 0;
-                const delta = new THREE.Vector3().subVectors(end, clickStartPoint);
+                const delta = new THREE.Vector3().subVectors(end, wallClickStart);
                 const length = Math.sqrt(delta.x*delta.x + delta.z*delta.z);
                 const angle = Math.atan2(delta.x, delta.z);
-                const height = parseFloat(document.getElementById('wall-height').value);
-                tempWall.position.x = clickStartPoint.x + delta.x/2;
-                tempWall.position.z = clickStartPoint.z + delta.z/2;
+                const height = parseFloat(document.getElementById('wallHeight').value);
+                tempWall.position.x = wallClickStart.x + delta.x/2;
+                tempWall.position.z = wallClickStart.z + delta.z/2;
                 tempWall.position.y = height/2;
                 tempWall.scale.set(1, height / (tempWall.geometry.parameters.height || 1), length);
                 tempWall.rotation.y = angle;
-            } else if (currentMode === 'move' && isDragging && movingObject) {
-                let pos = intersect.clone();
-                if (document.getElementById('snap-grid').checked) pos = snapPosition(pos, 0.5);
-                movingObject.position.x = pos.x;
-                movingObject.position.z = pos.z;
-                movingObject.position.y = pos.y + movingObject.scale.y * 0.5;
             }
         });
 
         renderer.domElement.addEventListener('mouseup', (e) => {
-            if (e.target.closest('.glass, .catalog-panel, .tools-panel, .top-bar')) return;
-            if (currentMode === 'wall-drag' && isDragging && tempWall) {
+            if (e.target.closest('.toolbar, .right-panel, .stats')) return;
+
+            if (currentMode === 'wallDrag' && isDragging && tempWall) {
                 finishWall();
+                isDragging = false;
             }
             if (currentMode === 'move' && isDragging && movingObject) {
                 isDragging = false;
                 movingObject = null;
-                saveState();
             }
         });
 
         renderer.domElement.addEventListener('click', (e) => {
-            if (e.target.closest('.glass, .catalog-panel, .tools-panel, .top-bar')) return;
-            
-            if (currentMode === 'place' && selectedItem) {
-                mouse.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
-                mouse.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
-                raycaster.setFromCamera(mouse, camera);
-                if (raycaster.ray.intersectPlane(plane, intersect)) {
-                    let pos = intersect.clone();
-                    if (document.getElementById('snap-grid').checked) pos = snapPosition(pos, 0.5);
-                    const color = document.getElementById('item-color').value;
-                    const scale = parseFloat(document.getElementById('item-scale').value);
-                    const rot = parseFloat(document.getElementById('item-rotate').value);
-                    const elev = parseFloat(document.getElementById('item-elev').value);
-                    const mat = document.getElementById('item-material').value;
-                    const model = createModel(selectedItem, parseInt(color.slice(1),16), mat);
-                    model.position.copy(pos);
-                    model.position.y = elev + scale * 0.5;
-                    model.scale.set(scale, scale, scale);
-                    model.rotation.y = rot * Math.PI/180;
-                    model.castShadow = true; model.receiveShadow = true;
-                    scene.add(model);
-                    placedItems.push(model);
-                    lastSelectedMesh = model;
-                    saveState();
-                    updateStats();
-                }
+            if (e.target.closest('.toolbar, .right-panel, .stats')) return;
+
+            mouse.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
+            mouse.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+
+            if (!raycaster.ray.intersectPlane(plane, intersect)) return;
+
+            // Режим предметов
+            if (currentMode === 'place') {
+                let pos = intersect.clone();
+                if (snapEnabled) pos = snapPosition(pos, 0.5);
+                const item = createItem(selectedItemType, selectedItemColor, selectedItemScale);
+                item.position.copy(pos);
+                item.position.y += selectedItemScale * 0.5; // поднять на пол
+                item.rotation.y = selectedItemRotate * Math.PI / 180;
+                item.castShadow = true; item.receiveShadow = true;
+                scene.add(item);
+                placedItems.push(item);
+                lastSelectedMesh = item;
+                updateStats();
+                return;
             }
 
-            if (currentMode === 'wall-click') {
-                mouse.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
-                mouse.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
-                raycaster.setFromCamera(mouse, camera);
-                if (!raycaster.ray.intersectPlane(plane, intersect)) return;
-
-                if (buildClickPhase === 0) {
-                    clickStartPoint = snapPosition(intersect.clone(), 0.5);
-                    clickStartPoint.y = 0;
-                    const thick = parseFloat(document.getElementById('wall-thick').value);
-                    const height = parseFloat(document.getElementById('wall-height').value);
-                    const color = document.getElementById('wall-color').value;
+            // Режим стены 2 клика
+            if (currentMode === 'wallClick') {
+                if (wallClickPhase === 0) {
+                    wallClickStart = snapPosition(intersect.clone(), 0.5);
+                    wallClickStart.y = 0;
+                    const thick = parseFloat(document.getElementById('wallThick').value);
+                    const height = parseFloat(document.getElementById('wallHeight').value);
+                    const color = document.getElementById('wallColor').value;
                     tempWall = new THREE.Mesh(
                         new THREE.BoxGeometry(thick, height, 0.1),
                         new THREE.MeshStandardMaterial({ color, transparent: true, opacity: 0.5 })
                     );
                     tempWall.castShadow = true; tempWall.receiveShadow = true;
                     scene.add(tempWall);
-                    buildClickPhase = 1;
+                    wallClickPhase = 1;
                 } else {
                     finishWall();
-                    buildClickPhase = 0;
+                    wallClickPhase = 0;
                 }
             }
         });
 
         function finishWall() {
             if (!tempWall) return;
-            const height = parseFloat(document.getElementById('wall-height').value);
-            const thick = parseFloat(document.getElementById('wall-thick').value);
-            const color = document.getElementById('wall-color').value;
+            const height = parseFloat(document.getElementById('wallHeight').value);
+            const thick = parseFloat(document.getElementById('wallThick').value);
+            const color = document.getElementById('wallColor').value;
             const length = tempWall.scale.z;
             const final = new THREE.Mesh(
                 new THREE.BoxGeometry(thick, height, length),
@@ -1896,52 +637,38 @@
             final.castShadow = true; final.receiveShadow = true;
             scene.add(final);
             placedItems.push(final);
+            lastSelectedMesh = final;
             scene.remove(tempWall);
             tempWall = null;
-            isDragging = false;
-            saveState();
             updateStats();
         }
 
-        // -------------------- АНИМАЦИЯ РАСТЕНИЙ --------------------
-        function animatePlants() {
-            placedItems.forEach(item => {
-                if (item.userData && item.userData.speed) {
-                    item.rotation.z = Math.sin(Date.now() * 0.001 * item.userData.speed) * 0.02;
-                }
-            });
-        }
-
-        // -------------------- СТАТИСТИКА --------------------
-        function updateStats() {
-            document.getElementById('stat-items').textContent = placedItems.length;
-            document.getElementById('stat-polys').textContent = Math.round(placedItems.length * 4.0);
-        }
-
+        // --- FPS счётчик ---
         let lastTime = performance.now();
         let frames = 0;
         function updateFPS() {
             frames++;
             const now = performance.now();
             if (now - lastTime >= 1000) {
-                document.getElementById('stat-fps').textContent = frames;
-                frames = 0; lastTime = now;
+                document.getElementById('statFps').textContent = frames;
+                frames = 0;
+                lastTime = now;
             }
         }
 
         function animate() {
             requestAnimationFrame(animate);
-            animatePlants();
             controls.update();
-            composer.render();
+            renderer.render(scene, camera);
             updateFPS();
         }
+
+        animate();
 
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
-            composer.setSize(window.innerWidth, window.innerHeight);
         });
 
         if (window.Telegram?.WebApp) {
@@ -1949,8 +676,9 @@
             window.Telegram.WebApp.ready();
         }
 
-        loadCatalog();
-        animate();
+        // Инициализация
+        setMode('place');
+        updateStats();
     </script>
 </body>
 </html>
