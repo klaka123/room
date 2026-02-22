@@ -3,487 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>✦ ULTIMATE DESIGN PRO — КОМНАТЫ + СВЕТ</title>
+    <title>✦ ПРОСТОЙ ДИЗАЙН ИНТЕРЬЕРА (РАБОЧАЯ ВЕРСИЯ)</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
-
         body {
+            margin: 0;
             overflow: hidden;
-            background: #0a0c1a;
-            color: #f0f4fc;
+            font-family: Arial, sans-serif;
         }
-
-        #canvas {
-            display: block;
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        .glass {
-            background: rgba(20, 28, 42, 0.75);
-            backdrop-filter: blur(20px) saturate(200%);
-            border: 1px solid rgba(255, 215, 140, 0.2);
-            border-radius: 36px;
-            box-shadow: 0 25px 50px -30px #000;
-            transition: 0.3s;
-        }
-
-        .glass:hover {
-            border-color: rgba(255, 215, 140, 0.4);
-        }
-
-        .ui-container {
+        #info {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 100;
+        }
+        #controls {
+            position: absolute;
             bottom: 20px;
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            z-index: 10;
-        }
-
-        .top-bar {
-            pointer-events: all;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 30px;
-            margin-bottom: 10px;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ffd966, #ffaa66, #ff8866);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .stats {
-            display: flex;
-            gap: 40px;
-            font-size: 1rem;
-        }
-
-        .stats i {
-            color: #ffd966;
-            margin-right: 5px;
-        }
-
-        .main-panels {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex: 1;
-            pointer-events: none;
-        }
-
-        .catalog-panel {
-            pointer-events: all;
-            width: 360px;
-            background: rgba(20, 28, 42, 0.75);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,215,140,0.2);
-            border-radius: 40px;
-            padding: 20px;
-            max-height: calc(100vh - 160px);
-            overflow-y: auto;
-        }
-
-        .catalog-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-
-        .catalog-header h3 {
-            font-size: 1.3rem;
-            color: #ffd966;
-        }
-
-        .badge {
-            background: rgba(255,215,140,0.2);
-            border: 1px solid rgba(255,215,140,0.4);
-            padding: 4px 14px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-        }
-
-        .category-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .cat-btn {
-            background: rgba(0,0,0,0.25);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #ccc;
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .cat-btn:hover {
-            border-color: #ffd966;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(30,30,30,0.8);
             color: white;
-        }
-
-        .cat-btn.active {
-            background: #ffd966;
-            color: #0a0c1a;
-            border-color: #ffd966;
-        }
-
-        .items-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .item-card {
-            background: rgba(0,0,0,0.25);
-            border-radius: 28px;
-            padding: 18px 6px 12px;
-            cursor: pointer;
-            transition: 0.2s;
-            border: 1px solid rgba(255,255,255,0.05);
+            padding: 10px 20px;
+            border-radius: 40px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .item-card:hover {
-            background: rgba(40, 60, 85, 0.6);
-            transform: translateY(-3px);
-            border-color: #ffd966;
-        }
-
-        .item-card.selected {
-            border-color: #ffd966;
-            background: rgba(255,215,140,0.15);
-            box-shadow: inset 0 0 0 1px #ffd966;
-        }
-
-        .item-icon {
-            font-size: 2.8rem;
-            filter: drop-shadow(0 5px 10px black);
-        }
-
-        .item-name {
-            font-size: 0.8rem;
-            text-align: center;
-            color: #ddd;
-        }
-
-        .tools-panel {
+            gap: 15px;
+            backdrop-filter: blur(5px);
+            z-index: 100;
             pointer-events: all;
-            width: 340px;
-            background: rgba(20, 28, 42, 0.75);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,215,140,0.2);
-            border-radius: 40px;
-            padding: 20px;
-            max-height: calc(100vh - 160px);
-            overflow-y: auto;
         }
-
-        .tools-section {
-            margin-bottom: 25px;
-        }
-
-        .tools-section h4 {
-            color: #ffd966;
-            margin-bottom: 12px;
-            border-bottom: 1px solid rgba(255,215,140,0.3);
-            padding-bottom: 5px;
-            font-size: 1.1rem;
-        }
-
-        .mode-buttons {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .mode-btn {
-            flex: 1 0 auto;
-            background: rgba(0,0,0,0.25);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #ccc;
-            padding: 8px 12px;
-            border-radius: 40px;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            font-size: 0.85rem;
-        }
-
-        .mode-btn:hover {
-            border-color: #ffd966;
-            color: white;
-        }
-
-        .mode-btn.active {
-            background: #ffd966;
-            color: #0a0c1a;
-            border-color: #ffd966;
-        }
-
-        .control-row {
-            margin-bottom: 15px;
-        }
-
-        .control-row label {
-            display: block;
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-bottom: 4px;
-        }
-
-        .control-row select, .control-row input {
-            width: 100%;
-            padding: 8px 12px;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 30px;
-            color: white;
-        }
-
-        .control-row input[type="color"] {
-            height: 45px;
-            padding: 3px;
-        }
-
-        .checkbox-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-            color: #ccc;
-        }
-
-        .checkbox-row input {
-            width: auto;
-        }
-
-        .action-btn {
-            width: 100%;
-            background: #ffd966;
+        .btn {
+            background: #444;
             border: none;
-            color: #0a0c1a;
-            padding: 12px;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-top: 8px;
-        }
-
-        .action-btn:hover {
-            background: #ffe082;
-            transform: translateY(-2px);
-        }
-
-        .hint-bar {
-            pointer-events: all;
-            align-self: center;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
             color: white;
-            padding: 12px 40px;
-            border-radius: 60px;
-            border: 1px solid #ffd966;
-            font-size: 1rem;
-            margin-bottom: 20px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .btn:hover {
+            background: #666;
+        }
+        .btn.active {
+            background: #f0a050;
+            color: black;
+        }
+        #panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(30,30,30,0.8);
+            backdrop-filter: blur(5px);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            width: 260px;
+            z-index: 100;
+            pointer-events: all;
+        }
+        .slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .color-input {
+            width: 100%;
+            height: 40px;
+            margin: 5px 0 15px;
+            border: none;
+            background: transparent;
+        }
+        .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 0;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="ui-container">
-        <div class="top-bar glass">
-            <div class="logo">✦ ULTIMATE DESIGN PRO</div>
-            <div class="stats">
-                <span><i class="fas fa-cube"></i> <span id="statItems">0</span></span>
-                <span><i class="fas fa-tachometer-alt"></i> <span id="statFps">0</span> FPS</span>
-            </div>
+    <div id="info">
+        <div>Объектов: <span id="objCount">0</span></div>
+        <div>Режим: <span id="modeDisplay">Стена</span></div>
+    </div>
+    <div id="controls">
+        <button class="btn active" id="modeWall">Стена</button>
+        <button class="btn" id="modeItem">Предмет</button>
+        <button class="btn" id="modeMove">Переместить</button>
+        <button class="btn" id="modeRotate">Повернуть</button>
+        <button class="btn" id="undo">Отмена</button>
+        <button class="btn" id="clear">Очистить</button>
+    </div>
+    <div id="panel">
+        <h3>Параметры</h3>
+        <div id="wallParams">
+            <label>Длина</label>
+            <input type="range" id="wallLength" min="0.5" max="10" step="0.1" value="2" class="slider">
+            <label>Высота</label>
+            <input type="range" id="wallHeight" min="0.5" max="5" step="0.1" value="2" class="slider">
+            <label>Толщина</label>
+            <input type="range" id="wallThick" min="0.1" max="1" step="0.05" value="0.2" class="slider">
+            <label>Цвет</label>
+            <input type="color" id="wallColor" value="#aaccff" class="color-input">
         </div>
-
-        <div class="main-panels">
-            <div class="catalog-panel glass">
-                <div class="catalog-header">
-                    <h3><i class="fas fa-couch"></i> КАТАЛОГ ДЕКОРА (70+)</h3>
-                    <span class="badge" id="catalogCount">0</span>
-                </div>
-                <div class="category-tabs" id="categoryTabs"></div>
-                <div class="items-grid" id="itemsGrid"></div>
-            </div>
-
-            <div class="tools-panel glass">
-                <div class="tools-section">
-                    <h4>РЕЖИМ</h4>
-                    <div class="mode-buttons">
-                        <button class="mode-btn active" id="modeWall"><i class="fas fa-cubes"></i> Стена</button>
-                        <button class="mode-btn" id="modeItem"><i class="fas fa-paint-brush"></i> Декор</button>
-                        <button class="mode-btn" id="modeWallDrag"><i class="fas fa-arrows-alt"></i> Стена Drag</button>
-                        <button class="mode-btn" id="modeMove"><i class="fas fa-arrows-alt"></i> Переместить</button>
-                        <button class="mode-btn" id="modeRotate"><i class="fas fa-sync-alt"></i> Повернуть</button>
-                    </div>
-                </div>
-
-                <div class="tools-section" id="wallControls">
-                    <h4>ПАРАМЕТРЫ СТЕНЫ</h4>
-                    <div class="control-row">
-                        <label>ДЛИНА (м)</label>
-                        <input type="range" id="wallLength" min="0.5" max="20" step="0.5" value="4">
-                    </div>
-                    <div class="control-row">
-                        <label>ВЫСОТА (м)</label>
-                        <input type="range" id="wallHeight" min="1" max="15" step="0.5" value="3">
-                    </div>
-                    <div class="control-row">
-                        <label>ТОЛЩИНА (м)</label>
-                        <input type="range" id="wallThick" min="0.1" max="2" step="0.1" value="0.3">
-                    </div>
-                    <div class="control-row">
-                        <label>МАТЕРИАЛ</label>
-                        <select id="wallMat">
-                            <option value="brick">Кирпич</option>
-                            <option value="concrete">Бетон</option>
-                            <option value="wood">Дерево</option>
-                            <option value="stone">Камень</option>
-                            <option value="marble">Мрамор</option>
-                        </select>
-                    </div>
-                    <div class="control-row">
-                        <label>ЦВЕТ</label>
-                        <input type="color" id="wallColor" value="#c0b8b0">
-                    </div>
-                    <div class="checkbox-row">
-                        <input type="checkbox" id="snapGrid" checked>
-                        <label>Привязка к сетке (0.5м)</label>
-                    </div>
-                </div>
-
-                <div class="tools-section" id="itemControls" style="display:none;">
-                    <h4>ПАРАМЕТРЫ ДЕКОРА</h4>
-                    <div class="control-row">
-                        <label>МАТЕРИАЛ</label>
-                        <select id="itemMat">
-                            <option value="wood">Дерево</option>
-                            <option value="metal">Металл</option>
-                            <option value="fabric">Ткань</option>
-                            <option value="glass">Стекло</option>
-                            <option value="stone">Камень</option>
-                        </select>
-                    </div>
-                    <div class="control-row">
-                        <label>ЦВЕТ</label>
-                        <input type="color" id="itemColor" value="#b09a80">
-                    </div>
-                    <div class="control-row">
-                        <label>ПОВОРОТ</label>
-                        <input type="range" id="itemRotate" min="0" max="360" value="0">
-                    </div>
-                    <div class="control-row">
-                        <label>МАСШТАБ</label>
-                        <input type="range" id="itemScale" min="0.5" max="3" step="0.1" value="1">
-                    </div>
-                    <div class="control-row">
-                        <label>ВЫСОТА</label>
-                        <input type="range" id="itemElev" min="0" max="5" step="0.1" value="0">
-                    </div>
-                </div>
-
-                <div class="tools-section" id="roomControls">
-                    <h4><i class="fas fa-building"></i> СОЗДАТЬ КОМНАТУ</h4>
-                    <div class="control-row">
-                        <label>ДЛИНА (м)</label>
-                        <input type="range" id="roomLength" min="2" max="30" step="1" value="8">
-                    </div>
-                    <div class="control-row">
-                        <label>ШИРИНА (м)</label>
-                        <input type="range" id="roomWidth" min="2" max="30" step="1" value="6">
-                    </div>
-                    <div class="control-row">
-                        <label>ВЫСОТА (м)</label>
-                        <input type="range" id="roomHeight" min="2" max="10" step="1" value="3">
-                    </div>
-                    <div class="control-row">
-                        <label>МАТЕРИАЛ СТЕН</label>
-                        <select id="roomWallMat">
-                            <option value="brick">Кирпич</option>
-                            <option value="concrete">Бетон</option>
-                            <option value="wood">Дерево</option>
-                            <option value="stone">Камень</option>
-                            <option value="marble">Мрамор</option>
-                        </select>
-                    </div>
-                    <div class="control-row">
-                        <label>ЦВЕТ СТЕН</label>
-                        <input type="color" id="roomWallColor" value="#c0b8b0">
-                    </div>
-                    <div class="checkbox-row">
-                        <input type="checkbox" id="roomFloor" checked>
-                        <label>Добавить пол</label>
-                    </div>
-                    <div class="checkbox-row">
-                        <input type="checkbox" id="roomCeil" checked>
-                        <label>Добавить потолок</label>
-                    </div>
-                    <button class="action-btn" id="buildRoomBtn"><i class="fas fa-plus-circle"></i> ПОСТРОИТЬ КОМНАТУ</button>
-                </div>
-
-                <div class="tools-section">
-                    <h4>ПОСТ-ЭФФЕКТЫ</h4>
-                    <div class="checkbox-row">
-                        <input type="checkbox" id="fxBloom" checked>
-                        <label>Bloom</label>
-                    </div>
-                    <div class="checkbox-row">
-                        <input type="checkbox" id="fxAO" checked>
-                        <label>Ambient Occlusion</label>
-                    </div>
-                    <div class="checkbox-row">
-                        <input type="checkbox" id="fxSSR" checked>
-                        <label>SSR (отражения)</label>
-                    </div>
-                </div>
-
-                <button class="action-btn" id="saveBtn"><i class="fas fa-save"></i> Сохранить</button>
-                <button class="action-btn" id="loadBtn"><i class="fas fa-folder-open"></i> Загрузить</button>
-                <button class="action-btn" id="undoBtn"><i class="fas fa-undo"></i> Отмена</button>
-                <button class="action-btn" id="clearBtn"><i class="fas fa-trash"></i> Очистить</button>
-                <div style="font-size:0.8rem; text-align:center; margin-top:5px; color:#aaa;">
-                    <i class="fas fa-keyboard"></i> Ctrl+D копировать | Del удалить | R вращать (режим)
-                </div>
-            </div>
+        <div id="itemParams" style="display:none;">
+            <label>Форма</label>
+            <select id="itemShape">
+                <option value="box">Куб</option>
+                <option value="sphere">Сфера</option>
+                <option value="cylinder">Цилиндр</option>
+            </select>
+            <label>Цвет</label>
+            <input type="color" id="itemColor" value="#c47e5a" class="color-input">
+            <label>Масштаб</label>
+            <input type="range" id="itemScale" min="0.3" max="3" step="0.1" value="1" class="slider">
+            <label>Поворот</label>
+            <input type="range" id="itemRotate" min="0" max="360" value="0" class="slider">
         </div>
-
-        <div class="hint-bar" id="hint">Режим: Стена — клик для установки | Ctrl+клик для перемещения | R для вращения</div>
+        <div class="checkbox">
+            <input type="checkbox" id="snapGrid" checked>
+            <label>Привязка к сетке (0.5 м)</label>
+        </div>
+        <button class="btn" id="copyBtn" style="width:100%; margin-top:10px;">Копировать (Ctrl+D)</button>
     </div>
 
     <canvas id="canvas"></canvas>
@@ -500,821 +145,328 @@
     <script type="module">
         import * as THREE from 'three';
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-        import { SAOPass } from 'three/addons/postprocessing/SAOPass.js';
-        import { SSRPass } from 'three/addons/postprocessing/SSRPass.js';
 
-        // --- Сцена ---
+        // --- Инициализация сцены ---
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x0a0c1a);
-        scene.fog = new THREE.FogExp2(0x0a0c1a, 0.001);
+        scene.background = new THREE.Color(0x11131f);
 
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(30, 20, 40);
+        camera.position.set(15, 8, 20);
         camera.lookAt(0, 2, 0);
 
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true, powerPreference: "high-performance" });
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.2;
-        renderer.outputEncoding = THREE.sRGBEncoding;
 
-        // --- Пост-обработка ---
-        const composer = new EffectComposer(renderer);
-        const renderPass = new RenderPass(scene, camera);
-        composer.addPass(renderPass);
-
-        // Bloom
-        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.7, 0.3, 0.6);
-        bloomPass.threshold = 0.2;
-        bloomPass.strength = 0.8;
-        bloomPass.radius = 0.5;
-        composer.addPass(bloomPass);
-
-        // Ambient Occlusion
-        const saoPass = new SAOPass(scene, camera, false, true);
-        saoPass.params.saoBias = 0.5;
-        saoPass.params.saoIntensity = 0.5;
-        saoPass.params.saoScale = 10;
-        saoPass.params.saoKernelRadius = 50;
-        saoPass.params.saoMinResolution = 0;
-        saoPass.params.saoBlur = true;
-        saoPass.params.saoBlurRadius = 4;
-        saoPass.params.saoBlurStdDev = 4;
-        saoPass.params.saoBlurDepthCutoff = 0.01;
-        composer.addPass(saoPass);
-
-        // SSR (упрощённо)
-        const ssrPass = new SSRPass({
-            renderer,
-            scene,
-            camera,
-            width: window.innerWidth,
-            height: window.innerHeight,
-            selects: null,
-            groundReflector: null
-        });
-        ssrPass.enabled = true;
-        composer.addPass(ssrPass);
-
-        // --- Управление ---
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
         controls.maxPolarAngle = Math.PI / 2.2;
-        controls.minDistance = 5;
-        controls.maxDistance = 200;
+        controls.minDistance = 3;
+        controls.maxDistance = 50;
         controls.target.set(0, 2, 0);
 
         // --- Освещение ---
-        const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.3);
-        sunLight.position.set(8, 25, 15);
+        const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.2);
+        sunLight.position.set(5, 15, 8);
         sunLight.castShadow = true;
-        sunLight.shadow.mapSize.width = 8192;
-        sunLight.shadow.mapSize.height = 8192;
+        sunLight.shadow.mapSize.width = 2048;
+        sunLight.shadow.mapSize.height = 2048;
         sunLight.shadow.camera.near = 1;
-        sunLight.shadow.camera.far = 80;
-        sunLight.shadow.camera.left = -30;
-        sunLight.shadow.camera.right = 30;
-        sunLight.shadow.camera.top = 30;
-        sunLight.shadow.camera.bottom = -30;
+        sunLight.shadow.camera.far = 30;
+        sunLight.shadow.camera.left = -10;
+        sunLight.shadow.camera.right = 10;
+        sunLight.shadow.camera.top = 10;
+        sunLight.shadow.camera.bottom = -10;
         scene.add(sunLight);
 
-        const ambient = new THREE.AmbientLight(0x40486c, 0.6);
-        scene.add(ambient);
-
-        const fillLight1 = new THREE.PointLight(0xffaa88, 0.5);
-        fillLight1.position.set(-8, 6, 12);
-        scene.add(fillLight1);
-        const fillLight2 = new THREE.PointLight(0x88aaff, 0.4);
-        fillLight2.position.set(10, 5, -10);
-        scene.add(fillLight2);
+        const ambientLight = new THREE.AmbientLight(0x40486c, 0.6);
+        scene.add(ambientLight);
 
         // --- Пол и сетка ---
-        const groundGeo = new THREE.CircleGeometry(200, 64);
-        const groundMat = new THREE.MeshStandardMaterial({ color: 0x1a2430, roughness: 0.8 });
+        const groundGeo = new THREE.CircleGeometry(50, 32);
+        const groundMat = new THREE.MeshStandardMaterial({ color: 0x2a2e3a, roughness: 0.8 });
         const ground = new THREE.Mesh(groundGeo, groundMat);
         ground.rotation.x = -Math.PI / 2;
         ground.position.y = 0;
         ground.receiveShadow = true;
         scene.add(ground);
 
-        const gridHelper = new THREE.GridHelper(200, 80, 0xffd966, 0x3a4a6a);
+        const gridHelper = new THREE.GridHelper(30, 20, 0xffaa66, 0x3a4a6a);
         gridHelper.position.y = 0.01;
         scene.add(gridHelper);
 
-        // --- Каталог (70+ предметов) ---
-        const catalog = [
-            // Стулья
-            { id: 'chair1', name: 'Кресло Chester', icon: '🪑', cat: 'chairs', style: 'chester', color: '#8b4513' },
-            { id: 'chair2', name: 'Стул Eames', icon: '💺', cat: 'chairs', style: 'eames', color: '#4a5a6a' },
-            { id: 'chair3', name: 'Стул Людовик', icon: '🪑', cat: 'chairs', style: 'louis', color: '#c49a6c' },
-            { id: 'chair4', name: 'Стул Венский', icon: '🪑', cat: 'chairs', style: 'vienna', color: '#d4b088' },
-            { id: 'chair5', name: 'Барный стул', icon: '🪑', cat: 'chairs', style: 'bar', color: '#3a3a4a' },
-            { id: 'chair6', name: 'Кресло-качалка', icon: '🪑', cat: 'chairs', style: 'rocking', color: '#8b5a2b' },
-            // Диваны
-            { id: 'sofa1', name: 'Диван Chester', icon: '🛋️', cat: 'sofas', style: 'chester', color: '#8b4513' },
-            { id: 'sofa2', name: 'Диван Modern', icon: '🛋️', cat: 'sofas', style: 'modern', color: '#5a6b7a' },
-            { id: 'sofa3', name: 'Диван Scandi', icon: '🛋️', cat: 'sofas', style: 'scandi', color: '#b0aa90' },
-            { id: 'sofa4', name: 'Кушетка', icon: '🛋️', cat: 'sofas', style: 'chaise', color: '#8a6d5a' },
-            // Столы
-            { id: 'table1', name: 'Стол обеденный', icon: '🪑', cat: 'tables', style: 'dining', color: '#8b5a2b' },
-            { id: 'table2', name: 'Журнальный столик', icon: '🪑', cat: 'tables', style: 'coffee', color: '#a58b6f' },
-            { id: 'table3', name: 'Консоль', icon: '🪑', cat: 'tables', style: 'console', color: '#7a5a3a' },
-            { id: 'table4', name: 'Письменный стол', icon: '📝', cat: 'tables', style: 'desk', color: '#5a3a2a' },
-            // Шкафы
-            { id: 'cabinet1', name: 'Стеллаж', icon: '📚', cat: 'cabinets', style: 'shelf', color: '#8b5a2b' },
-            { id: 'cabinet2', name: 'Шкаф платяной', icon: '🚪', cat: 'cabinets', style: 'wardrobe', color: '#a0522d' },
-            { id: 'cabinet3', name: 'Комод', icon: '🗄️', cat: 'cabinets', style: 'dresser', color: '#c19a6b' },
-            { id: 'cabinet4', name: 'Витрина', icon: '🏛️', cat: 'cabinets', style: 'display', color: '#d4af37' },
-            // Свет
-            { id: 'lamp1', name: 'Торшер', icon: '💡', cat: 'lighting', style: 'floor', color: '#c0c0c0' },
-            { id: 'lamp2', name: 'Люстра', icon: '💡', cat: 'lighting', style: 'chandelier', color: '#d4af37' },
-            { id: 'lamp3', name: 'Настольная лампа', icon: '💡', cat: 'lighting', style: 'table', color: '#88aadd' },
-            { id: 'lamp4', name: 'Бра', icon: '💡', cat: 'lighting', style: 'wall', color: '#aaaaaa' },
-            { id: 'lamp5', name: 'Подвес', icon: '💡', cat: 'lighting', style: 'pendant', color: '#cccccc' },
-            { id: 'lamp6', name: 'Точечный свет', icon: '✨', cat: 'lighting', style: 'pointlight', color: '#ffffff' }, // новый источник света
-            // Декор
-            { id: 'vase1', name: 'Ваза', icon: '🏺', cat: 'decor', style: 'vase', color: '#5a7a9a' },
-            { id: 'vase2', name: 'Кувшин', icon: '🏺', cat: 'decor', style: 'jug', color: '#8b5a2b' },
-            { id: 'mirror1', name: 'Зеркало', icon: '🪞', cat: 'decor', style: 'mirror', color: '#d4af37' },
-            { id: 'painting1', name: 'Картина', icon: '🖼️', cat: 'decor', style: 'painting', color: '#9a7a5a' },
-            { id: 'clock1', name: 'Часы', icon: '⏰', cat: 'decor', style: 'clock', color: '#8b5a2b' },
-            { id: 'carpet1', name: 'Ковёр', icon: '🧶', cat: 'decor', style: 'carpet', color: '#8b1e3f' },
-            { id: 'sculpture1', name: 'Скульптура', icon: '🗿', cat: 'decor', style: 'sculpture', color: '#b87333' },
-            { id: 'candle1', name: 'Свеча', icon: '🕯️', cat: 'decor', style: 'candle', color: '#f5e6d3' },
-            // Растения
-            { id: 'plant1', name: 'Фикус', icon: '🌿', cat: 'plants', style: 'ficus', color: '#2e8b57' },
-            { id: 'plant2', name: 'Пальма', icon: '🌴', cat: 'plants', style: 'palm', color: '#228b22' },
-            { id: 'plant3', name: 'Кактус', icon: '🌵', cat: 'plants', style: 'cactus', color: '#5f9f4f' },
-            { id: 'plant4', name: 'Орхидея', icon: '🌸', cat: 'plants', style: 'orchid', color: '#d87093' },
-            { id: 'plant5', name: 'Бонсай', icon: '🎍', cat: 'plants', style: 'bonsai', color: '#6b8e23' },
-            // Техника
-            { id: 'tv1', name: 'Телевизор', icon: '📺', cat: 'tech', style: 'tv', color: '#1a1a1a' },
-            { id: 'speaker1', name: 'Колонка', icon: '🔊', cat: 'tech', style: 'speaker', color: '#3a3a3a' },
-            { id: 'laptop1', name: 'Ноутбук', icon: '💻', cat: 'tech', style: 'laptop', color: '#2a2a3a' },
-            { id: 'fridge1', name: 'Холодильник', icon: '🧊', cat: 'tech', style: 'fridge', color: '#f0f0f0' },
-            { id: 'oven1', name: 'Духовка', icon: '🔥', cat: 'tech', style: 'oven', color: '#3a3a3a' },
-            // Книги
-            { id: 'book1', name: 'Книги', icon: '📚', cat: 'books', style: 'books', color: '#8b4513' },
-            { id: 'book2', name: 'Энциклопедия', icon: '📖', cat: 'books', style: 'book', color: '#5a3a2a' },
-        ];
-
-        // --- Процедурные текстуры для стен ---
-        function createWallTexture(type, baseColor) {
-            const canvas = document.createElement('canvas');
-            canvas.width = 512; canvas.height = 512;
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = baseColor;
-            ctx.fillRect(0, 0, 512, 512);
-            if (type === 'brick') {
-                ctx.fillStyle = '#8b5a2b';
-                for (let y=0; y<512; y+=64) for (let x=0; x<512; x+=128) ctx.fillRect(x, y, 120, 60);
-                ctx.strokeStyle = '#4a2a1a'; ctx.lineWidth=4;
-                for (let x=0; x<512; x+=128) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,512); ctx.stroke(); }
-            } else if (type === 'concrete') {
-                for (let i=0; i<10000; i++) {
-                    ctx.fillStyle = `rgba(100,100,100,${Math.random()*0.2})`;
-                    ctx.beginPath(); ctx.arc(Math.random()*512, Math.random()*512, Math.random()*5, 0, 2*Math.PI); ctx.fill();
-                }
-            } else if (type === 'wood') {
-                for (let i=0; i<30; i++) {
-                    ctx.strokeStyle = '#8b5a2b'; ctx.lineWidth=8;
-                    ctx.beginPath(); ctx.moveTo(0, i*20); ctx.lineTo(512, i*20+15); ctx.stroke();
-                }
-            } else if (type === 'marble') {
-                for (let i=0; i<200; i++) {
-                    ctx.strokeStyle = `rgba(128,128,128,${Math.random()*0.5})`;
-                    ctx.lineWidth = Math.random()*20;
-                    ctx.beginPath(); ctx.moveTo(Math.random()*512, Math.random()*512); ctx.lineTo(Math.random()*512, Math.random()*512); ctx.stroke();
-                }
-            }
-            return new THREE.CanvasTexture(canvas);
-        }
-
-        // --- Функции создания моделей (детализированные) ---
-        function createChairChester(color, material) {
-            const group = new THREE.Group();
-            const mat = new THREE.MeshStandardMaterial({ color, roughness: 0.6, metalness: 0.0 });
-            const darkMat = new THREE.MeshStandardMaterial({ color: 0x5a3a2a, roughness: 0.7 });
-            const metalMat = new THREE.MeshStandardMaterial({ color: 0xaaaaaa, roughness: 0.3, metalness: 0.7 });
-
-            // Ножки с колесиками
-            const legGeo = new THREE.CylinderGeometry(0.15, 0.18, 0.5, 8);
-            const wheelGeo = new THREE.TorusGeometry(0.08, 0.02, 8, 16);
-            for (let x = -0.6; x <= 0.6; x+=1.2) {
-                for (let z = -0.6; z <= 0.6; z+=1.2) {
-                    const leg = new THREE.Mesh(legGeo, darkMat);
-                    leg.position.set(x, 0.25, z);
-                    leg.castShadow = true; leg.receiveShadow = true;
-                    group.add(leg);
-                    const wheel = new THREE.Mesh(wheelGeo, metalMat);
-                    wheel.position.set(x, 0.1, z);
-                    wheel.rotation.x = Math.PI/2;
-                    wheel.castShadow = true;
-                    group.add(wheel);
-                }
-            }
-            // Сиденье с подушкой
-            const seatBase = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.2, 1.5), darkMat);
-            seatBase.position.y = 0.5;
-            seatBase.castShadow = true; seatBase.receiveShadow = true;
-            group.add(seatBase);
-            const cushion = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.2, 1.4), mat);
-            cushion.position.y = 0.7;
-            cushion.castShadow = true; cushion.receiveShadow = true;
-            group.add(cushion);
-            // Спинка с пуговицами
-            const backFrame = new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.5, 0.3), darkMat);
-            backFrame.position.set(0, 1.5, -0.7);
-            backFrame.castShadow = true; backFrame.receiveShadow = true;
-            group.add(backFrame);
-            const backCushion = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.4, 0.2), mat);
-            backCushion.position.set(0, 1.5, -0.6);
-            backCushion.castShadow = true; backCushion.receiveShadow = true;
-            group.add(backCushion);
-            for (let i = -0.6; i <= 0.6; i+=0.6) {
-                for (let j = 1.0; j <= 1.8; j+=0.4) {
-                    const btn = new THREE.Mesh(new THREE.SphereGeometry(0.1, 8), metalMat);
-                    btn.position.set(i, j, -0.55);
-                    btn.castShadow = true;
-                    group.add(btn);
-                }
-            }
-            // Подлокотники
-            const arm = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.8, 1.5), darkMat);
-            arm.position.set(-0.95, 1.0, 0);
-            arm.castShadow = true; arm.receiveShadow = true;
-            group.add(arm);
-            const arm2 = arm.clone(); arm2.position.set(0.95, 1.0, 0); group.add(arm2);
-            return group;
-        }
-
-        function createTableDining(color, material) {
-            const group = new THREE.Group();
-            const mat = new THREE.MeshStandardMaterial({ color, roughness: 0.5 });
-            const legMat = new THREE.MeshStandardMaterial({ color: 0x888888, roughness: 0.3, metalness: 0.7 });
-            const top = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.1, 1.2), mat);
-            top.position.y = 0.9;
-            top.castShadow = true; top.receiveShadow = true;
-            group.add(top);
-            const legGeo = new THREE.CylinderGeometry(0.15, 0.18, 0.8, 8);
-            for (let x = -0.8; x <= 0.8; x+=1.6) {
-                for (let z = -0.5; z <= 0.5; z+=1.0) {
-                    const leg = new THREE.Mesh(legGeo, legMat);
-                    leg.position.set(x, 0.4, z);
-                    leg.castShadow = true; leg.receiveShadow = true;
-                    group.add(leg);
-                }
-            }
-            return group;
-        }
-
-        function createLampFloor(color, material) {
-            const group = new THREE.Group();
-            const metalMat = new THREE.MeshStandardMaterial({ color: 0xc0c0c0, roughness: 0.3, metalness: 0.8 });
-            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.6, 0.2, 8), metalMat);
-            base.position.y = 0.1; base.castShadow = true; base.receiveShadow = true;
-            group.add(base);
-            const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.12, 2.5, 8), metalMat);
-            pole.position.y = 1.35; pole.castShadow = true; pole.receiveShadow = true;
-            group.add(pole);
-            const shade = new THREE.Mesh(new THREE.ConeGeometry(0.6, 0.7, 8), new THREE.MeshStandardMaterial({ color: 0xffeedd, roughness: 0.2 }));
-            shade.position.y = 2.5; shade.castShadow = true; shade.receiveShadow = true;
-            group.add(shade);
-            const light = new THREE.PointLight(0xffeedd, 1, 5);
-            light.position.y = 2.2; group.add(light);
-            return group;
-        }
-
-        function createPlant(color, material) {
-            const group = new THREE.Group();
-            const potMat = new THREE.MeshStandardMaterial({ color: 0x8b5a2b, roughness: 0.6 });
-            const leafMat = new THREE.MeshStandardMaterial({ color, roughness: 0.4 });
-            const pot = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.6, 0.5, 8), potMat);
-            pot.position.y = 0.25; pot.castShadow = true; pot.receiveShadow = true;
-            group.add(pot);
-            const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.15, 1.5, 6), potMat);
-            stem.position.y = 1.0; stem.castShadow = true; stem.receiveShadow = true;
-            group.add(stem);
-            for (let i=0; i<6; i++) {
-                const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.6, 5), leafMat);
-                leaf.position.set(Math.cos(i*1.05)*0.6, 1.6, Math.sin(i*1.05)*0.6);
-                leaf.rotation.x = 0.2; leaf.rotation.y = i; leaf.castShadow = true;
-                group.add(leaf);
-            }
-            group.userData = { speed: 0.5 + Math.random()*0.5 };
-            return group;
-        }
-
-        function createPointLightItem(color, material) {
-            // Создаём видимый источник света (сфера + свет)
-            const group = new THREE.Group();
-            const bulbMat = new THREE.MeshStandardMaterial({ color: 0xffeedd, emissive: 0xffeedd, emissiveIntensity: 0.8 });
-            const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16), bulbMat);
-            sphere.castShadow = true; sphere.receiveShadow = true;
-            group.add(sphere);
-            const light = new THREE.PointLight(parseInt(color.slice(1), 16), 2, 10);
-            group.add(light);
-            return group;
-        }
-
-        function createGenericItem(style, color, material) {
-            const mat = new THREE.MeshStandardMaterial({ color, roughness: 0.5 });
-            const geo = new THREE.BoxGeometry(1,1,1);
-            const mesh = new THREE.Mesh(geo, mat);
-            mesh.castShadow = true; mesh.receiveShadow = true;
-            return mesh;
-        }
-
-        function createItemFromCatalog(item, color, material) {
-            const colorHex = parseInt(color.slice(1), 16);
-            if (item.style === 'pointlight') {
-                return createPointLightItem(color, material);
-            }
-            switch(item.style) {
-                case 'chester': return createChairChester(colorHex, material);
-                case 'dining': return createTableDining(colorHex, material);
-                case 'floor': return createLampFloor(colorHex, material);
-                case 'ficus': case 'palm': case 'cactus': case 'orchid': case 'bonsai': return createPlant(colorHex, material);
-                default: return createGenericItem(item.style, colorHex, material);
-            }
-        }
-
-        // --- UI ---
-        function loadCatalog() {
-            const grid = document.getElementById('itemsGrid');
-            const catDiv = document.getElementById('categoryTabs');
-            const cats = new Set(catalog.map(i => i.cat));
-            const catNames = {
-                chairs: 'Стулья', sofas: 'Диваны', tables: 'Столы', lighting: 'Свет',
-                cabinets: 'Шкафы', decor: 'Декор', plants: 'Растения', tech: 'Техника', books: 'Книги'
-            };
-
-            const allBtn = document.createElement('button');
-            allBtn.className = 'cat-btn active';
-            allBtn.dataset.cat = 'all';
-            allBtn.textContent = 'ВСЁ';
-            allBtn.addEventListener('click', () => filterCategory('all', allBtn));
-            catDiv.appendChild(allBtn);
-
-            cats.forEach(cat => {
-                const btn = document.createElement('button');
-                btn.className = 'cat-btn';
-                btn.dataset.cat = cat;
-                btn.textContent = catNames[cat] || cat;
-                btn.addEventListener('click', () => filterCategory(cat, btn));
-                catDiv.appendChild(btn);
-            });
-
-            catalog.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'item-card';
-                card.dataset.id = item.id;
-                card.dataset.cat = item.cat;
-                card.innerHTML = `<div class="item-icon">${item.icon}</div><div class="item-name">${item.name}</div>`;
-                card.addEventListener('click', () => {
-                    document.querySelectorAll('.item-card').forEach(c => c.classList.remove('selected'));
-                    card.classList.add('selected');
-                    selectedItem = item;
-                });
-                grid.appendChild(card);
-            });
-            document.getElementById('catalogCount').textContent = catalog.length;
-        }
-
-        function filterCategory(cat, activeBtn) {
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            activeBtn.classList.add('active');
-            document.querySelectorAll('.item-card').forEach(card => {
-                if (cat === 'all' || card.dataset.cat === cat) card.style.display = 'flex';
-                else card.style.display = 'none';
-            });
-        }
-
         // --- Состояние ---
-        let placedItems = [];
-        let currentMode = 'wall'; // wall, item, wallDrag, move, rotate
-        let wallMat = 'brick';
-        let wallColor = '#c0b8b0';
-        let wallLength = 4, wallHeight = 3, wallThick = 0.3;
-        let itemMat = 'wood', itemColor = '#b09a80', itemRotate = 0, itemScale = 1, itemElev = 0;
-        let snapEnabled = true;
-        let selectedItem = catalog[0];
-
-        // Для Drag-строительства
+        let placedObjects = [];
+        let currentMode = 'wall'; // wall, item, move, rotate
+        let selectedObject = null; // для перемещения/вращения/копирования
         let isDragging = false;
-        let dragStart = null;
-        let tempWall = null;
+        let dragStartPos = new THREE.Vector3();
+        let initialObjectPos = new THREE.Vector3();
+        let initialMouse = new THREE.Vector2();
 
-        // Для перемещения/вращения
-        let movingObject = null;
-        let rotatingObject = null;
-        let lastSelectedMesh = null;
-        let moveOffset = new THREE.Vector3();
+        // Параметры
+        let wallLength = 2, wallHeight = 2, wallThick = 0.2;
+        let wallColor = '#aaccff';
+        let itemShape = 'box', itemColor = '#c47e5a', itemScale = 1, itemRotate = 0;
+        let snapEnabled = true;
 
-        // --- Обновление параметров ---
-        document.getElementById('wallLength').addEventListener('input', (e) => wallLength = parseFloat(e.target.value));
-        document.getElementById('wallHeight').addEventListener('input', (e) => wallHeight = parseFloat(e.target.value));
-        document.getElementById('wallThick').addEventListener('input', (e) => wallThick = parseFloat(e.target.value));
-        document.getElementById('wallMat').addEventListener('change', (e) => wallMat = e.target.value);
-        document.getElementById('wallColor').addEventListener('input', (e) => wallColor = e.target.value);
-        document.getElementById('itemMat').addEventListener('change', (e) => itemMat = e.target.value);
-        document.getElementById('itemColor').addEventListener('input', (e) => itemColor = e.target.value);
-        document.getElementById('itemRotate').addEventListener('input', (e) => itemRotate = parseFloat(e.target.value));
-        document.getElementById('itemScale').addEventListener('input', (e) => itemScale = parseFloat(e.target.value));
-        document.getElementById('itemElev').addEventListener('input', (e) => itemElev = parseFloat(e.target.value));
-        document.getElementById('snapGrid').addEventListener('change', (e) => snapEnabled = e.target.checked);
+        // --- Обновление UI ---
+        function updateUI() {
+            document.getElementById('objCount').innerText = placedObjects.length;
+            document.getElementById('modeDisplay').innerText = 
+                currentMode === 'wall' ? 'Стена' :
+                currentMode === 'item' ? 'Предмет' :
+                currentMode === 'move' ? 'Перемещение' : 'Поворот';
+            
+            document.getElementById('modeWall').classList.toggle('active', currentMode === 'wall');
+            document.getElementById('modeItem').classList.toggle('active', currentMode === 'item');
+            document.getElementById('modeMove').classList.toggle('active', currentMode === 'move');
+            document.getElementById('modeRotate').classList.toggle('active', currentMode === 'rotate');
 
-        // Пост-эффекты чекбоксы
-        document.getElementById('fxBloom').addEventListener('change', (e) => bloomPass.enabled = e.target.checked);
-        document.getElementById('fxAO').addEventListener('change', (e) => saoPass.enabled = e.target.checked);
-        document.getElementById('fxSSR').addEventListener('change', (e) => ssrPass.enabled = e.target.checked);
-
-        // --- Переключение режимов ---
-        const modeWall = document.getElementById('modeWall');
-        const modeItem = document.getElementById('modeItem');
-        const modeWallDrag = document.getElementById('modeWallDrag');
-        const modeMove = document.getElementById('modeMove');
-        const modeRotate = document.getElementById('modeRotate');
-
-        modeWall.addEventListener('click', () => setMode('wall'));
-        modeItem.addEventListener('click', () => setMode('item'));
-        modeWallDrag.addEventListener('click', () => setMode('wallDrag'));
-        modeMove.addEventListener('click', () => setMode('move'));
-        modeRotate.addEventListener('click', () => setMode('rotate'));
-
-        function setMode(mode) {
-            currentMode = mode;
-            [modeWall, modeItem, modeWallDrag, modeMove, modeRotate].forEach(b => b.classList.remove('active'));
-            if (mode === 'wall') {
-                modeWall.classList.add('active');
-                document.getElementById('wallControls').style.display = 'block';
-                document.getElementById('itemControls').style.display = 'none';
-                document.getElementById('hint').innerHTML = 'Режим: Стена — клик для установки';
-            } else if (mode === 'item') {
-                modeItem.classList.add('active');
-                document.getElementById('wallControls').style.display = 'none';
-                document.getElementById('itemControls').style.display = 'block';
-                document.getElementById('hint').innerHTML = 'Режим: Декор — выберите предмет и кликните';
-            } else if (mode === 'wallDrag') {
-                modeWallDrag.classList.add('active');
-                document.getElementById('wallControls').style.display = 'block';
-                document.getElementById('itemControls').style.display = 'none';
-                document.getElementById('hint').innerHTML = 'Режим: Стена Drag — зажмите и тяните';
-            } else if (mode === 'move') {
-                modeMove.classList.add('active');
-                document.getElementById('wallControls').style.display = 'none';
-                document.getElementById('itemControls').style.display = 'block';
-                document.getElementById('hint').innerHTML = 'Режим: Перемещение — зажмите Ctrl+клик по предмету';
-            } else if (mode === 'rotate') {
-                modeRotate.classList.add('active');
-                document.getElementById('wallControls').style.display = 'none';
-                document.getElementById('itemControls').style.display = 'block';
-                document.getElementById('hint').innerHTML = 'Режим: Вращение — зажмите Ctrl+клик по предмету и двигайте мышь';
-            }
-            if (tempWall) scene.remove(tempWall);
-            tempWall = null;
-            isDragging = false;
-            movingObject = null;
-            rotatingObject = null;
+            document.getElementById('wallParams').style.display = currentMode === 'wall' ? 'block' : 'none';
+            document.getElementById('itemParams').style.display = currentMode === 'item' ? 'block' : 'none';
         }
 
-        // --- Построение комнаты ---
-        document.getElementById('buildRoomBtn').addEventListener('click', () => {
-            const len = parseFloat(document.getElementById('roomLength').value);
-            const wid = parseFloat(document.getElementById('roomWidth').value);
-            const h = parseFloat(document.getElementById('roomHeight').value);
-            const wallMat = document.getElementById('roomWallMat').value;
-            const wallColor = document.getElementById('roomWallColor').value;
-            const addFloor = document.getElementById('roomFloor').checked;
-            const addCeil = document.getElementById('roomCeil').checked;
-
-            const tex = createWallTexture(wallMat, wallColor);
-            const wallMaterial = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.7 });
-
-            // Стены (четыре штуки)
-            const thick = 0.3; // фиксированная толщина для стен комнаты
-
-            // Передняя стена
-            const front = new THREE.Mesh(new THREE.BoxGeometry(len, h, thick), wallMaterial);
-            front.position.set(0, h/2, wid/2);
-            front.castShadow = true; front.receiveShadow = true;
-            scene.add(front);
-            placedItems.push(front);
-
-            // Задняя стена
-            const back = front.clone();
-            back.position.set(0, h/2, -wid/2);
-            scene.add(back);
-            placedItems.push(back);
-
-            // Левая стена
-            const left = new THREE.Mesh(new THREE.BoxGeometry(thick, h, wid), wallMaterial);
-            left.position.set(-len/2, h/2, 0);
-            left.castShadow = true; left.receiveShadow = true;
-            scene.add(left);
-            placedItems.push(left);
-
-            // Правая стена
-            const right = left.clone();
-            right.position.set(len/2, h/2, 0);
-            scene.add(right);
-            placedItems.push(right);
-
-            // Пол
-            if (addFloor) {
-                const floorMat = new THREE.MeshStandardMaterial({ color: 0x2a2e3a, roughness: 0.8 });
-                const floor = new THREE.Mesh(new THREE.BoxGeometry(len, 0.1, wid), floorMat);
-                floor.position.set(0, 0, 0);
-                floor.castShadow = true; floor.receiveShadow = true;
-                scene.add(floor);
-                placedItems.push(floor);
-            }
-
-            // Потолок
-            if (addCeil) {
-                const ceilMat = new THREE.MeshStandardMaterial({ color: 0x3a3f4a, roughness: 0.9 });
-                const ceil = new THREE.Mesh(new THREE.BoxGeometry(len, 0.1, wid), ceilMat);
-                ceil.position.set(0, h, 0);
-                ceil.castShadow = true; ceil.receiveShadow = true;
-                scene.add(ceil);
-                placedItems.push(ceil);
-            }
-
-            updateStats();
-        });
-
-        // --- Сохранение/загрузка ---
-        document.getElementById('saveBtn').addEventListener('click', () => {
-            const data = placedItems.map(item => ({
-                position: [item.position.x, item.position.y, item.position.z],
-                rotation: [item.rotation.x, item.rotation.y, item.rotation.z],
-                scale: [item.scale.x, item.scale.y, item.scale.z],
-                color: item.material?.color?.getHex() || 0xffffff
-            }));
-            localStorage.setItem('design_scene', JSON.stringify(data));
-            alert('Сцена сохранена');
-        });
-
-        document.getElementById('loadBtn').addEventListener('click', () => {
-            const data = JSON.parse(localStorage.getItem('design_scene'));
-            if (!data) return;
-            placedItems.forEach(i => scene.remove(i));
-            placedItems = [];
-            data.forEach(d => {
-                const mat = new THREE.MeshStandardMaterial({ color: d.color });
-                const geo = new THREE.BoxGeometry(1,1,1);
-                const mesh = new THREE.Mesh(geo, mat);
-                mesh.position.set(d.position[0], d.position[1], d.position[2]);
-                mesh.rotation.set(d.rotation[0], d.rotation[1], d.rotation[2]);
-                mesh.scale.set(d.scale[0], d.scale[1], d.scale[2]);
-                mesh.castShadow = true; mesh.receiveShadow = true;
-                scene.add(mesh);
-                placedItems.push(mesh);
-            });
-            updateStats();
-        });
-
-        // --- Отмена и очистка ---
-        document.getElementById('undoBtn').addEventListener('click', () => {
-            if (placedItems.length) {
-                scene.remove(placedItems.pop());
-                updateStats();
-            }
-        });
-        document.getElementById('clearBtn').addEventListener('click', () => {
-            placedItems.forEach(i => scene.remove(i));
-            placedItems = [];
-            lastSelectedMesh = null;
-            updateStats();
-        });
-
-        // --- Клавиатура ---
-        document.addEventListener('keydown', (e) => {
-            if (e.target.closest('input,select')) return;
-            if (e.key === 'Delete' || e.key === 'Del') {
-                if (lastSelectedMesh) {
-                    scene.remove(lastSelectedMesh);
-                    placedItems = placedItems.filter(i => i !== lastSelectedMesh);
-                    lastSelectedMesh = null;
-                    updateStats();
-                }
-            }
-            if (e.ctrlKey && e.key === 'd') {
-                e.preventDefault();
-                if (lastSelectedMesh) {
-                    const clone = lastSelectedMesh.clone();
-                    clone.position.x += 1;
-                    scene.add(clone);
-                    placedItems.push(clone);
-                    lastSelectedMesh = clone;
-                    updateStats();
-                }
-            }
-        });
-
-        // --- Мышь ---
-        const raycaster = new THREE.Raycaster();
-        const mouse = new THREE.Vector2();
-        const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
-        const intersect = new THREE.Vector3();
-
-        function snapPosition(pos, gridSize = 0.5) {
+        // --- Привязка к сетке ---
+        function snap(pos, grid = 0.5) {
             if (!snapEnabled) return pos;
             return new THREE.Vector3(
-                Math.round(pos.x / gridSize) * gridSize,
-                Math.round(pos.y / gridSize) * gridSize,
-                Math.round(pos.z / gridSize) * gridSize
+                Math.round(pos.x / grid) * grid,
+                Math.round(pos.y / grid) * grid,
+                Math.round(pos.z / grid) * grid
             );
         }
 
-        renderer.domElement.addEventListener('mousedown', (e) => {
-            if (e.target.closest('.ui-container')) return;
-            mouse.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
-            mouse.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
-            raycaster.setFromCamera(mouse, camera);
+        // --- Создание объектов ---
+        function createWall() {
+            const color = parseInt(wallColor.slice(1), 16);
+            const mat = new THREE.MeshStandardMaterial({ color, roughness: 0.7 });
+            const geo = new THREE.BoxGeometry(wallThick, wallHeight, wallLength);
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            return mesh;
+        }
 
-            // Режим перемещения/вращения (Ctrl+клик)
-            if ((currentMode === 'move' || currentMode === 'rotate') && e.ctrlKey) {
-                const intersects = raycaster.intersectObjects(placedItems);
-                if (intersects.length) {
-                    if (currentMode === 'move') {
-                        movingObject = intersects[0].object;
-                        lastSelectedMesh = movingObject;
-                        isDragging = true;
-                        raycaster.ray.intersectPlane(plane, moveOffset);
-                        if (snapEnabled) moveOffset = snapPosition(moveOffset);
-                    } else if (currentMode === 'rotate') {
-                        rotatingObject = intersects[0].object;
-                        lastSelectedMesh = rotatingObject;
-                        isDragging = true;
-                    }
+        function createItem() {
+            const color = parseInt(itemColor.slice(1), 16);
+            const mat = new THREE.MeshStandardMaterial({ color, roughness: 0.5 });
+            let geo;
+            if (itemShape === 'sphere') geo = new THREE.SphereGeometry(0.5, 16);
+            else if (itemShape === 'cylinder') geo = new THREE.CylinderGeometry(0.5, 0.5, 1, 16);
+            else geo = new THREE.BoxGeometry(1, 1, 1);
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.scale.set(itemScale, itemScale, itemScale);
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            return mesh;
+        }
+
+        // --- Получение позиции под мышью ---
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+        const intersectPoint = new THREE.Vector3();
+
+        function getIntersect(event) {
+            mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+            mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+            if (raycaster.ray.intersectPlane(plane, intersectPoint)) {
+                return intersectPoint.clone();
+            }
+            return null;
+        }
+
+        // --- Обработчики событий ---
+        renderer.domElement.addEventListener('mousedown', (e) => {
+            if (e.button !== 0) return; // только левая кнопка
+            if (e.target.closest('#controls, #panel')) return;
+
+            const point = getIntersect(e);
+            if (!point) return;
+
+            if (currentMode === 'move' && e.ctrlKey) {
+                // Выбор объекта для перемещения
+                const pos = snap(point);
+                raycaster.ray.intersectPlane(plane, pos);
+                const intersects = raycaster.intersectObjects(placedObjects);
+                if (intersects.length > 0) {
+                    selectedObject = intersects[0].object;
+                    isDragging = true;
+                    initialObjectPos.copy(selectedObject.position);
+                    dragStartPos.copy(snap(point));
                     e.preventDefault();
                 }
-                return;
-            }
-
-            // Режим wallDrag
-            if (currentMode === 'wallDrag' && e.button === 0) {
-                raycaster.ray.intersectPlane(plane, intersect);
-                if (intersect) {
+            } else if (currentMode === 'rotate' && e.ctrlKey) {
+                // Выбор объекта для вращения
+                const intersects = raycaster.intersectObjects(placedObjects);
+                if (intersects.length > 0) {
+                    selectedObject = intersects[0].object;
                     isDragging = true;
-                    dragStart = snapPosition(intersect.clone(), 0.5);
-                    dragStart.y = 0;
-                    const texture = createWallTexture(wallMat, wallColor);
-                    const mat = new THREE.MeshStandardMaterial({ map: texture, transparent: true, opacity: 0.5, roughness: 0.7 });
-                    tempWall = new THREE.Mesh(new THREE.BoxGeometry(wallThick, wallHeight, 0.1), mat);
-                    tempWall.castShadow = true; tempWall.receiveShadow = true;
-                    scene.add(tempWall);
+                    initialMouse.set(mouse.x, mouse.y);
+                    e.preventDefault();
                 }
             }
         });
 
         renderer.domElement.addEventListener('mousemove', (e) => {
-            if (e.target.closest('.ui-container')) return;
             if (!isDragging) return;
+            const point = getIntersect(e);
+            if (!point) return;
 
-            mouse.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
-            mouse.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
-            raycaster.setFromCamera(mouse, camera);
-            if (!raycaster.ray.intersectPlane(plane, intersect)) return;
-
-            if (currentMode === 'wallDrag' && tempWall) {
-                let end = snapPosition(intersect.clone(), 0.5);
-                end.y = 0;
-                const delta = new THREE.Vector3().subVectors(end, dragStart);
-                const length = Math.sqrt(delta.x*delta.x + delta.z*delta.z);
-                const angle = Math.atan2(delta.x, delta.z);
-                tempWall.position.x = dragStart.x + delta.x/2;
-                tempWall.position.z = dragStart.z + delta.z/2;
-                tempWall.position.y = wallHeight/2;
-                tempWall.scale.set(1, wallHeight / (tempWall.geometry.parameters.height || 1), length);
-                tempWall.rotation.y = angle;
-            } else if (currentMode === 'move' && movingObject) {
-                let pos = intersect.clone();
-                if (snapEnabled) pos = snapPosition(pos, 0.5);
-                movingObject.position.x = pos.x;
-                movingObject.position.z = pos.z;
-                movingObject.position.y = pos.y + movingObject.scale.y * 0.5;
-            } else if (currentMode === 'rotate' && rotatingObject) {
-                // Вращаем вокруг Y по движению мыши по горизонтали
-                rotatingObject.rotation.y += mouse.x * 0.1;
+            if (currentMode === 'move' && selectedObject) {
+                let target = snap(point);
+                target.y = target.y + selectedObject.scale.y * 0.5; // поднимаем на пол
+                selectedObject.position.copy(target);
+            } else if (currentMode === 'rotate' && selectedObject) {
+                // вращаем по горизонтальному движению мыши
+                const delta = mouse.x - initialMouse.x;
+                selectedObject.rotation.y += delta * 0.5;
+                initialMouse.set(mouse.x, mouse.y);
             }
         });
 
         renderer.domElement.addEventListener('mouseup', (e) => {
-            if (e.target.closest('.ui-container')) return;
-            if (!isDragging) return;
-
-            if (currentMode === 'wallDrag' && tempWall) {
-                const length = tempWall.scale.z;
-                const texture = createWallTexture(wallMat, wallColor);
-                const mat = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.7 });
-                const finalWall = new THREE.Mesh(new THREE.BoxGeometry(wallThick, wallHeight, length), mat);
-                finalWall.position.copy(tempWall.position);
-                finalWall.position.y = wallHeight/2;
-                finalWall.rotation.copy(tempWall.rotation);
-                finalWall.castShadow = true; finalWall.receiveShadow = true;
-                scene.add(finalWall);
-                placedItems.push(finalWall);
-                lastSelectedMesh = finalWall;
-                scene.remove(tempWall);
-                tempWall = null;
-                updateStats();
+            if (isDragging) {
+                isDragging = false;
+                selectedObject = null;
             }
-            movingObject = null;
-            rotatingObject = null;
-            isDragging = false;
         });
 
         renderer.domElement.addEventListener('click', (e) => {
-            if (e.target.closest('.ui-container')) return;
+            if (e.target.closest('#controls, #panel')) return;
+            if (e.ctrlKey) return; // при зажатом Ctrl обрабатываем перемещение/вращение отдельно
 
-            mouse.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
-            mouse.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
-            raycaster.setFromCamera(mouse, camera);
-            if (!raycaster.ray.intersectPlane(plane, intersect)) return;
+            const point = getIntersect(e);
+            if (!point) return;
 
-            let pos = intersect.clone();
-            if (snapEnabled) pos = snapPosition(pos, 0.5);
-            pos.y = 0;
+            let pos = snap(point);
+            pos.y = 0; // всегда ставим на пол (потом поднимем)
 
             if (currentMode === 'wall') {
-                const texture = createWallTexture(wallMat, wallColor);
-                const mat = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.7 });
-                const wall = new THREE.Mesh(new THREE.BoxGeometry(wallThick, wallHeight, wallLength), mat);
+                const wall = createWall();
                 wall.position.copy(pos);
-                wall.position.y = wallHeight/2;
-                wall.castShadow = true; wall.receiveShadow = true;
+                wall.position.y = wallHeight / 2;
                 scene.add(wall);
-                placedItems.push(wall);
-                lastSelectedMesh = wall;
+                placedObjects.push(wall);
             } else if (currentMode === 'item') {
-                const item = createItemFromCatalog(selectedItem, itemColor, itemMat);
+                const item = createItem();
                 item.position.copy(pos);
-                item.position.y = itemElev + 0.5;
-                item.scale.set(itemScale, itemScale, itemScale);
+                item.position.y = itemScale * 0.5; // поднимаем
                 item.rotation.y = itemRotate * Math.PI / 180;
                 scene.add(item);
-                placedItems.push(item);
-                lastSelectedMesh = item;
+                placedObjects.push(item);
             }
-            updateStats();
+            updateUI();
         });
 
-        // --- Статистика и анимация ---
-        function updateStats() {
-            document.getElementById('statItems').textContent = placedItems.length;
-        }
+        // --- Клавиатура ---
+        document.addEventListener('keydown', (e) => {
+            if (e.target.closest('input,select')) return;
 
-        let lastTime = performance.now();
-        let frames = 0;
-        function updateFPS() {
-            frames++;
-            const now = performance.now();
-            if (now - lastTime >= 1000) {
-                document.getElementById('statFps').textContent = frames;
-                frames = 0;
-                lastTime = now;
-            }
-        }
-
-        function animatePlants() {
-            placedItems.forEach(item => {
-                if (item.userData && item.userData.speed) {
-                    item.rotation.z = Math.sin(Date.now() * 0.001 * item.userData.speed) * 0.02;
+            if (e.key === 'Delete' || e.key === 'Del') {
+                if (selectedObject) {
+                    const idx = placedObjects.indexOf(selectedObject);
+                    if (idx !== -1) {
+                        scene.remove(selectedObject);
+                        placedObjects.splice(idx, 1);
+                        selectedObject = null;
+                        updateUI();
+                    }
                 }
-            });
-        }
+            }
 
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                if (selectedObject) {
+                    const clone = selectedObject.clone();
+                    clone.position.x += 1;
+                    clone.position.y += 1; // немного выше, чтобы не перекрывалось
+                    scene.add(clone);
+                    placedObjects.push(clone);
+                    selectedObject = clone;
+                    updateUI();
+                }
+            }
+        });
+
+        // --- Кнопки интерфейса ---
+        document.getElementById('modeWall').addEventListener('click', () => {
+            currentMode = 'wall';
+            updateUI();
+        });
+        document.getElementById('modeItem').addEventListener('click', () => {
+            currentMode = 'item';
+            updateUI();
+        });
+        document.getElementById('modeMove').addEventListener('click', () => {
+            currentMode = 'move';
+            updateUI();
+        });
+        document.getElementById('modeRotate').addEventListener('click', () => {
+            currentMode = 'rotate';
+            updateUI();
+        });
+        document.getElementById('undo').addEventListener('click', () => {
+            if (placedObjects.length) {
+                scene.remove(placedObjects.pop());
+                updateUI();
+            }
+        });
+        document.getElementById('clear').addEventListener('click', () => {
+            placedObjects.forEach(obj => scene.remove(obj));
+            placedObjects = [];
+            selectedObject = null;
+            updateUI();
+        });
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            if (selectedObject) {
+                const clone = selectedObject.clone();
+                clone.position.x += 1;
+                scene.add(clone);
+                placedObjects.push(clone);
+                selectedObject = clone;
+                updateUI();
+            }
+        });
+
+        // --- Ползунки ---
+        document.getElementById('wallLength').addEventListener('input', (e) => wallLength = parseFloat(e.target.value));
+        document.getElementById('wallHeight').addEventListener('input', (e) => wallHeight = parseFloat(e.target.value));
+        document.getElementById('wallThick').addEventListener('input', (e) => wallThick = parseFloat(e.target.value));
+        document.getElementById('wallColor').addEventListener('input', (e) => wallColor = e.target.value);
+        document.getElementById('itemShape').addEventListener('change', (e) => itemShape = e.target.value);
+        document.getElementById('itemColor').addEventListener('input', (e) => itemColor = e.target.value);
+        document.getElementById('itemScale').addEventListener('input', (e) => itemScale = parseFloat(e.target.value));
+        document.getElementById('itemRotate').addEventListener('input', (e) => itemRotate = parseFloat(e.target.value));
+        document.getElementById('snapGrid').addEventListener('change', (e) => snapEnabled = e.target.checked);
+
+        // --- Анимация ---
         function animate() {
             requestAnimationFrame(animate);
-            animatePlants();
             controls.update();
-            composer.render();
-            updateFPS();
+            renderer.render(scene, camera);
         }
+        animate();
 
+        // --- Resize ---
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
-            composer.setSize(window.innerWidth, window.innerHeight);
         });
 
+        // --- Telegram (опционально) ---
         if (window.Telegram?.WebApp) {
             window.Telegram.WebApp.expand();
             window.Telegram.WebApp.ready();
         }
 
-        loadCatalog();
-        animate();
+        // --- Инициализация UI ---
+        updateUI();
     </script>
 </body>
 </html>
