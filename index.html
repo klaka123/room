@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>✦ ATELIER — ДЕТАЛИ ИНТЕРЬЕРА ✦</title>
+    <title>✦ ATELIER PRO — ДЕТАЛИЗАЦИЯ МАКСИМУМ</title>
     <style>
         * {
             margin: 0;
@@ -43,11 +43,6 @@
             transition: all 0.5s ease;
         }
 
-        .premium:hover {
-            background: rgba(24, 30, 42, 0.8);
-            border-color: rgba(255, 215, 180, 0.15);
-        }
-
         /* Контейнер UI */
         .ui-container {
             position: absolute;
@@ -65,7 +60,7 @@
         /* Левая панель */
         .catalog-panel {
             pointer-events: all;
-            width: 480px;
+            width: 520px;
             height: calc(100vh - 56px);
             display: flex;
             flex-direction: column;
@@ -94,13 +89,11 @@
             gap: 16px;
             color: #ffe8d8;
             font-family: 'Playfair Display', serif;
-            letter-spacing: 0.5px;
         }
 
         .panel-header h2 i {
             font-size: 1.6rem;
             color: #ffd7b0;
-            opacity: 0.8;
         }
 
         .badge {
@@ -111,7 +104,6 @@
             border-radius: 40px;
             font-weight: 500;
             font-size: 1rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .search-box {
@@ -125,7 +117,6 @@
             top: 48px;
             color: #ffd7b0;
             font-size: 1.1rem;
-            opacity: 0.7;
         }
 
         .search-box input {
@@ -137,9 +128,7 @@
             color: white;
             font-size: 1rem;
             transition: all 0.3s ease;
-            font-weight: 400;
             backdrop-filter: blur(10px);
-            font-family: 'Montserrat', sans-serif;
         }
 
         .search-box input:focus {
@@ -169,10 +158,8 @@
             cursor: pointer;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            font-weight: 500;
             backdrop-filter: blur(10px);
             text-transform: uppercase;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .category-btn:hover {
@@ -187,7 +174,6 @@
             border-color: transparent;
             color: #0a0c12;
             font-weight: 600;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .items-grid {
@@ -217,7 +203,6 @@
             background: rgba(40, 50, 70, 0.6);
             transform: translateY(-6px);
             border-color: rgba(255, 215, 180, 0.2);
-            box-shadow: 0 25px 40px -30px #000;
         }
 
         .item-card.selected {
@@ -248,13 +233,12 @@
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 215, 180, 0.15);
             width: 100%;
-            font-family: 'Montserrat', sans-serif;
         }
 
         /* Правая панель */
         .tools-panel {
             pointer-events: all;
-            width: 400px;
+            width: 420px;
             height: fit-content;
             padding: 28px;
             animation: slideRight 0.8s ease;
@@ -282,14 +266,10 @@
             font-family: 'Playfair Display', serif;
         }
 
-        .tool-section h3 i {
-            font-size: 1rem;
-            opacity: 0.7;
-        }
-
         .tool-buttons {
             display: flex;
             gap: 12px;
+            flex-wrap: wrap;
         }
 
         .tool-btn {
@@ -309,7 +289,6 @@
             font-weight: 500;
             backdrop-filter: blur(10px);
             text-transform: uppercase;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .tool-btn:hover {
@@ -339,8 +318,6 @@
             margin-bottom: 22px;
             color: #fff0e0;
             font-size: 0.9rem;
-            font-weight: 400;
-            font-family: 'Montserrat', sans-serif;
         }
 
         label span {
@@ -372,10 +349,6 @@
             transition: all 0.2s ease;
         }
 
-        input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
-        }
-
         input[type="color"] {
             width: 100%;
             height: 44px;
@@ -399,7 +372,6 @@
             cursor: pointer;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
-            font-family: 'Montserrat', sans-serif;
         }
 
         select:hover {
@@ -472,26 +444,18 @@
             align-items: center;
             font-weight: 400;
             color: #fff0e0;
-            font-family: 'Montserrat', sans-serif;
         }
 
         /* Скроллбар */
-        ::-webkit-scrollbar {
-            width: 3px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 215, 180, 0.02);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 215, 180, 0.3);
-            border-radius: 10px;
-        }
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 215, 180, 0.02); }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 215, 180, 0.3); border-radius: 10px; }
 
         /* Подсказка */
         .hint {
             position: absolute;
             top: 28px;
-            right: 440px;
+            right: 460px;
             background: rgba(10, 15, 22, 0.6);
             color: #fff0e0;
             padding: 12px 28px;
@@ -501,7 +465,6 @@
             border: 1px solid rgba(255, 215, 180, 0.15);
             pointer-events: none;
             animation: glow 4s infinite;
-            font-family: 'Montserrat', sans-serif;
         }
 
         @keyframes glow {
@@ -551,7 +514,7 @@
 </head>
 <body>
     <div class="ambient"></div>
-    <div class="logo">ATELIER</div>
+    <div class="logo">ATELIER PRO</div>
 
     <div class="ui-container">
         <!-- Левая панель -->
@@ -587,19 +550,21 @@
                 <h3><i class="fas fa-compass"></i> РЕЖИМ</h3>
                 <div class="tool-buttons">
                     <button class="tool-btn active" id="mode-place">
-                        <i class="fas fa-hand"></i> СТАВИТЬ
+                        <i class="fas fa-hand"></i> ПРЕДМЕТЫ
                     </button>
-                    <button class="tool-btn" id="mode-build">
-                        <i class="fas fa-draw-polygon"></i> СТЕНА
+                    <button class="tool-btn" id="mode-build-drag">
+                        <i class="fas fa-arrows-alt"></i> СТЕНА (DRAG)
+                    </button>
+                    <button class="tool-btn" id="mode-build-click">
+                        <i class="fas fa-mouse-pointer"></i> СТЕНА (2 КЛИКА)
                     </button>
                 </div>
             </div>
 
-            <!-- Панель стены -->
+            <!-- Панель стены (общая) -->
             <div class="tool-section" id="build-controls" style="display: none;">
                 <h3><i class="fas fa-cubes"></i> ПАРАМЕТРЫ СТЕНЫ</h3>
                 <div class="control-group">
-                    <label><span>ДЛИНА (drag)</span> <input type="range" id="wall-length" min="1" max="15" step="0.1" value="4"></label>
                     <label><span>ВЫСОТА</span> <input type="range" id="wall-height" min="1" max="8" step="0.1" value="2.8"></label>
                     <label><span>ТОЛЩИНА</span> <input type="range" id="wall-thick" min="0.1" max="1" step="0.05" value="0.2"></label>
                     <label><span>ЦВЕТ</span> <input type="color" id="wall-color" value="#c0b0a0"></label>
@@ -612,7 +577,6 @@
                             <option value="stone">Камень</option>
                         </select>
                     </label>
-                    <button class="action-btn" id="build-wall"><i class="fas fa-plus-circle"></i> ПОСТРОИТЬ</button>
                 </div>
             </div>
 
@@ -663,8 +627,8 @@
         </div>
     </div>
 
-    <div class="hint">
-        <i class="fas fa-mouse-pointer"></i> ЛКМ — поставить | Зажать и тянуть — стена
+    <div class="hint" id="hint-text">
+        <i class="fas fa-mouse-pointer"></i> Режим: ПРЕДМЕТЫ — клик для размещения
     </div>
 
     <canvas id="canvas"></canvas>
@@ -815,9 +779,65 @@
             }
         }
 
+        // --- Процедурные текстуры для стен ---
+        function createWallMaterial(type, color) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = color;
+            ctx.fillRect(0, 0, 256, 256);
+            
+            if (type === 'brick') {
+                ctx.fillStyle = '#8b5a2b';
+                for (let i = 0; i < 256; i+=32) {
+                    for (let j = 0; j < 256; j+=16) {
+                        ctx.fillRect(i, j, 28, 10);
+                    }
+                }
+                ctx.strokeStyle = '#4a2a1a';
+                ctx.lineWidth = 2;
+                for (let i = 0; i < 256; i+=32) {
+                    ctx.beginPath();
+                    ctx.moveTo(i, 0);
+                    ctx.lineTo(i, 256);
+                    ctx.stroke();
+                }
+            } else if (type === 'concrete') {
+                ctx.fillStyle = '#7a7a7a';
+                ctx.fillRect(0, 0, 256, 256);
+                for (let i = 0; i < 500; i++) {
+                    ctx.fillStyle = `rgba(100,100,100,${Math.random()*0.3})`;
+                    ctx.beginPath();
+                    ctx.arc(Math.random()*256, Math.random()*256, Math.random()*5, 0, Math.PI*2);
+                    ctx.fill();
+                }
+            } else if (type === 'wood') {
+                ctx.fillStyle = '#b08968';
+                ctx.fillRect(0, 0, 256, 256);
+                for (let i = 0; i < 10; i++) {
+                    ctx.strokeStyle = `#${Math.floor(0x8b5a2b + i*0x1000).toString(16)}`;
+                    ctx.lineWidth = 4;
+                    ctx.beginPath();
+                    ctx.moveTo(0, i*25);
+                    ctx.lineTo(256, i*25+20);
+                    ctx.stroke();
+                }
+            } else {
+                ctx.fillStyle = color;
+                ctx.fillRect(0, 0, 256, 256);
+            }
+            
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(2, 2);
+            return new THREE.MeshStandardMaterial({ map: texture, roughness: 0.7 });
+        }
+
         // ==================== ДЕТАЛИЗИРОВАННЫЕ МОДЕЛИ ====================
 
-        // --- КРЕСЛО ЧЕСТЕРФИЛД (капитоне) ---
+        // --- КРЕСЛО ЧЕСТЕРФИЛД (с пуговицами и резьбой) ---
         function createChesterfieldChair(colorHex, style) {
             const group = new THREE.Group();
             const leather = createMaterial(style, colorHex);
@@ -830,14 +850,20 @@
             base.castShadow = true; base.receiveShadow = true;
             group.add(base);
 
-            // Ножки
-            const legGeo = new THREE.CylinderGeometry(0.08, 0.1, 0.2, 6);
+            // Ножки резные
+            const legGeo = new THREE.CylinderGeometry(0.08, 0.1, 0.2, 8);
             [-0.35, 0.35].forEach(x => {
                 [-0.35, 0.35].forEach(z => {
                     const leg = new THREE.Mesh(legGeo, wood);
                     leg.position.set(x, 0.15, z);
                     leg.castShadow = true; leg.receiveShadow = true;
                     group.add(leg);
+                    // Колесики на ножках (декор)
+                    const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.04, 0.01, 6, 12), metal);
+                    wheel.position.set(x, 0.05, z);
+                    wheel.rotation.x = Math.PI/2;
+                    wheel.castShadow = true;
+                    group.add(wheel);
                 });
             });
 
@@ -863,7 +889,7 @@
             armR.castShadow = true; armR.receiveShadow = true;
             group.add(armR);
 
-            // Пуговицы на спинке
+            // Пуговицы на спинке (капитоне)
             for (let i = -0.3; i <= 0.3; i+=0.3) {
                 for (let j = 0.5; j <= 1.1; j+=0.3) {
                     const button = new THREE.Mesh(new THREE.SphereGeometry(0.04, 8), metal);
@@ -876,26 +902,32 @@
             return group;
         }
 
-        // --- КРЕСЛО EAMES ---
+        // --- КРЕСЛО EAMES (более детализированное) ---
         function createEamesChair(colorHex, style) {
             const group = new THREE.Group();
             const plastic = createMaterial(style, colorHex);
             const wood = createMaterial('wood', 0x5a3a2a);
 
             // Основание-качалка
-            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.6, 0.1, 12), wood);
+            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.6, 0.1, 16), wood);
             base.scale.set(1.5, 1, 1.2);
             base.rotation.x = 0.1;
             base.position.y = 0.05;
             base.castShadow = true; base.receiveShadow = true;
             group.add(base);
 
-            // Сиденье
-            const seat = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16), plastic);
-            seat.scale.set(1.3, 0.3, 1.1);
-            seat.position.y = 0.4;
-            seat.castShadow = true; seat.receiveShadow = true;
-            group.add(seat);
+            // Сиденье (сложная форма из двух частей)
+            const seatBottom = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16), plastic);
+            seatBottom.scale.set(1.3, 0.2, 1.1);
+            seatBottom.position.y = 0.3;
+            seatBottom.castShadow = true; seatBottom.receiveShadow = true;
+            group.add(seatBottom);
+            
+            const seatTop = new THREE.Mesh(new THREE.SphereGeometry(0.45, 16), plastic);
+            seatTop.scale.set(1.2, 0.15, 1.0);
+            seatTop.position.y = 0.45;
+            seatTop.castShadow = true; seatTop.receiveShadow = true;
+            group.add(seatTop);
 
             // Спинка
             const back = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16), plastic);
@@ -905,7 +937,7 @@
             group.add(back);
 
             // Подлокотники
-            const armGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.5, 6);
+            const armGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.5, 8);
             const armL = new THREE.Mesh(armGeo, wood);
             armL.position.set(-0.7, 0.6, 0);
             armL.rotation.z = 0.2;
@@ -920,13 +952,13 @@
             return group;
         }
 
-        // --- СТУЛ ЛЮДОВИК (резной) ---
+        // --- СТУЛ ЛЮДОВИК (резной, с изогнутыми ножками) ---
         function createLouisChair(colorHex, style) {
             const group = new THREE.Group();
             const wood = createMaterial('wood', colorHex);
             const fabric = createMaterial('velvet', 0xd4af37);
 
-            // Ножки резные
+            // Ножки резные (изогнутые)
             const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.4, 8);
             [-0.3, 0.3].forEach(x => {
                 [-0.3, 0.3].forEach(z => {
@@ -954,23 +986,23 @@
             seat.castShadow = true; seat.receiveShadow = true;
             group.add(seat);
 
-            // Спинка
-            const back = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.8, 0.1), fabric);
+            // Спинка с резьбой
+            const back = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.8, 0.1), wood);
             back.position.set(0, 0.9, -0.25);
             back.castShadow = true; back.receiveShadow = true;
             group.add(back);
-
-            // Резные элементы спинки
-            const top = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.03, 6, 12), wood);
-            top.position.set(0, 1.3, -0.2);
-            top.rotation.x = Math.PI/2;
-            top.castShadow = true;
-            group.add(top);
+            
+            // Декоративный верх спинки
+            const topOrnament = new THREE.Mesh(new THREE.TorusKnotGeometry(0.1, 0.02, 32, 8), wood);
+            topOrnament.position.set(0, 1.35, -0.2);
+            topOrnament.rotation.x = Math.PI/2;
+            topOrnament.castShadow = true;
+            group.add(topOrnament);
 
             return group;
         }
 
-        // --- ДИВАН ЧЕСТЕРФИЛД ---
+        // --- ДИВАН ЧЕСТЕРФИЛД (максимальная детализация) ---
         function createChesterfieldSofa(colorHex, style) {
             const group = new THREE.Group();
             const leather = createMaterial(style, colorHex);
@@ -983,23 +1015,35 @@
             base.castShadow = true; base.receiveShadow = true;
             group.add(base);
 
-            // Ножки
-            const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.2, 6);
+            // Ножки с колесиками
+            const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.2, 8);
             [-1.0, 1.0].forEach(x => {
                 [-0.4, 0.4].forEach(z => {
                     const leg = new THREE.Mesh(legGeo, wood);
                     leg.position.set(x, 0.15, z);
                     leg.castShadow = true; leg.receiveShadow = true;
                     group.add(leg);
+                    const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.01, 6, 12), metal);
+                    wheel.position.set(x, 0.05, z);
+                    wheel.rotation.x = Math.PI/2;
+                    wheel.castShadow = true;
+                    group.add(wheel);
                 });
             });
 
-            // Сиденья (три подушки)
+            // Сиденья (три подушки с валиками)
             for (let i = -0.7; i <= 0.7; i+=0.7) {
                 const cushion = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.3, 0.85), leather);
                 cushion.position.set(i, 0.3, 0);
                 cushion.castShadow = true; cushion.receiveShadow = true;
                 group.add(cushion);
+                
+                // Валик на спинке
+                const roll = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.6, 8), leather);
+                roll.position.set(i, 0.6, -0.25);
+                roll.rotation.x = Math.PI/2;
+                roll.castShadow = true; roll.receiveShadow = true;
+                group.add(roll);
             }
 
             // Спинка
@@ -1008,7 +1052,7 @@
             back.castShadow = true; back.receiveShadow = true;
             group.add(back);
 
-            // Пуговицы на спинке
+            // Пуговицы на спинке (три ряда)
             for (let i = -0.9; i <= 0.9; i+=0.9) {
                 for (let j = 0.4; j <= 1.2; j+=0.4) {
                     const button = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8), metal);
@@ -1018,7 +1062,7 @@
                 }
             }
 
-            // Подлокотники
+            // Подлокотники с валиками
             const armL = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.7, 0.95), leather);
             armL.position.set(-1.1, 0.5, 0);
             armL.castShadow = true; armL.receiveShadow = true;
@@ -1031,27 +1075,38 @@
             return group;
         }
 
-        // --- ДИВАН МОДЕРН ---
+        // --- ДИВАН МОДЕРН (минималистичный, но с деталями) ---
         function createModernSofa(colorHex, style) {
             const group = new THREE.Group();
             const fabric = createMaterial(style, colorHex);
             const metal = createMaterial('metal', 0xaaaaaa);
 
-            // Каркас
-            const frame = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.2, 0.9), metal);
+            // Каркас металлический
+            const frame = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.1, 0.9), metal);
             frame.position.y = 0.1;
             frame.castShadow = true; frame.receiveShadow = true;
             group.add(frame);
 
+            // Ножки металлические
+            const legGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.2, 8);
+            [-1.1, 1.1].forEach(x => {
+                [-0.4, 0.4].forEach(z => {
+                    const leg = new THREE.Mesh(legGeo, metal);
+                    leg.position.set(x, 0.15, z);
+                    leg.castShadow = true; leg.receiveShadow = true;
+                    group.add(leg);
+                });
+            });
+
             // Сиденье
-            const seat = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.4, 0.8), fabric);
-            seat.position.y = 0.4;
+            const seat = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.3, 0.8), fabric);
+            seat.position.y = 0.35;
             seat.castShadow = true; seat.receiveShadow = true;
             group.add(seat);
 
             // Спинка
-            const back = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.8, 0.3), fabric);
-            back.position.set(0, 0.9, -0.35);
+            const back = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.8, 0.2), fabric);
+            back.position.set(0, 0.8, -0.35);
             back.castShadow = true; back.receiveShadow = true;
             group.add(back);
 
@@ -1069,8 +1124,8 @@
             top.castShadow = true; top.receiveShadow = true;
             group.add(top);
 
-            // Ножки
-            const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.75, 8);
+            // Ножки точеные
+            const legGeo = new THREE.CylinderGeometry(0.12, 0.15, 0.75, 12);
             [-0.8, 0.8].forEach(x => {
                 [-0.4, 0.4].forEach(z => {
                     const leg = new THREE.Mesh(legGeo, wood);
@@ -1083,7 +1138,7 @@
             return group;
         }
 
-        // --- ЖУРНАЛЬНЫЙ СТОЛИК ---
+        // --- ЖУРНАЛЬНЫЙ СТОЛИК (со стеклом) ---
         function createCoffeeTable(colorHex, style) {
             const group = new THREE.Group();
             const wood = createMaterial(style, colorHex);
@@ -1109,7 +1164,7 @@
             return group;
         }
 
-        // --- ТОРШЕР ARC ---
+        // --- ТОРШЕР ARC (с детализированной дугой) ---
         function createArcLamp(colorHex, style) {
             const group = new THREE.Group();
             const metal = createMaterial(style, colorHex);
@@ -1126,13 +1181,15 @@
             pole.castShadow = true; pole.receiveShadow = true;
             group.add(pole);
 
-            // Дуга
-            const arc = new THREE.Mesh(new THREE.TorusGeometry(0.7, 0.04, 8, 32), metal);
-            arc.rotation.x = Math.PI/2;
-            arc.rotation.z = 0.3;
-            arc.position.set(0.4, 2.0, 0);
-            arc.castShadow = true; arc.receiveShadow = true;
-            group.add(arc);
+            // Дуга (из нескольких сегментов)
+            for (let i = 0; i < 3; i++) {
+                const arc = new THREE.Mesh(new THREE.TorusGeometry(0.7, 0.04, 8, 32), metal);
+                arc.rotation.x = Math.PI/2;
+                arc.rotation.z = 0.3 + i*0.05;
+                arc.position.set(0.4 + i*0.1, 2.0 - i*0.1, 0);
+                arc.castShadow = true; arc.receiveShadow = true;
+                group.add(arc);
+            }
 
             // Плафон
             const shade = new THREE.Mesh(new THREE.ConeGeometry(0.3, 0.5, 8), createMaterial('glass', 0xffeedd));
@@ -1149,7 +1206,7 @@
             return group;
         }
 
-        // --- ЛЮСТРА ХРУСТАЛЬНАЯ ---
+        // --- ЛЮСТРА ХРУСТАЛЬНАЯ (с множеством кристаллов) ---
         function createChandelier(colorHex, style) {
             const group = new THREE.Group();
             const metal = createMaterial('metal', 0xd4af37);
@@ -1161,7 +1218,7 @@
             center.castShadow = true; center.receiveShadow = true;
             group.add(center);
 
-            // Кристаллы
+            // Кристаллы (12 основных)
             for (let i = 0; i < 12; i++) {
                 const angle = (i/12)*Math.PI*2;
                 const crystal = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.8, 6), glass);
@@ -1172,11 +1229,20 @@
                 light.position.set(Math.cos(angle)*0.6, 0, Math.sin(angle)*0.6);
                 group.add(light);
             }
+            
+            // Дополнительные мелкие кристаллы
+            for (let i = 0; i < 24; i++) {
+                const angle = (i/24)*Math.PI*2;
+                const crystal = new THREE.Mesh(new THREE.ConeGeometry(0.05, 0.4, 5), glass);
+                crystal.position.set(Math.cos(angle)*0.8, -0.6, Math.sin(angle)*0.8);
+                crystal.castShadow = true;
+                group.add(crystal);
+            }
 
             return group;
         }
 
-        // --- СТЕЛЛАЖ ---
+        // --- СТЕЛЛАЖ (с полками и книгами) ---
         function createBookshelf(colorHex, style) {
             const group = new THREE.Group();
             const wood = createMaterial(style, colorHex);
@@ -1206,10 +1272,19 @@
             back.castShadow = true; back.receiveShadow = true;
             group.add(back);
 
+            // Книги на полках
+            const bookMat = new THREE.MeshStandardMaterial({ color: 0x8b4513 });
+            for (let i = 0; i < 5; i++) {
+                const book = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.3, 0.2), bookMat);
+                book.position.set(-0.4 + i*0.2, 0.6, 0.15);
+                book.castShadow = true; book.receiveShadow = true;
+                group.add(book);
+            }
+
             return group;
         }
 
-        // --- ВАЗА ---
+        // --- ВАЗА (сложная форма) ---
         function createVase(colorHex, style) {
             const group = new THREE.Group();
             const mat = createMaterial(style, colorHex);
@@ -1232,10 +1307,17 @@
             neck.castShadow = true; neck.receiveShadow = true;
             group.add(neck);
 
+            // Ручки (если есть)
+            const handle = new THREE.Mesh(new THREE.TorusGeometry(0.1, 0.02, 6, 12), mat);
+            handle.position.set(0.3, 0.7, 0);
+            handle.rotation.z = Math.PI/2;
+            handle.castShadow = true;
+            group.add(handle);
+
             return group;
         }
 
-        // --- ЗЕРКАЛО ---
+        // --- ЗЕРКАЛО (с рамой) ---
         function createMirror(colorHex, style) {
             const group = new THREE.Group();
             const frameMat = createMaterial(style, colorHex);
@@ -1253,6 +1335,13 @@
             glass.position.z = 0.05;
             glass.castShadow = true; glass.receiveShadow = true;
             group.add(glass);
+
+            // Декоративные элементы рамы
+            const ornament = new THREE.Mesh(new THREE.TorusGeometry(0.1, 0.02, 6, 12), frameMat);
+            ornament.position.set(0.5, 1.4, 0.06);
+            ornament.rotation.y = Math.PI/2;
+            ornament.castShadow = true;
+            group.add(ornament);
 
             return group;
         }
@@ -1280,13 +1369,13 @@
             soil.castShadow = true; soil.receiveShadow = true;
             group.add(soil);
 
-            // Ствол
+            // Ствол (изогнутый)
             const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.15, 1.2, 6), stemMat);
             trunk.position.y = 1.15;
             trunk.castShadow = true; trunk.receiveShadow = true;
             group.add(trunk);
 
-            // Листья
+            // Листья (много)
             for (let i = 0; i < 8; i++) {
                 const angle = (i/8)*Math.PI*2;
                 const leafGroup = new THREE.Group();
@@ -1306,7 +1395,7 @@
             return group;
         }
 
-        // --- ТЕЛЕВИЗОР ---
+        // --- ТЕЛЕВИЗОР (с подставкой) ---
         function createTV(colorHex, style) {
             const group = new THREE.Group();
             const bodyMat = createMaterial(style, colorHex);
@@ -1334,7 +1423,7 @@
             return group;
         }
 
-        // --- КОЛОНКА ---
+        // --- КОЛОНКА (с деталями) ---
         function createSpeaker(colorHex, style) {
             const group = new THREE.Group();
             const mat = createMaterial(style, colorHex);
@@ -1352,6 +1441,12 @@
             driver.rotation.x = 0;
             driver.castShadow = true; driver.receiveShadow = true;
             group.add(driver);
+
+            // Кнопки
+            const btn = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.05, 0.05), driverMat);
+            btn.position.set(0.1, 0.5, 0.16);
+            btn.castShadow = true;
+            group.add(btn);
 
             return group;
         }
@@ -1436,46 +1531,57 @@
         });
 
         // Режимы
-        document.getElementById('mode-place').addEventListener('click', (e) => {
-            e.stopPropagation();
+        const modePlaceBtn = document.getElementById('mode-place');
+        const modeBuildDragBtn = document.getElementById('mode-build-drag');
+        const modeBuildClickBtn = document.getElementById('mode-build-click');
+        const buildControls = document.getElementById('build-controls');
+        const placeControls = document.getElementById('place-controls');
+        const hintText = document.getElementById('hint-text');
+
+        let currentMode = 'place'; // 'place', 'build-drag', 'build-click'
+        let buildClickPhase = 0; // 0 - ожидание первого клика, 1 - ожидание второго
+        let buildStartPoint = null;
+
+        modePlaceBtn.addEventListener('click', () => {
             currentMode = 'place';
-            document.getElementById('mode-place').classList.add('active');
-            document.getElementById('mode-build').classList.remove('active');
-            document.getElementById('build-controls').style.display = 'none';
-            document.getElementById('place-controls').style.display = 'block';
+            modePlaceBtn.classList.add('active');
+            modeBuildDragBtn.classList.remove('active');
+            modeBuildClickBtn.classList.remove('active');
+            buildControls.style.display = 'none';
+            placeControls.style.display = 'block';
+            hintText.innerHTML = '<i class="fas fa-mouse-pointer"></i> Режим: ПРЕДМЕТЫ — клик для размещения';
             if (tempWall) scene.remove(tempWall);
-            isBuilding = false;
+            tempWall = null;
+            isDragging = false;
+            buildClickPhase = 0;
         });
 
-        document.getElementById('mode-build').addEventListener('click', (e) => {
-            e.stopPropagation();
-            currentMode = 'build';
-            document.getElementById('mode-build').classList.add('active');
-            document.getElementById('mode-place').classList.remove('active');
-            document.getElementById('build-controls').style.display = 'block';
-            document.getElementById('place-controls').style.display = 'none';
+        modeBuildDragBtn.addEventListener('click', () => {
+            currentMode = 'build-drag';
+            modePlaceBtn.classList.remove('active');
+            modeBuildDragBtn.classList.add('active');
+            modeBuildClickBtn.classList.remove('active');
+            buildControls.style.display = 'block';
+            placeControls.style.display = 'none';
+            hintText.innerHTML = '<i class="fas fa-arrows-alt"></i> Режим: СТЕНА (DRAG) — зажмите и тяните';
+            if (tempWall) scene.remove(tempWall);
+            tempWall = null;
+            isDragging = false;
+            buildClickPhase = 0;
         });
 
-        // Построить стену (кнопка)
-        document.getElementById('build-wall').addEventListener('click', (e) => {
-            e.stopPropagation();
-            const dir = new THREE.Vector3();
-            camera.getWorldDirection(dir);
-            dir.y = 0; dir.normalize();
-            const pos = camera.position.clone().add(dir.multiplyScalar(5));
-            pos.y = 0;
-            const length = parseFloat(document.getElementById('wall-length').value);
-            const height = parseFloat(document.getElementById('wall-height').value);
-            const thick = parseFloat(document.getElementById('wall-thick').value);
-            const color = document.getElementById('wall-color').value;
-            const wallMat = new THREE.MeshStandardMaterial({ color, roughness: 0.7 });
-            const wall = new THREE.Mesh(new THREE.BoxGeometry(thick, height, length), wallMat);
-            wall.position.copy(pos);
-            wall.position.y = height/2;
-            wall.castShadow = true; wall.receiveShadow = true;
-            scene.add(wall);
-            placedItems.push(wall);
-            document.getElementById('total-items').textContent = placedItems.length;
+        modeBuildClickBtn.addEventListener('click', () => {
+            currentMode = 'build-click';
+            modePlaceBtn.classList.remove('active');
+            modeBuildDragBtn.classList.remove('active');
+            modeBuildClickBtn.classList.add('active');
+            buildControls.style.display = 'block';
+            placeControls.style.display = 'none';
+            hintText.innerHTML = '<i class="fas fa-mouse-pointer"></i> Режим: СТЕНА (2 КЛИКА) — первый клик задаёт начало, второй — конец';
+            if (tempWall) scene.remove(tempWall);
+            tempWall = null;
+            isDragging = false;
+            buildClickPhase = 0;
         });
 
         // Освещение
@@ -1505,8 +1611,7 @@
         // Состояние
         let selectedItem = null;
         let placedItems = [];
-        let currentMode = 'place';
-        let isBuilding = false;
+        let isDragging = false;
         let startPoint = null;
         let tempWall = null;
 
@@ -1515,61 +1620,51 @@
         const plane = new THREE.Plane(new THREE.Vector3(0,1,0),0);
         const intersect = new THREE.Vector3();
 
-        // Размещение
-        renderer.domElement.addEventListener('click', (e) => {
-            if (e.target.closest('.premium')) return;
-            if (currentMode !== 'place' || !selectedItem) return;
-            mouse.x = (e.clientX/renderer.domElement.clientWidth)*2-1;
-            mouse.y = -(e.clientY/renderer.domElement.clientHeight)*2+1;
-            raycaster.setFromCamera(mouse, camera);
-            if (raycaster.ray.intersectPlane(plane, intersect)) {
-                const color = document.getElementById('item-color').value;
-                const scale = parseFloat(document.getElementById('item-scale').value);
-                const rot = parseFloat(document.getElementById('item-rotate').value);
-                const elev = parseFloat(document.getElementById('item-elev').value);
-                const style = document.getElementById('material-style').value;
-                const model = createModelFromItem(selectedItem, parseInt(color.slice(1),16), style);
-                model.position.copy(intersect);
-                model.position.y = elev;
-                model.scale.set(scale, scale, scale);
-                model.rotation.y = rot * Math.PI/180;
-                model.castShadow = true; model.receiveShadow = true;
-                scene.add(model);
-                placedItems.push(model);
-                document.getElementById('total-items').textContent = placedItems.length;
-            }
-        });
-
-        // Строительство стены зажатием
+        // Обработка мыши
         renderer.domElement.addEventListener('mousedown', (e) => {
             if (e.target.closest('.premium')) return;
-            if (currentMode !== 'build' || e.button !== 0) return;
-            mouse.x = (e.clientX/renderer.domElement.clientWidth)*2-1;
-            mouse.y = -(e.clientY/renderer.domElement.clientHeight)*2+1;
-            raycaster.setFromCamera(mouse, camera);
-            if (raycaster.ray.intersectPlane(plane, intersect)) {
-                isBuilding = true;
-                startPoint = intersect.clone();
-                startPoint.y = 0;
-                const thick = parseFloat(document.getElementById('wall-thick').value);
-                const height = parseFloat(document.getElementById('wall-height').value);
-                const color = document.getElementById('wall-color').value;
-                tempWall = new THREE.Mesh(
-                    new THREE.BoxGeometry(thick, height, 0.1),
-                    new THREE.MeshStandardMaterial({ color, transparent: true, opacity: 0.5 })
-                );
-                tempWall.castShadow = true; tempWall.receiveShadow = true;
-                scene.add(tempWall);
+            if (currentMode === 'build-drag' && e.button === 0) {
+                mouse.x = (e.clientX/renderer.domElement.clientWidth)*2-1;
+                mouse.y = -(e.clientY/renderer.domElement.clientHeight)*2+1;
+                raycaster.setFromCamera(mouse, camera);
+                if (raycaster.ray.intersectPlane(plane, intersect)) {
+                    isDragging = true;
+                    startPoint = intersect.clone();
+                    startPoint.y = 0;
+                    const thick = parseFloat(document.getElementById('wall-thick').value);
+                    const height = parseFloat(document.getElementById('wall-height').value);
+                    const color = document.getElementById('wall-color').value;
+                    tempWall = new THREE.Mesh(
+                        new THREE.BoxGeometry(thick, height, 0.1),
+                        new THREE.MeshStandardMaterial({ color, transparent: true, opacity: 0.5 })
+                    );
+                    tempWall.castShadow = true; tempWall.receiveShadow = true;
+                    scene.add(tempWall);
+                }
             }
         });
 
         renderer.domElement.addEventListener('mousemove', (e) => {
             if (e.target.closest('.premium')) return;
-            if (!isBuilding || !tempWall) return;
             mouse.x = (e.clientX/renderer.domElement.clientWidth)*2-1;
             mouse.y = -(e.clientY/renderer.domElement.clientHeight)*2+1;
             raycaster.setFromCamera(mouse, camera);
-            if (raycaster.ray.intersectPlane(plane, intersect)) {
+            if (!raycaster.ray.intersectPlane(plane, intersect)) return;
+
+            if (currentMode === 'build-drag' && isDragging && tempWall) {
+                const end = intersect.clone();
+                end.y = 0;
+                const delta = new THREE.Vector3().subVectors(end, startPoint);
+                const length = Math.sqrt(delta.x*delta.x + delta.z*delta.z);
+                const angle = Math.atan2(delta.x, delta.z);
+                const height = parseFloat(document.getElementById('wall-height').value);
+                tempWall.position.x = startPoint.x + delta.x/2;
+                tempWall.position.z = startPoint.z + delta.z/2;
+                tempWall.position.y = height/2;
+                tempWall.scale.set(1, height / (tempWall.geometry.parameters.height || 1), length);
+                tempWall.rotation.y = angle;
+            } else if (currentMode === 'build-click' && buildClickPhase === 1 && tempWall) {
+                // В режиме двух кликов обновляем предпросмотр стены от startPoint до текущей позиции мыши
                 const end = intersect.clone();
                 end.y = 0;
                 const delta = new THREE.Vector3().subVectors(end, startPoint);
@@ -1586,15 +1681,77 @@
 
         renderer.domElement.addEventListener('mouseup', (e) => {
             if (e.target.closest('.premium')) return;
-            if (!isBuilding || !tempWall) return;
+            if (currentMode === 'build-drag' && isDragging && tempWall) {
+                finishWall();
+            }
+        });
+
+        renderer.domElement.addEventListener('click', (e) => {
+            if (e.target.closest('.premium')) return;
+            
+            // Режим размещения предметов
+            if (currentMode === 'place' && selectedItem) {
+                mouse.x = (e.clientX/renderer.domElement.clientWidth)*2-1;
+                mouse.y = -(e.clientY/renderer.domElement.clientHeight)*2+1;
+                raycaster.setFromCamera(mouse, camera);
+                if (raycaster.ray.intersectPlane(plane, intersect)) {
+                    const color = document.getElementById('item-color').value;
+                    const scale = parseFloat(document.getElementById('item-scale').value);
+                    const rot = parseFloat(document.getElementById('item-rotate').value);
+                    const elev = parseFloat(document.getElementById('item-elev').value);
+                    const style = document.getElementById('material-style').value;
+                    const model = createModelFromItem(selectedItem, parseInt(color.slice(1),16), style);
+                    model.position.copy(intersect);
+                    model.position.y = elev;
+                    model.scale.set(scale, scale, scale);
+                    model.rotation.y = rot * Math.PI/180;
+                    model.castShadow = true; model.receiveShadow = true;
+                    scene.add(model);
+                    placedItems.push(model);
+                    document.getElementById('total-items').textContent = placedItems.length;
+                }
+                return;
+            }
+
+            // Режим стены двумя кликами
+            if (currentMode === 'build-click') {
+                mouse.x = (e.clientX/renderer.domElement.clientWidth)*2-1;
+                mouse.y = -(e.clientY/renderer.domElement.clientHeight)*2+1;
+                raycaster.setFromCamera(mouse, camera);
+                if (!raycaster.ray.intersectPlane(plane, intersect)) return;
+
+                if (buildClickPhase === 0) {
+                    // Первый клик — начало
+                    startPoint = intersect.clone();
+                    startPoint.y = 0;
+                    const thick = parseFloat(document.getElementById('wall-thick').value);
+                    const height = parseFloat(document.getElementById('wall-height').value);
+                    const color = document.getElementById('wall-color').value;
+                    tempWall = new THREE.Mesh(
+                        new THREE.BoxGeometry(thick, height, 0.1),
+                        new THREE.MeshStandardMaterial({ color, transparent: true, opacity: 0.5 })
+                    );
+                    tempWall.castShadow = true; tempWall.receiveShadow = true;
+                    scene.add(tempWall);
+                    buildClickPhase = 1;
+                } else {
+                    // Второй клик — конец
+                    finishWall();
+                    buildClickPhase = 0;
+                }
+            }
+        });
+
+        function finishWall() {
+            if (!tempWall) return;
             const height = parseFloat(document.getElementById('wall-height').value);
             const thick = parseFloat(document.getElementById('wall-thick').value);
             const color = document.getElementById('wall-color').value;
+            const materialType = document.getElementById('wall-material').value;
             const length = tempWall.scale.z;
-            const final = new THREE.Mesh(
-                new THREE.BoxGeometry(thick, height, length),
-                new THREE.MeshStandardMaterial({ color, roughness: 0.7 })
-            );
+
+            const finalMat = createWallMaterial(materialType, color);
+            const final = new THREE.Mesh(new THREE.BoxGeometry(thick, height, length), finalMat);
             final.position.copy(tempWall.position);
             final.position.y = height/2;
             final.rotation.copy(tempWall.rotation);
@@ -1602,10 +1759,11 @@
             scene.add(final);
             placedItems.push(final);
             document.getElementById('total-items').textContent = placedItems.length;
+
             scene.remove(tempWall);
             tempWall = null;
-            isBuilding = false;
-        });
+            isDragging = false;
+        }
 
         // FPS
         let last = performance.now(), frames = 0;
