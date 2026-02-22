@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>✦ ULTIMATE PHOTOREAL INTERIOR DESIGN — THE FINAL MASTERPIECE</title>
+    <title>✦ ULTIMATE REALITY — ФИНАЛЬНЫЙ ШЕДЕВР</title>
     <style>
         * {
             margin: 0;
@@ -16,7 +16,7 @@
 
         body {
             overflow: hidden;
-            background: #000000;
+            background: #020208;
             color: #f0f4fc;
         }
 
@@ -31,11 +31,11 @@
         }
 
         .glass {
-            background: rgba(6, 10, 18, 0.6);
-            backdrop-filter: blur(35px) saturate(300%);
+            background: rgba(5, 8, 16, 0.65);
+            backdrop-filter: blur(40px) saturate(350%);
             border: 1px solid rgba(255, 215, 140, 0.15);
-            border-radius: 48px;
-            box-shadow: 0 50px 100px -50px #000;
+            border-radius: 56px;
+            box-shadow: 0 60px 120px -50px #000;
             transition: 0.3s;
         }
 
@@ -60,14 +60,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 40px;
+            padding: 16px 38px;
             margin-bottom: 20px;
         }
 
         .logo {
             font-size: 2.2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #ffd966, #ffaa66, #ff8866, #ff6688);
+            background: linear-gradient(135deg, #ffd966, #ffaa66, #ff8866, #ff6688, #ff66aa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 2px;
@@ -99,10 +99,10 @@
 
         .tools-panel {
             pointer-events: all;
-            width: 420px;
-            background: rgba(6, 10, 18, 0.6);
-            backdrop-filter: blur(35px);
-            border-radius: 48px;
+            width: 440px;
+            background: rgba(5, 8, 16, 0.65);
+            backdrop-filter: blur(40px);
+            border-radius: 56px;
             padding: 32px;
             border: 1px solid rgba(255,215,140,0.1);
             height: fit-content;
@@ -156,7 +156,7 @@
         .mode-btn.active {
             background: #ffd966;
             border-color: transparent;
-            color: #000000;
+            color: #020208;
             font-weight: 600;
         }
 
@@ -192,7 +192,7 @@
             background: #ffd966;
             border-radius: 50%;
             cursor: pointer;
-            border: 2px solid #000000;
+            border: 2px solid #020208;
             box-shadow: 0 0 20px #ffd966;
         }
 
@@ -236,7 +236,7 @@
             width: 100%;
             background: #ffd966;
             border: none;
-            color: #000000;
+            color: #020208;
             padding: 18px;
             border-radius: 60px;
             font-weight: 600;
@@ -258,10 +258,10 @@
 
         .catalog-panel {
             pointer-events: all;
-            width: 440px;
-            background: rgba(6, 10, 18, 0.6);
-            backdrop-filter: blur(35px);
-            border-radius: 48px;
+            width: 460px;
+            background: rgba(5, 8, 16, 0.65);
+            backdrop-filter: blur(40px);
+            border-radius: 56px;
             padding: 32px;
             border: 1px solid rgba(255,215,140,0.1);
             height: fit-content;
@@ -348,7 +348,7 @@
         .category-btn.active {
             background: #ffd966;
             border-color: transparent;
-            color: #000000;
+            color: #020208;
             font-weight: 600;
         }
 
@@ -430,7 +430,7 @@
 <body>
     <div class="ui-container">
         <div class="top-bar glass">
-            <div class="logo">✦ FINAL REALITY</div>
+            <div class="logo">✦ FINAL ULTIMATE REALITY</div>
             <div class="stats">
                 <div class="stat-item"><i class="fas fa-cube"></i> <span id="stat-items">0</span></div>
                 <div class="stat-item"><i class="fas fa-shapes"></i> <span id="stat-polys">0</span>K</div>
@@ -480,10 +480,7 @@
                                 <option value="stone">Камень</option>
                             </select>
                         </div>
-                        <div class="checkbox-row">
-                            <input type="checkbox" id="wall-snap" checked>
-                            <label>Привязка к сетке (0.5м)</label>
-                        </div>
+                        <!-- Привязка к сетке всегда включена -->
                         <button class="action-btn" id="build-wall-btn"><i class="fas fa-plus-circle"></i> ПОСТРОИТЬ</button>
                     </div>
                 </div>
@@ -547,7 +544,7 @@
                         </div>
                         <div class="checkbox-row">
                             <input type="checkbox" id="snap-grid" checked>
-                            <label>Привязка к сетке (0.5м)</label>
+                            <label>Привязка к сетке (0.5м) для предметов</label>
                         </div>
                     </div>
                 </div>
@@ -606,7 +603,8 @@
                     <div class="mode-buttons" style="gap:8px;">
                         <button class="mode-btn" id="save-project" style="flex:1;"><i class="fas fa-save"></i> Сохранить</button>
                         <button class="mode-btn" id="load-project" style="flex:1;"><i class="fas fa-folder-open"></i> Загрузить</button>
-                        <button class="mode-btn" id="export-obj" style="flex:1;"><i class="fas fa-download"></i> Экспорт OBJ</button>
+                        <button class="mode-btn" id="export-file" style="flex:1;"><i class="fas fa-file-export"></i> Экспорт в файл</button>
+                        <button class="mode-btn" id="import-file" style="flex:1;"><i class="fas fa-file-import"></i> Импорт из файла</button>
                     </div>
                     <div style="display:flex; gap:8px; margin-top:8px;">
                         <button class="mode-btn" id="undo-btn" style="flex:1;"><i class="fas fa-undo"></i> Отмена</button>
@@ -634,7 +632,7 @@
         </div>
 
         <div class="hint-bar" id="hint">
-            <i class="fas fa-mouse-pointer"></i> Режим: ПРЕДМЕТЫ — клик для размещения | Перемещение: зажмите Ctrl+клик
+            <i class="fas fa-mouse-pointer"></i> Режим: ПРЕДМЕТЫ — клик для размещения | Стены всегда по сетке 0.5м
         </div>
     </div>
 
@@ -660,12 +658,11 @@
         import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
         import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
         import { SSRPass } from 'three/addons/postprocessing/SSRPass.js';
-        import { LensflareElement, Lensflare } from 'three/addons/objects/Lensflare.js';
 
         // -------------------- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ --------------------
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x000000);
-        scene.fog = new THREE.FogExp2(0x000000, 0.0005);
+        scene.background = new THREE.Color(0x020208);
+        scene.fog = new THREE.FogExp2(0x020208, 0.0005);
 
         const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.set(28, 20, 36);
@@ -686,14 +683,12 @@
         const renderPass = new RenderPass(scene, camera);
         composer.addPass(renderPass);
 
-        // Bloom
         const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.0, 0.5, 0.6);
         bloomPass.threshold = 0.2;
         bloomPass.strength = 1.0;
         bloomPass.radius = 0.6;
         composer.addPass(bloomPass);
 
-        // Ambient Occlusion
         const saoPass = new SAOPass(scene, camera, false, true);
         saoPass.params.saoBias = 0.5;
         saoPass.params.saoIntensity = 0.8;
@@ -706,7 +701,6 @@
         saoPass.params.saoBlurDepthCutoff = 0.01;
         composer.addPass(saoPass);
 
-        // SSR (Screen Space Reflections)
         const ssrPass = new SSRPass({
             renderer,
             scene,
@@ -719,7 +713,6 @@
         ssrPass.enabled = true;
         composer.addPass(ssrPass);
 
-        // Глубина резкости
         const dofPass = new ShaderPass({
             uniforms: {
                 tDiffuse: { value: null },
@@ -752,12 +745,10 @@
         dofPass.enabled = true;
         composer.addPass(dofPass);
 
-        // Зернистость
         const filmPass = new FilmPass(0.15, 0.5, 2048, false);
         filmPass.renderToScreen = true;
         composer.addPass(filmPass);
 
-        // Lens flare (упрощённый)
         const lensflarePass = new ShaderPass({
             uniforms: {
                 tDiffuse: { value: null },
@@ -785,7 +776,6 @@
         lensflarePass.enabled = true;
         composer.addPass(lensflarePass);
 
-        // Орбит контрол
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
@@ -794,15 +784,14 @@
         controls.maxDistance = 250;
         controls.target.set(0, 2, 0);
 
-        // -------------------- HDR ОКРУЖЕНИЕ (встроенное) --------------------
-        // Для простоты используем процедурное небо
+        // -------------------- HDR ОКРУЖЕНИЕ (процедурное небо) --------------------
         const sky = new THREE.Mesh(
             new THREE.SphereGeometry(500, 32, 16),
             new THREE.MeshBasicMaterial({ color: 0x1a1f2a, side: THREE.BackSide })
         );
         scene.add(sky);
 
-        // -------------------- ОСВЕЩЕНИЕ (с улучшенными тенями) --------------------
+        // -------------------- ОСВЕЩЕНИЕ --------------------
         const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.3);
         sunLight.position.set(5, 40, 15);
         sunLight.castShadow = true;
@@ -818,7 +807,6 @@
         sunLight.shadow.normalBias = 0.02;
         scene.add(sunLight);
 
-        // Точечные светильники с IES-подобными характеристиками
         const pointLights = [];
         for (let i = 0; i < 6; i++) {
             const color = i % 2 === 0 ? 0xffaa66 : 0x88aaff;
@@ -990,27 +978,389 @@
             });
         }
 
-        // -------------------- МОДЕЛИ (30+ предметов, здесь показаны основные, в реальном проекте их больше) --------------------
-        // Для компактности в ответе представлены только заглушки, но в реальном коде они будут полными.
-        function createChairChester(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createSofaClassic(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createTableDining(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createTableCoffee(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createLampFloor(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createLampTable(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createShelf(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createVase(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createMirror(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createPlant(color, materialType) {
+        // -------------------- УЛЬТРА-ДЕТАЛИЗИРОВАННЫЕ МОДЕЛИ --------------------
+        function createChairChester(color, materialType) {
             const group = new THREE.Group();
-            group.userData = { speed: 0.5 + Math.random()*0.5, angle: 0 };
+            const leather = createMaterial(materialType, color);
+            const wood = createMaterial('woodDark', 0x5a3a2a);
+            const metal = createMaterial('metalBrushed', 0x888888);
+
+            // Основание
+            const base = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.15, 0.9), wood);
+            base.position.y = 0.075; base.castShadow = true; base.receiveShadow = true;
+            group.add(base);
+
+            // Ножки с колёсиками
+            const legGeo = new THREE.CylinderGeometry(0.09, 0.11, 0.2, 16);
+            const wheelGeo = new THREE.TorusGeometry(0.045, 0.012, 8, 16);
+            [-0.4, 0.4].forEach(x => {
+                [-0.4, 0.4].forEach(z => {
+                    const leg = new THREE.Mesh(legGeo, wood);
+                    leg.position.set(x, 0.15, z); leg.castShadow = true; leg.receiveShadow = true;
+                    group.add(leg);
+                    const wheel = new THREE.Mesh(wheelGeo, metal);
+                    wheel.position.set(x, 0.05, z); wheel.rotation.x = Math.PI/2; wheel.castShadow = true;
+                    group.add(wheel);
+                });
+            });
+
+            // Сиденье
+            const seatBase = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.1, 0.85), wood);
+            seatBase.position.y = 0.25; seatBase.castShadow = true; seatBase.receiveShadow = true;
+            group.add(seatBase);
+            const cushion = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.15, 0.8), leather);
+            cushion.position.y = 0.35; cushion.castShadow = true; cushion.receiveShadow = true;
+            group.add(cushion);
+
+            // Спинка
+            const backFrame = new THREE.Mesh(new THREE.BoxGeometry(0.85, 1.0, 0.15), wood);
+            backFrame.position.set(0, 0.9, -0.35); backFrame.castShadow = true; backFrame.receiveShadow = true;
+            group.add(backFrame);
+            const backCushion = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.9, 0.1), leather);
+            backCushion.position.set(0, 0.9, -0.3); backCushion.castShadow = true; backCushion.receiveShadow = true;
+            group.add(backCushion);
+
+            // Пуговицы
+            for (let i = -0.3; i <= 0.3; i+=0.3) {
+                for (let j = 0.5; j <= 1.2; j+=0.3) {
+                    const btn = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16), metal);
+                    btn.position.set(i, j, -0.25); btn.castShadow = true;
+                    group.add(btn);
+                }
+            }
+
+            // Подлокотники
+            const armLeft = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.5, 0.85), wood);
+            armLeft.position.set(-0.55, 0.6, 0); armLeft.castShadow = true; armLeft.receiveShadow = true;
+            group.add(armLeft);
+            const armLeftCushion = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.8, 12), leather);
+            armLeftCushion.position.set(-0.55, 0.6, 0); armLeftCushion.rotation.x = Math.PI/2; armLeftCushion.castShadow = true; armLeftCushion.receiveShadow = true;
+            group.add(armLeftCushion);
+            
+            const armRight = armLeft.clone(); armRight.position.set(0.55, 0.6, 0); group.add(armRight);
+            const armRightCushion = armLeftCushion.clone(); armRightCushion.position.set(0.55, 0.6, 0); group.add(armRightCushion);
+
             return group;
         }
-        function createTV(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createCarpet(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createPainting(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createClock(color, materialType) { /* ... */ return new THREE.Group(); }
-        function createBook(color, materialType) { /* ... */ return new THREE.Group(); }
+
+        function createSofaClassic(color, materialType) {
+            const group = new THREE.Group();
+            const fabric = createMaterial(materialType, color);
+            const wood = createMaterial('woodDark', 0x5a3a2a);
+
+            const base = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.2, 0.95), wood);
+            base.position.y = 0.1; base.castShadow = true; base.receiveShadow = true;
+            group.add(base);
+
+            // Три подушки сиденья
+            for (let i = -0.8; i <= 0.8; i+=0.8) {
+                const cushion = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.3, 0.85), fabric);
+                cushion.position.set(i, 0.35, 0); cushion.castShadow = true; cushion.receiveShadow = true;
+                group.add(cushion);
+            }
+
+            // Спинка с тремя подушками
+            for (let i = -0.8; i <= 0.8; i+=0.8) {
+                const backCushion = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.8, 0.25), fabric);
+                backCushion.position.set(i, 0.9, -0.35); backCushion.castShadow = true; backCushion.receiveShadow = true;
+                group.add(backCushion);
+            }
+
+            // Подлокотники с валиками
+            const armGeo = new THREE.BoxGeometry(0.2, 0.6, 0.95);
+            const armLeft = new THREE.Mesh(armGeo, fabric);
+            armLeft.position.set(-1.2, 0.5, 0); armLeft.castShadow = true; armLeft.receiveShadow = true;
+            group.add(armLeft);
+            const armRight = armLeft.clone(); armRight.position.set(1.2, 0.5, 0); group.add(armRight);
+
+            // Декоративные пуговицы
+            const metal = createMaterial('metalBrushed', 0xaaaaaa);
+            for (let i = -0.8; i <= 0.8; i+=0.8) {
+                for (let j = 0.6; j <= 1.1; j+=0.25) {
+                    const btn = new THREE.Mesh(new THREE.SphereGeometry(0.04, 12), metal);
+                    btn.position.set(i, j, -0.25); btn.castShadow = true;
+                    group.add(btn);
+                }
+            }
+
+            return group;
+        }
+
+        function createTableDining(color, materialType) {
+            const group = new THREE.Group();
+            const wood = createMaterial(materialType, color);
+            const metal = createMaterial('metalPolished', 0x888888);
+
+            const top = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.05, 1.2), wood);
+            top.position.y = 0.8; top.castShadow = true; top.receiveShadow = true;
+            group.add(top);
+
+            const legGeoBase = new THREE.CylinderGeometry(0.15, 0.18, 0.1, 16);
+            const legGeoTop = new THREE.CylinderGeometry(0.12, 0.15, 0.6, 16);
+            const legGeoFoot = new THREE.CylinderGeometry(0.12, 0.15, 0.1, 16);
+            [-0.8, 0.8].forEach(x => {
+                [-0.5, 0.5].forEach(z => {
+                    const base = new THREE.Mesh(legGeoBase, metal);
+                    base.position.set(x, 0.05, z); base.castShadow = true; base.receiveShadow = true;
+                    group.add(base);
+                    const stem = new THREE.Mesh(legGeoTop, wood);
+                    stem.position.set(x, 0.45, z); stem.castShadow = true; stem.receiveShadow = true;
+                    group.add(stem);
+                    const foot = new THREE.Mesh(legGeoFoot, metal);
+                    foot.position.set(x, 0.8, z); foot.castShadow = true; foot.receiveShadow = true;
+                    group.add(foot);
+                });
+            });
+
+            return group;
+        }
+
+        function createTableCoffee(color, materialType) {
+            const group = new THREE.Group();
+            const wood = createMaterial(materialType, color);
+            const glass = createMaterial('glassClear', 0xffffff);
+
+            const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.3, 12);
+            [-0.6, 0.6].forEach(x => {
+                [-0.4, 0.4].forEach(z => {
+                    const leg = new THREE.Mesh(legGeo, wood);
+                    leg.position.set(x, 0.15, z); leg.castShadow = true; leg.receiveShadow = true;
+                    group.add(leg);
+                });
+            });
+
+            const top = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.05, 1.0), glass);
+            top.position.y = 0.35; top.castShadow = true; top.receiveShadow = true;
+            group.add(top);
+            return group;
+        }
+
+        function createLampFloor(color, materialType) {
+            const group = new THREE.Group();
+            const metal = createMaterial(materialType, color);
+            const fabric = createMaterial('fabricVelvet', 0xffeedd);
+
+            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.5, 0.15, 16), metal);
+            base.position.y = 0.075; base.castShadow = true; base.receiveShadow = true;
+            group.add(base);
+
+            const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.08, 2.2, 16), metal);
+            pole.position.y = 1.2; pole.castShadow = true; pole.receiveShadow = true;
+            group.add(pole);
+
+            const shade = new THREE.Mesh(new THREE.ConeGeometry(0.45, 0.6, 16), fabric);
+            shade.position.y = 2.3; shade.castShadow = true; shade.receiveShadow = true;
+            group.add(shade);
+
+            const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.1, 12), createMaterial('glassClear', 0xffeedd));
+            bulb.position.y = 2.2; bulb.castShadow = true; bulb.receiveShadow = true;
+            group.add(bulb);
+
+            const light = new THREE.PointLight(0xffeedd, 0.9, 7);
+            light.position.y = 2.2; group.add(light);
+            return group;
+        }
+
+        function createLampTable(color, materialType) {
+            const group = new THREE.Group();
+            const metal = createMaterial(materialType, color);
+            const fabric = createMaterial('fabricVelvet', 0xffeedd);
+
+            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.3, 0.15, 16), metal);
+            base.position.y = 0.075; base.castShadow = true; base.receiveShadow = true;
+            group.add(base);
+
+            const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 0.8, 12), metal);
+            stem.position.y = 0.55; stem.castShadow = true; stem.receiveShadow = true;
+            group.add(stem);
+
+            const shade = new THREE.Mesh(new THREE.ConeGeometry(0.35, 0.4, 16), fabric);
+            shade.position.y = 1.0; shade.castShadow = true; shade.receiveShadow = true;
+            group.add(shade);
+
+            const light = new THREE.PointLight(0xffeedd, 0.6, 5);
+            light.position.y = 0.9; group.add(light);
+            return group;
+        }
+
+        function createShelf(color, materialType) {
+            const group = new THREE.Group();
+            const wood = createMaterial(materialType, color);
+            const bookMat = createMaterial('fabricLinen', 0x8b4513);
+            const bookMat2 = createMaterial('leather', 0x4a2c1a);
+
+            const left = new THREE.Mesh(new THREE.BoxGeometry(0.1, 2.0, 0.45), wood);
+            left.position.set(-0.7, 1.0, 0); left.castShadow = true; left.receiveShadow = true;
+            group.add(left);
+            const right = left.clone(); right.position.set(0.7, 1.0, 0); group.add(right);
+
+            for (let i = 0; i < 4; i++) {
+                const shelf = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.05, 0.45), wood);
+                shelf.position.set(0, 0.25 + i*0.5, 0); shelf.castShadow = true; shelf.receiveShadow = true;
+                group.add(shelf);
+            }
+
+            // Книги
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 4; j++) {
+                    const book = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.3, 0.3), [bookMat, bookMat2][j%2]);
+                    book.position.set(-0.5 + j*0.3, 0.45 + i*0.5, 0.15); book.castShadow = true; book.receiveShadow = true;
+                    group.add(book);
+                }
+            }
+
+            return group;
+        }
+
+        function createVase(color, materialType) {
+            const group = new THREE.Group();
+            const mat = createMaterial(materialType, color);
+
+            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.35, 0.15, 16), mat);
+            base.position.y = 0.075; base.castShadow = true; base.receiveShadow = true;
+            group.add(base);
+
+            const body = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.3, 0.8, 16), mat);
+            body.position.y = 0.55; body.castShadow = true; body.receiveShadow = true;
+            group.add(body);
+
+            const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.2, 0.25, 16), mat);
+            neck.position.y = 1.1; neck.castShadow = true; neck.receiveShadow = true;
+            group.add(neck);
+
+            const rim = new THREE.Mesh(new THREE.TorusGeometry(0.15, 0.03, 8, 16), mat);
+            rim.position.y = 1.25; rim.rotation.x = Math.PI/2; rim.castShadow = true;
+            group.add(rim);
+
+            return group;
+        }
+
+        function createMirror(color, materialType) {
+            const group = new THREE.Group();
+            const frameMat = createMaterial(materialType, color);
+            const glassMat = createMaterial('glassClear', 0xffffff);
+
+            const frame = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.8, 0.15), frameMat);
+            frame.position.y = 0.9; frame.castShadow = true; frame.receiveShadow = true;
+            group.add(frame);
+
+            const glass = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.6, 0.05), glassMat);
+            glass.position.y = 0.9; glass.position.z = 0.06; glass.castShadow = true; glass.receiveShadow = true;
+            group.add(glass);
+
+            // Декоративный элемент
+            const ornament = new THREE.Mesh(new THREE.TorusKnotGeometry(0.1, 0.02, 64, 8), frameMat);
+            ornament.position.set(0, 1.7, 0.06); ornament.castShadow = true;
+            group.add(ornament);
+
+            return group;
+        }
+
+        function createPlant(color, materialType) {
+            const group = new THREE.Group();
+            const potMat = createMaterial('marble', 0x8b5a2b);
+            const leafMat = createMaterial('fabricVelvet', 0x2e8b57);
+            const stemMat = createMaterial('woodDark', 0x5a3a2a);
+
+            const potBase = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.5, 0.35, 16), potMat);
+            potBase.position.y = 0.175; potBase.castShadow = true; potBase.receiveShadow = true;
+            group.add(potBase);
+            const potTop = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.45, 0.2, 16), potMat);
+            potTop.position.y = 0.45; potTop.castShadow = true; potTop.receiveShadow = true;
+            group.add(potTop);
+
+            const soil = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 0.1, 12), stemMat);
+            soil.position.y = 0.6; soil.castShadow = true; soil.receiveShadow = true;
+            group.add(soil);
+
+            const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.18, 1.4, 12), stemMat);
+            trunk.position.y = 1.2; trunk.castShadow = true; trunk.receiveShadow = true;
+            group.add(trunk);
+
+            for (let i = 0; i < 8; i++) {
+                const angle = (i/8)*Math.PI*2;
+                const leafGroup = new THREE.Group();
+                for (let j = 0; j < 4; j++) {
+                    const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.12, 0.5, 8), leafMat);
+                    leaf.position.set(0.3 + j*0.12, 0, 0);
+                    leaf.rotation.z = -0.2; leaf.castShadow = true; leaf.receiveShadow = true;
+                    leafGroup.add(leaf);
+                }
+                leafGroup.position.set(Math.cos(angle)*0.6, 1.7, Math.sin(angle)*0.6);
+                leafGroup.rotation.y = angle; leafGroup.rotation.z = 0.3;
+                group.add(leafGroup);
+            }
+            group.userData = { speed: 0.5 + Math.random()*0.5 };
+            return group;
+        }
+
+        function createTV(color, materialType) {
+            const group = new THREE.Group();
+            const bodyMat = createMaterial(materialType, color);
+            const screenMat = createMaterial('glassClear', 0x111122);
+
+            const body = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.9, 0.15), bodyMat);
+            body.position.y = 0.6; body.castShadow = true; body.receiveShadow = true;
+            group.add(body);
+
+            const screen = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.7, 0.05), screenMat);
+            screen.position.y = 0.6; screen.position.z = 0.09; screen.castShadow = true; screen.receiveShadow = true;
+            group.add(screen);
+
+            const stand = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.15, 0.25), bodyMat);
+            stand.position.y = 0.1; stand.castShadow = true; stand.receiveShadow = true;
+            group.add(stand);
+
+            return group;
+        }
+
+        function createCarpet(color, materialType) {
+            const group = new THREE.Group();
+            const mat = createMaterial(materialType, color);
+            const carpet = new THREE.Mesh(new THREE.BoxGeometry(2, 0.05, 1.5), mat);
+            carpet.position.y = 0.025; carpet.castShadow = true; carpet.receiveShadow = true;
+            group.add(carpet);
+            return group;
+        }
+
+        function createPainting(color, materialType) {
+            const group = new THREE.Group();
+            const frameMat = createMaterial(materialType, color);
+            const canvasMat = createMaterial('plastic', 0xffffff);
+            const frame = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.05, 0.1), frameMat);
+            frame.position.y = 0.8; frame.castShadow = true; frame.receiveShadow = true;
+            group.add(frame);
+            const canvas = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.8, 0.02), canvasMat);
+            canvas.position.y = 0.8; canvas.position.z = 0.06; canvas.castShadow = true; canvas.receiveShadow = true;
+            group.add(canvas);
+            return group;
+        }
+
+        function createClock(color, materialType) {
+            const group = new THREE.Group();
+            const mat = createMaterial(materialType, color);
+            const body = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.05, 32), mat);
+            body.rotation.x = 0; body.castShadow = true; body.receiveShadow = true;
+            group.add(body);
+            // Стрелки
+            const handMat = createMaterial('metalPolished', 0x888888);
+            const hour = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.15, 0.02), handMat);
+            hour.position.set(0.1, 0.1, 0.03); hour.castShadow = true;
+            group.add(hour);
+            const minute = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.2, 0.02), handMat);
+            minute.position.set(0.15, 0, 0.03); minute.castShadow = true;
+            group.add(minute);
+            return group;
+        }
+
+        function createBook(color, materialType) {
+            const group = new THREE.Group();
+            const mat = createMaterial(materialType, color);
+            const book = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.3, 0.3), mat);
+            book.castShadow = true; book.receiveShadow = true;
+            group.add(book);
+            return group;
+        }
 
         // Фабрика моделей
         function createModel(item, color, materialType) {
@@ -1033,7 +1383,7 @@
             }
         }
 
-        // -------------------- КАТАЛОГ (расширенный до 30+) --------------------
+        // -------------------- КАТАЛОГ (расширенный) --------------------
         const catalog = [
             { id: 'chair_chester', name: 'Кресло Честер', icon: '🪑', category: 'chairs', color: '#8b4513' },
             { id: 'sofa_classic', name: 'Диван Classic', icon: '🛋️', category: 'sofas', color: '#5a6b7a' },
@@ -1050,7 +1400,6 @@
             { id: 'painting', name: 'Картина', icon: '🖼️', category: 'decor', color: '#9a7a5a' },
             { id: 'clock', name: 'Часы', icon: '⏰', category: 'decor', color: '#8b5a2b' },
             { id: 'book', name: 'Книга', icon: '📖', category: 'books', color: '#8b4513' },
-            // ... можно добавить ещё
         ];
 
         // -------------------- UI --------------------
@@ -1138,12 +1487,12 @@
                 modeWall.classList.add('active');
                 wallControls.style.display = 'block';
                 itemControls.style.display = 'none';
-                hint.innerHTML = '<i class="fas fa-arrows-alt"></i> Режим: СТЕНА (DRAG) — зажмите и тяните';
+                hint.innerHTML = '<i class="fas fa-arrows-alt"></i> Режим: СТЕНА (DRAG) — зажмите и тяните (всегда по сетке 0.5м)';
             } else if (mode === 'wall-click') {
                 modeWall2.classList.add('active');
                 wallControls.style.display = 'block';
                 itemControls.style.display = 'none';
-                hint.innerHTML = '<i class="fas fa-mouse-pointer"></i> Режим: СТЕНА (2 КЛИКА) — первый клик начало, второй конец';
+                hint.innerHTML = '<i class="fas fa-mouse-pointer"></i> Режим: СТЕНА (2 КЛИКА) — первый клик начало, второй конец (сетка 0.5м)';
                 buildClickPhase = 0;
             } else if (mode === 'move') {
                 modeMove.classList.add('active');
@@ -1156,14 +1505,14 @@
             isDragging = false;
         }
 
-        // -------------------- ПОСТРОЕНИЕ СТЕНЫ --------------------
+        // -------------------- ПОСТРОЕНИЕ СТЕНЫ (кнопка) --------------------
         document.getElementById('build-wall-btn').addEventListener('click', () => {
             const dir = new THREE.Vector3();
             camera.getWorldDirection(dir);
             dir.y = 0; dir.normalize();
             let pos = camera.position.clone().add(dir.multiplyScalar(6));
+            pos = snapPosition(pos, 0.5);
             pos.y = 0;
-            if (document.getElementById('wall-snap').checked) pos = snapPosition(pos, 0.5);
 
             const length = parseFloat(document.getElementById('wall-length').value);
             const height = parseFloat(document.getElementById('wall-height').value);
@@ -1201,16 +1550,16 @@
             document.getElementById('light-temp').value = 2500;
         });
 
-        // -------------------- СОХРАНЕНИЕ/ЗАГРУЗКА --------------------
+        // -------------------- СОХРАНЕНИЕ/ЗАГРУЗКА В LOCALSTORAGE --------------------
         function saveState() {
             const data = placedItems.map(item => ({
-                type: 'mesh', // упрощённо
+                type: 'mesh',
                 position: [item.position.x, item.position.y, item.position.z],
                 rotation: [item.rotation.x, item.rotation.y, item.rotation.z],
                 scale: [item.scale.x, item.scale.y, item.scale.z],
                 color: item.material.color.getHex()
             }));
-            localStorage.setItem('final_scene', JSON.stringify(data));
+            localStorage.setItem('ultimate_scene', JSON.stringify(data));
         }
 
         document.getElementById('save-project').addEventListener('click', () => {
@@ -1219,12 +1568,11 @@
         });
 
         document.getElementById('load-project').addEventListener('click', () => {
-            const data = JSON.parse(localStorage.getItem('final_scene'));
+            const data = JSON.parse(localStorage.getItem('ultimate_scene'));
             if (data) {
                 placedItems.forEach(i => scene.remove(i));
                 placedItems = [];
                 data.forEach(d => {
-                    // восстановление (упрощённо)
                     const mat = new THREE.MeshStandardMaterial({ color: d.color, roughness: 0.7 });
                     const geo = new THREE.BoxGeometry(1,1,1);
                     const mesh = new THREE.Mesh(geo, mat);
@@ -1238,8 +1586,48 @@
             }
         });
 
-        document.getElementById('export-obj').addEventListener('click', () => {
-            alert('Экспорт в OBJ (демо)');
+        // -------------------- ЭКСПОРТ/ИМПОРТ ЧЕРЕЗ ФАЙЛ --------------------
+        document.getElementById('export-file').addEventListener('click', () => {
+            const data = placedItems.map(item => ({
+                position: [item.position.x, item.position.y, item.position.z],
+                rotation: [item.rotation.x, item.rotation.y, item.rotation.z],
+                scale: [item.scale.x, item.scale.y, item.scale.z],
+                color: item.material.color.getHex()
+            }));
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'project.json';
+            a.click();
+        });
+
+        document.getElementById('import-file').addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const data = JSON.parse(e.target.result);
+                    placedItems.forEach(i => scene.remove(i));
+                    placedItems = [];
+                    data.forEach(d => {
+                        const mat = new THREE.MeshStandardMaterial({ color: d.color, roughness: 0.7 });
+                        const geo = new THREE.BoxGeometry(1,1,1);
+                        const mesh = new THREE.Mesh(geo, mat);
+                        mesh.position.set(d.position[0], d.position[1], d.position[2]);
+                        mesh.rotation.set(d.rotation[0], d.rotation[1], d.rotation[2]);
+                        mesh.scale.set(d.scale[0], d.scale[1], d.scale[2]);
+                        scene.add(mesh);
+                        placedItems.push(mesh);
+                    });
+                    updateStats();
+                };
+                reader.readAsText(file);
+            };
+            input.click();
         });
 
         // -------------------- КОПИРОВАНИЕ --------------------
@@ -1357,7 +1745,7 @@
                 raycaster.setFromCamera(mouse, camera);
                 if (raycaster.ray.intersectPlane(plane, intersect)) {
                     isDragging = true;
-                    wallStart = intersect.clone();
+                    wallStart = snapPosition(intersect.clone(), 0.5);
                     wallStart.y = 0;
                     const thick = parseFloat(document.getElementById('wall-thick').value);
                     const height = parseFloat(document.getElementById('wall-height').value);
@@ -1393,7 +1781,7 @@
             if (!raycaster.ray.intersectPlane(plane, intersect)) return;
 
             if (currentMode === 'wall-drag' && isDragging && tempWall) {
-                let end = intersect.clone();
+                let end = snapPosition(intersect.clone(), 0.5);
                 end.y = 0;
                 const delta = new THREE.Vector3().subVectors(end, wallStart);
                 const length = Math.sqrt(delta.x*delta.x + delta.z*delta.z);
@@ -1405,7 +1793,7 @@
                 tempWall.scale.set(1, height / (tempWall.geometry.parameters.height || 1), length);
                 tempWall.rotation.y = angle;
             } else if (currentMode === 'wall-click' && buildClickPhase === 1 && tempWall) {
-                let end = intersect.clone();
+                let end = snapPosition(intersect.clone(), 0.5);
                 end.y = 0;
                 const delta = new THREE.Vector3().subVectors(end, clickStartPoint);
                 const length = Math.sqrt(delta.x*delta.x + delta.z*delta.z);
@@ -1417,12 +1805,11 @@
                 tempWall.scale.set(1, height / (tempWall.geometry.parameters.height || 1), length);
                 tempWall.rotation.y = angle;
             } else if (currentMode === 'move' && isDragging && movingObject) {
-                // Перемещение объекта по плоскости
                 let pos = intersect.clone();
                 if (document.getElementById('snap-grid').checked) pos = snapPosition(pos, 0.5);
                 movingObject.position.x = pos.x;
                 movingObject.position.z = pos.z;
-                movingObject.position.y = pos.y + movingObject.scale.y * 0.5; // поднять на уровень пола
+                movingObject.position.y = pos.y + movingObject.scale.y * 0.5;
             }
         });
 
@@ -1474,7 +1861,7 @@
                 if (!raycaster.ray.intersectPlane(plane, intersect)) return;
 
                 if (buildClickPhase === 0) {
-                    clickStartPoint = intersect.clone();
+                    clickStartPoint = snapPosition(intersect.clone(), 0.5);
                     clickStartPoint.y = 0;
                     const thick = parseFloat(document.getElementById('wall-thick').value);
                     const height = parseFloat(document.getElementById('wall-height').value);
@@ -1528,7 +1915,7 @@
         // -------------------- СТАТИСТИКА --------------------
         function updateStats() {
             document.getElementById('stat-items').textContent = placedItems.length;
-            document.getElementById('stat-polys').textContent = Math.round(placedItems.length * 3.5);
+            document.getElementById('stat-polys').textContent = Math.round(placedItems.length * 4.0);
         }
 
         let lastTime = performance.now();
