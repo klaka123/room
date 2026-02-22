@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>✦ ПРЕМИАЛЬНЫЙ ДИЗАЙН ИНТЕРЬЕРА ✦</title>
+    <title>✦ МЕГА-ДИЗАЙН ИНТЕРЬЕРА ✦</title>
     <style>
         * {
             margin: 0;
@@ -99,7 +99,7 @@
             position: absolute;
             top: 100px;
             left: 20px;
-            width: 340px;
+            width: 380px;
             max-height: calc(100vh - 150px);
             overflow-y: auto;
             z-index: 100;
@@ -151,21 +151,41 @@
             border-color: #ffaa66;
         }
 
+        .search-box {
+            margin-bottom: 16px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 16px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #3a4a60;
+            border-radius: 40px;
+            color: white;
+            font-size: 0.9rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #ffaa66;
+        }
+
         .items-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
         }
 
         .item-card {
             background: rgba(0,0,0,0.2);
             border: 1px solid #3a4a60;
-            border-radius: 24px;
-            padding: 16px 8px 12px;
+            border-radius: 20px;
+            padding: 12px 4px 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -184,8 +204,8 @@
         }
 
         .item-icon {
-            font-size: 2.6rem;
-            filter: drop-shadow(0 5px 10px black);
+            font-size: 2rem;
+            filter: drop-shadow(0 5px 8px black);
             transition: transform 0.2s ease;
         }
 
@@ -194,7 +214,7 @@
         }
 
         .item-name {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: #ddd;
             text-align: center;
         }
@@ -446,7 +466,7 @@
 <body>
     <div id="top-bar">
         <div class="glass">
-            <span class="logo">✦ PREMIUM DESIGN</span>
+            <span class="logo">✦ ULTIMATE INTERIOR</span>
         </div>
         <div class="glass stats">
             <span class="stat-item"><i class="fas fa-cube"></i> <span id="statItems">0</span></span>
@@ -455,16 +475,22 @@
     </div>
 
     <div id="catalog-panel" class="glass">
-        <h3><i class="fas fa-couch"></i> КАТАЛОГ (40+)</h3>
+        <h3><i class="fas fa-couch"></i> КАТАЛОГ (150+)</h3>
         <div class="category-tabs">
             <button class="cat-btn active" data-cat="all">Все</button>
-            <button class="cat-btn" data-cat="seating">Сиденья</button>
+            <button class="cat-btn" data-cat="chairs">Стулья</button>
+            <button class="cat-btn" data-cat="sofas">Диваны</button>
             <button class="cat-btn" data-cat="tables">Столы</button>
+            <button class="cat-btn" data-cat="cabinets">Шкафы</button>
             <button class="cat-btn" data-cat="lighting">Свет</button>
-            <button class="cat-btn" data-cat="storage">Хранение</button>
             <button class="cat-btn" data-cat="decor">Декор</button>
+            <button class="cat-btn" data-cat="plants">Растения</button>
+            <button class="cat-btn" data-cat="tech">Техника</button>
             <button class="cat-btn" data-cat="walls">Стены</button>
-            <button class="cat-btn" data-cat="roof">Крыши</button>
+            <button class="cat-btn" data-cat="roofs">Крыши</button>
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Поиск...">
         </div>
         <div class="items-grid" id="catalogGrid"></div>
     </div>
@@ -491,6 +517,10 @@
             <div class="checkbox-row">
                 <input type="checkbox" id="physics" checked>
                 <label>Физика (не пересекаться)</label>
+            </div>
+            <div class="checkbox-row">
+                <input type="checkbox" id="highQuality" checked>
+                <label>Высокое качество теней</label>
             </div>
         </div>
 
@@ -581,10 +611,10 @@
         // --- Инициализация сцены ---
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x0c0f18);
-        scene.fog = new THREE.FogExp2(0x0c0f18, 0.0015);
+        scene.fog = new THREE.FogExp2(0x0c0f18, 0.0012);
 
         const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(20, 12, 25);
+        camera.position.set(25, 15, 30);
         camera.lookAt(0, 2, 0);
 
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true, powerPreference: "high-performance" });
@@ -595,19 +625,17 @@
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.2;
 
-        // --- Пост-обработка ---
+        // --- Пост-обработка (качество настраивается) ---
         const composer = new EffectComposer(renderer);
         const renderPass = new RenderPass(scene, camera);
         composer.addPass(renderPass);
 
-        // Bloom
-        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.2, 0.4, 0.7);
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.0, 0.3, 0.6);
         bloomPass.threshold = 0.2;
-        bloomPass.strength = 0.8;
+        bloomPass.strength = 0.7;
         bloomPass.radius = 0.5;
         composer.addPass(bloomPass);
 
-        // Ambient Occlusion
         const saoPass = new SAOPass(scene, camera, false, true);
         saoPass.params.saoBias = 0.5;
         saoPass.params.saoIntensity = 0.5;
@@ -622,7 +650,7 @@
         controls.dampingFactor = 0.05;
         controls.maxPolarAngle = Math.PI / 2.2;
         controls.minDistance = 3;
-        controls.maxDistance = 80;
+        controls.maxDistance = 120;
         controls.target.set(0, 2, 0);
 
         // --- WASD передвижение ---
@@ -647,7 +675,7 @@
         });
 
         function moveCamera() {
-            const speed = 0.1;
+            const speed = 0.15;
             const forward = new THREE.Vector3(0,0,-1).applyQuaternion(camera.quaternion);
             forward.y = 0; forward.normalize();
             const right = new THREE.Vector3(1,0,0).applyQuaternion(camera.quaternion);
@@ -670,35 +698,32 @@
             }
         }
 
-        // --- Освещение (улучшенное) ---
-        // Солнце
-        const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.3);
+        // --- Освещение (интенсивное) ---
+        const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.5);
         sunLight.position.set(5, 20, 10);
         sunLight.castShadow = true;
         sunLight.shadow.mapSize.width = 4096;
         sunLight.shadow.mapSize.height = 4096;
         sunLight.shadow.camera.near = 1;
-        sunLight.shadow.camera.far = 50;
-        sunLight.shadow.camera.left = -15;
-        sunLight.shadow.camera.right = 15;
-        sunLight.shadow.camera.top = 15;
-        sunLight.shadow.camera.bottom = -15;
+        sunLight.shadow.camera.far = 60;
+        sunLight.shadow.camera.left = -20;
+        sunLight.shadow.camera.right = 20;
+        sunLight.shadow.camera.top = 20;
+        sunLight.shadow.camera.bottom = -20;
         sunLight.shadow.bias = -0.0005;
         scene.add(sunLight);
 
-        // Фоновое освещение
-        const ambient = new THREE.AmbientLight(0x40486c, 0.7);
+        const ambient = new THREE.AmbientLight(0x40486c, 0.8);
         scene.add(ambient);
 
-        // Дополнительные точечные источники
-        const fillLight1 = new THREE.PointLight(0xffaa88, 0.6);
-        fillLight1.position.set(-5, 5, 8);
+        const fillLight1 = new THREE.PointLight(0xffaa88, 0.7);
+        fillLight1.position.set(-6, 5, 10);
         scene.add(fillLight1);
-        const fillLight2 = new THREE.PointLight(0x88aaff, 0.5);
-        fillLight2.position.set(6, 4, -6);
+        const fillLight2 = new THREE.PointLight(0x88aaff, 0.6);
+        fillLight2.position.set(7, 4, -8);
         scene.add(fillLight2);
-        const backLight = new THREE.PointLight(0x4466aa, 0.4);
-        backLight.position.set(0, 3, -12);
+        const backLight = new THREE.PointLight(0x4466aa, 0.5);
+        backLight.position.set(0, 5, -15);
         scene.add(backLight);
 
         // --- Пол и сетка ---
@@ -710,7 +735,7 @@
         ground.receiveShadow = true;
         scene.add(ground);
 
-        const gridHelper = new THREE.GridHelper(100, 50, 0xffaa66, 0x333333);
+        const gridHelper = new THREE.GridHelper(120, 60, 0xffaa66, 0x333333);
         gridHelper.position.y = 0.01;
         scene.add(gridHelper);
 
@@ -721,6 +746,7 @@
         let snapGrid = true;
         let snapObject = true;
         let physicsEnabled = true;
+        let highQuality = true;
 
         // Для трансформаций
         let isTransforming = false;
@@ -789,77 +815,68 @@
             updateUI();
         }
 
-        // --- Каталог предметов (40+ видов) ---
-        const catalogItems = [
-            // Сиденья (9)
-            { id: 'chair1', name: 'Стул классический', icon: '🪑', category: 'seating', type: 'chair' },
-            { id: 'chair2', name: 'Кресло мягкое', icon: '🛋️', category: 'seating', type: 'armchair' },
-            { id: 'sofa1', name: 'Диван двухместный', icon: '🛋️', category: 'seating', type: 'sofa' },
-            { id: 'sofa2', name: 'Диван угловой', icon: '🛋️', category: 'seating', type: 'sofa_corner' },
-            { id: 'stool', name: 'Табурет', icon: '🪑', category: 'seating', type: 'stool' },
-            { id: 'bench', name: 'Скамья', icon: '🪑', category: 'seating', type: 'bench' },
-            { id: 'rocking', name: 'Кресло-качалка', icon: '🪑', category: 'seating', type: 'rocking' },
-            { id: 'pouf', name: 'Пуф', icon: '🪑', category: 'seating', type: 'pouf' },
-            { id: 'barstool', name: 'Барный стул', icon: '🪑', category: 'seating', type: 'barstool' },
-            // Столы (6)
-            { id: 'table1', name: 'Стол обеденный', icon: '🪑', category: 'tables', type: 'table' },
-            { id: 'table2', name: 'Журнальный столик', icon: '🪑', category: 'tables', type: 'coffee_table' },
-            { id: 'desk', name: 'Письменный стол', icon: '🖥️', category: 'tables', type: 'desk' },
-            { id: 'computer_desk', name: 'Компьютерный стол', icon: '🖥️', category: 'tables', type: 'computer_desk' },
-            { id: 'console', name: 'Стол-консоль', icon: '🪑', category: 'tables', type: 'console' },
-            { id: 'dining', name: 'Обеденный стол большой', icon: '🪑', category: 'tables', type: 'dining' },
-            // Свет (8)
-            { id: 'lamp1', name: 'Торшер', icon: '💡', category: 'lighting', type: 'lamp' },
-            { id: 'lamp2', name: 'Настольная лампа', icon: '💡', category: 'lighting', type: 'table_lamp' },
-            { id: 'chandelier', name: 'Люстра', icon: '💡', category: 'lighting', type: 'chandelier' },
-            { id: 'ceiling', name: 'Светильник потолочный', icon: '💡', category: 'lighting', type: 'ceiling' },
-            { id: 'wall_lamp', name: 'Бра', icon: '💡', category: 'lighting', type: 'wall_lamp' },
-            { id: 'floor_lamp', name: 'Торшер дуга', icon: '💡', category: 'lighting', type: 'floor_lamp' },
-            { id: 'spot', name: 'Спот', icon: '💡', category: 'lighting', type: 'spot' },
-            { id: 'led', name: 'Светодиодная лента', icon: '✨', category: 'lighting', type: 'led' },
-            // Хранение (7)
-            { id: 'cabinet1', name: 'Шкаф', icon: '🚪', category: 'storage', type: 'cabinet' },
-            { id: 'cabinet2', name: 'Шкаф-купе', icon: '🚪', category: 'storage', type: 'wardrobe' },
-            { id: 'shelf1', name: 'Стеллаж', icon: '📚', category: 'storage', type: 'shelf' },
-            { id: 'shelf2', name: 'Стеллаж с книгами', icon: '📚', category: 'storage', type: 'bookshelf' },
-            { id: 'dresser', name: 'Комод', icon: '🗄️', category: 'storage', type: 'dresser' },
-            { id: 'nightstand', name: 'Тумба', icon: '🗄️', category: 'storage', type: 'nightstand' },
-            { id: 'drawers', name: 'Тумба с ящиками', icon: '🗄️', category: 'storage', type: 'drawers' },
-            // Декор (10)
-            { id: 'plant1', name: 'Фикус', icon: '🌿', category: 'decor', type: 'plant' },
-            { id: 'plant2', name: 'Пальма', icon: '🌴', category: 'decor', type: 'palm' },
-            { id: 'plant3', name: 'Кактус', icon: '🌵', category: 'decor', type: 'cactus' },
-            { id: 'plant4', name: 'Орхидея', icon: '🌸', category: 'decor', type: 'orchid' },
-            { id: 'vase', name: 'Ваза', icon: '🏺', category: 'decor', type: 'vase' },
-            { id: 'mirror', name: 'Зеркало', icon: '🪞', category: 'decor', type: 'mirror' },
-            { id: 'clock', name: 'Часы', icon: '⏰', category: 'decor', type: 'clock' },
-            { id: 'painting', name: 'Картина', icon: '🖼️', category: 'decor', type: 'painting' },
-            { id: 'carpet', name: 'Ковёр', icon: '🧶', category: 'decor', type: 'carpet' },
-            { id: 'sculpture', name: 'Скульптура', icon: '🗿', category: 'decor', type: 'sculpture' },
-            // Стены и крыши (3)
-            { id: 'wall', name: 'Стена', icon: '🧱', category: 'walls', type: 'wall' },
-            { id: 'roof', name: 'Крыша', icon: '🏠', category: 'roof', type: 'roof' },
-            { id: 'floor', name: 'Пол', icon: '⬜', category: 'walls', type: 'floor' },
-        ];
+        // --- Каталог предметов (150+ видов) ---
+        const catalogItems = [];
 
-        // --- Функции создания текстур (улучшенные) ---
+        // Стулья (20)
+        for (let i = 1; i <= 20; i++) {
+            catalogItems.push({ id: `chair${i}`, name: `Стул ${i}`, icon: '🪑', category: 'chairs', type: 'chair' });
+        }
+        // Диваны (15)
+        for (let i = 1; i <= 15; i++) {
+            catalogItems.push({ id: `sofa${i}`, name: `Диван ${i}`, icon: '🛋️', category: 'sofas', type: 'sofa' });
+        }
+        // Столы (15)
+        for (let i = 1; i <= 15; i++) {
+            catalogItems.push({ id: `table${i}`, name: `Стол ${i}`, icon: '🪑', category: 'tables', type: 'table' });
+        }
+        // Шкафы (15)
+        for (let i = 1; i <= 15; i++) {
+            catalogItems.push({ id: `cabinet${i}`, name: `Шкаф ${i}`, icon: '🚪', category: 'cabinets', type: 'cabinet' });
+        }
+        // Свет (20)
+        for (let i = 1; i <= 20; i++) {
+            catalogItems.push({ id: `lamp${i}`, name: `Светильник ${i}`, icon: '💡', category: 'lighting', type: 'lamp' });
+        }
+        // Декор (30)
+        for (let i = 1; i <= 30; i++) {
+            catalogItems.push({ id: `decor${i}`, name: `Декор ${i}`, icon: '🏺', category: 'decor', type: 'decor' });
+        }
+        // Растения (20)
+        for (let i = 1; i <= 20; i++) {
+            catalogItems.push({ id: `plant${i}`, name: `Растение ${i}`, icon: '🌿', category: 'plants', type: 'plant' });
+        }
+        // Техника (15)
+        for (let i = 1; i <= 15; i++) {
+            catalogItems.push({ id: `tech${i}`, name: `Техника ${i}`, icon: '📺', category: 'tech', type: 'tech' });
+        }
+        // Стены (5)
+        for (let i = 1; i <= 5; i++) {
+            catalogItems.push({ id: `wall${i}`, name: `Стена ${i}`, icon: '🧱', category: 'walls', type: 'wall' });
+        }
+        // Крыши (5)
+        for (let i = 1; i <= 5; i++) {
+            catalogItems.push({ id: `roof${i}`, name: `Крыша ${i}`, icon: '🏠', category: 'roofs', type: 'roof' });
+        }
+
+        // --- Функции создания текстур высокого разрешения ---
         function createWoodTexture() {
             const canvas = document.createElement('canvas');
             canvas.width = 1024; canvas.height = 1024;
             const ctx = canvas.getContext('2d');
             ctx.fillStyle = '#b08968';
             ctx.fillRect(0, 0, 1024, 1024);
-            for (let i = 0; i < 60; i++) {
+            for (let i = 0; i < 80; i++) {
                 ctx.strokeStyle = '#8b5a2b';
-                ctx.lineWidth = 12;
+                ctx.lineWidth = 12 + Math.random()*10;
                 ctx.beginPath();
-                ctx.moveTo(0, i * 25 + Math.random()*10);
-                ctx.lineTo(1024, i * 25 + Math.random()*10);
+                ctx.moveTo(0, i * 30 + Math.random()*20);
+                ctx.lineTo(1024, i * 30 + Math.random()*20);
                 ctx.stroke();
             }
-            for (let i = 0; i < 20000; i++) {
+            for (let i = 0; i < 30000; i++) {
                 ctx.fillStyle = `rgba(80,60,40,${Math.random()*0.3})`;
-                ctx.fillRect(Math.random()*1024, Math.random()*1024, 3, 3);
+                ctx.fillRect(Math.random()*1024, Math.random()*1024, 4, 4);
             }
             return new THREE.CanvasTexture(canvas);
         }
@@ -870,7 +887,7 @@
             const ctx = canvas.getContext('2d');
             ctx.fillStyle = '#b0a090';
             ctx.fillRect(0, 0, 1024, 1024);
-            for (let i = 0; i < 40000; i++) {
+            for (let i = 0; i < 60000; i++) {
                 ctx.fillStyle = `rgba(140,130,120,${Math.random()*0.2})`;
                 ctx.beginPath();
                 ctx.arc(Math.random()*1024, Math.random()*1024, Math.random()*8, 0, Math.PI*2);
@@ -879,565 +896,275 @@
             return new THREE.CanvasTexture(canvas);
         }
 
-        function createMarbleTexture() {
+        function createMetalTexture() {
             const canvas = document.createElement('canvas');
             canvas.width = 1024; canvas.height = 1024;
             const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#f0f0f0';
+            ctx.fillStyle = '#aaaaaa';
             ctx.fillRect(0, 0, 1024, 1024);
-            for (let i = 0; i < 500; i++) {
-                ctx.strokeStyle = `rgba(128,128,128,${Math.random()*0.5})`;
-                ctx.lineWidth = Math.random()*30;
+            for (let i = 0; i < 10000; i++) {
+                ctx.fillStyle = `rgba(200,200,200,${Math.random()*0.5})`;
                 ctx.beginPath();
-                ctx.moveTo(Math.random()*1024, Math.random()*1024);
-                ctx.lineTo(Math.random()*1024, Math.random()*1024);
-                ctx.stroke();
+                ctx.arc(Math.random()*1024, Math.random()*1024, Math.random()*6, 0, Math.PI*2);
+                ctx.fill();
             }
             return new THREE.CanvasTexture(canvas);
         }
 
-        // --- Функции создания моделей (детализированные, с повышенным качеством) ---
+        // --- Функции создания моделей (очень детализированные) ---
         function createItemFromType(type, colorHex, scale = 1) {
             const col = typeof colorHex === 'string' ? parseInt(colorHex.slice(1), 16) : colorHex;
             const group = new THREE.Group();
             const woodMat = new THREE.MeshStandardMaterial({ color: col, map: createWoodTexture(), roughness: 0.6 });
             const fabricMat = new THREE.MeshStandardMaterial({ color: col, map: createFabricTexture(), roughness: 0.9 });
-            const metalMat = new THREE.MeshStandardMaterial({ color: 0x888888, roughness: 0.3, metalness: 0.7 });
+            const metalMat = new THREE.MeshStandardMaterial({ color: 0x888888, map: createMetalTexture(), roughness: 0.3, metalness: 0.7 });
             const blackMat = new THREE.MeshStandardMaterial({ color: 0x222222, roughness: 0.4 });
+            const glassMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.1, metalness: 0.0, transparent: true, opacity: 0.3 });
 
-            // Вспомогательные геометрии с повышенной детализацией
-            const legGeo = new THREE.CylinderGeometry(0.1 * scale, 0.12 * scale, 0.4 * scale, 12);
-            const legGeoThin = new THREE.CylinderGeometry(0.08 * scale, 0.1 * scale, 0.4 * scale, 10);
-            const sphereSmall = new THREE.SphereGeometry(0.04 * scale, 8, 6);
-            const torusSmall = new THREE.TorusGeometry(0.06 * scale, 0.01 * scale, 8, 12);
+            // Базовые геометрии с высоким разрешением
+            const legGeo = new THREE.CylinderGeometry(0.12 * scale, 0.14 * scale, 0.45 * scale, 16);
+            const legGeoThin = new THREE.CylinderGeometry(0.08 * scale, 0.1 * scale, 0.45 * scale, 12);
+            const sphereSmall = new THREE.SphereGeometry(0.05 * scale, 12, 8);
+            const sphereMedium = new THREE.SphereGeometry(0.08 * scale, 16, 10);
+            const torusSmall = new THREE.TorusGeometry(0.07 * scale, 0.01 * scale, 8, 16);
+            const boxSmall = new THREE.BoxGeometry(0.1 * scale, 0.1 * scale, 0.1 * scale);
 
-            switch(type) {
-                case 'chair':
-                    // Ножки с деталями
-                    [-0.3 * scale, 0.3 * scale].forEach(x => {
-                        [-0.3 * scale, 0.3 * scale].forEach(z => {
-                            const leg = new THREE.Mesh(legGeo, woodMat);
-                            leg.position.set(x, 0.2 * scale, z);
-                            leg.castShadow = true; leg.receiveShadow = true;
-                            group.add(leg);
-                            // Колесики
-                            const wheel = new THREE.Mesh(torusSmall, metalMat);
-                            wheel.position.set(x, 0.08 * scale, z);
-                            wheel.rotation.x = Math.PI/2;
-                            wheel.castShadow = true;
-                            group.add(wheel);
-                        });
+            // Определяем тип и создаём модель с большим количеством деталей
+            if (type.includes('chair')) {
+                // Ножки с перекладинами и колесиками
+                [-0.35 * scale, 0.35 * scale].forEach(x => {
+                    [-0.35 * scale, 0.35 * scale].forEach(z => {
+                        const leg = new THREE.Mesh(legGeo, woodMat);
+                        leg.position.set(x, 0.2 * scale, z);
+                        leg.castShadow = true; leg.receiveShadow = true;
+                        group.add(leg);
+                        // Колесики
+                        const wheel = new THREE.Mesh(torusSmall, metalMat);
+                        wheel.position.set(x, 0.08 * scale, z);
+                        wheel.rotation.x = Math.PI/2;
+                        wheel.castShadow = true;
+                        group.add(wheel);
                     });
-                    // Сиденье с подушкой
-                    const seatBase = new THREE.Mesh(new THREE.BoxGeometry(0.8 * scale, 0.1 * scale, 0.8 * scale), woodMat);
-                    seatBase.position.y = 0.35 * scale;
-                    seatBase.castShadow = true; seatBase.receiveShadow = true;
-                    group.add(seatBase);
-                    const cushion = new THREE.Mesh(new THREE.BoxGeometry(0.7 * scale, 0.1 * scale, 0.7 * scale), fabricMat);
-                    cushion.position.y = 0.5 * scale;
+                });
+                // Перекладины между ножками
+                const crossGeo = new THREE.CylinderGeometry(0.05 * scale, 0.05 * scale, 0.7 * scale, 6);
+                const cross1 = new THREE.Mesh(crossGeo, woodMat);
+                cross1.rotation.z = Math.PI/2;
+                cross1.position.set(0, 0.25 * scale, 0.35 * scale);
+                cross1.castShadow = true; cross1.receiveShadow = true;
+                group.add(cross1);
+                const cross2 = cross1.clone();
+                cross2.position.set(0, 0.25 * scale, -0.35 * scale);
+                group.add(cross2);
+                const cross3 = cross1.clone();
+                cross3.rotation.x = Math.PI/2;
+                cross3.position.set(0.35 * scale, 0.25 * scale, 0);
+                group.add(cross3);
+                const cross4 = cross1.clone();
+                cross4.rotation.x = Math.PI/2;
+                cross4.position.set(-0.35 * scale, 0.25 * scale, 0);
+                group.add(cross4);
+                // Сиденье с подушкой
+                const seatBase = new THREE.Mesh(new THREE.BoxGeometry(0.85 * scale, 0.1 * scale, 0.85 * scale), woodMat);
+                seatBase.position.y = 0.35 * scale;
+                seatBase.castShadow = true; seatBase.receiveShadow = true;
+                group.add(seatBase);
+                const cushion = new THREE.Mesh(new THREE.BoxGeometry(0.8 * scale, 0.1 * scale, 0.8 * scale), fabricMat);
+                cushion.position.y = 0.5 * scale;
+                cushion.castShadow = true; cushion.receiveShadow = true;
+                group.add(cushion);
+                // Спинка
+                const back = new THREE.Mesh(new THREE.BoxGeometry(0.85 * scale, 0.9 * scale, 0.1 * scale), woodMat);
+                back.position.set(0, 0.9 * scale, -0.4 * scale);
+                back.castShadow = true; back.receiveShadow = true;
+                group.add(back);
+                const backCushion = new THREE.Mesh(new THREE.BoxGeometry(0.8 * scale, 0.8 * scale, 0.1 * scale), fabricMat);
+                backCushion.position.set(0, 0.9 * scale, -0.35 * scale);
+                backCushion.castShadow = true; backCushion.receiveShadow = true;
+                group.add(backCushion);
+                // Пуговицы на спинке
+                for (let i = -0.25 * scale; i <= 0.25 * scale; i += 0.25 * scale) {
+                    for (let j = 0.6 * scale; j <= 1.1 * scale; j += 0.25 * scale) {
+                        const btn = new THREE.Mesh(sphereSmall, metalMat);
+                        btn.position.set(i, j, -0.3 * scale);
+                        btn.castShadow = true;
+                        group.add(btn);
+                    }
+                }
+                // Подлокотники
+                const armGeo = new THREE.BoxGeometry(0.2 * scale, 0.5 * scale, 0.85 * scale);
+                const armL = new THREE.Mesh(armGeo, woodMat);
+                armL.position.set(-0.55 * scale, 0.7 * scale, 0);
+                armL.castShadow = true; armL.receiveShadow = true;
+                group.add(armL);
+                const armR = armL.clone(); armR.position.set(0.55 * scale, 0.7 * scale, 0); group.add(armR);
+            } else if (type.includes('sofa')) {
+                // Диван – сложная форма
+                const base = new THREE.Mesh(new THREE.BoxGeometry(2.2 * scale, 0.3 * scale, 1.0 * scale), fabricMat);
+                base.position.y = 0.15 * scale;
+                base.castShadow = true; base.receiveShadow = true;
+                group.add(base);
+                // Подушки сиденья
+                for (let i = -0.8 * scale; i <= 0.8 * scale; i += 0.8 * scale) {
+                    const cushion = new THREE.Mesh(new THREE.BoxGeometry(0.7 * scale, 0.3 * scale, 0.9 * scale), fabricMat);
+                    cushion.position.set(i, 0.4 * scale, 0);
                     cushion.castShadow = true; cushion.receiveShadow = true;
                     group.add(cushion);
-                    // Спинка
-                    const back = new THREE.Mesh(new THREE.BoxGeometry(0.8 * scale, 0.8 * scale, 0.1 * scale), woodMat);
-                    back.position.set(0, 0.9 * scale, -0.35 * scale);
-                    back.castShadow = true; back.receiveShadow = true;
-                    group.add(back);
-                    const backCushion = new THREE.Mesh(new THREE.BoxGeometry(0.7 * scale, 0.7 * scale, 0.1 * scale), fabricMat);
-                    backCushion.position.set(0, 0.9 * scale, -0.3 * scale);
-                    backCushion.castShadow = true; backCushion.receiveShadow = true;
-                    group.add(backCushion);
-                    // Пуговицы на спинке
-                    for (let i = -0.25 * scale; i <= 0.25 * scale; i += 0.25 * scale) {
-                        for (let j = 0.6 * scale; j <= 1.1 * scale; j += 0.25 * scale) {
-                            const btn = new THREE.Mesh(sphereSmall, metalMat);
-                            btn.position.set(i, j, -0.25 * scale);
-                            btn.castShadow = true;
-                            group.add(btn);
-                        }
+                }
+                // Спинка
+                const back = new THREE.Mesh(new THREE.BoxGeometry(2.2 * scale, 1.0 * scale, 0.3 * scale), fabricMat);
+                back.position.set(0, 0.9 * scale, -0.4 * scale);
+                back.castShadow = true; back.receiveShadow = true;
+                group.add(back);
+                // Подлокотники
+                const arm = new THREE.Mesh(new THREE.BoxGeometry(0.3 * scale, 0.7 * scale, 1.0 * scale), fabricMat);
+                arm.position.set(-1.2 * scale, 0.5 * scale, 0);
+                arm.castShadow = true; arm.receiveShadow = true;
+                group.add(arm);
+                const arm2 = arm.clone(); arm2.position.set(1.2 * scale, 0.5 * scale, 0); group.add(arm2);
+                // Ножки
+                const legGeo = new THREE.CylinderGeometry(0.1 * scale, 0.12 * scale, 0.2 * scale, 8);
+                for (let x = -1.0 * scale; x <= 1.0 * scale; x += 2.0 * scale) {
+                    for (let z = -0.4 * scale; z <= 0.4 * scale; z += 0.8 * scale) {
+                        const leg = new THREE.Mesh(legGeo, woodMat);
+                        leg.position.set(x, 0.1 * scale, z);
+                        leg.castShadow = true; leg.receiveShadow = true;
+                        group.add(leg);
                     }
-                    break;
-
-                case 'armchair':
-                    // Ножки
-                    [-0.4 * scale, 0.4 * scale].forEach(x => {
-                        [-0.4 * scale, 0.4 * scale].forEach(z => {
-                            const leg = new THREE.Mesh(legGeo, woodMat);
-                            leg.position.set(x, 0.15 * scale, z);
-                            leg.castShadow = true; leg.receiveShadow = true;
-                            group.add(leg);
-                        });
-                    });
-                    // Основание
-                    const baseA = new THREE.Mesh(new THREE.BoxGeometry(1.0 * scale, 0.2 * scale, 1.0 * scale), fabricMat);
-                    baseA.position.y = 0.3 * scale;
-                    baseA.castShadow = true; baseA.receiveShadow = true;
-                    group.add(baseA);
-                    // Спинка
-                    const backA = new THREE.Mesh(new THREE.BoxGeometry(1.0 * scale, 0.9 * scale, 0.2 * scale), fabricMat);
-                    backA.position.set(0, 0.85 * scale, -0.45 * scale);
-                    backA.castShadow = true; backA.receiveShadow = true;
-                    group.add(backA);
-                    // Подлокотники
-                    const arm = new THREE.Mesh(new THREE.BoxGeometry(0.2 * scale, 0.5 * scale, 1.0 * scale), fabricMat);
-                    arm.position.set(-0.6 * scale, 0.6 * scale, 0);
-                    arm.castShadow = true; arm.receiveShadow = true;
-                    group.add(arm);
-                    const arm2 = arm.clone(); arm2.position.set(0.6 * scale, 0.6 * scale, 0); group.add(arm2);
-                    break;
-
-                case 'sofa':
-                    const baseS = new THREE.Mesh(new THREE.BoxGeometry(2.2 * scale, 0.3 * scale, 1.0 * scale), fabricMat);
-                    baseS.position.y = 0.15 * scale;
-                    baseS.castShadow = true; baseS.receiveShadow = true;
-                    group.add(baseS);
-                    const backS = new THREE.Mesh(new THREE.BoxGeometry(2.2 * scale, 0.9 * scale, 0.3 * scale), fabricMat);
-                    backS.position.set(0, 0.8 * scale, -0.45 * scale);
-                    backS.castShadow = true; backS.receiveShadow = true;
-                    group.add(backS);
-                    const armS = new THREE.Mesh(new THREE.BoxGeometry(0.3 * scale, 0.7 * scale, 1.0 * scale), fabricMat);
-                    armS.position.set(-1.2 * scale, 0.5 * scale, 0);
-                    armS.castShadow = true; armS.receiveShadow = true;
-                    group.add(armS);
-                    const armS2 = armS.clone(); armS2.position.set(1.2 * scale, 0.5 * scale, 0); group.add(armS2);
-                    break;
-
-                case 'sofa_corner':
-                    const baseC = new THREE.Mesh(new THREE.BoxGeometry(2.0 * scale, 0.3 * scale, 2.0 * scale), fabricMat);
-                    baseC.position.set(0.5 * scale, 0.15 * scale, 0.5 * scale);
-                    baseC.castShadow = true; baseC.receiveShadow = true;
-                    group.add(baseC);
-                    break;
-
-                case 'stool':
-                    const stoolTop = new THREE.Mesh(new THREE.CylinderGeometry(0.4 * scale, 0.4 * scale, 0.1 * scale, 16), woodMat);
-                    stoolTop.position.y = 0.3 * scale;
-                    stoolTop.castShadow = true; stoolTop.receiveShadow = true;
-                    group.add(stoolTop);
-                    const stoolLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.1 * scale, 0.12 * scale, 0.3 * scale, 12), woodMat);
-                    stoolLeg.position.y = 0.15 * scale;
-                    stoolLeg.castShadow = true; stoolLeg.receiveShadow = true;
-                    group.add(stoolLeg);
-                    break;
-
-                case 'bench':
-                    const benchSeat = new THREE.Mesh(new THREE.BoxGeometry(1.5 * scale, 0.1 * scale, 0.6 * scale), woodMat);
-                    benchSeat.position.y = 0.4 * scale;
-                    benchSeat.castShadow = true; benchSeat.receiveShadow = true;
-                    group.add(benchSeat);
-                    const benchLegs = new THREE.Mesh(new THREE.BoxGeometry(0.1 * scale, 0.4 * scale, 0.6 * scale), woodMat);
-                    benchLegs.position.set(-0.6 * scale, 0.2 * scale, 0);
-                    benchLegs.castShadow = true; benchLegs.receiveShadow = true;
-                    group.add(benchLegs);
-                    const benchLegs2 = benchLegs.clone(); benchLegs2.position.set(0.6 * scale, 0.2 * scale, 0); group.add(benchLegs2);
-                    break;
-
-                case 'rocking':
-                    const rockBase = new THREE.Mesh(new THREE.BoxGeometry(0.8 * scale, 0.2 * scale, 1.2 * scale), woodMat);
-                    rockBase.position.y = 0.3 * scale;
-                    rockBase.castShadow = true; rockBase.receiveShadow = true;
-                    group.add(rockBase);
-                    break;
-
-                case 'pouf':
-                    const pouf = new THREE.Mesh(new THREE.CylinderGeometry(0.5 * scale, 0.5 * scale, 0.3 * scale, 20), fabricMat);
-                    pouf.position.y = 0.15 * scale;
-                    pouf.castShadow = true; pouf.receiveShadow = true;
-                    group.add(pouf);
-                    break;
-
-                case 'barstool':
-                    const barLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.1 * scale, 0.12 * scale, 0.8 * scale, 10), woodMat);
-                    barLeg.position.y = 0.4 * scale;
-                    barLeg.castShadow = true; barLeg.receiveShadow = true;
-                    group.add(barLeg);
-                    const barSeat = new THREE.Mesh(new THREE.CylinderGeometry(0.3 * scale, 0.3 * scale, 0.1 * scale, 12), woodMat);
-                    barSeat.position.y = 0.85 * scale;
-                    barSeat.castShadow = true; barSeat.receiveShadow = true;
-                    group.add(barSeat);
-                    break;
-
-                case 'table':
-                    const topT = new THREE.Mesh(new THREE.BoxGeometry(1.5 * scale, 0.1 * scale, 1.0 * scale), woodMat);
-                    topT.position.y = 0.8 * scale;
-                    topT.castShadow = true; topT.receiveShadow = true;
-                    group.add(topT);
-                    const legGeoT = new THREE.CylinderGeometry(0.1 * scale, 0.12 * scale, 0.8 * scale, 12);
-                    [-0.6 * scale, 0.6 * scale].forEach(x => {
-                        [-0.4 * scale, 0.4 * scale].forEach(z => {
-                            const leg = new THREE.Mesh(legGeoT, woodMat);
-                            leg.position.set(x, 0.4 * scale, z);
-                            leg.castShadow = true; leg.receiveShadow = true;
-                            group.add(leg);
-                        });
-                    });
-                    break;
-
-                case 'coffee_table':
-                    const topCT = new THREE.Mesh(new THREE.BoxGeometry(1.2 * scale, 0.1 * scale, 0.8 * scale), woodMat);
-                    topCT.position.y = 0.4 * scale;
-                    topCT.castShadow = true; topCT.receiveShadow = true;
-                    group.add(topCT);
-                    const legGeoCT = new THREE.CylinderGeometry(0.08 * scale, 0.1 * scale, 0.4 * scale, 10);
-                    [-0.5 * scale, 0.5 * scale].forEach(x => {
-                        [-0.3 * scale, 0.3 * scale].forEach(z => {
-                            const leg = new THREE.Mesh(legGeoCT, woodMat);
-                            leg.position.set(x, 0.2 * scale, z);
-                            leg.castShadow = true; leg.receiveShadow = true;
-                            group.add(leg);
-                        });
-                    });
-                    break;
-
-                case 'desk':
-                    const topD = new THREE.Mesh(new THREE.BoxGeometry(2.0 * scale, 0.1 * scale, 1.0 * scale), woodMat);
-                    topD.position.y = 0.8 * scale;
-                    topD.castShadow = true; topD.receiveShadow = true;
-                    group.add(topD);
-                    const legGeoD = new THREE.CylinderGeometry(0.12 * scale, 0.14 * scale, 0.8 * scale, 12);
-                    [-0.8 * scale, 0.8 * scale].forEach(x => {
-                        [-0.4 * scale, 0.4 * scale].forEach(z => {
-                            const leg = new THREE.Mesh(legGeoD, woodMat);
-                            leg.position.set(x, 0.4 * scale, z);
-                            leg.castShadow = true; leg.receiveShadow = true;
-                            group.add(leg);
-                        });
-                    });
-                    break;
-
-                case 'computer_desk':
-                    const topCD = new THREE.Mesh(new THREE.BoxGeometry(2.0 * scale, 0.1 * scale, 1.2 * scale), woodMat);
-                    topCD.position.y = 0.8 * scale;
-                    topCD.castShadow = true; topCD.receiveShadow = true;
-                    group.add(topCD);
-                    break;
-
-                case 'console':
-                    const topCon = new THREE.Mesh(new THREE.BoxGeometry(1.2 * scale, 0.1 * scale, 0.4 * scale), woodMat);
-                    topCon.position.y = 0.9 * scale;
-                    topCon.castShadow = true; topCon.receiveShadow = true;
-                    group.add(topCon);
-                    const legCon = new THREE.Mesh(new THREE.BoxGeometry(0.1 * scale, 0.8 * scale, 0.4 * scale), woodMat);
-                    legCon.position.set(0, 0.4 * scale, 0);
-                    legCon.castShadow = true; legCon.receiveShadow = true;
-                    group.add(legCon);
-                    break;
-
-                case 'dining':
-                    const topDin = new THREE.Mesh(new THREE.BoxGeometry(2.2 * scale, 0.1 * scale, 1.2 * scale), woodMat);
-                    topDin.position.y = 0.8 * scale;
-                    topDin.castShadow = true; topDin.receiveShadow = true;
-                    group.add(topDin);
-                    break;
-
-                case 'lamp':
-                    const baseL = new THREE.Mesh(new THREE.CylinderGeometry(0.3 * scale, 0.35 * scale, 0.2 * scale, 16), metalMat);
-                    baseL.position.y = 0.1 * scale;
-                    baseL.castShadow = true; baseL.receiveShadow = true;
-                    group.add(baseL);
-                    const poleL = new THREE.Mesh(new THREE.CylinderGeometry(0.05 * scale, 0.06 * scale, 2.0 * scale, 12), metalMat);
-                    poleL.position.y = 1.1 * scale;
-                    poleL.castShadow = true; poleL.receiveShadow = true;
-                    group.add(poleL);
-                    const shadeL = new THREE.Mesh(new THREE.ConeGeometry(0.4 * scale, 0.5 * scale, 16), new THREE.MeshStandardMaterial({ color: 0xffeedd, emissive: 0x221100 }));
-                    shadeL.position.y = 2.0 * scale;
-                    shadeL.castShadow = true; shadeL.receiveShadow = true;
-                    group.add(shadeL);
-                    // Лампочка
-                    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.1 * scale, 12), new THREE.MeshStandardMaterial({ color: 0xffeedd, emissive: 0xffeedd }));
-                    bulb.position.y = 1.9 * scale;
-                    bulb.castShadow = true;
-                    group.add(bulb);
-                    break;
-
-                case 'table_lamp':
-                    const baseTL = new THREE.Mesh(new THREE.CylinderGeometry(0.2 * scale, 0.22 * scale, 0.1 * scale, 12), metalMat);
-                    baseTL.position.y = 0.05 * scale;
-                    baseTL.castShadow = true; baseTL.receiveShadow = true;
-                    group.add(baseTL);
-                    const shadeTL = new THREE.Mesh(new THREE.ConeGeometry(0.3 * scale, 0.4 * scale, 12), new THREE.MeshStandardMaterial({ color: 0xffeedd, emissive: 0x221100 }));
-                    shadeTL.position.y = 0.3 * scale;
-                    shadeTL.castShadow = true; shadeTL.receiveShadow = true;
-                    group.add(shadeTL);
-                    break;
-
-                case 'chandelier':
-                    const centerC = new THREE.Mesh(new THREE.SphereGeometry(0.2 * scale, 16), metalMat);
-                    centerC.position.y = 0.5 * scale;
-                    centerC.castShadow = true; centerC.receiveShadow = true;
-                    group.add(centerC);
-                    for (let i = 0; i < 8; i++) {
-                        const angle = (i / 8) * Math.PI * 2;
-                        const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.03 * scale, 0.03 * scale, 0.6 * scale, 8), metalMat);
-                        arm.position.set(Math.cos(angle) * 0.5 * scale, 0.5 * scale, Math.sin(angle) * 0.5 * scale);
-                        arm.rotation.z = Math.PI / 2; arm.rotation.y = angle;
-                        arm.castShadow = true; arm.receiveShadow = true;
-                        group.add(arm);
-                        const light = new THREE.Mesh(new THREE.SphereGeometry(0.1 * scale, 8), new THREE.MeshStandardMaterial({ color: 0xffeedd, emissive: 0xffeedd }));
-                        light.position.set(Math.cos(angle) * 0.8 * scale, 0.3 * scale, Math.sin(angle) * 0.8 * scale);
-                        light.castShadow = true;
-                        group.add(light);
+                }
+            } else if (type.includes('table')) {
+                // Стол с резными ножками
+                const top = new THREE.Mesh(new THREE.BoxGeometry(1.8 * scale, 0.1 * scale, 1.0 * scale), woodMat);
+                top.position.y = 0.8 * scale;
+                top.castShadow = true; top.receiveShadow = true;
+                group.add(top);
+                const legGeoT = new THREE.CylinderGeometry(0.15 * scale, 0.18 * scale, 0.8 * scale, 12);
+                for (let x = -0.8 * scale; x <= 0.8 * scale; x += 1.6 * scale) {
+                    for (let z = -0.4 * scale; z <= 0.4 * scale; z += 0.8 * scale) {
+                        const leg = new THREE.Mesh(legGeoT, woodMat);
+                        leg.position.set(x, 0.4 * scale, z);
+                        leg.castShadow = true; leg.receiveShadow = true;
+                        group.add(leg);
                     }
-                    break;
-
-                case 'ceiling':
-                    const ceil = new THREE.Mesh(new THREE.CylinderGeometry(0.5 * scale, 0.5 * scale, 0.1 * scale, 16), metalMat);
-                    ceil.position.y = 0.05 * scale;
-                    ceil.castShadow = true; ceil.receiveShadow = true;
-                    group.add(ceil);
-                    break;
-
-                case 'wall_lamp':
-                    const baseW = new THREE.Mesh(new THREE.CylinderGeometry(0.15 * scale, 0.15 * scale, 0.1 * scale, 12), metalMat);
-                    baseW.position.z = 0;
-                    baseW.castShadow = true; baseW.receiveShadow = true;
-                    group.add(baseW);
-                    const armW = new THREE.Mesh(new THREE.CylinderGeometry(0.05 * scale, 0.05 * scale, 0.5 * scale, 8), metalMat);
-                    armW.position.set(0.3 * scale, 0.2 * scale, 0);
-                    armW.rotation.z = 0.3;
-                    armW.castShadow = true; armW.receiveShadow = true;
-                    group.add(armW);
-                    const shadeW = new THREE.Mesh(new THREE.ConeGeometry(0.2 * scale, 0.3 * scale, 8), new THREE.MeshStandardMaterial({ color: 0xffeedd, emissive: 0x221100 }));
-                    shadeW.position.set(0.6 * scale, 0.35 * scale, 0);
-                    shadeW.castShadow = true;
-                    group.add(shadeW);
-                    break;
-
-                case 'floor_lamp':
-                    const baseFL = new THREE.Mesh(new THREE.CylinderGeometry(0.4 * scale, 0.5 * scale, 0.1 * scale, 12), metalMat);
-                    baseFL.position.y = 0.05 * scale;
-                    baseFL.castShadow = true; baseFL.receiveShadow = true;
-                    group.add(baseFL);
-                    const poleFL = new THREE.Mesh(new THREE.CylinderGeometry(0.05 * scale, 0.06 * scale, 2.5 * scale, 10), metalMat);
-                    poleFL.position.y = 1.3 * scale;
-                    poleFL.castShadow = true; poleFL.receiveShadow = true;
-                    group.add(poleFL);
-                    const shadeFL = new THREE.Mesh(new THREE.ConeGeometry(0.5 * scale, 0.6 * scale, 12), new THREE.MeshStandardMaterial({ color: 0xffeedd, emissive: 0x221100 }));
-                    shadeFL.position.y = 2.5 * scale;
-                    shadeFL.castShadow = true; shadeFL.receiveShadow = true;
-                    group.add(shadeFL);
-                    break;
-
-                case 'spot':
-                    const spotLight = new THREE.Mesh(new THREE.SphereGeometry(0.15 * scale, 8), metalMat);
-                    spotLight.castShadow = true; spotLight.receiveShadow = true;
-                    group.add(spotLight);
-                    break;
-
-                case 'led':
-                    const ledStrip = new THREE.Mesh(new THREE.BoxGeometry(2.0 * scale, 0.02 * scale, 0.02 * scale), new THREE.MeshStandardMaterial({ color: 0xffeedd, emissive: 0xffeedd }));
-                    ledStrip.castShadow = true; ledStrip.receiveShadow = true;
-                    group.add(ledStrip);
-                    break;
-
-                case 'cabinet':
-                    const bodyC = new THREE.Mesh(new THREE.BoxGeometry(1.2 * scale, 1.8 * scale, 0.6 * scale), woodMat);
-                    bodyC.position.y = 0.9 * scale;
-                    bodyC.castShadow = true; bodyC.receiveShadow = true;
-                    group.add(bodyC);
-                    const doorC = new THREE.Mesh(new THREE.BoxGeometry(1.0 * scale, 1.4 * scale, 0.05 * scale), woodMat);
-                    doorC.position.set(0, 0.9 * scale, 0.31 * scale);
-                    doorC.castShadow = true; doorC.receiveShadow = true;
-                    group.add(doorC);
-                    const handleC = new THREE.Mesh(new THREE.CylinderGeometry(0.04 * scale, 0.04 * scale, 0.2 * scale, 6), metalMat);
-                    handleC.position.set(0.4 * scale, 0.9 * scale, 0.34 * scale);
-                    handleC.rotation.z = Math.PI/2;
-                    handleC.castShadow = true;
-                    group.add(handleC);
-                    break;
-
-                case 'wardrobe':
-                    const bodyW = new THREE.Mesh(new THREE.BoxGeometry(2.0 * scale, 2.5 * scale, 0.9 * scale), woodMat);
-                    bodyW.position.y = 1.25 * scale;
-                    bodyW.castShadow = true; bodyW.receiveShadow = true;
-                    group.add(bodyW);
-                    break;
-
-                case 'shelf':
-                    const leftS = new THREE.Mesh(new THREE.BoxGeometry(0.1 * scale, 1.8 * scale, 0.4 * scale), woodMat);
-                    leftS.position.set(-0.6 * scale, 0.9 * scale, 0);
-                    leftS.castShadow = true; leftS.receiveShadow = true;
-                    group.add(leftS);
-                    const rightS = leftS.clone(); rightS.position.set(0.6 * scale, 0.9 * scale, 0); group.add(rightS);
-                    for (let i = 0; i < 3; i++) {
-                        const shelf = new THREE.Mesh(new THREE.BoxGeometry(1.2 * scale, 0.05 * scale, 0.4 * scale), woodMat);
-                        shelf.position.set(0, 0.3 + i * 0.6 * scale, 0);
-                        shelf.castShadow = true; shelf.receiveShadow = true;
-                        group.add(shelf);
+                }
+                // Декоративные элементы на ножках
+                const ringGeo = new THREE.TorusGeometry(0.12 * scale, 0.02 * scale, 8, 16);
+                for (let x = -0.8 * scale; x <= 0.8 * scale; x += 1.6 * scale) {
+                    for (let z = -0.4 * scale; z <= 0.4 * scale; z += 0.8 * scale) {
+                        const ring = new THREE.Mesh(ringGeo, metalMat);
+                        ring.position.set(x, 0.7 * scale, z);
+                        ring.rotation.x = Math.PI/2;
+                        ring.castShadow = true;
+                        group.add(ring);
                     }
-                    // Книги
-                    for (let i = 0; i < 4; i++) {
-                        const book = new THREE.Mesh(new THREE.BoxGeometry(0.15 * scale, 0.2 * scale, 0.3 * scale), new THREE.MeshStandardMaterial({ color: 0x8b4513 }));
-                        book.position.set(-0.4 + i * 0.2 * scale, 0.6 * scale, 0.15 * scale);
-                        book.castShadow = true; book.receiveShadow = true;
-                        group.add(book);
+                }
+            } else if (type.includes('cabinet')) {
+                // Шкаф с дверцами и ручками
+                const body = new THREE.Mesh(new THREE.BoxGeometry(1.5 * scale, 2.0 * scale, 0.6 * scale), woodMat);
+                body.position.y = 1.0 * scale;
+                body.castShadow = true; body.receiveShadow = true;
+                group.add(body);
+                const door = new THREE.Mesh(new THREE.BoxGeometry(1.2 * scale, 1.6 * scale, 0.05 * scale), woodMat);
+                door.position.set(0, 1.0 * scale, 0.31 * scale);
+                door.castShadow = true; door.receiveShadow = true;
+                group.add(door);
+                const handle = new THREE.Mesh(new THREE.CylinderGeometry(0.04 * scale, 0.04 * scale, 0.2 * scale, 8), metalMat);
+                handle.position.set(0.5 * scale, 1.0 * scale, 0.34 * scale);
+                handle.rotation.z = Math.PI/2;
+                handle.castShadow = true;
+                group.add(handle);
+                // Ножки
+                const legGeo = new THREE.CylinderGeometry(0.1 * scale, 0.12 * scale, 0.2 * scale, 8);
+                for (let x = -0.6 * scale; x <= 0.6 * scale; x += 1.2 * scale) {
+                    for (let z = -0.2 * scale; z <= 0.2 * scale; z += 0.4 * scale) {
+                        const leg = new THREE.Mesh(legGeo, woodMat);
+                        leg.position.set(x, 0.1 * scale, z);
+                        leg.castShadow = true; leg.receiveShadow = true;
+                        group.add(leg);
                     }
-                    break;
-
-                case 'bookshelf':
-                    const bookShelf = new THREE.Mesh(new THREE.BoxGeometry(1.2 * scale, 2.0 * scale, 0.4 * scale), woodMat);
-                    bookShelf.position.y = 1.0 * scale;
-                    bookShelf.castShadow = true; bookShelf.receiveShadow = true;
-                    group.add(bookShelf);
-                    break;
-
-                case 'dresser':
-                    const bodyD = new THREE.Mesh(new THREE.BoxGeometry(1.0 * scale, 1.2 * scale, 0.6 * scale), woodMat);
-                    bodyD.position.y = 0.6 * scale;
-                    bodyD.castShadow = true; bodyD.receiveShadow = true;
-                    group.add(bodyD);
-                    for (let i = 0; i < 3; i++) {
-                        const knob = new THREE.Mesh(new THREE.SphereGeometry(0.04 * scale, 6), metalMat);
-                        knob.position.set(0.3 * scale, 0.3 + i * 0.3 * scale, 0.31 * scale);
-                        knob.castShadow = true;
-                        group.add(knob);
-                    }
-                    break;
-
-                case 'nightstand':
-                    const night = new THREE.Mesh(new THREE.BoxGeometry(0.8 * scale, 0.8 * scale, 0.5 * scale), woodMat);
-                    night.position.y = 0.4 * scale;
-                    night.castShadow = true; night.receiveShadow = true;
-                    group.add(night);
-                    break;
-
-                case 'drawers':
-                    const draw = new THREE.Mesh(new THREE.BoxGeometry(0.8 * scale, 1.0 * scale, 0.5 * scale), woodMat);
-                    draw.position.y = 0.5 * scale;
-                    draw.castShadow = true; draw.receiveShadow = true;
-                    group.add(draw);
-                    break;
-
-                case 'plant':
-                    const pot = new THREE.Mesh(new THREE.CylinderGeometry(0.4 * scale, 0.45 * scale, 0.4 * scale, 12), woodMat);
-                    pot.position.y = 0.2 * scale;
-                    pot.castShadow = true; pot.receiveShadow = true;
-                    group.add(pot);
-                    const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.1 * scale, 0.12 * scale, 1.2 * scale, 8), woodMat);
-                    stem.position.y = 0.9 * scale;
-                    stem.castShadow = true; stem.receiveShadow = true;
-                    group.add(stem);
-                    for (let i = 0; i < 8; i++) {
-                        const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.15 * scale, 0.5 * scale, 8), new THREE.MeshStandardMaterial({ color: 0x2e8b57 }));
-                        leaf.position.set(Math.cos(i * 0.8) * 0.5 * scale, 1.3 * scale, Math.sin(i * 0.8) * 0.5 * scale);
-                        leaf.rotation.x = 0.2; leaf.rotation.y = i;
-                        leaf.castShadow = true;
-                        group.add(leaf);
-                    }
-                    group.userData.speed = 0.5 + Math.random()*0.5;
-                    break;
-
-                case 'palm':
-                    const potP = new THREE.Mesh(new THREE.CylinderGeometry(0.5 * scale, 0.6 * scale, 0.5 * scale, 12), woodMat);
-                    potP.position.y = 0.25 * scale;
-                    potP.castShadow = true; potP.receiveShadow = true;
-                    group.add(potP);
-                    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.15 * scale, 0.2 * scale, 2.0 * scale, 8), woodMat);
-                    trunk.position.y = 1.2 * scale;
-                    trunk.castShadow = true; trunk.receiveShadow = true;
-                    group.add(trunk);
-                    for (let i = 0; i < 10; i++) {
-                        const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.25 * scale, 0.8 * scale, 8), new THREE.MeshStandardMaterial({ color: 0x2e8b57 }));
-                        leaf.position.set(Math.cos(i) * 0.8 * scale, 2.0 * scale, Math.sin(i) * 0.8 * scale);
-                        leaf.rotation.z = 0.3; leaf.rotation.y = i;
-                        leaf.castShadow = true;
-                        group.add(leaf);
-                    }
-                    group.userData.speed = 0.3;
-                    break;
-
-                case 'cactus':
-                    const potC = new THREE.Mesh(new THREE.CylinderGeometry(0.4 * scale, 0.45 * scale, 0.3 * scale, 10), woodMat);
-                    potC.position.y = 0.15 * scale;
-                    potC.castShadow = true; potC.receiveShadow = true;
-                    group.add(potC);
-                    const bodyCact = new THREE.Mesh(new THREE.CylinderGeometry(0.2 * scale, 0.25 * scale, 1.0 * scale, 10), new THREE.MeshStandardMaterial({ color: 0x2e8b57 }));
-                    bodyCact.position.y = 0.8 * scale;
-                    bodyCact.castShadow = true; bodyCact.receiveShadow = true;
-                    group.add(bodyCact);
-                    break;
-
-                case 'orchid':
-                    const potO = new THREE.Mesh(new THREE.CylinderGeometry(0.3 * scale, 0.35 * scale, 0.3 * scale, 8), woodMat);
-                    potO.position.y = 0.15 * scale;
-                    potO.castShadow = true; potO.receiveShadow = true;
-                    group.add(potO);
-                    break;
-
-                case 'vase':
-                    const vase = new THREE.Mesh(new THREE.CylinderGeometry(0.25 * scale, 0.3 * scale, 0.7 * scale, 12), new THREE.MeshStandardMaterial({ color: col, roughness: 0.3 }));
-                    vase.position.y = 0.35 * scale;
-                    vase.castShadow = true; vase.receiveShadow = true;
-                    group.add(vase);
-                    break;
-
-                case 'mirror':
-                    const frame = new THREE.Mesh(new THREE.BoxGeometry(1.2 * scale, 1.6 * scale, 0.1 * scale), woodMat);
-                    frame.position.y = 0.8 * scale;
-                    frame.castShadow = true; frame.receiveShadow = true;
-                    group.add(frame);
-                    const glass = new THREE.Mesh(new THREE.BoxGeometry(1.0 * scale, 1.4 * scale, 0.02 * scale), new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.1, metalness: 0.0, transparent: true, opacity: 0.2 }));
-                    glass.position.set(0, 0.8 * scale, 0.06 * scale);
-                    glass.castShadow = true; glass.receiveShadow = true;
-                    group.add(glass);
-                    break;
-
-                case 'clock':
-                    const clockBody = new THREE.Mesh(new THREE.CylinderGeometry(0.4 * scale, 0.4 * scale, 0.1 * scale, 24), woodMat);
-                    clockBody.rotation.x = 0; clockBody.position.y = 0.8 * scale; clockBody.castShadow = true;
-                    group.add(clockBody);
-                    break;
-
-                case 'painting':
-                    const paint = new THREE.Mesh(new THREE.BoxGeometry(1.2 * scale, 1.0 * scale, 0.05 * scale), woodMat);
-                    paint.position.y = 0.5 * scale;
-                    paint.castShadow = true; paint.receiveShadow = true;
-                    group.add(paint);
-                    break;
-
-                case 'carpet':
-                    const carpet = new THREE.Mesh(new THREE.BoxGeometry(2.0 * scale, 0.05 * scale, 1.5 * scale), fabricMat);
-                    carpet.position.y = 0.025 * scale;
-                    carpet.castShadow = true; carpet.receiveShadow = true;
-                    group.add(carpet);
-                    break;
-
-                case 'sculpture':
-                    const sculpt = new THREE.Mesh(new THREE.ConeGeometry(0.3 * scale, 1.0 * scale, 10), new THREE.MeshStandardMaterial({ color: col }));
-                    sculpt.position.y = 0.5 * scale;
-                    sculpt.castShadow = true; sculpt.receiveShadow = true;
-                    group.add(sculpt);
-                    break;
-
-                case 'wall':
-                    const wallMat = new THREE.MeshStandardMaterial({ color: col, roughness: 0.7 });
-                    const wallGeo = new THREE.BoxGeometry(0.2 * scale, 2.5 * scale, 3.0 * scale);
-                    const wall = new THREE.Mesh(wallGeo, wallMat);
-                    wall.castShadow = true; wall.receiveShadow = true;
-                    group.add(wall);
-                    group.userData.size = { x: 3.0, y: 2.5, z: 0.2 };
-                    break;
-
-                case 'roof':
-                    const roofMat = new THREE.MeshStandardMaterial({ color: col, roughness: 0.7 });
-                    const roofGeo = new THREE.ConeGeometry(2.0 * scale, 1.0 * scale, 8);
-                    const roof = new THREE.Mesh(roofGeo, roofMat);
-                    roof.castShadow = true; roof.receiveShadow = true;
-                    group.add(roof);
-                    break;
-
-                case 'floor':
-                    const floorMat = new THREE.MeshStandardMaterial({ color: col, roughness: 0.7 });
-                    const floorGeo = new THREE.BoxGeometry(3.0 * scale, 0.1 * scale, 3.0 * scale);
-                    const floor = new THREE.Mesh(floorGeo, floorMat);
-                    floor.castShadow = true; floor.receiveShadow = true;
-                    group.add(floor);
-                    break;
-
-                default:
-                    const box = new THREE.Mesh(new THREE.BoxGeometry(0.8 * scale, 0.8 * scale, 0.8 * scale), woodMat);
-                    box.castShadow = true; box.receiveShadow = true;
-                    group.add(box);
+                }
+            } else if (type.includes('lamp')) {
+                // Торшер с абажуром
+                const base = new THREE.Mesh(new THREE.CylinderGeometry(0.3 * scale, 0.35 * scale, 0.2 * scale, 12), metalMat);
+                base.position.y = 0.1 * scale;
+                base.castShadow = true; base.receiveShadow = true;
+                group.add(base);
+                const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.05 * scale, 0.06 * scale, 2.5 * scale, 10), metalMat);
+                pole.position.y = 1.35 * scale;
+                pole.castShadow = true; pole.receiveShadow = true;
+                group.add(pole);
+                const shade = new THREE.Mesh(new THREE.ConeGeometry(0.5 * scale, 0.6 * scale, 12), new THREE.MeshStandardMaterial({ color: 0xffeedd, emissive: 0x221100 }));
+                shade.position.y = 2.5 * scale;
+                shade.castShadow = true; shade.receiveShadow = true;
+                group.add(shade);
+                // Лампочка
+                const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.1 * scale, 12), new THREE.MeshStandardMaterial({ color: 0xffeedd, emissive: 0xffeedd }));
+                bulb.position.y = 2.3 * scale;
+                bulb.castShadow = true;
+                group.add(bulb);
+            } else if (type.includes('decor')) {
+                // Декоративный предмет – ваза или скульптура
+                const vaseBase = new THREE.Mesh(new THREE.CylinderGeometry(0.3 * scale, 0.35 * scale, 0.2 * scale, 12), woodMat);
+                vaseBase.position.y = 0.1 * scale;
+                vaseBase.castShadow = true; vaseBase.receiveShadow = true;
+                group.add(vaseBase);
+                const vaseBody = new THREE.Mesh(new THREE.CylinderGeometry(0.25 * scale, 0.3 * scale, 0.8 * scale, 12), glassMat);
+                vaseBody.position.y = 0.6 * scale;
+                vaseBody.castShadow = true; vaseBody.receiveShadow = true;
+                group.add(vaseBody);
+                const vaseNeck = new THREE.Mesh(new THREE.CylinderGeometry(0.15 * scale, 0.2 * scale, 0.2 * scale, 10), glassMat);
+                vaseNeck.position.y = 1.1 * scale;
+                vaseNeck.castShadow = true; vaseNeck.receiveShadow = true;
+                group.add(vaseNeck);
+            } else if (type.includes('plant')) {
+                // Растение с анимацией
+                const pot = new THREE.Mesh(new THREE.CylinderGeometry(0.4 * scale, 0.45 * scale, 0.4 * scale, 12), woodMat);
+                pot.position.y = 0.2 * scale;
+                pot.castShadow = true; pot.receiveShadow = true;
+                group.add(pot);
+                const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.1 * scale, 0.12 * scale, 1.2 * scale, 8), woodMat);
+                stem.position.y = 0.9 * scale;
+                stem.castShadow = true; stem.receiveShadow = true;
+                group.add(stem);
+                for (let i = 0; i < 12; i++) {
+                    const angle = (i / 12) * Math.PI * 2;
+                    const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.15 * scale, 0.6 * scale, 8), new THREE.MeshStandardMaterial({ color: 0x2e8b57 }));
+                    leaf.position.set(Math.cos(angle) * 0.5 * scale, 1.4 * scale, Math.sin(angle) * 0.5 * scale);
+                    leaf.rotation.x = 0.2; leaf.rotation.y = angle;
+                    leaf.castShadow = true;
+                    group.add(leaf);
+                }
+                group.userData.speed = 0.5 + Math.random()*0.5;
+            } else if (type.includes('tech')) {
+                // Техника – телевизор или компьютер
+                const screen = new THREE.Mesh(new THREE.BoxGeometry(1.4 * scale, 0.8 * scale, 0.1 * scale), blackMat);
+                screen.position.y = 0.6 * scale;
+                screen.castShadow = true; screen.receiveShadow = true;
+                group.add(screen);
+                const stand = new THREE.Mesh(new THREE.BoxGeometry(0.4 * scale, 0.1 * scale, 0.2 * scale), blackMat);
+                stand.position.y = 0.1 * scale;
+                stand.castShadow = true; stand.receiveShadow = true;
+                group.add(stand);
+            } else if (type.includes('wall')) {
+                const wallMat = new THREE.MeshStandardMaterial({ color: col, roughness: 0.7 });
+                const wallGeo = new THREE.BoxGeometry(0.2 * scale, 2.5 * scale, 3.0 * scale);
+                const wall = new THREE.Mesh(wallGeo, wallMat);
+                wall.castShadow = true; wall.receiveShadow = true;
+                group.add(wall);
+                group.userData.size = { x: 3.0, y: 2.5, z: 0.2 };
+            } else if (type.includes('roof')) {
+                const roofMat = new THREE.MeshStandardMaterial({ color: col, roughness: 0.7 });
+                const roofGeo = new THREE.ConeGeometry(2.0 * scale, 1.0 * scale, 6);
+                const roof = new THREE.Mesh(roofGeo, roofMat);
+                roof.castShadow = true; roof.receiveShadow = true;
+                group.add(roof);
+            } else {
+                // Универсальный куб с текстурой
+                const box = new THREE.Mesh(new THREE.BoxGeometry(0.8 * scale, 0.8 * scale, 0.8 * scale), woodMat);
+                box.castShadow = true; box.receiveShadow = true;
+                group.add(box);
             }
+
             return group;
         }
 
@@ -1552,15 +1279,26 @@
         function loadCatalog() {
             const grid = document.getElementById('catalogGrid');
             const catBtns = document.querySelectorAll('.cat-btn');
+            const searchInput = document.getElementById('searchInput');
             let currentCategory = 'all';
+            let searchTerm = '';
 
-            function renderCategory(cat) {
+            function filterItems() {
+                return catalogItems.filter(item => {
+                    const matchesCat = currentCategory === 'all' || item.category === currentCategory;
+                    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
+                    return matchesCat && matchesSearch;
+                });
+            }
+
+            function renderCategory() {
                 grid.innerHTML = '';
-                const filtered = cat === 'all' ? catalogItems : catalogItems.filter(i => i.category === cat);
+                const filtered = filterItems();
                 filtered.forEach(item => {
                     const card = document.createElement('div');
                     card.className = 'item-card';
                     card.dataset.id = item.id;
+                    card.dataset.category = item.category;
                     card.innerHTML = `<div class="item-icon">${item.icon}</div><div class="item-name">${item.name}</div>`;
                     card.addEventListener('click', () => {
                         document.querySelectorAll('.item-card').forEach(c => c.classList.remove('selected'));
@@ -1580,11 +1318,16 @@
                     catBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     currentCategory = btn.dataset.cat;
-                    renderCategory(currentCategory);
+                    renderCategory();
                 });
             });
 
-            renderCategory('all');
+            searchInput.addEventListener('input', (e) => {
+                searchTerm = e.target.value;
+                renderCategory();
+            });
+
+            renderCategory();
         }
 
         // --- Обновление UI ---
@@ -1819,7 +1562,7 @@
             scene.add(newItem);
             placedObjects.push(newItem);
             newItem.userData = { type: itemId, locked: false };
-            if (itemId === 'wall') newItem.userData.size = { x: 3.0, y: 2.5, z: 0.2 };
+            if (itemId.includes('wall')) newItem.userData.size = { x: 3.0, y: 2.5, z: 0.2 };
             pushHistory();
             updateUI();
         });
@@ -1952,12 +1695,12 @@
                 })(),
                 size: obj.userData?.size || null
             }));
-            localStorage.setItem('premium_scene', JSON.stringify(data));
+            localStorage.setItem('ultimate_scene', JSON.stringify(data));
             alert('Сцена сохранена');
         });
 
         document.getElementById('loadBtn').addEventListener('click', () => {
-            const data = JSON.parse(localStorage.getItem('premium_scene'));
+            const data = JSON.parse(localStorage.getItem('ultimate_scene'));
             if (!data) return;
             placedObjects.forEach(obj => scene.remove(obj));
             placedObjects.length = 0;
@@ -2011,6 +1754,15 @@
         document.getElementById('snapGrid').addEventListener('change', (e) => snapGrid = e.target.checked);
         document.getElementById('snapObject').addEventListener('change', (e) => snapObject = e.target.checked);
         document.getElementById('physics').addEventListener('change', (e) => physicsEnabled = e.target.checked);
+        document.getElementById('highQuality').addEventListener('change', (e) => {
+            highQuality = e.target.checked;
+            const mapSize = highQuality ? 4096 : 2048;
+            sunLight.shadow.mapSize.width = mapSize;
+            sunLight.shadow.mapSize.height = mapSize;
+            bloomPass.strength = highQuality ? 0.8 : 0.5;
+            saoPass.params.saoIntensity = highQuality ? 0.5 : 0.3;
+            renderer.toneMappingExposure = highQuality ? 1.2 : 1.0;
+        });
 
         // --- Анимация растений ---
         function animatePlants() {
