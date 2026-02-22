@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3D Dream Home</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем Telegram Web App -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div id="info-panel">
+        <h1>🏡 Дизайн Интерьера</h1>
+        <p>Предметов: <span id="item-count">3</span></p>
+        <button id="add-chair">➕ Добавить кресло</button>
+        <button id="add-lamp">💡 Добавить светильник</button>
+    </div>
+
+    <!-- Холст для 3D графики -->
+    <canvas id="canvas"></canvas>
+
+    <!-- Подключаем Three.js и наш основной скрипт -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
