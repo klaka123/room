@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>✧ MÖBIUS — ДИЗАЙН ИНТЕРЬЕРА ✧</title>
+    <title>✦ ATELIER — ДЕТАЛИ ИНТЕРЬЕРА ✦</title>
     <style>
         * {
             margin: 0;
@@ -11,13 +11,13 @@
             box-sizing: border-box;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
         body {
             overflow: hidden;
-            background: #0d0f14;
-            font-family: 'Syne', sans-serif;
+            background: #0a0c12;
+            font-family: 'Montserrat', sans-serif;
         }
 
         #canvas {
@@ -30,22 +30,22 @@
             z-index: 1;
         }
 
-        /* Органическое стекло */
-        .organik {
-            background: rgba(22, 26, 34, 0.65);
-            backdrop-filter: blur(40px) saturate(300%);
-            -webkit-backdrop-filter: blur(40px) saturate(300%);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 40px;
-            box-shadow: 0 50px 100px -40px #000, 
-                        0 0 0 1px rgba(255, 255, 255, 0.02) inset;
-            color: #f0f4fa;
-            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.3, 1);
+        /* Премиальное стекло */
+        .premium {
+            background: rgba(18, 22, 32, 0.7);
+            backdrop-filter: blur(50px) saturate(300%);
+            -webkit-backdrop-filter: blur(50px) saturate(300%);
+            border: 1px solid rgba(255, 215, 180, 0.1);
+            border-radius: 48px;
+            box-shadow: 0 60px 120px -50px #000, 
+                        0 0 0 1px rgba(255, 215, 180, 0.02) inset;
+            color: #fff5e8;
+            transition: all 0.5s ease;
         }
 
-        .organik:hover {
-            background: rgba(28, 34, 44, 0.75);
-            border-color: rgba(255, 255, 255, 0.08);
+        .premium:hover {
+            background: rgba(24, 30, 42, 0.8);
+            border-color: rgba(255, 215, 180, 0.15);
         }
 
         /* Контейнер UI */
@@ -65,22 +65,22 @@
         /* Левая панель */
         .catalog-panel {
             pointer-events: all;
-            width: 440px;
+            width: 480px;
             height: calc(100vh - 56px);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            animation: slideInLeft 0.8s ease;
+            animation: slideLeft 0.8s ease;
         }
 
-        @keyframes slideInLeft {
+        @keyframes slideLeft {
             0% { transform: translateX(-120%) scale(0.95); opacity: 0; }
             100% { transform: translateX(0) scale(1); opacity: 1; }
         }
 
         .panel-header {
             padding: 28px 32px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 215, 180, 0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -92,27 +92,26 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            color: #ffffff;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
-            font-family: 'Syne', sans-serif;
+            color: #ffe8d8;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
         }
 
         .panel-header h2 i {
             font-size: 1.6rem;
-            opacity: 0.7;
-            color: #aaccff;
+            color: #ffd7b0;
+            opacity: 0.8;
         }
 
         .badge {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
+            background: rgba(255, 215, 180, 0.15);
+            border: 1px solid rgba(255, 215, 180, 0.2);
+            color: #ffe8d8;
             padding: 8px 20px;
             border-radius: 40px;
             font-weight: 500;
             font-size: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .search-box {
@@ -124,34 +123,34 @@
             position: absolute;
             left: 52px;
             top: 48px;
-            color: #aaccff;
+            color: #ffd7b0;
             font-size: 1.1rem;
-            opacity: 0.6;
+            opacity: 0.7;
         }
 
         .search-box input {
             width: 100%;
             padding: 16px 20px 16px 52px;
-            background: rgba(0, 0, 0, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 180, 0.15);
+            border-radius: 60px;
             color: white;
             font-size: 1rem;
             transition: all 0.3s ease;
             font-weight: 400;
             backdrop-filter: blur(10px);
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .search-box input:focus {
             outline: none;
-            border-color: rgba(170, 204, 255, 0.5);
-            background: rgba(0, 0, 0, 0.4);
-            box-shadow: 0 0 0 3px rgba(170, 204, 255, 0.05);
+            border-color: #ffd7b0;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 0 4px rgba(255, 215, 180, 0.1);
         }
 
         .search-box input::placeholder {
-            color: rgba(255, 255, 255, 0.25);
+            color: rgba(255, 215, 180, 0.3);
         }
 
         .categories {
@@ -162,9 +161,9 @@
         }
 
         .category-btn {
-            background: rgba(0, 0, 0, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 180, 0.15);
+            color: rgba(255, 215, 180, 0.8);
             padding: 8px 18px;
             border-radius: 40px;
             cursor: pointer;
@@ -172,23 +171,23 @@
             transition: all 0.3s ease;
             font-weight: 500;
             backdrop-filter: blur(10px);
-            letter-spacing: 0.3px;
             text-transform: uppercase;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .category-btn:hover {
-            background: rgba(170, 204, 255, 0.1);
-            border-color: rgba(170, 204, 255, 0.3);
+            background: rgba(255, 215, 180, 0.1);
+            border-color: rgba(255, 215, 180, 0.4);
             transform: translateY(-2px);
             color: #fff;
         }
 
         .category-btn.active {
-            background: rgba(170, 204, 255, 0.9);
+            background: #ffd7b0;
             border-color: transparent;
-            color: #0d0f14;
+            color: #0a0c12;
             font-weight: 600;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .items-grid {
@@ -201,12 +200,12 @@
         }
 
         .item-card {
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 32px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 36px;
             padding: 24px 12px 18px;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 215, 180, 0.05);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -215,54 +214,53 @@
         }
 
         .item-card:hover {
-            background: rgba(30, 40, 55, 0.6);
-            transform: translateY(-4px);
-            border-color: rgba(170, 204, 255, 0.2);
+            background: rgba(40, 50, 70, 0.6);
+            transform: translateY(-6px);
+            border-color: rgba(255, 215, 180, 0.2);
             box-shadow: 0 25px 40px -30px #000;
         }
 
         .item-card.selected {
-            border-color: rgba(170, 204, 255, 0.6);
-            background: rgba(40, 55, 75, 0.7);
-            box-shadow: 0 0 0 1px rgba(170, 204, 255, 0.3) inset;
+            border-color: #ffd7b0;
+            background: rgba(60, 70, 95, 0.7);
+            box-shadow: 0 0 0 2px rgba(255, 215, 180, 0.3) inset;
         }
 
         .item-icon {
-            font-size: 3.2rem;
-            filter: drop-shadow(0 15px 15px rgba(0,0,0,0.5));
+            font-size: 3.5rem;
+            filter: drop-shadow(0 15px 20px rgba(0,0,0,0.6));
             transition: all 0.4s ease;
         }
 
         .item-card:hover .item-icon {
             transform: scale(1.1);
-            filter: drop-shadow(0 20px 25px rgba(0,0,0,0.7));
+            filter: drop-shadow(0 25px 30px rgba(0,0,0,0.8));
         }
 
         .item-name {
             font-size: 0.9rem;
             font-weight: 500;
             text-align: center;
-            color: #ffffff;
-            letter-spacing: 0.3px;
-            background: rgba(0,0,0,0.3);
-            padding: 6px 14px;
+            color: #fff0e0;
+            background: rgba(0,0,0,0.4);
+            padding: 6px 16px;
             border-radius: 40px;
             backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 180, 0.15);
             width: 100%;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Правая панель */
         .tools-panel {
             pointer-events: all;
-            width: 380px;
+            width: 400px;
             height: fit-content;
             padding: 28px;
-            animation: slideInRight 0.8s ease;
+            animation: slideRight 0.8s ease;
         }
 
-        @keyframes slideInRight {
+        @keyframes slideRight {
             0% { transform: translateX(120%) scale(0.95); opacity: 0; }
             100% { transform: translateX(0) scale(1); opacity: 1; }
         }
@@ -273,7 +271,7 @@
 
         .tool-section h3 {
             font-size: 1.1rem;
-            color: #aaccff;
+            color: #ffd7b0;
             margin-bottom: 20px;
             font-weight: 500;
             letter-spacing: 1px;
@@ -281,7 +279,7 @@
             align-items: center;
             gap: 10px;
             text-transform: uppercase;
-            font-family: 'Syne', sans-serif;
+            font-family: 'Playfair Display', serif;
         }
 
         .tool-section h3 i {
@@ -296,11 +294,11 @@
 
         .tool-btn {
             flex: 1;
-            background: rgba(0, 0, 0, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 180, 0.15);
+            color: rgba(255, 215, 180, 0.9);
             padding: 14px;
-            border-radius: 36px;
+            border-radius: 40px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -310,46 +308,45 @@
             font-size: 1rem;
             font-weight: 500;
             backdrop-filter: blur(10px);
-            letter-spacing: 0.5px;
             text-transform: uppercase;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .tool-btn:hover {
-            background: rgba(170, 204, 255, 0.1);
-            border-color: rgba(170, 204, 255, 0.3);
+            background: rgba(255, 215, 180, 0.1);
+            border-color: rgba(255, 215, 180, 0.4);
             transform: translateY(-2px);
             color: #fff;
         }
 
         .tool-btn.active {
-            background: rgba(170, 204, 255, 0.9);
-            color: #0d0f14;
+            background: #ffd7b0;
             border-color: transparent;
+            color: #0a0c12;
             font-weight: 600;
         }
 
         .control-group {
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 32px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 36px;
             padding: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 180, 0.05);
             backdrop-filter: blur(10px);
         }
 
         label {
             display: block;
-            margin-bottom: 20px;
-            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 22px;
+            color: #fff0e0;
             font-size: 0.9rem;
             font-weight: 400;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         label span {
             display: block;
             margin-bottom: 8px;
-            color: #aaccff;
+            color: #ffd7b0;
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -358,7 +355,7 @@
         input[type="range"] {
             width: 100%;
             height: 4px;
-            background: rgba(170, 204, 255, 0.2);
+            background: rgba(255, 215, 180, 0.2);
             border-radius: 2px;
             -webkit-appearance: none;
         }
@@ -367,26 +364,25 @@
             -webkit-appearance: none;
             width: 18px;
             height: 18px;
-            background: #aaccff;
+            background: #ffd7b0;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 0 15px #aaccff;
-            border: 2px solid #0d0f14;
+            box-shadow: 0 0 15px #ffd7b0;
+            border: 2px solid #0a0c12;
             transition: all 0.2s ease;
         }
 
         input[type="range"]::-webkit-slider-thumb:hover {
             transform: scale(1.2);
-            background: #c0e0ff;
         }
 
         input[type="color"] {
             width: 100%;
             height: 44px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 30px;
+            border: 1px solid rgba(255, 215, 180, 0.2);
+            border-radius: 40px;
             background: rgba(0,0,0,0.3);
-            margin-top: 8px;
+            margin-top: 6px;
             cursor: pointer;
             padding: 4px;
         }
@@ -394,33 +390,33 @@
         select {
             width: 100%;
             padding: 14px 20px;
-            margin-top: 8px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 30px;
-            color: #ffffff;
+            margin-top: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 215, 180, 0.2);
+            border-radius: 40px;
+            color: #fff0e0;
             font-size: 0.95rem;
             cursor: pointer;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         select:hover {
-            border-color: rgba(170, 204, 255, 0.4);
-            background: rgba(10, 15, 25, 0.6);
+            border-color: #ffd7b0;
+            background: rgba(10, 15, 25, 0.7);
         }
 
         select option {
-            background: #0d0f14;
-            color: #ffffff;
+            background: #0a0c12;
+            color: #fff0e0;
         }
 
         .action-btn {
             width: 100%;
-            background: rgba(170, 204, 255, 0.9);
+            background: #ffd7b0;
             border: none;
-            color: #0d0f14;
+            color: #0a0c12;
             padding: 18px;
             border-radius: 40px;
             font-weight: 600;
@@ -432,13 +428,12 @@
             transition: all 0.4s ease;
             font-size: 1.1rem;
             margin-top: 20px;
-            letter-spacing: 1px;
             text-transform: uppercase;
-            font-family: 'Syne', sans-serif;
+            font-family: 'Playfair Display', serif;
         }
 
         .action-btn:hover {
-            background: #c0e0ff;
+            background: #ffe8d0;
             transform: scale(1.02) translateY(-2px);
             box-shadow: 0 20px 30px -15px #000;
         }
@@ -450,16 +445,15 @@
             bottom: 28px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 14px 48px;
+            padding: 14px 50px;
             display: flex;
             gap: 60px;
             font-size: 1rem;
             backdrop-filter: blur(60px) saturate(400%);
             animation: fadeUp 0.8s ease;
             border-radius: 60px;
-            background: rgba(12, 16, 22, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 25px 50px -30px #000;
+            background: rgba(10, 15, 22, 0.6);
+            border: 1px solid rgba(255, 215, 180, 0.08);
         }
 
         @keyframes fadeUp {
@@ -468,7 +462,7 @@
         }
 
         .status-bar i {
-            color: #aaccff;
+            color: #ffd7b0;
             margin-right: 8px;
             font-size: 1.1rem;
         }
@@ -477,21 +471,19 @@
             display: flex;
             align-items: center;
             font-weight: 400;
-            color: #ffffff;
-            font-family: 'Space Grotesk', sans-serif;
+            color: #fff0e0;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Скроллбар */
         ::-webkit-scrollbar {
             width: 3px;
         }
-
         ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 215, 180, 0.02);
         }
-
         ::-webkit-scrollbar-thumb {
-            background: rgba(170, 204, 255, 0.3);
+            background: rgba(255, 215, 180, 0.3);
             border-radius: 10px;
         }
 
@@ -499,29 +491,27 @@
         .hint {
             position: absolute;
             top: 28px;
-            right: 420px;
-            background: rgba(12, 16, 22, 0.6);
-            color: #ffffff;
+            right: 440px;
+            background: rgba(10, 15, 22, 0.6);
+            color: #fff0e0;
             padding: 12px 28px;
             border-radius: 50px;
             font-size: 0.9rem;
             backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 180, 0.15);
             pointer-events: none;
-            box-shadow: 0 15px 30px -20px #000;
-            font-weight: 400;
-            animation: pulse 4s infinite;
-            font-family: 'Space Grotesk', sans-serif;
+            animation: glow 4s infinite;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        @keyframes pulse {
-            0% { border-color: rgba(255, 255, 255, 0.1); }
-            50% { border-color: rgba(170, 204, 255, 0.4); }
-            100% { border-color: rgba(255, 255, 255, 0.1); }
+        @keyframes glow {
+            0% { border-color: rgba(255, 215, 180, 0.15); }
+            50% { border-color: rgba(255, 215, 180, 0.5); }
+            100% { border-color: rgba(255, 215, 180, 0.15); }
         }
 
         .hint i {
-            color: #aaccff;
+            color: #ffd7b0;
             margin-right: 8px;
         }
 
@@ -533,62 +523,41 @@
             transform: translateX(-50%);
             pointer-events: none;
             z-index: 5;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 600;
-            color: #ffffff;
+            color: #fff0e0;
             text-shadow: 0 4px 30px rgba(0,0,0,0.8);
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            background: rgba(12,16,22,0.3);
-            padding: 12px 48px;
+            letter-spacing: 6px;
+            background: rgba(10,15,22,0.3);
+            padding: 12px 50px;
             border-radius: 60px;
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.05);
-            font-family: 'Syne', sans-serif;
+            border: 1px solid rgba(255,215,180,0.1);
+            font-family: 'Playfair Display', serif;
         }
 
         /* Атмосфера */
-        .ambient-grid {
+        .ambient {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(170,204,255,0.02) 59px, rgba(170,204,255,0.02) 60px);
+            background: radial-gradient(circle at 70% 30%, rgba(255,215,180,0.02) 0%, transparent 50%);
             pointer-events: none;
             z-index: 2;
-            opacity: 0.4;
-        }
-
-        .ambient-orb {
-            position: absolute;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(170,204,255,0.02) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -350px;
-            left: -350px;
-            z-index: 0;
-            pointer-events: none;
-            animation: orbFloat 30s infinite alternate;
-        }
-
-        @keyframes orbFloat {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-            100% { transform: translate(100px, -100px) scale(1.2); opacity: 0.5; }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="ambient-grid"></div>
-    <div class="ambient-orb"></div>
-    <div class="logo">MÖBIUS</div>
+    <div class="ambient"></div>
+    <div class="logo">ATELIER</div>
 
     <div class="ui-container">
         <!-- Левая панель -->
-        <div class="catalog-panel organik">
+        <div class="catalog-panel premium">
             <div class="panel-header">
-                <h2><i class="fas fa-cubes"></i> КОЛЛЕКЦИЯ</h2>
+                <h2><i class="fas fa-gem"></i> КОЛЛЕКЦИЯ</h2>
                 <span class="badge" id="item-count">0</span>
             </div>
             <div class="search-box">
@@ -597,31 +566,28 @@
             </div>
             <div class="categories">
                 <button class="category-btn active" data-category="all">ВСЁ</button>
-                <button class="category-btn" data-category="modern">МОДЕРН</button>
-                <button class="category-btn" data-category="hightech">ХАЙ-ТЕК</button>
-                <button class="category-btn" data-category="loft">ЛОФТ</button>
-                <button class="category-btn" data-category="scandi">СКАНДИ</button>
-                <button class="category-btn" data-category="classic">КЛАССИКА</button>
-                <button class="category-btn" data-category="lighting">СВЕТ</button>
-                <button class="category-btn" data-category="seating">СИДЕНЬЯ</button>
+                <button class="category-btn" data-category="chairs">СТУЛЬЯ</button>
+                <button class="category-btn" data-category="sofas">ДИВАНЫ</button>
                 <button class="category-btn" data-category="tables">СТОЛЫ</button>
-                <button class="category-btn" data-category="storage">ХРАНЕНИЕ</button>
+                <button class="category-btn" data-category="lighting">СВЕТ</button>
+                <button class="category-btn" data-category="cabinets">ШКАФЫ</button>
                 <button class="category-btn" data-category="decor">ДЕКОР</button>
+                <button class="category-btn" data-category="plants">РАСТЕНИЯ</button>
                 <button class="category-btn" data-category="tech">ТЕХНИКА</button>
             </div>
             <div class="items-grid" id="items-grid"></div>
         </div>
 
         <!-- Правая панель -->
-        <div class="tools-panel organik">
+        <div class="tools-panel premium">
             <div class="panel-header">
-                <h2><i class="fas fa-sliders-h"></i> УПРАВЛЕНИЕ</h2>
+                <h2><i class="fas fa-sliders-h"></i> НАСТРОЙКИ</h2>
             </div>
             <div class="tool-section">
                 <h3><i class="fas fa-compass"></i> РЕЖИМ</h3>
                 <div class="tool-buttons">
                     <button class="tool-btn active" id="mode-place">
-                        <i class="fas fa-hand"></i> РАЗМЕСТИТЬ
+                        <i class="fas fa-hand"></i> СТАВИТЬ
                     </button>
                     <button class="tool-btn" id="mode-build">
                         <i class="fas fa-draw-polygon"></i> СТЕНА
@@ -629,46 +595,45 @@
                 </div>
             </div>
 
-            <!-- Панель строительства стены -->
+            <!-- Панель стены -->
             <div class="tool-section" id="build-controls" style="display: none;">
                 <h3><i class="fas fa-cubes"></i> ПАРАМЕТРЫ СТЕНЫ</h3>
                 <div class="control-group">
-                    <label><span>ДЛИНА (drag)</span> <input type="range" id="wall-length" min="1" max="12" step="0.1" value="4"></label>
+                    <label><span>ДЛИНА (drag)</span> <input type="range" id="wall-length" min="1" max="15" step="0.1" value="4"></label>
                     <label><span>ВЫСОТА</span> <input type="range" id="wall-height" min="1" max="8" step="0.1" value="2.8"></label>
-                    <label><span>ТОЛЩИНА</span> <input type="range" id="wall-thickness" min="0.1" max="0.8" step="0.05" value="0.2"></label>
-                    <label><span>ЦВЕТ</span> <input type="color" id="wall-color" value="#aaccff"></label>
+                    <label><span>ТОЛЩИНА</span> <input type="range" id="wall-thick" min="0.1" max="1" step="0.05" value="0.2"></label>
+                    <label><span>ЦВЕТ</span> <input type="color" id="wall-color" value="#c0b0a0"></label>
                     <label><span>МАТЕРИАЛ</span>
                         <select id="wall-material">
-                            <option value="concrete">Бетон</option>
                             <option value="brick">Кирпич</option>
+                            <option value="concrete">Бетон</option>
                             <option value="wood">Дерево</option>
-                            <option value="metal">Металл</option>
-                            <option value="glass">Стекло</option>
                             <option value="plaster">Штукатурка</option>
+                            <option value="stone">Камень</option>
                         </select>
                     </label>
                     <button class="action-btn" id="build-wall"><i class="fas fa-plus-circle"></i> ПОСТРОИТЬ</button>
                 </div>
             </div>
 
-            <!-- Панель размещения предметов -->
+            <!-- Панель предметов -->
             <div class="tool-section" id="place-controls">
                 <h3><i class="fas fa-palette"></i> СВОЙСТВА</h3>
                 <div class="control-group">
-                    <label><span>СТИЛЬ МАТЕРИАЛА</span>
+                    <label><span>МАТЕРИАЛ</span>
                         <select id="material-style">
-                            <option value="polished">Глянец</option>
-                            <option value="matte">Матовый</option>
-                            <option value="metal">Металлик</option>
-                            <option value="wood">Древесина</option>
-                            <option value="fabric">Ткань</option>
-                            <option value="stone">Камень</option>
+                            <option value="leather">Кожа</option>
+                            <option value="velvet">Бархат</option>
+                            <option value="wood">Дерево</option>
+                            <option value="metal">Металл</option>
+                            <option value="marble">Мрамор</option>
+                            <option value="glass">Стекло</option>
                         </select>
                     </label>
-                    <label><span>ЦВЕТ</span> <input type="color" id="item-color" value="#88aadd"></label>
-                    <label><span>МАСШТАБ</span> <input type="range" id="item-scale" min="0.3" max="2.5" step="0.05" value="1"></label>
+                    <label><span>ЦВЕТ</span> <input type="color" id="item-color" value="#b09a80"></label>
+                    <label><span>МАСШТАБ</span> <input type="range" id="item-scale" min="0.4" max="3" step="0.05" value="1"></label>
                     <label><span>ПОВОРОТ</span> <input type="range" id="item-rotate" min="0" max="360" value="0"></label>
-                    <label><span>ВЫСОТА НАД ПОЛОМ</span> <input type="range" id="item-elevation" min="0" max="2" step="0.05" value="0"></label>
+                    <label><span>ВЫСОТА</span> <input type="range" id="item-elev" min="0" max="2" step="0.05" value="0"></label>
                     <button class="action-btn" id="apply-props"><i class="fas fa-check"></i> ПРИМЕНИТЬ</button>
                 </div>
             </div>
@@ -676,7 +641,7 @@
             <div class="tool-section">
                 <h3><i class="fas fa-sun"></i> ОСВЕЩЕНИЕ</h3>
                 <div class="control-group">
-                    <label><span>ИНТЕНСИВНОСТЬ</span> <input type="range" id="light-intensity" min="0.2" max="2" step="0.1" value="1.2"></label>
+                    <label><span>ИНТЕНСИВНОСТЬ</span> <input type="range" id="light-int" min="0.2" max="2" step="0.1" value="1.2"></label>
                     <label><span>ТЕМПЕРАТУРА</span> <input type="range" id="light-temp" min="2000" max="8000" step="100" value="4500"></label>
                 </div>
             </div>
@@ -684,22 +649,22 @@
             <div class="tool-section">
                 <h3><i class="fas fa-undo-alt"></i> ДЕЙСТВИЯ</h3>
                 <div class="control-group" style="display: flex; gap: 8px; padding: 16px;">
-                    <button class="tool-btn" id="undo-btn" style="flex:1;"><i class="fas fa-undo"></i> ОТМЕНА</button>
-                    <button class="tool-btn" id="clear-btn" style="flex:1;"><i class="fas fa-trash"></i> ОЧИСТИТЬ</button>
+                    <button class="tool-btn" id="undo-btn"><i class="fas fa-undo"></i> ОТМЕНА</button>
+                    <button class="tool-btn" id="clear-btn"><i class="fas fa-trash"></i> ОЧИСТИТЬ</button>
                 </div>
             </div>
         </div>
 
         <!-- Статус бар -->
-        <div class="status-bar organik">
+        <div class="status-bar premium">
             <div><i class="fas fa-cube"></i> <span id="total-items">0</span></div>
             <div><i class="fas fa-shapes"></i> <span id="poly-count">0</span>K</div>
-            <div><i class="fas fa-tachometer-alt"></i> <span id="fps-counter">0</span> FPS</div>
+            <div><i class="fas fa-tachometer-alt"></i> <span id="fps">0</span> FPS</div>
         </div>
     </div>
 
     <div class="hint">
-        <i class="fas fa-mouse-pointer"></i> ЛКМ — поставить предмет | Зажать и тянуть — построить стену
+        <i class="fas fa-mouse-pointer"></i> ЛКМ — поставить | Зажать и тянуть — стена
     </div>
 
     <canvas id="canvas"></canvas>
@@ -719,83 +684,59 @@
         import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
         import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
         import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-        import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 
-        // ==================== КАТАЛОГ ПРЕДМЕТОВ ====================
+        // ==================== ДЕТАЛИЗИРОВАННЫЙ КАТАЛОГ ====================
         const catalog = [
-            // МОДЕРН
-            { id: 'modern_chair', name: 'Стул Modern', icon: '🪑', category: 'modern', type: 'chair', color: '#3a6ea5' },
-            { id: 'modern_sofa', name: 'Диван Modern', icon: '🛋️', category: 'modern', type: 'sofa', color: '#5a7a9a' },
-            { id: 'modern_table', name: 'Стол Modern', icon: '🪑', category: 'modern', type: 'table', color: '#2a3a4a' },
-            { id: 'modern_lamp', name: 'Торшер Modern', icon: '💡', category: 'modern', type: 'lamp', color: '#c0c0c0' },
+            // СТУЛЬЯ
+            { id: 'chair_chester', name: 'Честерфилд', icon: '🪑', cat: 'chairs', type: 'chester', color: '#8b4513' },
+            { id: 'chair_eames', name: 'Eames', icon: '💺', cat: 'chairs', type: 'eames', color: '#4a5a6a' },
+            { id: 'chair_louis', name: 'Людовик', icon: '🪑', cat: 'chairs', type: 'louis', color: '#c49a6c' },
+            { id: 'chair_tolix', name: 'Tolix', icon: '🪑', cat: 'chairs', type: 'tolix', color: '#7a7a7a' },
             
-            // ХАЙ-ТЕК
-            { id: 'hightech_chair', name: 'Кресло Hi-Tech', icon: '💺', category: 'hightech', type: 'chair', color: '#88aaff' },
-            { id: 'hightech_sofa', name: 'Диван Hi-Tech', icon: '🛋️', category: 'hightech', type: 'sofa', color: '#3a4a6a' },
-            { id: 'hightech_table', name: 'Стол Hi-Tech', icon: '🪑', category: 'hightech', type: 'table', color: '#2a2a3a' },
-            { id: 'hightech_lamp', name: 'Светильник Hi-Tech', icon: '💡', category: 'hightech', type: 'lamp', color: '#aaccff' },
-            
-            // ЛОФТ
-            { id: 'loft_chair', name: 'Стул Loft', icon: '🪑', category: 'loft', type: 'chair', color: '#8b5a2b' },
-            { id: 'loft_sofa', name: 'Диван Loft', icon: '🛋️', category: 'loft', type: 'sofa', color: '#5a4a3a' },
-            { id: 'loft_table', name: 'Стол Loft', icon: '🪑', category: 'loft', type: 'table', color: '#6b4f3c' },
-            { id: 'loft_lamp', name: 'Лампа Loft', icon: '💡', category: 'loft', type: 'lamp', color: '#b87333' },
-            
-            // СКАНДИ
-            { id: 'scandi_chair', name: 'Стул Scandi', icon: '🪑', category: 'scandi', type: 'chair', color: '#c49a6c' },
-            { id: 'scandi_sofa', name: 'Диван Scandi', icon: '🛋️', category: 'scandi', type: 'sofa', color: '#a5c8b0' },
-            { id: 'scandi_table', name: 'Стол Scandi', icon: '🪑', category: 'scandi', type: 'table', color: '#d4b088' },
-            { id: 'scandi_lamp', name: 'Светильник Scandi', icon: '💡', category: 'scandi', type: 'lamp', color: '#f0e0d0' },
-            
-            // КЛАССИКА
-            { id: 'classic_chair', name: 'Кресло Classic', icon: '🪑', category: 'classic', type: 'chair', color: '#8b4513' },
-            { id: 'classic_sofa', name: 'Диван Classic', icon: '🛋️', category: 'classic', type: 'sofa', color: '#4a2c5a' },
-            { id: 'classic_table', name: 'Стол Classic', icon: '🪑', category: 'classic', type: 'table', color: '#8b5a2b' },
-            { id: 'classic_lamp', name: 'Люстра Classic', icon: '💡', category: 'classic', type: 'lamp', color: '#d4af37' },
-            
-            // СВЕТ
-            { id: 'lamp_floor', name: 'Торшер', icon: '💡', category: 'lighting', type: 'lamp', color: '#cccccc' },
-            { id: 'lamp_table', name: 'Настольная лампа', icon: '💡', category: 'lighting', type: 'lamp', color: '#aaccff' },
-            { id: 'lamp_pendant', name: 'Подвес', icon: '💡', category: 'lighting', type: 'lamp', color: '#ffffff' },
-            { id: 'lamp_wall', name: 'Бра', icon: '💡', category: 'lighting', type: 'lamp', color: '#888888' },
-            
-            // СИДЕНЬЯ
-            { id: 'chair_dining', name: 'Стул обеденный', icon: '🪑', category: 'seating', type: 'chair', color: '#3a3a3a' },
-            { id: 'chair_lounge', name: 'Кресло', icon: '💺', category: 'seating', type: 'chair', color: '#4a4a5a' },
-            { id: 'sofa', name: 'Диван', icon: '🛋️', category: 'seating', type: 'sofa', color: '#5a6b7a' },
-            { id: 'bench', name: 'Скамья', icon: '🪑', category: 'seating', type: 'bench', color: '#8b5a2b' },
+            // ДИВАНЫ
+            { id: 'sofa_chester', name: 'Честерфилд', icon: '🛋️', cat: 'sofas', type: 'chester', color: '#8b4513' },
+            { id: 'sofa_modern', name: 'Модерн', icon: '🛋️', cat: 'sofas', type: 'modern', color: '#5a6b7a' },
+            { id: 'sofa_scandi', name: 'Сканди', icon: '🛋️', cat: 'sofas', type: 'scandi', color: '#b0aa90' },
             
             // СТОЛЫ
-            { id: 'table_dining', name: 'Обеденный стол', icon: '🪑', category: 'tables', type: 'table', color: '#5a3a2a' },
-            { id: 'table_coffee', name: 'Журнальный столик', icon: '🪑', category: 'tables', type: 'table', color: '#3a3a4a' },
-            { id: 'table_side', name: 'Приставной столик', icon: '🪑', category: 'tables', type: 'table', color: '#4a4a5a' },
-            { id: 'desk', name: 'Письменный стол', icon: '📝', category: 'tables', type: 'table', color: '#2a2a3a' },
+            { id: 'table_dining', name: 'Обеденный', icon: '🪑', cat: 'tables', type: 'dining', color: '#8b5a2b' },
+            { id: 'table_coffee', name: 'Журнальный', icon: '🪑', cat: 'tables', type: 'coffee', color: '#a58b6f' },
+            { id: 'table_console', name: 'Консоль', icon: '🪑', cat: 'tables', type: 'console', color: '#7a5a3a' },
             
-            // ХРАНЕНИЕ
-            { id: 'shelf', name: 'Стеллаж', icon: '📚', category: 'storage', type: 'shelf', color: '#5a3a2a' },
-            { id: 'cabinet', name: 'Шкаф', icon: '🚪', category: 'storage', type: 'cabinet', color: '#8b5a2b' },
-            { id: 'dresser', name: 'Комод', icon: '🗄️', category: 'storage', type: 'dresser', color: '#c49a6c' },
+            // СВЕТ
+            { id: 'lamp_arc', name: 'Торшер Arc', icon: '💡', cat: 'lighting', type: 'arc', color: '#c0c0c0' },
+            { id: 'lamp_chandelier', name: 'Люстра', icon: '💡', cat: 'lighting', type: 'chandelier', color: '#d4af37' },
+            { id: 'lamp_table', name: 'Лампа', icon: '💡', cat: 'lighting', type: 'table', color: '#88aadd' },
+            
+            // ШКАФЫ
+            { id: 'cabinet_bookshelf', name: 'Стеллаж', icon: '📚', cat: 'cabinets', type: 'bookshelf', color: '#8b5a2b' },
+            { id: 'cabinet_wardrobe', name: 'Шкаф', icon: '🚪', cat: 'cabinets', type: 'wardrobe', color: '#a0522d' },
+            { id: 'cabinet_dresser', name: 'Комод', icon: '🗄️', cat: 'cabinets', type: 'dresser', color: '#c19a6b' },
             
             // ДЕКОР
-            { id: 'vase', name: 'Ваза', icon: '🏺', category: 'decor', type: 'vase', color: '#5a7a9a' },
-            { id: 'plant', name: 'Растение', icon: '🌿', category: 'decor', type: 'plant', color: '#2e8b57' },
-            { id: 'mirror', name: 'Зеркало', icon: '🪞', category: 'decor', type: 'mirror', color: '#c0c0c0' },
-            { id: 'sculpture', name: 'Скульптура', icon: '🗿', category: 'decor', type: 'sculpture', color: '#9a7a5a' },
+            { id: 'vase_porcelain', name: 'Ваза', icon: '🏺', cat: 'decor', type: 'vase', color: '#5a7a9a' },
+            { id: 'mirror_gold', name: 'Зеркало', icon: '🪞', cat: 'decor', type: 'mirror', color: '#d4af37' },
+            { id: 'sculpture', name: 'Скульптура', icon: '🗿', cat: 'decor', type: 'sculpture', color: '#9a7a5a' },
+            
+            // РАСТЕНИЯ
+            { id: 'ficus', name: 'Фикус', icon: '🌿', cat: 'plants', type: 'ficus', color: '#2e8b57' },
+            { id: 'palm', name: 'Пальма', icon: '🌴', cat: 'plants', type: 'palm', color: '#228b22' },
+            { id: 'cactus', name: 'Кактус', icon: '🌵', cat: 'plants', type: 'cactus', color: '#5f9f4f' },
             
             // ТЕХНИКА
-            { id: 'tv', name: 'Телевизор', icon: '📺', category: 'tech', type: 'tv', color: '#1a1a1a' },
-            { id: 'speaker', name: 'Колонка', icon: '🔊', category: 'tech', type: 'speaker', color: '#3a3a3a' },
-            { id: 'laptop', name: 'Ноутбук', icon: '💻', category: 'tech', type: 'laptop', color: '#2a2a3a' },
+            { id: 'tv', name: 'Телевизор', icon: '📺', cat: 'tech', type: 'tv', color: '#1a1a1a' },
+            { id: 'speaker', name: 'Колонка', icon: '🔊', cat: 'tech', type: 'speaker', color: '#3a3a3a' },
+            { id: 'laptop', name: 'Ноутбук', icon: '💻', cat: 'tech', type: 'laptop', color: '#2a2a3a' },
         ];
 
         // ==================== ИНИЦИАЛИЗАЦИЯ СЦЕНЫ ====================
         const canvas = document.getElementById('canvas');
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x0d0f14);
-        scene.fog = new THREE.FogExp2(0x0d0f14, 0.002);
+        scene.background = new THREE.Color(0x0a0c12);
+        scene.fog = new THREE.FogExp2(0x0a0c12, 0.002);
 
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(18, 10, 28);
+        camera.position.set(20, 12, 30);
         camera.lookAt(0, 2, 0);
 
         const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
@@ -806,38 +747,35 @@
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.2;
 
-        const renderScene = new RenderPass(scene, camera);
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
         const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.7, 0.3, 0.6);
         bloomPass.threshold = 0.2;
         bloomPass.strength = 0.8;
         bloomPass.radius = 0.5;
-
-        const composer = new EffectComposer(renderer);
-        composer.addPass(renderScene);
         composer.addPass(bloomPass);
 
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
         controls.maxPolarAngle = Math.PI / 2.2;
-        controls.minDistance = 5;
-        controls.maxDistance = 60;
+        controls.minDistance = 3;
+        controls.maxDistance = 80;
         controls.target.set(0, 2, 0);
-        controls.rotateSpeed = 0.8;
 
         // ==================== ОСВЕЩЕНИЕ ====================
-        const mainLight = new THREE.DirectionalLight(0xfff5e6, 1.2);
-        mainLight.position.set(5, 15, 8);
-        mainLight.castShadow = true;
-        mainLight.shadow.mapSize.width = 4096;
-        mainLight.shadow.mapSize.height = 4096;
-        mainLight.shadow.camera.near = 1;
-        mainLight.shadow.camera.far = 40;
-        mainLight.shadow.camera.left = -15;
-        mainLight.shadow.camera.right = 15;
-        mainLight.shadow.camera.top = 15;
-        mainLight.shadow.camera.bottom = -15;
-        scene.add(mainLight);
+        const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.2);
+        sunLight.position.set(5, 15, 8);
+        sunLight.castShadow = true;
+        sunLight.shadow.mapSize.width = 4096;
+        sunLight.shadow.mapSize.height = 4096;
+        sunLight.shadow.camera.near = 1;
+        sunLight.shadow.camera.far = 40;
+        sunLight.shadow.camera.left = -15;
+        sunLight.shadow.camera.right = 15;
+        sunLight.shadow.camera.top = 15;
+        sunLight.shadow.camera.bottom = -15;
+        scene.add(sunLight);
 
         const fillLight1 = new THREE.PointLight(0xffaa88, 0.6);
         fillLight1.position.set(-4, 5, 6);
@@ -847,11 +785,11 @@
         fillLight2.position.set(6, 3, -5);
         scene.add(fillLight2);
 
-        const ambientLight = new THREE.AmbientLight(0x40486c, 0.5);
-        scene.add(ambientLight);
+        const ambient = new THREE.AmbientLight(0x40486c, 0.5);
+        scene.add(ambient);
 
         // ==================== ПОЛ ====================
-        const groundGeo = new THREE.CircleGeometry(80, 64);
+        const groundGeo = new THREE.CircleGeometry(100, 64);
         const groundMat = new THREE.MeshStandardMaterial({ color: 0x1a1e28, roughness: 0.7, metalness: 0.1 });
         const ground = new THREE.Mesh(groundGeo, groundMat);
         ground.rotation.x = -Math.PI / 2;
@@ -859,332 +797,592 @@
         ground.receiveShadow = true;
         scene.add(ground);
 
-        const gridHelper = new THREE.GridHelper(60, 30, 0xaaccff, 0x2a3a5a);
-        gridHelper.position.y = 0.01;
-        scene.add(gridHelper);
+        const grid = new THREE.GridHelper(60, 30, 0xffd7b0, 0x2a3a5a);
+        grid.position.y = 0.01;
+        scene.add(grid);
 
-        // ==================== ФАБРИКА МАТЕРИАЛОВ ====================
-        function createMaterial(style, colorHex) {
+        // ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
+        function createMaterial(style, colorHex, extra = {}) {
+            const opts = { color: colorHex, roughness: 0.5, metalness: 0.0, emissive: 0x000000 };
             switch(style) {
-                case 'polished':
-                    return new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.2, metalness: 0.1, emissive: 0x000000 });
-                case 'matte':
-                    return new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.8, metalness: 0.0 });
-                case 'metal':
-                    return new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.25, metalness: 0.9 });
-                case 'wood':
-                    return new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.6, metalness: 0.05 });
-                case 'fabric':
-                    return new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.9, metalness: 0.0 });
-                case 'stone':
-                    return new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.7, metalness: 0.1 });
-                default:
-                    return new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.5 });
+                case 'leather': return new THREE.MeshStandardMaterial({ ...opts, roughness: 0.4, emissive: 0x111111 });
+                case 'velvet': return new THREE.MeshStandardMaterial({ ...opts, roughness: 0.9, emissive: 0x000000 });
+                case 'wood': return new THREE.MeshStandardMaterial({ ...opts, roughness: 0.6, metalness: 0.05 });
+                case 'metal': return new THREE.MeshStandardMaterial({ ...opts, roughness: 0.2, metalness: 0.95 });
+                case 'marble': return new THREE.MeshStandardMaterial({ ...opts, roughness: 0.2, metalness: 0.1 });
+                case 'glass': return new THREE.MeshStandardMaterial({ ...opts, roughness: 0.1, metalness: 0.0, transparent: true, opacity: 0.7 });
+                default: return new THREE.MeshStandardMaterial(opts);
             }
         }
 
-        // ==================== МОДЕЛИ ПРЕДМЕТОВ ====================
-        function createChair(item, colorHex, style) {
+        // ==================== ДЕТАЛИЗИРОВАННЫЕ МОДЕЛИ ====================
+
+        // --- КРЕСЛО ЧЕСТЕРФИЛД (капитоне) ---
+        function createChesterfieldChair(colorHex, style) {
             const group = new THREE.Group();
-            const mat = createMaterial(style, colorHex);
-            
+            const leather = createMaterial(style, colorHex);
+            const wood = createMaterial('wood', 0x8b5a2b);
+            const metal = createMaterial('metal', 0x888888);
+
+            // Основание
+            const base = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.15, 0.9), wood);
+            base.position.y = 0.075;
+            base.castShadow = true; base.receiveShadow = true;
+            group.add(base);
+
+            // Ножки
+            const legGeo = new THREE.CylinderGeometry(0.08, 0.1, 0.2, 6);
+            [-0.35, 0.35].forEach(x => {
+                [-0.35, 0.35].forEach(z => {
+                    const leg = new THREE.Mesh(legGeo, wood);
+                    leg.position.set(x, 0.15, z);
+                    leg.castShadow = true; leg.receiveShadow = true;
+                    group.add(leg);
+                });
+            });
+
             // Сиденье
-            const seat = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.1, 0.8), mat);
-            seat.position.y = 0.45;
+            const seat = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.25, 0.85), leather);
+            seat.position.y = 0.3;
             seat.castShadow = true; seat.receiveShadow = true;
             group.add(seat);
-            
-            // Ножки
-            const legMat = createMaterial('metal', 0x888888);
-            const legGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.4, 6);
+
+            // Спинка
+            const back = new THREE.Mesh(new THREE.BoxGeometry(0.85, 1.0, 0.2), leather);
+            back.position.set(0, 0.9, -0.35);
+            back.castShadow = true; back.receiveShadow = true;
+            group.add(back);
+
+            // Подлокотники
+            const armL = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.5, 0.85), leather);
+            armL.position.set(-0.55, 0.6, 0);
+            armL.castShadow = true; armL.receiveShadow = true;
+            group.add(armL);
+            const armR = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.5, 0.85), leather);
+            armR.position.set(0.55, 0.6, 0);
+            armR.castShadow = true; armR.receiveShadow = true;
+            group.add(armR);
+
+            // Пуговицы на спинке
+            for (let i = -0.3; i <= 0.3; i+=0.3) {
+                for (let j = 0.5; j <= 1.1; j+=0.3) {
+                    const button = new THREE.Mesh(new THREE.SphereGeometry(0.04, 8), metal);
+                    button.position.set(i, j, -0.25);
+                    button.castShadow = true;
+                    group.add(button);
+                }
+            }
+
+            return group;
+        }
+
+        // --- КРЕСЛО EAMES ---
+        function createEamesChair(colorHex, style) {
+            const group = new THREE.Group();
+            const plastic = createMaterial(style, colorHex);
+            const wood = createMaterial('wood', 0x5a3a2a);
+
+            // Основание-качалка
+            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.6, 0.1, 12), wood);
+            base.scale.set(1.5, 1, 1.2);
+            base.rotation.x = 0.1;
+            base.position.y = 0.05;
+            base.castShadow = true; base.receiveShadow = true;
+            group.add(base);
+
+            // Сиденье
+            const seat = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16), plastic);
+            seat.scale.set(1.3, 0.3, 1.1);
+            seat.position.y = 0.4;
+            seat.castShadow = true; seat.receiveShadow = true;
+            group.add(seat);
+
+            // Спинка
+            const back = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16), plastic);
+            back.scale.set(1.3, 0.8, 0.3);
+            back.position.set(0, 0.8, -0.4);
+            back.castShadow = true; back.receiveShadow = true;
+            group.add(back);
+
+            // Подлокотники
+            const armGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.5, 6);
+            const armL = new THREE.Mesh(armGeo, wood);
+            armL.position.set(-0.7, 0.6, 0);
+            armL.rotation.z = 0.2;
+            armL.castShadow = true; armL.receiveShadow = true;
+            group.add(armL);
+            const armR = new THREE.Mesh(armGeo, wood);
+            armR.position.set(0.7, 0.6, 0);
+            armR.rotation.z = -0.2;
+            armR.castShadow = true; armR.receiveShadow = true;
+            group.add(armR);
+
+            return group;
+        }
+
+        // --- СТУЛ ЛЮДОВИК (резной) ---
+        function createLouisChair(colorHex, style) {
+            const group = new THREE.Group();
+            const wood = createMaterial('wood', colorHex);
+            const fabric = createMaterial('velvet', 0xd4af37);
+
+            // Ножки резные
+            const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.4, 8);
             [-0.3, 0.3].forEach(x => {
                 [-0.3, 0.3].forEach(z => {
-                    const leg = new THREE.Mesh(legGeo, legMat);
+                    const leg = new THREE.Mesh(legGeo, wood);
                     leg.position.set(x, 0.2, z);
                     leg.castShadow = true; leg.receiveShadow = true;
                     group.add(leg);
                 });
             });
-            
+
+            // Царги
+            const railGeo = new THREE.BoxGeometry(0.7, 0.1, 0.1);
+            const railF = new THREE.Mesh(railGeo, wood);
+            railF.position.set(0, 0.3, 0.3);
+            railF.castShadow = true; railF.receiveShadow = true;
+            group.add(railF);
+            const railB = new THREE.Mesh(railGeo, wood);
+            railB.position.set(0, 0.3, -0.3);
+            railB.castShadow = true; railB.receiveShadow = true;
+            group.add(railB);
+
+            // Сиденье
+            const seat = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.1, 0.65), fabric);
+            seat.position.y = 0.45;
+            seat.castShadow = true; seat.receiveShadow = true;
+            group.add(seat);
+
             // Спинка
-            const back = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.8, 0.1), mat);
-            back.position.set(0, 0.9, -0.35);
+            const back = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.8, 0.1), fabric);
+            back.position.set(0, 0.9, -0.25);
             back.castShadow = true; back.receiveShadow = true;
             group.add(back);
-            
+
+            // Резные элементы спинки
+            const top = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.03, 6, 12), wood);
+            top.position.set(0, 1.3, -0.2);
+            top.rotation.x = Math.PI/2;
+            top.castShadow = true;
+            group.add(top);
+
             return group;
         }
 
-        function createSofa(item, colorHex, style) {
+        // --- ДИВАН ЧЕСТЕРФИЛД ---
+        function createChesterfieldSofa(colorHex, style) {
             const group = new THREE.Group();
-            const mat = createMaterial(style, colorHex);
-            
-            // Основа
-            const base = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.4, 0.9), mat);
-            base.position.y = 0.2;
+            const leather = createMaterial(style, colorHex);
+            const wood = createMaterial('wood', 0x8b5a2b);
+            const metal = createMaterial('metal', 0x888888);
+
+            // Основание
+            const base = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.15, 0.95), wood);
+            base.position.y = 0.075;
             base.castShadow = true; base.receiveShadow = true;
             group.add(base);
-            
-            // Сиденье
-            const seat = new THREE.Mesh(new THREE.BoxGeometry(1.9, 0.3, 0.8), mat);
-            seat.position.y = 0.55;
-            seat.castShadow = true; seat.receiveShadow = true;
-            group.add(seat);
-            
-            // Спинка
-            const back = new THREE.Mesh(new THREE.BoxGeometry(2.0, 1.0, 0.3), mat);
-            back.position.set(0, 1.0, -0.4);
-            back.castShadow = true; back.receiveShadow = true;
-            group.add(back);
-            
+
             // Ножки
-            const legMat = createMaterial('metal', 0x888888);
-            const legGeo = new THREE.CylinderGeometry(0.1, 0.1, 0.15, 6);
-            [-0.9, 0.9].forEach(x => {
-                [-0.3, 0.3].forEach(z => {
-                    const leg = new THREE.Mesh(legGeo, legMat);
-                    leg.position.set(x, 0.075, z);
+            const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.2, 6);
+            [-1.0, 1.0].forEach(x => {
+                [-0.4, 0.4].forEach(z => {
+                    const leg = new THREE.Mesh(legGeo, wood);
+                    leg.position.set(x, 0.15, z);
                     leg.castShadow = true; leg.receiveShadow = true;
                     group.add(leg);
                 });
             });
-            
+
+            // Сиденья (три подушки)
+            for (let i = -0.7; i <= 0.7; i+=0.7) {
+                const cushion = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.3, 0.85), leather);
+                cushion.position.set(i, 0.3, 0);
+                cushion.castShadow = true; cushion.receiveShadow = true;
+                group.add(cushion);
+            }
+
+            // Спинка
+            const back = new THREE.Mesh(new THREE.BoxGeometry(2.2, 1.2, 0.25), leather);
+            back.position.set(0, 0.9, -0.4);
+            back.castShadow = true; back.receiveShadow = true;
+            group.add(back);
+
+            // Пуговицы на спинке
+            for (let i = -0.9; i <= 0.9; i+=0.9) {
+                for (let j = 0.4; j <= 1.2; j+=0.4) {
+                    const button = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8), metal);
+                    button.position.set(i, j, -0.3);
+                    button.castShadow = true;
+                    group.add(button);
+                }
+            }
+
+            // Подлокотники
+            const armL = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.7, 0.95), leather);
+            armL.position.set(-1.1, 0.5, 0);
+            armL.castShadow = true; armL.receiveShadow = true;
+            group.add(armL);
+            const armR = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.7, 0.95), leather);
+            armR.position.set(1.1, 0.5, 0);
+            armR.castShadow = true; armR.receiveShadow = true;
+            group.add(armR);
+
             return group;
         }
 
-        function createTable(item, colorHex, style) {
+        // --- ДИВАН МОДЕРН ---
+        function createModernSofa(colorHex, style) {
             const group = new THREE.Group();
-            const mat = createMaterial(style, colorHex);
-            
+            const fabric = createMaterial(style, colorHex);
+            const metal = createMaterial('metal', 0xaaaaaa);
+
+            // Каркас
+            const frame = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.2, 0.9), metal);
+            frame.position.y = 0.1;
+            frame.castShadow = true; frame.receiveShadow = true;
+            group.add(frame);
+
+            // Сиденье
+            const seat = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.4, 0.8), fabric);
+            seat.position.y = 0.4;
+            seat.castShadow = true; seat.receiveShadow = true;
+            group.add(seat);
+
+            // Спинка
+            const back = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.8, 0.3), fabric);
+            back.position.set(0, 0.9, -0.35);
+            back.castShadow = true; back.receiveShadow = true;
+            group.add(back);
+
+            return group;
+        }
+
+        // --- СТОЛ ОБЕДЕННЫЙ ---
+        function createDiningTable(colorHex, style) {
+            const group = new THREE.Group();
+            const wood = createMaterial(style, colorHex);
+
             // Столешница
-            const top = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.1, 1.0), mat);
-            top.position.y = 0.85;
+            const top = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.05, 1.0), wood);
+            top.position.y = 0.8;
             top.castShadow = true; top.receiveShadow = true;
             group.add(top);
-            
+
             // Ножки
-            const legMat = createMaterial('metal', 0x888888);
-            const legGeo = new THREE.BoxGeometry(0.1, 0.8, 0.1);
+            const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.75, 8);
             [-0.8, 0.8].forEach(x => {
                 [-0.4, 0.4].forEach(z => {
-                    const leg = new THREE.Mesh(legGeo, legMat);
+                    const leg = new THREE.Mesh(legGeo, wood);
                     leg.position.set(x, 0.4, z);
                     leg.castShadow = true; leg.receiveShadow = true;
                     group.add(leg);
                 });
             });
-            
+
             return group;
         }
 
-        function createLamp(item, colorHex, style) {
+        // --- ЖУРНАЛЬНЫЙ СТОЛИК ---
+        function createCoffeeTable(colorHex, style) {
+            const group = new THREE.Group();
+            const wood = createMaterial(style, colorHex);
+            const glass = createMaterial('glass', 0xffffff);
+
+            // Ножки
+            const legGeo = new THREE.CylinderGeometry(0.08, 0.1, 0.3, 8);
+            [-0.5, 0.5].forEach(x => {
+                [-0.3, 0.3].forEach(z => {
+                    const leg = new THREE.Mesh(legGeo, wood);
+                    leg.position.set(x, 0.15, z);
+                    leg.castShadow = true; leg.receiveShadow = true;
+                    group.add(leg);
+                });
+            });
+
+            // Столешница стеклянная
+            const top = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.05, 0.8), glass);
+            top.position.y = 0.35;
+            top.castShadow = true; top.receiveShadow = true;
+            group.add(top);
+
+            return group;
+        }
+
+        // --- ТОРШЕР ARC ---
+        function createArcLamp(colorHex, style) {
+            const group = new THREE.Group();
+            const metal = createMaterial(style, colorHex);
+
+            // Основание
+            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.5, 0.1, 8), metal);
+            base.position.y = 0.05;
+            base.castShadow = true; base.receiveShadow = true;
+            group.add(base);
+
+            // Стойка
+            const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.06, 2.2, 8), metal);
+            pole.position.y = 1.15;
+            pole.castShadow = true; pole.receiveShadow = true;
+            group.add(pole);
+
+            // Дуга
+            const arc = new THREE.Mesh(new THREE.TorusGeometry(0.7, 0.04, 8, 32), metal);
+            arc.rotation.x = Math.PI/2;
+            arc.rotation.z = 0.3;
+            arc.position.set(0.4, 2.0, 0);
+            arc.castShadow = true; arc.receiveShadow = true;
+            group.add(arc);
+
+            // Плафон
+            const shade = new THREE.Mesh(new THREE.ConeGeometry(0.3, 0.5, 8), createMaterial('glass', 0xffeedd));
+            shade.position.set(1.1, 1.8, 0);
+            shade.rotation.z = -0.3;
+            shade.castShadow = true; shade.receiveShadow = true;
+            group.add(shade);
+
+            // Свет
+            const light = new THREE.PointLight(0xffeedd, 1.0, 6);
+            light.position.set(1.1, 1.8, 0);
+            group.add(light);
+
+            return group;
+        }
+
+        // --- ЛЮСТРА ХРУСТАЛЬНАЯ ---
+        function createChandelier(colorHex, style) {
+            const group = new THREE.Group();
+            const metal = createMaterial('metal', 0xd4af37);
+            const glass = createMaterial('glass', 0xffffff);
+
+            // Центральная часть
+            const center = new THREE.Mesh(new THREE.SphereGeometry(0.3, 12), metal);
+            center.position.y = 0;
+            center.castShadow = true; center.receiveShadow = true;
+            group.add(center);
+
+            // Кристаллы
+            for (let i = 0; i < 12; i++) {
+                const angle = (i/12)*Math.PI*2;
+                const crystal = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.8, 6), glass);
+                crystal.position.set(Math.cos(angle)*0.6, -0.4, Math.sin(angle)*0.6);
+                crystal.castShadow = true; crystal.receiveShadow = true;
+                group.add(crystal);
+                const light = new THREE.PointLight(0xffeedd, 0.5, 4);
+                light.position.set(Math.cos(angle)*0.6, 0, Math.sin(angle)*0.6);
+                group.add(light);
+            }
+
+            return group;
+        }
+
+        // --- СТЕЛЛАЖ ---
+        function createBookshelf(colorHex, style) {
+            const group = new THREE.Group();
+            const wood = createMaterial(style, colorHex);
+            const metal = createMaterial('metal', 0x888888);
+
+            // Боковины
+            const left = new THREE.Mesh(new THREE.BoxGeometry(0.1, 2.0, 0.4), wood);
+            left.position.set(-0.6, 1.0, 0);
+            left.castShadow = true; left.receiveShadow = true;
+            group.add(left);
+            const right = new THREE.Mesh(new THREE.BoxGeometry(0.1, 2.0, 0.4), wood);
+            right.position.set(0.6, 1.0, 0);
+            right.castShadow = true; right.receiveShadow = true;
+            group.add(right);
+
+            // Полки
+            for (let i = 0; i < 3; i++) {
+                const shelf = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.05, 0.4), wood);
+                shelf.position.set(0, 0.3 + i*0.7, 0);
+                shelf.castShadow = true; shelf.receiveShadow = true;
+                group.add(shelf);
+            }
+
+            // Задняя стенка
+            const back = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2.0, 0.05), wood);
+            back.position.set(0, 1.0, -0.18);
+            back.castShadow = true; back.receiveShadow = true;
+            group.add(back);
+
+            return group;
+        }
+
+        // --- ВАЗА ---
+        function createVase(colorHex, style) {
             const group = new THREE.Group();
             const mat = createMaterial(style, colorHex);
-            
+
             // Основание
             const base = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.35, 0.1, 8), mat);
             base.position.y = 0.05;
             base.castShadow = true; base.receiveShadow = true;
             group.add(base);
-            
-            // Стойка
-            const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.06, 1.5, 6), mat);
-            pole.position.y = 0.8;
-            pole.castShadow = true; pole.receiveShadow = true;
-            group.add(pole);
-            
-            // Плафон
-            const shade = new THREE.Mesh(new THREE.ConeGeometry(0.3, 0.4, 8), mat);
-            shade.position.y = 1.55;
-            shade.castShadow = true; shade.receiveShadow = true;
-            group.add(shade);
-            
-            // Свет
-            const light = new THREE.PointLight(0xffeedd, 0.8, 5);
-            light.position.y = 1.5;
-            group.add(light);
-            
-            return group;
-        }
 
-        function createBench(item, colorHex, style) {
-            const group = new THREE.Group();
-            const mat = createMaterial(style, colorHex);
-            
-            const seat = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.1, 0.6), mat);
-            seat.position.y = 0.45;
-            seat.castShadow = true; seat.receiveShadow = true;
-            group.add(seat);
-            
-            const legMat = createMaterial('metal', 0x888888);
-            const legGeo = new THREE.BoxGeometry(0.1, 0.4, 0.6);
-            [-0.7, 0.7].forEach(x => {
-                const leg = new THREE.Mesh(legGeo, legMat);
-                leg.position.set(x, 0.2, 0);
-                leg.castShadow = true; leg.receiveShadow = true;
-                group.add(leg);
-            });
-            
-            return group;
-        }
-
-        function createShelf(item, colorHex, style) {
-            const group = new THREE.Group();
-            const mat = createMaterial(style, colorHex);
-            
-            // Полки
-            for (let i = 0; i < 3; i++) {
-                const shelf = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.05, 0.3), mat);
-                shelf.position.set(0, 0.5 + i * 0.6, 0);
-                shelf.castShadow = true; shelf.receiveShadow = true;
-                group.add(shelf);
-            }
-            
-            // Боковины
-            const sideMat = createMaterial('metal', 0x888888);
-            const left = new THREE.Mesh(new THREE.BoxGeometry(0.05, 1.8, 0.3), sideMat);
-            left.position.set(-0.6, 0.9, 0);
-            left.castShadow = true; left.receiveShadow = true;
-            group.add(left);
-            
-            const right = new THREE.Mesh(new THREE.BoxGeometry(0.05, 1.8, 0.3), sideMat);
-            right.position.set(0.6, 0.9, 0);
-            right.castShadow = true; right.receiveShadow = true;
-            group.add(right);
-            
-            return group;
-        }
-
-        function createCabinet(item, colorHex, style) {
-            const group = new THREE.Group();
-            const mat = createMaterial(style, colorHex);
-            
-            const body = new THREE.Mesh(new THREE.BoxGeometry(1.2, 2.0, 0.6), mat);
-            body.position.y = 1.0;
+            // Тело
+            const body = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.3, 0.7, 8), mat);
+            body.position.y = 0.45;
             body.castShadow = true; body.receiveShadow = true;
             group.add(body);
-            
-            // Дверцы
-            const doorMat = createMaterial('polished', 0xd4b088);
-            const door = new THREE.Mesh(new THREE.BoxGeometry(0.5, 1.6, 0.05), doorMat);
-            door.position.set(0, 1.0, 0.31);
-            door.castShadow = true; door.receiveShadow = true;
-            group.add(door);
-            
+
+            // Горлышко
+            const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.2, 0.2, 8), mat);
+            neck.position.y = 0.9;
+            neck.castShadow = true; neck.receiveShadow = true;
+            group.add(neck);
+
             return group;
         }
 
-        function createVase(item, colorHex, style) {
+        // --- ЗЕРКАЛО ---
+        function createMirror(colorHex, style) {
             const group = new THREE.Group();
-            const mat = createMaterial(style, colorHex);
-            
-            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.3, 0.1, 8), mat);
-            base.position.y = 0.05;
-            base.castShadow = true; base.receiveShadow = true;
-            group.add(base);
-            
-            const body = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 0.6, 8), mat);
-            body.position.y = 0.4;
-            body.castShadow = true; body.receiveShadow = true;
-            group.add(body);
-            
-            return group;
-        }
+            const frameMat = createMaterial(style, colorHex);
+            const glassMat = createMaterial('glass', 0xffffff);
 
-        function createPlant(item, colorHex, style) {
-            const group = new THREE.Group();
-            const potMat = createMaterial('stone', 0x8b5a2b);
-            const leafMat = createMaterial('fabric', 0x2e8b57);
-            
-            const pot = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.35, 0.3, 6), potMat);
-            pot.position.y = 0.15;
-            pot.castShadow = true; pot.receiveShadow = true;
-            group.add(pot);
-            
-            for (let i = 0; i < 5; i++) {
-                const angle = (i / 5) * Math.PI * 2;
-                const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.6, 5), leafMat);
-                leaf.position.set(Math.cos(angle) * 0.25, 0.5, Math.sin(angle) * 0.25);
-                leaf.rotation.x = 0.2;
-                leaf.rotation.z = angle;
-                leaf.castShadow = true; leaf.receiveShadow = true;
-                group.add(leaf);
-            }
-            
-            return group;
-        }
-
-        function createMirror(item, colorHex, style) {
-            const group = new THREE.Group();
-            const frameMat = createMaterial('metal', 0xc0c0c0);
-            const glassMat = createMaterial('polished', 0xffffff);
-            
-            const frame = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.5, 0.1), frameMat);
-            frame.position.y = 0.75;
+            // Рама
+            const frame = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.6, 0.1), frameMat);
+            frame.position.y = 0.8;
             frame.castShadow = true; frame.receiveShadow = true;
             group.add(frame);
-            
-            const glass = new THREE.Mesh(new THREE.BoxGeometry(0.9, 1.4, 0.02), glassMat);
-            glass.position.y = 0.75;
+
+            // Стекло
+            const glass = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.4, 0.02), glassMat);
+            glass.position.y = 0.8;
             glass.position.z = 0.05;
             glass.castShadow = true; glass.receiveShadow = true;
             group.add(glass);
-            
+
             return group;
         }
 
-        function createTV(item, colorHex, style) {
+        // --- ФИКУС (детализированный) ---
+        function createFicus(colorHex, style) {
             const group = new THREE.Group();
-            const mat = createMaterial('metal', 0x2a2a2a);
-            const screenMat = createMaterial('polished', 0x111122);
-            
-            const body = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.8, 0.1), mat);
+            const potMat = createMaterial('marble', 0x8b5a2b);
+            const leafMat = createMaterial('velvet', 0x2e8b57);
+            const stemMat = createMaterial('wood', 0x8b5a2b);
+
+            // Горшок
+            const potBase = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.45, 0.3, 8), potMat);
+            potBase.position.y = 0.15;
+            potBase.castShadow = true; potBase.receiveShadow = true;
+            group.add(potBase);
+            const potTop = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.4, 0.2, 8), potMat);
+            potTop.position.y = 0.4;
+            potTop.castShadow = true; potTop.receiveShadow = true;
+            group.add(potTop);
+
+            // Земля
+            const soil = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.1, 6), createMaterial('wood', 0x5a3a2a));
+            soil.position.y = 0.55;
+            soil.castShadow = true; soil.receiveShadow = true;
+            group.add(soil);
+
+            // Ствол
+            const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.15, 1.2, 6), stemMat);
+            trunk.position.y = 1.15;
+            trunk.castShadow = true; trunk.receiveShadow = true;
+            group.add(trunk);
+
+            // Листья
+            for (let i = 0; i < 8; i++) {
+                const angle = (i/8)*Math.PI*2;
+                const leafGroup = new THREE.Group();
+                for (let j = 0; j < 4; j++) {
+                    const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.5, 5), leafMat);
+                    leaf.position.set(0.3 + j*0.1, 0, 0);
+                    leaf.rotation.z = -0.2;
+                    leaf.castShadow = true; leaf.receiveShadow = true;
+                    leafGroup.add(leaf);
+                }
+                leafGroup.position.set(Math.cos(angle)*0.5, 1.6, Math.sin(angle)*0.5);
+                leafGroup.rotation.y = angle;
+                leafGroup.rotation.z = 0.2;
+                group.add(leafGroup);
+            }
+
+            return group;
+        }
+
+        // --- ТЕЛЕВИЗОР ---
+        function createTV(colorHex, style) {
+            const group = new THREE.Group();
+            const bodyMat = createMaterial(style, colorHex);
+            const screenMat = createMaterial('glass', 0x111122);
+
+            // Корпус
+            const body = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.8, 0.1), bodyMat);
             body.position.y = 0.5;
             body.castShadow = true; body.receiveShadow = true;
             group.add(body);
-            
-            const screen = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.6, 0.02), screenMat);
+
+            // Экран
+            const screen = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.6, 0.02), screenMat);
             screen.position.y = 0.5;
             screen.position.z = 0.06;
             screen.castShadow = true; screen.receiveShadow = true;
             group.add(screen);
-            
+
+            // Подставка
+            const stand = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.1, 0.2), bodyMat);
+            stand.position.y = 0.1;
+            stand.castShadow = true; stand.receiveShadow = true;
+            group.add(stand);
+
             return group;
         }
 
-        function createSpeaker(item, colorHex, style) {
+        // --- КОЛОНКА ---
+        function createSpeaker(colorHex, style) {
             const group = new THREE.Group();
             const mat = createMaterial(style, colorHex);
-            
+            const driverMat = createMaterial('metal', 0xcccccc);
+
+            // Корпус
             const box = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.6, 0.3), mat);
             box.position.y = 0.3;
             box.castShadow = true; box.receiveShadow = true;
             group.add(box);
-            
-            const driver = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.05, 12), createMaterial('metal', 0xcccccc));
+
+            // Динамик
+            const driver = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.05, 12), driverMat);
             driver.position.set(0, 0.3, 0.16);
             driver.rotation.x = 0;
             driver.castShadow = true; driver.receiveShadow = true;
             group.add(driver);
-            
+
             return group;
         }
 
-        function createModelFromItem(item, color, style) {
-            const colorHex = parseInt(color.replace('#', '0x'), 16);
+        // Фабрика моделей
+        function createModelFromItem(item, colorHex, style) {
             switch(item.type) {
-                case 'chair': return createChair(item, colorHex, style);
-                case 'sofa': return createSofa(item, colorHex, style);
-                case 'table': return createTable(item, colorHex, style);
-                case 'lamp': return createLamp(item, colorHex, style);
-                case 'bench': return createBench(item, colorHex, style);
-                case 'shelf': return createShelf(item, colorHex, style);
-                case 'cabinet': return createCabinet(item, colorHex, style);
-                case 'vase': return createVase(item, colorHex, style);
-                case 'plant': return createPlant(item, colorHex, style);
-                case 'mirror': return createMirror(item, colorHex, style);
-                case 'tv': return createTV(item, colorHex, style);
-                case 'speaker': return createSpeaker(item, colorHex, style);
+                case 'chester': return item.cat === 'chairs' ? createChesterfieldChair(colorHex, style) : createChesterfieldSofa(colorHex, style);
+                case 'eames': return createEamesChair(colorHex, style);
+                case 'louis': return createLouisChair(colorHex, style);
+                case 'tolix': return createEamesChair(colorHex, style); // упрощённо
+                case 'modern': return createModernSofa(colorHex, style);
+                case 'scandi': return createModernSofa(colorHex, style); // упрощённо
+                case 'dining': return createDiningTable(colorHex, style);
+                case 'coffee': return createCoffeeTable(colorHex, style);
+                case 'console': return createDiningTable(colorHex, style); // упрощённо
+                case 'arc': return createArcLamp(colorHex, style);
+                case 'chandelier': return createChandelier(colorHex, style);
+                case 'table': return createArcLamp(colorHex, style); // упрощённо
+                case 'bookshelf': return createBookshelf(colorHex, style);
+                case 'wardrobe': return createBookshelf(colorHex, style); // упрощённо
+                case 'dresser': return createBookshelf(colorHex, style); // упрощённо
+                case 'vase': return createVase(colorHex, style);
+                case 'mirror': return createMirror(colorHex, style);
+                case 'sculpture': return createVase(colorHex, style); // упрощённо
+                case 'ficus': return createFicus(colorHex, style);
+                case 'palm': return createFicus(colorHex, style); // упрощённо
+                case 'cactus': return createFicus(colorHex, style); // упрощённо
+                case 'tv': return createTV(colorHex, style);
+                case 'speaker': return createSpeaker(colorHex, style);
+                case 'laptop': return createSpeaker(colorHex, style); // упрощённо
                 default:
                     const group = new THREE.Group();
                     const mat = createMaterial(style, colorHex);
@@ -1202,11 +1400,8 @@
                 const card = document.createElement('div');
                 card.className = 'item-card';
                 card.dataset.id = item.id;
-                card.dataset.category = item.category;
-                card.innerHTML = `
-                    <div class="item-icon">${item.icon}</div>
-                    <div class="item-name">${item.name}</div>
-                `;
+                card.dataset.category = item.cat;
+                card.innerHTML = `<div class="item-icon">${item.icon}</div><div class="item-name">${item.name}</div>`;
                 card.addEventListener('click', (e) => {
                     e.stopPropagation();
                     document.querySelectorAll('.item-card').forEach(c => c.classList.remove('selected'));
@@ -1226,20 +1421,17 @@
                 btn.classList.add('active');
                 const cat = btn.dataset.category;
                 document.querySelectorAll('.item-card').forEach(card => {
-                    if (cat === 'all' || card.dataset.category === cat) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    if (cat === 'all' || card.dataset.category === cat) card.style.display = 'flex';
+                    else card.style.display = 'none';
                 });
             });
         });
 
         document.getElementById('search-input').addEventListener('input', (e) => {
-            const search = e.target.value.toLowerCase();
+            const val = e.target.value.toLowerCase();
             document.querySelectorAll('.item-card').forEach(card => {
                 const name = card.querySelector('.item-name').innerText.toLowerCase();
-                card.style.display = name.includes(search) ? 'flex' : 'none';
+                card.style.display = name.includes(val) ? 'flex' : 'none';
             });
         });
 
@@ -1272,14 +1464,12 @@
             dir.y = 0; dir.normalize();
             const pos = camera.position.clone().add(dir.multiplyScalar(5));
             pos.y = 0;
-            
             const length = parseFloat(document.getElementById('wall-length').value);
             const height = parseFloat(document.getElementById('wall-height').value);
-            const thickness = parseFloat(document.getElementById('wall-thickness').value);
+            const thick = parseFloat(document.getElementById('wall-thick').value);
             const color = document.getElementById('wall-color').value;
-            
-            const wallMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.6, metalness: 0.1 });
-            const wall = new THREE.Mesh(new THREE.BoxGeometry(thickness, height, length), wallMat);
+            const wallMat = new THREE.MeshStandardMaterial({ color, roughness: 0.7 });
+            const wall = new THREE.Mesh(new THREE.BoxGeometry(thick, height, length), wallMat);
             wall.position.copy(pos);
             wall.position.y = height/2;
             wall.castShadow = true; wall.receiveShadow = true;
@@ -1289,33 +1479,25 @@
         });
 
         // Освещение
-        document.getElementById('light-intensity').addEventListener('input', (e) => {
-            mainLight.intensity = parseFloat(e.target.value);
-        });
+        document.getElementById('light-int').addEventListener('input', (e) => sunLight.intensity = parseFloat(e.target.value));
         document.getElementById('light-temp').addEventListener('input', (e) => {
-            const temp = parseFloat(e.target.value);
-            const r = temp <= 6600 ? 255 : 329.698727446 * Math.pow(temp/100 - 60, -0.1332047592);
-            const g = temp <= 6600 ? 99.4708025861 * Math.log(temp/100) - 161.1195681661 : 288.1221695283 * Math.pow(temp/100 - 60, -0.0755148492);
-            const b = temp >= 6600 ? 255 : 138.5177312231 * Math.log(temp/100 - 10) + 305.0447927307;
-            mainLight.color.setRGB(
-                Math.min(255, Math.max(0, r))/255,
-                Math.min(255, Math.max(0, g))/255,
-                Math.min(255, Math.max(0, b))/255
-            );
+            const t = parseFloat(e.target.value);
+            const r = t<=6600?255:329.698*Math.pow(t/100-60,-0.1332);
+            const g = t<=6600?99.47*Math.log(t/100)-161.12:288.122*Math.pow(t/100-60,-0.0755);
+            const b = t>=6600?255:138.518*Math.log(t/100-10)+305.045;
+            sunLight.color.setRGB(Math.min(255,r)/255, Math.min(255,g)/255, Math.min(255,b)/255);
         });
 
-        // Отмена
         document.getElementById('undo-btn').addEventListener('click', () => {
-            if (placedItems.length > 0) {
+            if (placedItems.length) {
                 const last = placedItems.pop();
                 scene.remove(last);
                 document.getElementById('total-items').textContent = placedItems.length;
             }
         });
 
-        // Очистить всё
         document.getElementById('clear-btn').addEventListener('click', () => {
-            placedItems.forEach(item => scene.remove(item));
+            placedItems.forEach(i => scene.remove(i));
             placedItems = [];
             document.getElementById('total-items').textContent = '0';
         });
@@ -1330,83 +1512,70 @@
 
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
-        const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
-        const intersection = new THREE.Vector3();
+        const plane = new THREE.Plane(new THREE.Vector3(0,1,0),0);
+        const intersect = new THREE.Vector3();
 
-        // Размещение предметов
-        renderer.domElement.addEventListener('click', (event) => {
-            if (event.target.closest('.organik')) return;
+        // Размещение
+        renderer.domElement.addEventListener('click', (e) => {
+            if (e.target.closest('.premium')) return;
             if (currentMode !== 'place' || !selectedItem) return;
-
-            mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-            mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+            mouse.x = (e.clientX/renderer.domElement.clientWidth)*2-1;
+            mouse.y = -(e.clientY/renderer.domElement.clientHeight)*2+1;
             raycaster.setFromCamera(mouse, camera);
-
-            if (raycaster.ray.intersectPlane(plane, intersection)) {
+            if (raycaster.ray.intersectPlane(plane, intersect)) {
                 const color = document.getElementById('item-color').value;
                 const scale = parseFloat(document.getElementById('item-scale').value);
-                const rotate = parseFloat(document.getElementById('item-rotate').value);
-                const elevation = parseFloat(document.getElementById('item-elevation').value);
+                const rot = parseFloat(document.getElementById('item-rotate').value);
+                const elev = parseFloat(document.getElementById('item-elev').value);
                 const style = document.getElementById('material-style').value;
-
-                const model = createModelFromItem(selectedItem, color, style);
-                model.position.copy(intersection);
-                model.position.y = elevation + (scale * 0.5); // примерно поднять
+                const model = createModelFromItem(selectedItem, parseInt(color.slice(1),16), style);
+                model.position.copy(intersect);
+                model.position.y = elev;
                 model.scale.set(scale, scale, scale);
-                model.rotation.y = (rotate * Math.PI) / 180;
+                model.rotation.y = rot * Math.PI/180;
                 model.castShadow = true; model.receiveShadow = true;
-
                 scene.add(model);
                 placedItems.push(model);
                 document.getElementById('total-items').textContent = placedItems.length;
             }
         });
 
-        // Строительство стены с зажатием
-        renderer.domElement.addEventListener('mousedown', (event) => {
-            if (event.target.closest('.organik')) return;
-            if (currentMode !== 'build' || event.button !== 0) return;
-
-            mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-            mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+        // Строительство стены зажатием
+        renderer.domElement.addEventListener('mousedown', (e) => {
+            if (e.target.closest('.premium')) return;
+            if (currentMode !== 'build' || e.button !== 0) return;
+            mouse.x = (e.clientX/renderer.domElement.clientWidth)*2-1;
+            mouse.y = -(e.clientY/renderer.domElement.clientHeight)*2+1;
             raycaster.setFromCamera(mouse, camera);
-
-            if (raycaster.ray.intersectPlane(plane, intersection)) {
+            if (raycaster.ray.intersectPlane(plane, intersect)) {
                 isBuilding = true;
-                startPoint = intersection.clone();
+                startPoint = intersect.clone();
                 startPoint.y = 0;
-
-                const thickness = parseFloat(document.getElementById('wall-thickness').value);
+                const thick = parseFloat(document.getElementById('wall-thick').value);
                 const height = parseFloat(document.getElementById('wall-height').value);
                 const color = document.getElementById('wall-color').value;
-
                 tempWall = new THREE.Mesh(
-                    new THREE.BoxGeometry(thickness, height, 0.1),
-                    new THREE.MeshStandardMaterial({ color: color, transparent: true, opacity: 0.5, emissive: 0x112233 })
+                    new THREE.BoxGeometry(thick, height, 0.1),
+                    new THREE.MeshStandardMaterial({ color, transparent: true, opacity: 0.5 })
                 );
                 tempWall.castShadow = true; tempWall.receiveShadow = true;
                 scene.add(tempWall);
             }
         });
 
-        renderer.domElement.addEventListener('mousemove', (event) => {
-            if (event.target.closest('.organik')) return;
+        renderer.domElement.addEventListener('mousemove', (e) => {
+            if (e.target.closest('.premium')) return;
             if (!isBuilding || !tempWall) return;
-
-            mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-            mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+            mouse.x = (e.clientX/renderer.domElement.clientWidth)*2-1;
+            mouse.y = -(e.clientY/renderer.domElement.clientHeight)*2+1;
             raycaster.setFromCamera(mouse, camera);
-
-            if (raycaster.ray.intersectPlane(plane, intersection)) {
-                const end = intersection.clone();
+            if (raycaster.ray.intersectPlane(plane, intersect)) {
+                const end = intersect.clone();
                 end.y = 0;
                 const delta = new THREE.Vector3().subVectors(end, startPoint);
                 const length = Math.sqrt(delta.x*delta.x + delta.z*delta.z);
                 const angle = Math.atan2(delta.x, delta.z);
-
                 const height = parseFloat(document.getElementById('wall-height').value);
-                const thickness = parseFloat(document.getElementById('wall-thickness').value);
-
                 tempWall.position.x = startPoint.x + delta.x/2;
                 tempWall.position.z = startPoint.z + delta.z/2;
                 tempWall.position.y = height/2;
@@ -1415,43 +1584,37 @@
             }
         });
 
-        renderer.domElement.addEventListener('mouseup', (event) => {
-            if (event.target.closest('.organik')) return;
+        renderer.domElement.addEventListener('mouseup', (e) => {
+            if (e.target.closest('.premium')) return;
             if (!isBuilding || !tempWall) return;
-
             const height = parseFloat(document.getElementById('wall-height').value);
-            const thickness = parseFloat(document.getElementById('wall-thickness').value);
+            const thick = parseFloat(document.getElementById('wall-thick').value);
             const color = document.getElementById('wall-color').value;
             const length = tempWall.scale.z;
-
-            const finalWall = new THREE.Mesh(
-                new THREE.BoxGeometry(thickness, height, length),
-                new THREE.MeshStandardMaterial({ color: color, roughness: 0.6, metalness: 0.1 })
+            const final = new THREE.Mesh(
+                new THREE.BoxGeometry(thick, height, length),
+                new THREE.MeshStandardMaterial({ color, roughness: 0.7 })
             );
-            finalWall.position.copy(tempWall.position);
-            finalWall.position.y = height/2;
-            finalWall.rotation.copy(tempWall.rotation);
-            finalWall.castShadow = true; finalWall.receiveShadow = true;
-
-            scene.add(finalWall);
-            placedItems.push(finalWall);
+            final.position.copy(tempWall.position);
+            final.position.y = height/2;
+            final.rotation.copy(tempWall.rotation);
+            final.castShadow = true; final.receiveShadow = true;
+            scene.add(final);
+            placedItems.push(final);
             document.getElementById('total-items').textContent = placedItems.length;
-
             scene.remove(tempWall);
             tempWall = null;
             isBuilding = false;
         });
 
         // FPS
-        let lastTime = performance.now();
-        let frames = 0;
+        let last = performance.now(), frames = 0;
         function updateFPS() {
             frames++;
             const now = performance.now();
-            if (now - lastTime >= 1000) {
-                document.getElementById('fps-counter').textContent = frames;
-                frames = 0;
-                lastTime = now;
+            if (now - last >= 1000) {
+                document.getElementById('fps').textContent = frames;
+                frames = 0; last = now;
             }
         }
 
@@ -1460,12 +1623,11 @@
             controls.update();
             composer.render();
             updateFPS();
-            // Примерный подсчет полигонов (условно)
-            document.getElementById('poly-count').textContent = Math.round(placedItems.length * 0.5);
+            document.getElementById('poly-count').textContent = Math.round(placedItems.length * 2.5);
         }
 
         window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.aspect = window.innerWidth/window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
             composer.setSize(window.innerWidth, window.innerHeight);
