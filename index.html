@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="la">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ÆSTHETIC — 3D Architecture Studio</title>
+    <title>⚜️ 𓂀 𓆣 𓃀 — SACRVM IMPERIVM AETERNAM</title>
     <style>
         * {
             margin: 0;
@@ -11,12 +11,14 @@
             box-sizing: border-box;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
         body {
             overflow: hidden;
-            background: #0a0a0f;
-            font-family: 'Space Grotesk', sans-serif;
+            background: #000001;
+            font-family: 'Cinzel', serif;
         }
 
         #canvas {
@@ -29,26 +31,26 @@
             z-index: 1;
         }
 
-        /* Премиум стекло с нано-эффектами */
-        .glass {
-            background: rgba(18, 20, 28, 0.65);
-            backdrop-filter: blur(25px) saturate(200%);
-            -webkit-backdrop-filter: blur(25px) saturate(200%);
-            border: 1px solid rgba(255, 215, 150, 0.12);
-            border-radius: 32px;
-            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8), 
-                        0 0 0 1px rgba(255, 215, 150, 0.05) inset,
-                        0 0 40px rgba(0, 0, 0, 0.5);
-            color: white;
-            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.3, 1);
+        /* Имперское стекло */
+        .imperium {
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(90px) saturate(600%);
+            -webkit-backdrop-filter: blur(90px) saturate(600%);
+            border: 1px solid rgba(255, 215, 170, 0.08);
+            border-radius: 120px;
+            box-shadow: 0 150px 300px -100px #000, 
+                        0 0 0 1px rgba(255, 215, 170, 0.02) inset,
+                        0 0 200px rgba(0, 0, 0, 1);
+            color: rgba(255, 245, 235, 1);
+            transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1.3);
         }
 
-        .glass:hover {
-            background: rgba(22, 25, 35, 0.75);
-            border-color: rgba(255, 215, 150, 0.25);
-            box-shadow: 0 40px 70px -20px #000, 
-                        0 0 0 1px rgba(255, 215, 150, 0.2) inset,
-                        0 0 60px rgba(255, 200, 100, 0.15);
+        .imperium:hover {
+            background: rgba(5, 3, 10, 0.55);
+            border-color: rgba(255, 215, 170, 0.12);
+            box-shadow: 0 180px 360px -100px #000, 
+                        0 0 0 1px rgba(255, 215, 170, 0.04) inset,
+                        0 0 250px rgba(255, 215, 170, 0.03);
         }
 
         /* Контейнер UI */
@@ -59,162 +61,172 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            padding: 28px;
+            padding: 80px;
             display: flex;
             justify-content: space-between;
             z-index: 10;
         }
 
-        /* Левая панель - Каталог */
+        /* Левая панель */
         .catalog-panel {
             pointer-events: all;
-            width: 400px;
-            height: calc(100vh - 56px);
+            width: 640px;
+            height: calc(100vh - 160px);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            animation: slideInLeft 0.7s cubic-bezier(0.34, 1.5, 0.64, 1);
+            animation: imperiumLeft 2.2s cubic-bezier(0.12, 1, 0.3, 1.4);
         }
 
-        @keyframes slideInLeft {
-            0% { transform: translateX(-120%) rotateY(-10deg); opacity: 0; }
-            100% { transform: translateX(0) rotateY(0); opacity: 1; }
+        @keyframes imperiumLeft {
+            0% { transform: translateX(-250%) scale(0.7) rotateY(35deg) translateZ(-300px); opacity: 0; filter: blur(60px); }
+            100% { transform: translateX(0) scale(1) rotateY(0) translateZ(0); opacity: 1; filter: blur(0); }
         }
 
         .panel-header {
-            padding: 28px 32px;
-            border-bottom: 1px solid rgba(255, 215, 150, 0.12);
+            padding: 56px 64px;
+            border-bottom: 1px solid rgba(255, 215, 170, 0.06);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(180deg, rgba(255,215,150,0.05) 0%, transparent 100%);
+            background: linear-gradient(180deg, rgba(255,215,170,0.03) 0%, transparent 100%);
         }
 
         .panel-header h2 {
-            font-size: 1.8rem;
-            font-weight: 500;
+            font-size: 3.6rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 16px;
-            color: #ffd966;
-            letter-spacing: -0.03em;
+            gap: 28px;
+            color: #ffe8d4;
+            letter-spacing: 8px;
             text-transform: uppercase;
-            text-shadow: 0 2px 20px rgba(255, 200, 100, 0.4);
+            font-family: 'Marcellus SC', serif;
+            text-shadow: 0 0 60px rgba(255,215,170,0.4);
+        }
+
+        .panel-header h2 i {
+            font-size: 2.8rem;
+            opacity: 0.5;
+            color: #d4b088;
         }
 
         .badge {
-            background: linear-gradient(135deg, #ffd966, #ffaa33);
-            color: #0a0c14;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 1rem;
-            box-shadow: 0 10px 25px rgba(255, 200, 100, 0.4);
-            letter-spacing: 0.5px;
+            background: rgba(255, 215, 170, 0.1);
+            border: 1px solid rgba(255, 215, 170, 0.15);
+            color: #ffe8d4;
+            padding: 16px 38px;
+            border-radius: 100px;
+            font-weight: 500;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            backdrop-filter: blur(15px);
+            font-family: 'Cinzel', serif;
         }
 
         .search-box {
-            padding: 24px 32px 16px;
+            padding: 40px 64px 36px;
             position: relative;
         }
 
         .search-box i {
             position: absolute;
-            left: 52px;
-            top: 44px;
-            color: #ffd966;
-            font-size: 1.1rem;
-            opacity: 0.8;
-            filter: drop-shadow(0 0 10px #ffd966);
+            left: 96px;
+            top: 80px;
+            color: #d4b088;
+            font-size: 1.8rem;
+            opacity: 0.5;
         }
 
         .search-box input {
             width: 100%;
-            padding: 18px 22px 18px 58px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 215, 150, 0.2);
-            border-radius: 60px;
+            padding: 32px 38px 32px 100px;
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 215, 170, 0.1);
+            border-radius: 100px;
             color: white;
-            font-size: 1.05rem;
-            transition: all 0.4s ease;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(10px);
+            font-size: 1.6rem;
+            transition: all 0.8s ease;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            backdrop-filter: blur(15px);
+            font-family: 'Philosopher', serif;
+            font-style: italic;
         }
 
         .search-box input:focus {
             outline: none;
-            border-color: #ffd966;
-            background: rgba(0, 0, 0, 0.5);
-            box-shadow: 0 0 0 4px rgba(255, 215, 150, 0.15), 0 0 30px rgba(255, 200, 100, 0.3);
+            border-color: rgba(255, 215, 170, 0.3);
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 0 10px rgba(255, 215, 170, 0.03);
         }
 
         .search-box input::placeholder {
-            color: rgba(255, 255, 255, 0.25);
+            color: rgba(255, 215, 170, 0.2);
             font-weight: 300;
-            letter-spacing: 0.3px;
+            font-style: italic;
         }
 
         .categories {
-            padding: 16px 32px 24px;
+            padding: 28px 64px 42px;
             display: flex;
-            gap: 10px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
         .category-btn {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 215, 150, 0.15);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 12px 22px;
-            border-radius: 50px;
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 215, 170, 0.1);
+            color: rgba(255, 215, 170, 0.9);
+            padding: 20px 36px;
+            border-radius: 90px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+            font-size: 1.4rem;
+            transition: all 0.7s ease;
             font-weight: 500;
-            backdrop-filter: blur(10px);
-            letter-spacing: 0.5px;
+            backdrop-filter: blur(15px);
+            letter-spacing: 3px;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-family: 'Marcellus SC', serif;
         }
 
         .category-btn:hover {
-            background: rgba(255, 215, 150, 0.15);
-            border-color: #ffd966;
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(255, 200, 100, 0.25);
-            color: white;
+            background: rgba(255, 215, 170, 0.08);
+            border-color: rgba(255, 215, 170, 0.25);
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7);
+            color: #fff;
         }
 
         .category-btn.active {
-            background: linear-gradient(135deg, #ffd966, #ffaa33);
-            color: #0a0c14;
+            background: rgba(255, 215, 170, 0.85);
             border-color: transparent;
-            font-weight: 600;
-            box-shadow: 0 15px 35px rgba(255, 200, 100, 0.5);
+            color: #000001;
+            font-weight: 700;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
         }
 
         .items-grid {
             flex: 1;
             overflow-y: auto;
-            padding: 0 32px 32px;
+            padding: 0 64px 64px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
+            gap: 32px;
         }
 
         .item-card {
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 28px;
-            padding: 28px 16px 22px;
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 80px;
+            padding: 56px 32px 36px;
             cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.2);
-            border: 1px solid rgba(255, 215, 150, 0.08);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1.3);
+            border: 1px solid rgba(255, 215, 170, 0.05);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            backdrop-filter: blur(10px);
+            gap: 32px;
+            backdrop-filter: blur(15px);
             position: relative;
             overflow: hidden;
         }
@@ -222,470 +234,609 @@
         .item-card::before {
             content: '';
             position: absolute;
+            top: -40%;
+            left: -30%;
+            right: -30%;
+            bottom: -40%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,215,170,0.15), transparent 80%);
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            pointer-events: none;
+        }
+
+        .item-card::after {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 100%;
-            background: radial-gradient(circle at 50% 0%, rgba(255,215,150,0.15), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,215,170,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 1.8s ease;
         }
 
         .item-card:hover {
-            background: rgba(30, 35, 50, 0.5);
-            transform: translateY(-10px) scale(1.02);
-            border-color: rgba(255, 215, 150, 0.4);
-            box-shadow: 0 30px 50px -15px #000, 0 0 0 1px rgba(255, 200, 100, 0.3) inset;
+            background: rgba(10, 5, 20, 0.65);
+            transform: translateY(-15px) scale(1.04);
+            border-color: rgba(255, 215, 170, 0.15);
+            box-shadow: 0 80px 120px -50px #000;
         }
 
         .item-card:hover::before {
             opacity: 1;
         }
 
+        .item-card:hover::after {
+            transform: translateX(100%);
+        }
+
         .item-card.selected {
-            border-color: #ffd966;
-            background: rgba(255, 215, 150, 0.12);
-            box-shadow: 0 25px 45px -10px rgba(255, 200, 100, 0.4), 0 0 0 2px #ffd966 inset;
+            border-color: rgba(255, 215, 170, 0.35);
+            background: rgba(15, 10, 25, 0.75);
+            box-shadow: 0 0 0 1.5px rgba(255, 215, 170, 0.2) inset;
         }
 
         .item-icon {
-            font-size: 4.5rem;
-            filter: drop-shadow(0 15px 20px rgba(0,0,0,0.6));
-            transition: all 0.4s ease;
-            transform: scale(1);
+            font-size: 8rem;
+            filter: drop-shadow(0 40px 50px rgba(0,0,0,0.9));
+            transition: all 0.9s ease;
+            opacity: 0.95;
         }
 
         .item-card:hover .item-icon {
-            transform: scale(1.15) rotate(2deg);
-            filter: drop-shadow(0 20px 30px rgba(255,200,100,0.5));
+            transform: scale(1.25) rotate(4deg);
+            opacity: 1;
+            filter: drop-shadow(0 60px 80px rgba(0,0,0,1));
         }
 
         .item-name {
-            font-size: 1.05rem;
-            font-weight: 500;
+            font-size: 1.6rem;
+            font-weight: 400;
             text-align: center;
-            color: #fff;
-            letter-spacing: 0.5px;
-            background: rgba(0,0,0,0.4);
-            padding: 8px 20px;
-            border-radius: 50px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,215,150,0.15);
+            color: #ffe8d4;
+            letter-spacing: 1.5px;
+            background: rgba(0,0,0,0.55);
+            padding: 16px 36px;
+            border-radius: 100px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 170, 0.1);
+            font-family: 'Philosopher', serif;
+            font-style: italic;
         }
 
         /* Правая панель */
         .tools-panel {
             pointer-events: all;
-            width: 380px;
+            width: 560px;
             height: fit-content;
-            padding: 32px;
-            animation: slideInRight 0.7s cubic-bezier(0.34, 1.5, 0.64, 1);
+            padding: 56px;
+            animation: imperiumRight 2.2s cubic-bezier(0.12, 1, 0.3, 1.4);
         }
 
-        @keyframes slideInRight {
-            0% { transform: translateX(120%) rotateY(10deg); opacity: 0; }
-            100% { transform: translateX(0) rotateY(0); opacity: 1; }
+        @keyframes imperiumRight {
+            0% { transform: translateX(250%) scale(0.7) rotateY(-35deg) translateZ(-300px); opacity: 0; filter: blur(60px); }
+            100% { transform: translateX(0) scale(1) rotateY(0) translateZ(0); opacity: 1; filter: blur(0); }
         }
 
         .tool-section {
-            margin-bottom: 35px;
+            margin-bottom: 64px;
         }
 
         .tool-section h3 {
-            font-size: 1.2rem;
-            color: #ffd966;
-            margin-bottom: 22px;
-            font-weight: 500;
-            letter-spacing: 1px;
+            font-size: 2.2rem;
+            color: #d4b088;
+            margin-bottom: 36px;
+            font-weight: 600;
+            letter-spacing: 4px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 20px;
             text-transform: uppercase;
-            text-shadow: 0 2px 10px rgba(255,200,100,0.3);
+            font-family: 'Marcellus SC', serif;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.7);
+        }
+
+        .tool-section h3 i {
+            font-size: 1.8rem;
+            opacity: 0.4;
         }
 
         .tool-buttons {
             display: flex;
-            gap: 14px;
+            gap: 24px;
         }
 
         .tool-btn {
             flex: 1;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 215, 150, 0.2);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 16px;
-            border-radius: 24px;
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 215, 170, 0.1);
+            color: rgba(255, 215, 170, 0.95);
+            padding: 28px;
+            border-radius: 90px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
-            font-size: 1rem;
+            gap: 18px;
+            transition: all 0.7s ease;
+            font-size: 1.6rem;
             font-weight: 500;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            letter-spacing: 3px;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            font-family: 'Marcellus SC', serif;
         }
 
         .tool-btn:hover {
-            background: rgba(255, 215, 150, 0.15);
-            border-color: #ffd966;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255,200,100,0.25);
-            color: white;
+            background: rgba(255, 215, 170, 0.1);
+            border-color: rgba(255, 215, 170, 0.25);
+            transform: translateY(-7px);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.7);
+            color: #fff;
         }
 
         .tool-btn.active {
-            background: linear-gradient(135deg, #ffd966, #ffaa33);
-            color: #0a0c14;
+            background: rgba(255, 215, 170, 0.85);
+            color: #000001;
             border-color: transparent;
-            font-weight: 600;
-            box-shadow: 0 15px 35px rgba(255,200,100,0.5);
+            font-weight: 700;
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8);
         }
 
         .control-group {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 24px;
-            padding: 20px;
-            border: 1px solid rgba(255,215,150,0.1);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 80px;
+            padding: 52px;
+            border: 1px solid rgba(255, 215, 170, 0.05);
+            backdrop-filter: blur(15px);
         }
 
         label {
             display: block;
-            margin-bottom: 22px;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
+            margin-bottom: 44px;
+            color: rgba(255, 215, 170, 0.98);
+            font-size: 1.5rem;
             font-weight: 400;
-            letter-spacing: 0.5px;
+            letter-spacing: 1.5px;
+            font-family: 'Philosopher', serif;
         }
 
         label span {
             display: block;
-            margin-bottom: 10px;
-            color: #ffd966;
-            font-size: 0.9rem;
+            margin-bottom: 18px;
+            color: #d4b088;
+            font-size: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 4px;
+            font-weight: 400;
+            font-style: italic;
         }
 
         input[type="range"] {
             width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, #ffd966, #ffaa33);
-            border-radius: 3px;
+            height: 3px;
+            background: rgba(255, 215, 170, 0.15);
+            border-radius: 1.5px;
             -webkit-appearance: none;
         }
 
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 24px;
-            height: 24px;
-            background: white;
+            width: 28px;
+            height: 28px;
+            background: #ffe8d4;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 0 20px #ffd966, 0 4px 10px rgba(0,0,0,0.3);
-            border: 3px solid #ffd966;
-            transition: all 0.2s ease;
+            box-shadow: 0 0 40px rgba(255, 215, 170, 0.5);
+            border: 5px solid #000001;
+            transition: all 0.3s ease;
         }
 
         input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.15);
-            box-shadow: 0 0 30px #ffd966;
+            transform: scale(1.4);
+            background: #fff;
+            box-shadow: 0 0 70px rgba(255, 215, 170, 0.7);
         }
 
         input[type="color"] {
             width: 100%;
-            height: 55px;
-            border: 1px solid rgba(255,215,150,0.3);
-            border-radius: 20px;
-            background: rgba(0,0,0,0.3);
-            margin-top: 10px;
+            height: 80px;
+            border: 1px solid rgba(255, 215, 170, 0.15);
+            border-radius: 60px;
+            background: rgba(0,0,0,0.55);
+            margin-top: 16px;
             cursor: pointer;
-            padding: 5px;
-            backdrop-filter: blur(5px);
+            padding: 10px;
+            backdrop-filter: blur(8px);
         }
 
         select {
             width: 100%;
-            padding: 16px 20px;
-            margin-top: 10px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255,215,150,0.3);
-            border-radius: 20px;
-            color: white;
-            font-size: 1rem;
+            padding: 26px 38px;
+            margin-top: 16px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 215, 170, 0.15);
+            border-radius: 60px;
+            color: #ffe8d4;
+            font-size: 1.4rem;
             cursor: pointer;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            font-weight: 400;
-            letter-spacing: 0.5px;
+            backdrop-filter: blur(15px);
+            transition: all 0.6s ease;
+            font-weight: 300;
+            font-family: 'Philosopher', serif;
+            font-style: italic;
         }
 
         select:hover {
-            border-color: #ffd966;
-            background: rgba(20, 25, 40, 0.6);
-            box-shadow: 0 0 20px rgba(255,200,100,0.2);
+            border-color: rgba(255, 215, 170, 0.3);
+            background: rgba(10, 5, 20, 0.9);
+            box-shadow: 0 0 45px rgba(0,0,0,0.6);
         }
 
         select option {
-            background: #1a1e2a;
-            color: white;
-            padding: 10px;
+            background: #000001;
+            color: #ffe8d4;
+            padding: 20px;
         }
 
         .action-btn {
             width: 100%;
-            background: linear-gradient(135deg, #ffd966, #ffaa33);
+            background: rgba(255, 215, 170, 0.85);
             border: none;
-            color: #0a0c14;
-            padding: 18px;
-            border-radius: 24px;
+            color: #000001;
+            padding: 32px;
+            border-radius: 90px;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 14px;
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
-            font-size: 1.1rem;
-            margin-top: 20px;
-            letter-spacing: 1px;
+            gap: 20px;
+            transition: all 0.7s ease;
+            font-size: 1.8rem;
+            margin-top: 42px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            box-shadow: 0 15px 35px rgba(255, 200, 100, 0.4);
-            border: 1px solid rgba(255,255,255,0.2);
+            font-family: 'Marcellus SC', serif;
+            border: 1px solid transparent;
         }
 
         .action-btn:hover {
-            background: linear-gradient(135deg, #ffe07a, #ffb84d);
-            transform: scale(1.02) translateY(-3px);
-            box-shadow: 0 25px 45px rgba(255, 200, 100, 0.6);
+            background: #ffe8d4;
+            transform: scale(1.05) translateY(-6px);
+            box-shadow: 0 50px 90px rgba(0, 0, 0, 0.8);
         }
 
         /* Статус бар */
         .status-bar {
             pointer-events: all;
             position: absolute;
-            bottom: 28px;
+            bottom: 80px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 18px 40px;
+            padding: 30px 100px;
             display: flex;
-            gap: 60px;
-            font-size: 1.05rem;
-            backdrop-filter: blur(30px) saturate(250%);
-            animation: fadeInUp 0.8s ease;
-            border-radius: 80px;
-            background: rgba(8, 10, 16, 0.6);
-            border: 1px solid rgba(255,215,150,0.2);
-            box-shadow: 0 25px 50px -10px #000;
+            gap: 120px;
+            font-size: 1.6rem;
+            backdrop-filter: blur(100px) saturate(600%);
+            animation: imperiumUp 1.8s ease;
+            border-radius: 120px;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 215, 170, 0.08);
+            box-shadow: 0 60px 120px -50px #000;
         }
 
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateX(-50%) translateY(40px); }
-            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        @keyframes imperiumUp {
+            0% { opacity: 0; transform: translateX(-50%) translateY(100px) scale(0.85); filter: blur(30px); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); filter: blur(0); }
         }
 
         .status-bar i {
-            color: #ffd966;
-            margin-right: 12px;
-            font-size: 1.2rem;
-            filter: drop-shadow(0 0 10px #ffd966);
+            color: #d4b088;
+            margin-right: 20px;
+            font-size: 1.8rem;
+            opacity: 0.8;
         }
 
         .status-bar div {
             display: flex;
             align-items: center;
-            font-weight: 500;
-            color: rgba(255,255,255,0.95);
+            font-weight: 400;
+            color: #ffe8d4;
+            letter-spacing: 2px;
+            font-family: 'Cinzel', serif;
         }
 
         /* Кастомный скроллбар */
         ::-webkit-scrollbar {
-            width: 5px;
+            width: 4px;
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(255, 215, 150, 0.05);
+            background: rgba(255, 215, 170, 0.015);
             border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #ffd966, #ffaa33);
+            background: rgba(255, 215, 170, 0.15);
             border-radius: 10px;
-            box-shadow: 0 0 20px #ffd966;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 215, 170, 0.3);
         }
 
         /* Подсказка */
         .hint {
             position: absolute;
-            top: 28px;
-            right: 420px;
-            background: rgba(10, 12, 20, 0.7);
-            color: white;
-            padding: 14px 28px;
-            border-radius: 60px;
-            font-size: 1rem;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,215,150,0.3);
+            top: 80px;
+            right: 660px;
+            background: rgba(0, 0, 0, 0.45);
+            color: #ffe8d4;
+            padding: 24px 48px;
+            border-radius: 120px;
+            font-size: 1.4rem;
+            backdrop-filter: blur(60px);
+            border: 1px solid rgba(255, 215, 170, 0.1);
             pointer-events: none;
-            box-shadow: 0 20px 40px -10px #000;
+            box-shadow: 0 50px 100px -40px #000;
             font-weight: 400;
-            letter-spacing: 0.5px;
-            animation: pulse 2s infinite;
+            letter-spacing: 2.5px;
+            animation: imperiumPulse 6s infinite;
+            font-family: 'Philosopher', serif;
+            font-style: italic;
+            z-index: 20;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255,215,150,0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(255,215,150,0); }
-            100% { box-shadow: 0 0 0 0 rgba(255,215,150,0); }
+        @keyframes imperiumPulse {
+            0% { border-color: rgba(255, 215, 170, 0.1); box-shadow: 0 50px 100px -40px #000; }
+            50% { border-color: rgba(255, 215, 170, 0.25); box-shadow: 0 50px 120px -30px #000, 0 0 50px rgba(255,215,170,0.1); }
+            100% { border-color: rgba(255, 215, 170, 0.1); box-shadow: 0 50px 100px -40px #000; }
         }
 
         .hint i {
-            color: #ffd966;
-            margin-right: 10px;
-            font-size: 1.1rem;
+            color: #d4b088;
+            margin-right: 18px;
+            font-size: 1.5rem;
         }
 
-        /* Логотип в центре */
+        /* Логотип */
         .logo {
             position: absolute;
-            top: 28px;
+            top: 80px;
             left: 50%;
             transform: translateX(-50%);
             pointer-events: none;
             z-index: 5;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: rgba(255,215,150,0.9);
-            text-shadow: 0 0 30px rgba(255,200,100,0.5);
-            letter-spacing: 8px;
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #ffe8d4;
+            text-shadow: 0 6px 60px rgba(0,0,0,1);
+            letter-spacing: 32px;
             text-transform: uppercase;
-            background: rgba(10,10,20,0.3);
-            padding: 12px 40px;
-            border-radius: 60px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,215,150,0.2);
+            background: rgba(0,0,0,0.25);
+            padding: 28px 100px;
+            border-radius: 120px;
+            backdrop-filter: blur(45px);
+            border: 1px solid rgba(255,215,170,0.06);
+            font-family: 'Marcellus SC', serif;
+            white-space: nowrap;
+        }
+
+        /* Имперские орбы */
+        .imperium-orb {
+            position: absolute;
+            width: 1500px;
+            height: 1500px;
+            background: radial-gradient(circle, rgba(255,215,170,0.02) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -750px;
+            right: -750px;
+            z-index: 0;
+            pointer-events: none;
+            animation: imperiumOrb 40s infinite;
+        }
+
+        @keyframes imperiumOrb {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.2; }
+            50% { transform: scale(1.4) rotate(15deg); opacity: 0.4; }
+        }
+
+        .imperium-orb2 {
+            position: absolute;
+            width: 1800px;
+            height: 1800px;
+            background: radial-gradient(circle, rgba(100,120,200,0.01) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -900px;
+            left: -900px;
+            z-index: 0;
+            pointer-events: none;
+            animation: imperiumOrb2 50s infinite reverse;
+        }
+
+        @keyframes imperiumOrb2 {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.15; }
+            50% { transform: scale(1.5) rotate(-20deg); opacity: 0.3; }
+        }
+
+        /* Имперские частицы */
+        .imperium-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><circle cx="150" cy="150" r="1" fill="%23ffd7aa" opacity="0.12"/><circle cx="60" cy="90" r="0.8" fill="%23ffd7aa" opacity="0.1"/><circle cx="240" cy="210" r="0.9" fill="%23ffd7aa" opacity="0.1"/><circle cx="270" cy="60" r="0.7" fill="%23ffd7aa" opacity="0.1"/><circle cx="30" cy="240" r="0.8" fill="%23ffd7aa" opacity="0.1"/><circle cx="180" cy="45" r="0.9" fill="%23ffd7aa" opacity="0.1"/><circle cx="105" cy="255" r="0.8" fill="%23ffd7aa" opacity="0.1"/><circle cx="220" cy="120" r="0.7" fill="%23ffd7aa" opacity="0.1"/></svg>');
+            background-size: 300px 300px;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.3;
+            animation: imperiumParticles 200s linear infinite;
+        }
+
+        @keyframes imperiumParticles {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(200px, 200px); }
+        }
+
+        /* Золотое сечение линий */
+        .imperium-line {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 61.8px, rgba(255,215,170,0.006) 61.8px, rgba(255,215,170,0.006) 63.6px);
+            pointer-events: none;
+            z-index: 3;
+            opacity: 0.3;
+        }
+
+        /* Иероглифы */
+        .hieroglyph {
+            position: absolute;
+            font-size: 24rem;
+            color: rgba(255,215,170,0.02);
+            bottom: -100px;
+            left: -100px;
+            z-index: 0;
+            pointer-events: none;
+            transform: rotate(-15deg);
+            font-family: 'Cinzel', serif;
+        }
+
+        .hieroglyph2 {
+            position: absolute;
+            font-size: 30rem;
+            color: rgba(255,215,170,0.02);
+            top: -150px;
+            right: -150px;
+            z-index: 0;
+            pointer-events: none;
+            transform: rotate(15deg);
+            font-family: 'Cinzel', serif;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="logo">ÆSTHETIC</div>
+    <div class="imperium-orb"></div>
+    <div class="imperium-orb2"></div>
+    <div class="imperium-particles"></div>
+    <div class="imperium-line"></div>
+    <div class="hieroglyph">𓂀𓆣𓃀</div>
+    <div class="hieroglyph2">⚜️☧𓋴</div>
+    <div class="logo">⚜️ IMPERIVM 𓂀</div>
 
     <div class="ui-container">
         <!-- Левая панель -->
-        <div class="catalog-panel glass">
+        <div class="catalog-panel imperium">
             <div class="panel-header">
-                <h2><i class="fas fa-layer-group"></i> КОЛЛЕКЦИЯ</h2>
+                <h2><i class="fas fa-crown"></i> IMPERIVM</h2>
                 <span class="badge" id="item-count">0</span>
             </div>
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Поиск..." id="search-input">
+                <input type="text" placeholder="quaerere in aeternum..." id="search-input">
             </div>
             <div class="categories">
-                <button class="category-btn active" data-category="all">ВСЕ</button>
-                <button class="category-btn" data-category="seating">МЕБЕЛЬ</button>
-                <button class="category-btn" data-category="lighting">СВЕТ</button>
-                <button class="category-btn" data-category="decor">ДЕКОР</button>
-                <button class="category-btn" data-category="electronics">ТЕХНИКА</button>
-                <button class="category-btn" data-category="walls">СТЕНЫ</button>
+                <button class="category-btn active" data-category="all">OMNIA</button>
+                <button class="category-btn" data-category="seating">SOLIVM</button>
+                <button class="category-btn" data-category="lighting">LVX</button>
+                <button class="category-btn" data-category="decor">DECORVM</button>
+                <button class="category-btn" data-category="electronics">MACHINA</button>
+                <button class="category-btn" data-category="walls">MVRVS</button>
             </div>
             <div class="items-grid" id="items-grid"></div>
         </div>
 
         <!-- Правая панель -->
-        <div class="tools-panel glass">
+        <div class="tools-panel imperium">
             <div class="panel-header">
-                <h2><i class="fas fa-sliders-h"></i> ПАРАМЕТРЫ</h2>
+                <h2><i class="fas fa-sliders-h"></i> ARS MAGNA</h2>
             </div>
             <div class="tool-section">
-                <h3><i class="fas fa-compass"></i> РЕЖИМ</h3>
+                <h3><i class="fas fa-compass"></i> MODVS</h3>
                 <div class="tool-buttons">
                     <button class="tool-btn active" id="mode-place">
-                        <i class="fas fa-hand"></i> РАЗМ.
+                        <i class="fas fa-hand"></i> PONERE
                     </button>
                     <button class="tool-btn" id="mode-build">
-                        <i class="fas fa-draw-polygon"></i> СТРОЙ.
+                        <i class="fas fa-draw-polygon"></i> AEDIFICARE
                     </button>
                 </div>
             </div>
 
             <!-- Панель строительства -->
             <div class="tool-section" id="build-controls" style="display: none;">
-                <h3><i class="fas fa-cubes"></i> СТЕНА</h3>
+                <h3><i class="fas fa-cubes"></i> MVRVS</h3>
                 <div class="control-group">
-                    <label><span>ДЛИНА</span> <input type="range" id="wall-length" min="1" max="10" step="0.5" value="3"></label>
-                    <label><span>ВЫСОТА</span> <input type="range" id="wall-height" min="2" max="6" step="0.5" value="2.5"></label>
-                    <label><span>ЦВЕТ</span> <input type="color" id="wall-color" value="#aaccff"></label>
-                    <label><span>ТЕКСТУРА</span>
+                    <label><span>LONGITVDO</span> <input type="range" id="wall-length" min="1" max="10" step="0.5" value="3"></label>
+                    <label><span>ALTITVDO</span> <input type="range" id="wall-height" min="2" max="6" step="0.5" value="2.5"></label>
+                    <label><span>COLOR</span> <input type="color" id="wall-color" value="#aaccff"></label>
+                    <label><span>TEXTURA</span>
                         <select id="wall-texture">
-                            <option value="brick">КИРПИЧ</option>
-                            <option value="concrete">БЕТОН</option>
-                            <option value="wood">ДЕРЕВО</option>
-                            <option value="marble">МРАМОР</option>
+                            <option value="brick">LATER</option>
+                            <option value="concrete">BETON</option>
+                            <option value="wood">LIGNVM</option>
+                            <option value="marble">MARMOR</option>
                         </select>
                     </label>
-                    <button class="action-btn" id="build-wall"><i class="fas fa-plus-circle"></i> ВОЗВЕСТИ</button>
+                    <button class="action-btn" id="build-wall"><i class="fas fa-plus-circle"></i> CREARE</button>
                 </div>
             </div>
 
             <!-- Панель размещения -->
             <div class="tool-section" id="place-controls">
-                <h3><i class="fas fa-palette"></i> МАТЕРИАЛ</h3>
+                <h3><i class="fas fa-palette"></i> MATERIA</h3>
                 <div class="control-group">
-                    <label><span>ТИП</span>
+                    <label><span>GENVS</span>
                         <select id="material-type">
-                            <optgroup label="ДРЕВЕСИНА">
-                                <option value="wood">ДУБ</option>
-                                <option value="walnut">ОРЕХ</option>
-                                <option value="oak_light">СВЕТЛЫЙ ДУБ</option>
-                                <option value="mahogany">КРАСНОЕ ДЕРЕВО</option>
+                            <optgroup label="LIGNVM">
+                                <option value="wood">QVERCVS</option>
+                                <option value="walnut">IVGLANS</option>
+                                <option value="oak_light">QVERCVS LVCE</option>
+                                <option value="mahogany">MAHOGANI</option>
                             </optgroup>
-                            <optgroup label="МЕТАЛЛ">
-                                <option value="metal_brushed">ЩЕТКА</option>
-                                <option value="metal_polished">ПОЛИРОВКА</option>
-                                <option value="copper">МЕДЬ</option>
-                                <option value="brass">ЛАТУНЬ</option>
+                            <optgroup label="METALLVM">
+                                <option value="metal_brushed">PERPOLITVM</option>
+                                <option value="metal_polished">NITIDVM</option>
+                                <option value="copper">CVPREM</option>
+                                <option value="brass">ORICHALCVM</option>
                             </optgroup>
-                            <optgroup label="ТКАНИ">
-                                <option value="fabric_velvet">БАРХАТ</option>
-                                <option value="fabric_linen">ЛЕН</option>
-                                <option value="leather">КОЖА</option>
+                            <optgroup label="TELA">
+                                <option value="fabric_velvet">HOLOSERICVM</option>
+                                <option value="fabric_linen">LINVM</option>
+                                <option value="leather">CORIVM</option>
                             </optgroup>
-                            <optgroup label="СТЕКЛО">
-                                <option value="glass_clear">ПРОЗРАЧНОЕ</option>
-                                <option value="glass_frosted">МАТОВОЕ</option>
+                            <optgroup label="VITRVM">
+                                <option value="glass_clear">CLARVM</option>
+                                <option value="glass_frosted">OPALESCENS</option>
                             </optgroup>
-                            <optgroup label="КАМЕНЬ">
-                                <option value="marble">МРАМОР</option>
-                                <option value="granite">ГРАНИТ</option>
+                            <optgroup label="LAPIS">
+                                <option value="marble">MARMOR</option>
+                                <option value="granite">GRANITVM</option>
                             </optgroup>
-                            <option value="plastic">ПЛАСТИК</option>
+                            <option value="plastic">PLASTICVM</option>
                         </select>
                     </label>
-                    <label><span>ЦВЕТ</span> <input type="color" id="item-color" value="#c47e5a"></label>
-                    <label><span>МАСШТАБ</span> <input type="range" id="item-scale" min="0.5" max="3" step="0.1" value="1"></label>
-                    <label><span>ПОВОРОТ</span> <input type="range" id="item-rotate" min="0" max="360" value="0"></label>
-                    <button class="action-btn" id="apply-props"><i class="fas fa-check"></i> ПРИМЕНИТЬ</button>
+                    <label><span>COLOR</span> <input type="color" id="item-color" value="#c47e5a"></label>
+                    <label><span>SCALA</span> <input type="range" id="item-scale" min="0.5" max="3" step="0.1" value="1"></label>
+                    <label><span>ROTATIO</span> <input type="range" id="item-rotate" min="0" max="360" value="0"></label>
+                    <button class="action-btn" id="apply-props"><i class="fas fa-check"></i> APPLICARE</button>
                 </div>
             </div>
 
             <div class="tool-section">
-                <h3><i class="fas fa-sun"></i> СВЕТ</h3>
+                <h3><i class="fas fa-sun"></i> LVX</h3>
                 <div class="control-group">
-                    <label><span>ИНТЕНСИВНОСТЬ</span> <input type="range" id="light-intensity" min="0.2" max="1.8" step="0.1" value="1.0"></label>
-                    <label><span>ТЕМПЕРАТУРА K</span> <input type="range" id="light-temperature" min="2000" max="8000" step="100" value="4500"></label>
+                    <label><span>INTENSITAS</span> <input type="range" id="light-intensity" min="0.2" max="1.8" step="0.1" value="1.0"></label>
+                    <label><span>TEMPERATIO K</span> <input type="range" id="light-temperature" min="2000" max="8000" step="100" value="4500"></label>
                 </div>
             </div>
         </div>
 
         <!-- Статус бар -->
-        <div class="status-bar glass">
+        <div class="status-bar imperium">
             <div><i class="fas fa-cube"></i> <span id="total-items">0</span></div>
             <div><i class="fas fa-shapes"></i> <span id="poly-count">0</span>M</div>
             <div><i class="fas fa-tachometer-alt"></i> <span id="fps-counter">0</span> FPS</div>
@@ -693,7 +844,7 @@
     </div>
 
     <div class="hint">
-        <i class="fas fa-magic"></i> ЛКМ — РАЗМЕСТИТЬ | ЗАЖАТЬ + ТЯНУТЬ — СТЕНА
+        <i class="fas fa-magic"></i> CLICCA — PONERE | TENE + TRAHE — MVRVM
     </div>
 
     <canvas id="canvas"></canvas>
@@ -715,31 +866,35 @@
         import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
         import { FilmPass } from 'three/addons/postprocessing/FilmPass.js';
         import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
-        import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
         
-        // ==================== КАТАЛОГ ====================
+        // ==================== CATALOGVS IMPERIALIS ====================
         const catalog = {
             seating: [
-                { id: 'chair_chesterfield', name: 'ЧЕСТЕРФИЛД', icon: '🪑', category: 'seating', color: '#8b4513' },
-                { id: 'sofa_velvet', name: 'БАРХАТНЫЙ ДИВАН', icon: '🛋️', category: 'seating', color: '#4a2c5a' },
-                { id: 'armchair_eames', name: 'EAMES', icon: '💺', category: 'seating', color: '#2a3a4a' },
+                { id: 'solium_aureum', name: 'SOLIVM AVREVM', icon: '👑', category: 'seating', color: '#d4af37' },
+                { id: 'sedes_eburnea', name: 'SEDES EBVRNE', icon: '🪑', category: 'seating', color: '#f5e6d3' },
+                { id: 'thronus_regius', name: 'THRONVS REGIVS', icon: '👑', category: 'seating', color: '#8b4513' },
+                { id: 'cathedra', name: 'CATHEDRA', icon: '💺', category: 'seating', color: '#4a2c5a' },
             ],
             lighting: [
-                { id: 'lamp_artdeco', name: 'ART DECO', icon: '💡', category: 'lighting', color: '#c9b037' },
-                { id: 'chandelier', name: 'ХРУСТАЛЬНАЯ', icon: '💡', category: 'lighting', color: '#ffffff' },
+                { id: 'lucerna_aurea', name: 'LVCERNA AVREA', icon: '💡', category: 'lighting', color: '#d4af37' },
+                { id: 'candelabrum', name: 'CANDELABRVM', icon: '🕯️', category: 'lighting', color: '#c0c0c0' },
+                { id: 'fax_imperialis', name: 'FAX IMPERIALIS', icon: '🔥', category: 'lighting', color: '#ff6b4a' },
             ],
             decor: [
-                { id: 'vase', name: 'ФАРФОРОВАЯ', icon: '🏺', category: 'decor', color: '#5a7a9a' },
-                { id: 'plant', name: 'ПАЛЬМА', icon: '🌴', category: 'decor', color: '#2e8b57' },
-                { id: 'mirror', name: 'ЗОЛОТОЕ ЗЕРКАЛО', icon: '🪞', category: 'decor', color: '#c9b037' },
+                { id: ' amphora', name: 'AMPHORA', icon: '🏺', category: 'decor', color: '#5a7a9a' },
+                { id: 'statua_marmorea', name: 'STATVA MARMOREA', icon: '🗿', category: 'decor', color: '#f0f0f0' },
+                { id: 'speculum_aureum', name: 'SPECVLVM AVREVM', icon: '🪞', category: 'decor', color: '#d4af37' },
+                { id: 'tapis_imperialis', name: 'TAPIS IMPERIALIS', icon: '🧶', category: 'decor', color: '#8b1e3f' },
             ],
             electronics: [
-                { id: 'tv', name: 'OLED TV', icon: '📺', category: 'electronics', color: '#1a1a1a' },
-                { id: 'speaker', name: 'АКУСТИКА', icon: '🔊', category: 'electronics', color: '#3a3a3a' },
+                { id: 'televisio', name: 'TELEVISIO', icon: '📺', category: 'electronics', color: '#1a1a1a' },
+                { id: 'phonascus', name: 'PHONASCUS', icon: '🔊', category: 'electronics', color: '#3a3a3a' },
+                { id: 'computatrum', name: 'COMPVATRVM', icon: '💻', category: 'electronics', color: '#2a2a3a' },
             ],
             walls: [
-                { id: 'wall_marble', name: 'МРАМОР', icon: '⬜', category: 'walls', color: '#f0f0f0' },
-                { id: 'wall_brick', name: 'КИРПИЧ', icon: '🧱', category: 'walls', color: '#b85e3a' },
+                { id: 'marmor', name: 'MARMOR', icon: '⬜', category: 'walls', color: '#f5f5f5' },
+                { id: 'later', name: 'LATER', icon: '🧱', category: 'walls', color: '#b85e3a' },
+                { id: 'lignum', name: 'LIGNVM', icon: '🪵', category: 'walls', color: '#8b5a2b' },
             ]
         };
 
@@ -747,18 +902,16 @@
             return Object.values(catalog).flat();
         }
 
-        // ==================== ИНИЦИАЛИЗАЦИЯ ====================
+        // ==================== INITIALIS ====================
         const canvas = document.getElementById('canvas');
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x07070f);
-        scene.fog = new THREE.FogExp2(0x07070f, 0.006);
+        scene.background = new THREE.Color(0x000001);
+        scene.fog = new THREE.FogExp2(0x000001, 0.003);
 
-        // Камера с кинематографическими параметрами
         const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(18, 8, 24);
+        camera.position.set(25, 15, 35);
         camera.lookAt(0, 2, 0);
 
-        // Рендерер с максимальным качеством
         const renderer = new THREE.WebGLRenderer({ 
             canvas: canvas, 
             antialias: true,
@@ -773,23 +926,22 @@
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         renderer.shadowMap.bias = 0.00005;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.0;
+        renderer.toneMappingExposure = 0.9;
         renderer.outputEncoding = THREE.sRGBEncoding;
 
-        // Пост-обработка
         const renderScene = new RenderPass(scene, camera);
         
-        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.2, 0.3, 0.85);
-        bloomPass.threshold = 0.2;
-        bloomPass.strength = 0.8;
-        bloomPass.radius = 0.8;
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.85, 0.1, 0.7);
+        bloomPass.threshold = 0.3;
+        bloomPass.strength = 0.55;
+        bloomPass.radius = 0.25;
 
-        const filmPass = new FilmPass(0.2, 0.5, 2048, false);
+        const filmPass = new FilmPass(0.1, 0.5, 2048, false);
         
         const vignettePass = new ShaderPass({
             uniforms: {
                 tDiffuse: { value: null },
-                intensity: { value: 0.6 }
+                intensity: { value: 0.45 }
             },
             vertexShader: `
                 varying vec2 vUv;
@@ -819,21 +971,17 @@
         filmPass.renderToScreen = true;
         composer.addPass(filmPass);
 
-        // Управление
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.04;
         controls.maxPolarAngle = Math.PI / 2.1;
         controls.minDistance = 5;
-        controls.maxDistance = 50;
+        controls.maxDistance = 100;
         controls.target.set(0, 2.5, 0);
-        controls.rotateSpeed = 0.8;
-        controls.enablePan = true;
-        controls.panSpeed = 0.8;
+        controls.rotateSpeed = 0.5;
 
-        // ==================== ОСВЕЩЕНИЕ ====================
-        // Основной свет
-        const mainLight = new THREE.DirectionalLight(0xffeedd, 1.0);
+        // ==================== LVX ====================
+        const mainLight = new THREE.DirectionalLight(0xffeedd, 0.8);
         mainLight.position.set(8, 15, 10);
         mainLight.castShadow = true;
         mainLight.shadow.mapSize.width = 4096;
@@ -844,36 +992,26 @@
         mainLight.shadow.camera.right = 15;
         mainLight.shadow.camera.top = 15;
         mainLight.shadow.camera.bottom = -15;
-        mainLight.shadow.bias = -0.0001;
-        mainLight.shadow.normalBias = 0.02;
         scene.add(mainLight);
 
-        // Заполняющие светы
-        const fillLightWarm = new THREE.PointLight(0xffaa66, 0.7);
+        const fillLightWarm = new THREE.PointLight(0xffaa66, 0.35);
         fillLightWarm.position.set(-5, 4, 8);
         scene.add(fillLightWarm);
 
-        const fillLightCool = new THREE.PointLight(0x6688ff, 0.5);
+        const fillLightCool = new THREE.PointLight(0x6688ff, 0.2);
         fillLightCool.position.set(7, 3, -6);
         scene.add(fillLightCool);
 
-        // Контровой свет
-        const backLight = new THREE.PointLight(0x4466aa, 0.4);
-        backLight.position.set(0, 5, -12);
-        scene.add(backLight);
-
-        // Ambient
-        const ambientLight = new THREE.AmbientLight(0x40486c, 0.5);
+        const ambientLight = new THREE.AmbientLight(0x40486c, 0.4);
         scene.add(ambientLight);
 
-        // ==================== ОКРУЖЕНИЕ ====================
-        // Пол
-        const groundGeo = new THREE.CircleGeometry(80, 128);
+        // ==================== AMBIENS ====================
+        const groundGeo = new THREE.CircleGeometry(200, 128);
         const groundMat = new THREE.MeshStandardMaterial({
-            color: 0x1a1f2a,
-            roughness: 0.7,
-            metalness: 0.1,
-            emissive: 0x050508
+            color: 0x080610,
+            roughness: 0.8,
+            metalness: 0.05,
+            emissive: 0x000000
         });
         const ground = new THREE.Mesh(groundGeo, groundMat);
         ground.rotation.x = -Math.PI / 2;
@@ -881,32 +1019,30 @@
         ground.receiveShadow = true;
         scene.add(ground);
 
-        // Декоративная сетка
-        const gridHelper = new THREE.GridHelper(60, 40, 0xffaa66, 0x2a3a5a);
+        const gridHelper = new THREE.GridHelper(150, 100, 0x7a5a4a, 0x1a1a2a);
         gridHelper.position.y = 0.01;
         scene.add(gridHelper);
 
-        // Атмосферные частицы
-        const particleCount = 600;
+        const particleCount = 1000;
         const particlesGeo = new THREE.BufferGeometry();
         const particlesPos = new Float32Array(particleCount * 3);
         for (let i = 0; i < particleCount * 3; i += 3) {
-            particlesPos[i] = (Math.random() - 0.5) * 100;
-            particlesPos[i+1] = (Math.random() * 25);
-            particlesPos[i+2] = (Math.random() - 0.5) * 100;
+            particlesPos[i] = (Math.random() - 0.5) * 200;
+            particlesPos[i+1] = (Math.random() * 50);
+            particlesPos[i+2] = (Math.random() - 0.5) * 200;
         }
         particlesGeo.setAttribute('position', new THREE.BufferAttribute(particlesPos, 3));
         const particlesMat = new THREE.PointsMaterial({
-            color: 0x88aaff,
-            size: 0.06,
+            color: 0x8899aa,
+            size: 0.03,
             transparent: true,
-            opacity: 0.3,
+            opacity: 0.1,
             blending: THREE.AdditiveBlending
         });
         const particles = new THREE.Points(particlesGeo, particlesMat);
         scene.add(particles);
 
-        // ==================== МАТЕРИАЛЫ ====================
+        // ==================== MATERIAE ====================
         function createPremiumMaterial(type, color) {
             const colorHex = parseInt(color.replace('#', '0x'), 16);
             
@@ -932,180 +1068,153 @@
             return materials[type] || materials.wood;
         }
 
-        // ==================== МОДЕЛИ ====================
-        
-        // Честерфилд
-        function createChesterfield(color, materialType) {
+        // ==================== MODELI ====================
+        function createThronus(color, materialType) {
             const group = new THREE.Group();
-            const leatherMat = createPremiumMaterial('leather', color);
-            const woodMat = createPremiumMaterial('walnut', '#5a3a2a');
-            const metalMat = createPremiumMaterial('metal_brushed', '#aaa');
+            const metallum = createPremiumMaterial('brass', '#d4af37');
+            const lignum = createPremiumMaterial('walnut', '#4a2c1a');
+            const tela = createPremiumMaterial('fabric_velvet', '#8b1e3f');
             
-            // Основание
-            const base = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.3, 1.2), woodMat);
-            base.position.y = 0.15;
-            base.castShadow = true;
-            base.receiveShadow = true;
-            group.add(base);
+            // Basis
+            const basis = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.4, 1.8), lignum);
+            basis.position.y = 0.2;
+            basis.castShadow = true;
+            basis.receiveShadow = true;
+            group.add(basis);
             
-            // Сиденье
-            const seat = new THREE.Mesh(new THREE.BoxGeometry(1.3, 0.4, 1.1), leatherMat);
-            seat.position.y = 0.5;
-            seat.castShadow = true;
-            seat.receiveShadow = true;
-            group.add(seat);
+            // Sedile
+            const sedile = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.5, 1.6), tela);
+            sedile.position.y = 0.65;
+            sedile.castShadow = true;
+            sedile.receiveShadow = true;
+            group.add(sedile);
             
-            // Спинка
-            const back = new THREE.Mesh(new THREE.BoxGeometry(1.3, 1.2, 0.4), leatherMat);
-            back.position.set(0, 1.1, -0.45);
-            back.castShadow = true;
-            back.receiveShadow = true;
-            group.add(back);
+            // Dorsum
+            const dorsum = new THREE.Mesh(new THREE.BoxGeometry(1.8, 1.8, 0.4), tela);
+            dorsum.position.set(0, 1.55, -0.7);
+            dorsum.castShadow = true;
+            dorsum.receiveShadow = true;
+            group.add(dorsum);
             
-            // Капитоне
-            for (let i = -0.4; i <= 0.4; i+=0.4) {
-                for (let j = 0.7; j <= 1.3; j+=0.3) {
-                    const button = new THREE.Mesh(new THREE.SphereGeometry(0.06, 16), metalMat);
-                    button.position.set(i, j, -0.25);
-                    button.castShadow = true;
-                    group.add(button);
-                }
-            }
+            // Brachia
+            const brachiumL = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.8, 1.6), tela);
+            brachiumL.position.set(-1.0, 1.0, 0);
+            brachiumL.castShadow = true;
+            brachiumL.receiveShadow = true;
+            group.add(brachiumL);
             
-            // Подлокотники
-            const armLeft = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.6, 1.2), leatherMat);
-            armLeft.position.set(-0.8, 0.7, 0);
-            armLeft.castShadow = true;
-            armLeft.receiveShadow = true;
-            group.add(armLeft);
+            const brachiumR = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.8, 1.6), tela);
+            brachiumR.position.set(1.0, 1.0, 0);
+            brachiumR.castShadow = true;
+            brachiumR.receiveShadow = true;
+            group.add(brachiumR);
             
-            const armRight = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.6, 1.2), leatherMat);
-            armRight.position.set(0.8, 0.7, 0);
-            armRight.castShadow = true;
-            armRight.receiveShadow = true;
-            group.add(armRight);
-            
-            // Ножки
-            const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.3, 8);
-            for (let x = -0.5; x <= 0.5; x+=1.0) {
-                for (let z = -0.4; z <= 0.4; z+=0.8) {
-                    const leg = new THREE.Mesh(legGeo, woodMat);
-                    leg.position.set(x, 0.15, z);
-                    leg.castShadow = true;
-                    leg.receiveShadow = true;
-                    group.add(leg);
+            // Aurea ornamenta
+            for (let i = -0.6; i <= 0.6; i+=0.6) {
+                for (let j = 0.8; j <= 1.8; j+=0.5) {
+                    const bulla = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8), metallum);
+                    bulla.position.set(i, j, -0.5);
+                    bulla.castShadow = true;
+                    group.add(bulla);
                 }
             }
             
             return group;
         }
 
-        // Art Deco лампа
-        function createArtDecoLamp(color, materialType) {
+        function createCandelabrum(color, materialType) {
             const group = new THREE.Group();
-            const brassMat = createPremiumMaterial('brass', '#c9b037');
-            const glassMat = createPremiumMaterial('glass_clear', '#ffffff');
-            const marbleMat = createPremiumMaterial('marble', '#f0f0f0');
+            const metallum = createPremiumMaterial('brass', '#c0c0c0');
             
-            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.7, 0.3, 8), marbleMat);
-            base.position.y = 0.15;
-            base.castShadow = true;
-            base.receiveShadow = true;
-            group.add(base);
+            const basis = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.8, 0.3, 8), metallum);
+            basis.position.y = 0.15;
+            basis.castShadow = true;
+            basis.receiveShadow = true;
+            group.add(basis);
             
-            const ring = new THREE.Mesh(new THREE.TorusGeometry(0.4, 0.05, 16, 32), brassMat);
-            ring.rotation.x = Math.PI / 2;
-            ring.position.y = 0.3;
-            ring.castShadow = true;
-            ring.receiveShadow = true;
-            group.add(ring);
-            
-            for (let i = 0; i < 4; i++) {
-                const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.1, 2.2, 0.1), brassMat);
-                const angle = (i / 4) * Math.PI * 2;
-                pillar.position.set(Math.cos(angle) * 0.3, 1.3, Math.sin(angle) * 0.3);
-                pillar.castShadow = true;
-                pillar.receiveShadow = true;
-                group.add(pillar);
-            }
-            
-            const rod = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 2.4, 8), brassMat);
-            rod.position.y = 1.4;
-            rod.castShadow = true;
-            rod.receiveShadow = true;
-            group.add(rod);
-            
-            const shade = new THREE.Mesh(new THREE.ConeGeometry(0.9, 0.7, 8), glassMat);
-            shade.position.y = 2.5;
-            shade.castShadow = true;
-            shade.receiveShadow = true;
-            group.add(shade);
-            
-            const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16), createPremiumMaterial('glass_clear', '#ffeedd'));
-            bulb.position.y = 2.3;
-            bulb.castShadow = true;
-            bulb.receiveShadow = true;
-            group.add(bulb);
-            
-            const light = new THREE.PointLight(0xffdd99, 1.2, 8);
-            light.position.y = 2.4;
-            group.add(light);
-            
-            return group;
-        }
-
-        // Пальма
-        function createPalm(color, materialType) {
-            const group = new THREE.Group();
-            const woodMat = createPremiumMaterial('wood', '#8b5a2b');
-            const leafMat = createPremiumMaterial('fabric_velvet', '#2e8b57');
+            const columna = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.2, 2.0, 8), metallum);
+            columna.position.y = 1.15;
+            columna.castShadow = true;
+            columna.receiveShadow = true;
+            group.add(columna);
             
             for (let i = 0; i < 5; i++) {
-                const segment = new THREE.Mesh(new THREE.CylinderGeometry(0.35 - i*0.05, 0.4 - i*0.05, 0.8, 6), woodMat);
-                segment.position.y = 0.4 + i * 0.8;
-                segment.castShadow = true;
-                segment.receiveShadow = true;
-                group.add(segment);
+                const angle = (i / 5) * Math.PI * 2;
+                const brachium = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.8, 6), metallum);
+                brachium.position.set(Math.cos(angle) * 0.6, 2.0, Math.sin(angle) * 0.6);
+                brachium.rotation.z = Math.sin(angle) * 0.3;
+                brachium.rotation.x = Math.cos(angle) * 0.3;
+                brachium.castShadow = true;
+                brachium.receiveShadow = true;
+                group.add(brachium);
                 
-                const ring = new THREE.Mesh(new THREE.TorusGeometry(0.38 - i*0.05, 0.03, 6, 12), woodMat);
-                ring.rotation.x = Math.PI / 2;
-                ring.position.y = 0.8 + i * 0.8;
-                ring.castShadow = true;
-                group.add(ring);
-            }
-            
-            for (let i = 0; i < 8; i++) {
-                const angle = (i / 8) * Math.PI * 2;
-                const leafGroup = new THREE.Group();
+                const candela = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.4, 6), createPremiumMaterial('plastic', '#ffeedd'));
+                candela.position.set(
+                    Math.cos(angle) * 0.6 + Math.cos(angle) * 0.4,
+                    2.2,
+                    Math.sin(angle) * 0.6 + Math.sin(angle) * 0.4
+                );
+                candela.castShadow = true;
+                candela.receiveShadow = true;
+                group.add(candela);
                 
-                for (let j = 0; j < 5; j++) {
-                    const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.15, 1.2, 5), leafMat);
-                    leaf.position.set(0.4 + j*0.2, 0, 0);
-                    leaf.rotation.z = -0.3;
-                    leaf.rotation.y = 0.2;
-                    leaf.castShadow = true;
-                    leaf.receiveShadow = true;
-                    leafGroup.add(leaf);
-                }
-                
-                leafGroup.position.set(Math.cos(angle) * 1.5, 4.2, Math.sin(angle) * 1.5);
-                leafGroup.rotation.y = angle;
-                leafGroup.rotation.z = 0.3;
-                group.add(leafGroup);
+                const flamma = new THREE.PointLight(0xffaa33, 0.8, 3);
+                flamma.position.set(
+                    Math.cos(angle) * 0.6 + Math.cos(angle) * 0.4,
+                    2.4,
+                    Math.sin(angle) * 0.6 + Math.sin(angle) * 0.4
+                );
+                group.add(flamma);
             }
             
             return group;
         }
 
-        // Фабрика
+        function createAmphora(color, materialType) {
+            const group = new THREE.Group();
+            const ceramic = createPremiumMaterial('marble', color);
+            
+            const basis = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 0.2, 8), ceramic);
+            basis.position.y = 0.1;
+            basis.castShadow = true;
+            basis.receiveShadow = true;
+            group.add(basis);
+            
+            const corpus = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.3, 1.0, 8), ceramic);
+            corpus.position.y = 0.7;
+            corpus.castShadow = true;
+            corpus.receiveShadow = true;
+            group.add(corpus);
+            
+            const collum = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 0.4, 6), ceramic);
+            collum.position.y = 1.2;
+            collum.castShadow = true;
+            collum.receiveShadow = true;
+            group.add(collum);
+            
+            const ansaL = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.05, 6, 12), ceramic);
+            ansaL.position.set(-0.3, 0.9, 0);
+            ansaL.rotation.z = 0.3;
+            ansaL.castShadow = true;
+            group.add(ansaL);
+            
+            const ansaR = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.05, 6, 12), ceramic);
+            ansaR.position.set(0.3, 0.9, 0);
+            ansaR.rotation.z = -0.3;
+            ansaR.castShadow = true;
+            group.add(ansaR);
+            
+            return group;
+        }
+
         function createModelById(item, color, materialType) {
             switch(item.id) {
-                case 'chair_chesterfield':
-                    return createChesterfield(color, materialType);
-                case 'lamp_artdeco':
-                    return createArtDecoLamp(color, materialType);
-                case 'plant':
-                    return createPalm(color, materialType);
+                case 'solium_aureum':
+                    return createThronus(color, materialType);
+                case 'candelabrum':
+                    return createCandelabrum(color, materialType);
+                case 'amphora':
+                    return createAmphora(color, materialType);
                 default:
                     const group = new THREE.Group();
                     const mat = createPremiumMaterial(materialType, color);
@@ -1117,7 +1226,7 @@
             }
         }
 
-        // ==================== СОСТОЯНИЕ ====================
+        // ==================== STATUS ====================
         let selectedItem = null;
         let placedItems = [];
         let currentMode = 'place';
@@ -1159,7 +1268,6 @@
             document.getElementById('item-count').textContent = allItems.length;
         }
 
-        // Фильтрация
         document.querySelectorAll('.category-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -1173,7 +1281,6 @@
             });
         });
 
-        // Поиск
         document.getElementById('search-input').addEventListener('input', (e) => {
             const search = e.target.value.toLowerCase();
             document.querySelectorAll('.item-card').forEach(item => {
@@ -1182,7 +1289,6 @@
             });
         });
 
-        // Режимы
         document.getElementById('mode-place').addEventListener('click', (e) => {
             e.stopPropagation();
             currentMode = 'place';
@@ -1204,7 +1310,6 @@
             document.getElementById('place-controls').style.display = 'none';
         });
 
-        // Построить стену
         document.getElementById('build-wall').addEventListener('click', (e) => {
             e.stopPropagation();
             
@@ -1234,7 +1339,6 @@
             document.getElementById('total-items').textContent = placedItems.length;
         });
 
-        // Освещение
         document.getElementById('light-intensity').addEventListener('input', (e) => {
             mainLight.intensity = parseFloat(e.target.value);
         });
@@ -1252,9 +1356,8 @@
             );
         });
 
-        // Размещение
         renderer.domElement.addEventListener('click', (event) => {
-            if (event.target.closest('.glass')) return;
+            if (event.target.closest('.imperium')) return;
             if (currentMode !== 'place' || !selectedItem) return;
             
             mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
@@ -1284,9 +1387,8 @@
             }
         });
 
-        // Строительство
         renderer.domElement.addEventListener('mousedown', (event) => {
-            if (event.target.closest('.glass')) return;
+            if (event.target.closest('.imperium')) return;
             if (currentMode !== 'build' || event.button !== 0) return;
             
             mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
@@ -1310,7 +1412,7 @@
         });
 
         renderer.domElement.addEventListener('mousemove', (event) => {
-            if (event.target.closest('.glass')) return;
+            if (event.target.closest('.imperium')) return;
             
             mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
             mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
@@ -1336,7 +1438,7 @@
         });
 
         renderer.domElement.addEventListener('mouseup', (event) => {
-            if (event.target.closest('.glass')) return;
+            if (event.target.closest('.imperium')) return;
             
             if (currentMode === 'build' && isBuilding && tempWall) {
                 const height = parseFloat(document.getElementById('wall-height').value);
@@ -1378,11 +1480,10 @@
             }
         }
 
-        // Анимация
         function animate() {
             requestAnimationFrame(animate);
             
-            particles.rotation.y += 0.0001;
+            particles.rotation.y += 0.00002;
             controls.update();
             composer.render();
             updateFPS();
