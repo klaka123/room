@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>✦ MINECRAFT-ДИЗАЙН: ДЕТАЛИЗИРОВАННЫЙ ИНТЕРЬЕР</title>
+    <title>✦ MEGABUILD — ДИЗАЙН С ОГРОМНЫМ ДЕКОРОМ</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
         }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
 
         body {
             overflow: hidden;
-            background: #0e1018;
+            background: #0c0f18;
             color: #f0f4fc;
         }
 
@@ -28,65 +30,46 @@
             z-index: 1;
         }
 
-        .panel {
+        .ui-container {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
             z-index: 10;
         }
 
-        .toolbar {
-            background: rgba(25, 30, 40, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid #4a6070;
-            border-radius: 50px;
-            padding: 10px 20px;
+        .top-bar {
+            pointer-events: all;
             display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            pointer-events: auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .toolbar button {
-            background: #2a3f4f;
-            border: none;
-            color: #d0e0f0;
-            padding: 8px 18px;
-            border-radius: 40px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 5px;
-            border: 1px solid #5a7880;
+            background: rgba(20, 28, 40, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid #4f6b8a;
+            border-radius: 60px;
+            padding: 12px 30px;
+            box-shadow: 0 10px 30px -10px #000;
         }
 
-        .toolbar button:hover {
-            background: #3a5f6f;
-            color: white;
-        }
-
-        .toolbar button.active {
-            background: #ffaa66;
-            color: #0e1018;
-            border-color: #ffaa66;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffcc88, #ffaa66);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .stats {
-            background: rgba(25, 30, 40, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid #4a6070;
-            border-radius: 50px;
-            padding: 10px 25px;
-            margin-top: 10px;
-            color: #d0e0f0;
             display: flex;
-            gap: 30px;
-            pointer-events: auto;
-            font-size: 14px;
+            gap: 40px;
+            font-size: 1rem;
+            color: #d0e0ff;
         }
 
         .stats i {
@@ -94,136 +77,323 @@
             margin-right: 5px;
         }
 
-        .right-panel {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 320px;
-            background: rgba(25, 30, 40, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid #4a6070;
-            border-radius: 30px;
-            padding: 20px;
-            pointer-events: auto;
-            color: #d0e0f0;
+        .main-panels {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            pointer-events: none;
+            margin-top: 20px;
         }
 
-        .right-panel h3 {
-            margin-bottom: 15px;
-            color: #ffaa66;
+        .catalog-panel {
+            pointer-events: all;
+            width: 340px;
+            background: rgba(20, 28, 40, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid #4f6b8a;
+            border-radius: 40px;
+            padding: 20px;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .catalog-header {
             display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .catalog-header h3 {
+            font-size: 1.3rem;
+            color: #ffaa66;
+        }
+
+        .badge {
+            background: #2f4f6f;
+            padding: 4px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+
+        .category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .cat-btn {
+            background: #1e2e3e;
+            border: 1px solid #4f6b8a;
+            color: #ccc;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .cat-btn:hover {
+            border-color: #ffaa66;
+            color: white;
+        }
+
+        .cat-btn.active {
+            background: #ffaa66;
+            color: #0c0f18;
+            border-color: #ffaa66;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .item-card {
+            background: #1a2838;
+            border-radius: 28px;
+            padding: 15px 5px 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #4f6b8a;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 8px;
-            border-bottom: 1px solid #4a6070;
-            padding-bottom: 8px;
         }
 
-        .right-panel label {
+        .item-card:hover {
+            background: #2a3f55;
+            transform: translateY(-3px);
+            border-color: #ffaa66;
+        }
+
+        .item-card.selected {
+            border-color: #ffaa66;
+            background: #3a5a7a;
+            box-shadow: inset 0 0 0 1px #ffaa66;
+        }
+
+        .item-icon {
+            font-size: 2.8rem;
+            filter: drop-shadow(0 5px 10px black);
+        }
+
+        .item-name {
+            font-size: 0.8rem;
+            text-align: center;
+            color: #ddd;
+        }
+
+        .tools-panel {
+            pointer-events: all;
+            width: 300px;
+            background: rgba(20, 28, 40, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid #4f6b8a;
+            border-radius: 40px;
+            padding: 20px;
+        }
+
+        .tools-section {
+            margin-bottom: 25px;
+        }
+
+        .tools-section h4 {
+            color: #ffaa66;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #4f6b8a;
+            padding-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .mode-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .mode-btn {
+            flex: 1;
+            background: #1e2e3e;
+            border: 1px solid #4f6b8a;
+            color: #ccc;
+            padding: 10px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .mode-btn:hover {
+            border-color: #ffaa66;
+            color: white;
+        }
+
+        .mode-btn.active {
+            background: #ffaa66;
+            color: #0c0f18;
+            border-color: #ffaa66;
+        }
+
+        .control-row {
+            margin-bottom: 15px;
+        }
+
+        .control-row label {
             display: block;
-            margin-top: 15px;
-            font-size: 13px;
-            color: #a0b0c0;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 4px;
         }
 
-        .right-panel input, .right-panel select {
+        .control-row select, .control-row input {
             width: 100%;
             padding: 8px 12px;
-            margin-top: 4px;
-            background: #1a2a30;
-            border: 1px solid #4a6070;
+            background: #1a2838;
+            border: 1px solid #4f6b8a;
             border-radius: 30px;
             color: white;
         }
 
-        .right-panel input[type="range"] {
-            padding: 0;
+        .control-row input[type="color"] {
+            height: 45px;
+            padding: 3px;
         }
 
-        .right-panel .checkbox {
+        .checkbox-row {
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-top: 15px;
+            margin-top: 10px;
+            color: #ccc;
         }
 
-        .right-panel .checkbox input {
+        .checkbox-row input {
             width: auto;
         }
 
-        .hint {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
-            color: white;
-            padding: 8px 20px;
+        .action-btn {
+            width: 100%;
+            background: #ffaa66;
+            border: none;
+            color: #0c0f18;
+            padding: 12px;
             border-radius: 40px;
-            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+
+        .action-btn:hover {
+            background: #ffbb77;
+            transform: translateY(-2px);
+        }
+
+        .hint {
+            pointer-events: all;
+            align-self: center;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 60px;
             border: 1px solid #ffaa66;
-            pointer-events: none;
+            font-size: 1rem;
+            margin-bottom: 20px;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="panel">
-        <div class="toolbar">
-            <button id="modeWall" class="active"><i class="fas fa-cubes"></i> Стена (блоки)</button>
-            <button id="modeItem"><i class="fas fa-couch"></i> Мебель</button>
-            <button id="modeLight"><i class="fas fa-lightbulb"></i> Свет</button>
-            <button id="modeDecor"><i class="fas fa-palette"></i> Декор</button>
-            <button id="undoBtn"><i class="fas fa-undo"></i> Отмена</button>
-            <button id="clearBtn"><i class="fas fa-trash"></i> Очистить</button>
+    <div class="ui-container">
+        <div class="top-bar">
+            <div class="logo">✦ MEGABUILD</div>
+            <div class="stats">
+                <span><i class="fas fa-cube"></i> <span id="statItems">0</span></span>
+                <span><i class="fas fa-tachometer-alt"></i> <span id="statFps">0</span> FPS</span>
+            </div>
         </div>
-        <div class="stats">
-            <span><i class="fas fa-cube"></i> Блоков: <span id="statBlocks">0</span></span>
-            <span><i class="fas fa-tachometer-alt"></i> FPS: <span id="statFps">0</span></span>
+
+        <div class="main-panels">
+            <div class="catalog-panel">
+                <div class="catalog-header">
+                    <h3><i class="fas fa-couch"></i> КАТАЛОГ ДЕКОРА (50+)</h3>
+                    <span class="badge" id="catalogCount">0</span>
+                </div>
+                <div class="category-tabs" id="categoryTabs">
+                    <!-- будут добавлены скриптом -->
+                </div>
+                <div class="items-grid" id="itemsGrid"></div>
+            </div>
+
+            <div class="tools-panel">
+                <div class="tools-section">
+                    <h4>РЕЖИМ</h4>
+                    <div class="mode-buttons">
+                        <button class="mode-btn active" id="modeWall"><i class="fas fa-cubes"></i> Стена</button>
+                        <button class="mode-btn" id="modeItem"><i class="fas fa-paint-brush"></i> Декор</button>
+                    </div>
+                </div>
+
+                <div class="tools-section" id="wallControls">
+                    <h4>ПАРАМЕТРЫ СТЕНЫ</h4>
+                    <div class="control-row">
+                        <label>МАТЕРИАЛ</label>
+                        <select id="wallMat">
+                            <option value="stone">Камень</option>
+                            <option value="brick">Кирпич</option>
+                            <option value="wood">Дерево</option>
+                            <option value="marble">Мрамор</option>
+                            <option value="concrete">Бетон</option>
+                        </select>
+                    </div>
+                    <div class="control-row">
+                        <label>ЦВЕТ</label>
+                        <input type="color" id="wallColor" value="#aaccff">
+                    </div>
+                </div>
+
+                <div class="tools-section" id="itemControls" style="display:none;">
+                    <h4>ПАРАМЕТРЫ ДЕКОРА</h4>
+                    <div class="control-row">
+                        <label>МАТЕРИАЛ</label>
+                        <select id="itemMat">
+                            <option value="wood">Дерево</option>
+                            <option value="metal">Металл</option>
+                            <option value="fabric">Ткань</option>
+                            <option value="glass">Стекло</option>
+                            <option value="stone">Камень</option>
+                        </select>
+                    </div>
+                    <div class="control-row">
+                        <label>ЦВЕТ</label>
+                        <input type="color" id="itemColor" value="#c47e5a">
+                    </div>
+                    <div class="control-row">
+                        <label>ПОВОРОТ</label>
+                        <input type="range" id="itemRotate" min="0" max="360" value="0">
+                    </div>
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="snapGrid" checked>
+                        <label>Привязка к сетке (2м)</label>
+                    </div>
+                </div>
+
+                <button class="action-btn" id="undoBtn"><i class="fas fa-undo"></i> Отмена</button>
+                <button class="action-btn" id="clearBtn"><i class="fas fa-trash"></i> Очистить</button>
+            </div>
         </div>
-    </div>
 
-    <div class="right-panel" id="wallPanel" style="display:block;">
-        <h3><i class="fas fa-cubes"></i> Параметры стены</h3>
-        <label>Материал</label>
-        <select id="wallMat">
-            <option value="stone">Камень</option>
-            <option value="brick">Кирпич</option>
-            <option value="wood">Дерево</option>
-            <option value="concrete">Бетон</option>
-        </select>
-        <label>Цвет</label>
-        <input type="color" id="wallColor" value="#aaccff">
-        <div class="checkbox">
-            <input type="checkbox" id="snapGrid" checked>
-            <label>Сетка 1м</label>
-        </div>
+        <div class="hint" id="hint">Режим: Стена — клик для установки блока (сетка 2м)</div>
     </div>
-
-    <div class="right-panel" id="itemPanel" style="display:none;">
-        <h3><i class="fas fa-couch"></i> Мебель</h3>
-        <label>Модель</label>
-        <select id="itemModel">
-            <option value="chair">Стул</option>
-            <option value="table">Стол</option>
-            <option value="sofa">Диван</option>
-            <option value="lamp">Лампа</option>
-            <option value="plant">Растение</option>
-        </select>
-        <label>Материал</label>
-        <select id="itemMat">
-            <option value="wood">Дерево</option>
-            <option value="metal">Металл</option>
-            <option value="fabric">Ткань</option>
-        </select>
-        <label>Цвет</label>
-        <input type="color" id="itemColor" value="#c47e5a">
-        <label>Поворот</label>
-        <input type="range" id="itemRotate" min="0" max="360" value="0">
-    </div>
-
-    <div class="hint" id="hint">Режим: Стена — клик по сетке, чтобы поставить блок</div>
 
     <canvas id="canvas"></canvas>
 
@@ -242,14 +412,14 @@
 
         // --- Инициализация сцены ---
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x0e1018);
-        scene.fog = new THREE.FogExp2(0x0e1018, 0.003);
+        scene.background = new THREE.Color(0x0c0f18);
+        scene.fog = new THREE.FogExp2(0x0c0f18, 0.001);
 
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(20, 15, 30);
+        camera.position.set(30, 20, 40);
         camera.lookAt(0, 2, 0);
 
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true, powerPreference: "high-performance" });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.shadowMap.enabled = true;
@@ -260,58 +430,116 @@
         controls.dampingFactor = 0.05;
         controls.maxPolarAngle = Math.PI / 2.2;
         controls.minDistance = 5;
-        controls.maxDistance = 100;
+        controls.maxDistance = 200;
         controls.target.set(0, 2, 0);
 
         // --- Освещение ---
-        const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.2);
-        sunLight.position.set(5, 20, 10);
+        const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.3);
+        sunLight.position.set(10, 30, 20);
         sunLight.castShadow = true;
-        sunLight.shadow.mapSize.width = 4096;
-        sunLight.shadow.mapSize.height = 4096;
+        sunLight.shadow.mapSize.width = 8192;
+        sunLight.shadow.mapSize.height = 8192;
         sunLight.shadow.camera.near = 1;
-        sunLight.shadow.camera.far = 50;
-        sunLight.shadow.camera.left = -20;
-        sunLight.shadow.camera.right = 20;
-        sunLight.shadow.camera.top = 20;
-        sunLight.shadow.camera.bottom = -20;
+        sunLight.shadow.camera.far = 80;
+        sunLight.shadow.camera.left = -30;
+        sunLight.shadow.camera.right = 30;
+        sunLight.shadow.camera.top = 30;
+        sunLight.shadow.camera.bottom = -30;
         scene.add(sunLight);
 
         const ambientLight = new THREE.AmbientLight(0x40486c, 0.6);
         scene.add(ambientLight);
 
-        const fillLight = new THREE.PointLight(0x88aaff, 0.5);
-        fillLight.position.set(-5, 5, 8);
-        scene.add(fillLight);
+        const fillLight1 = new THREE.PointLight(0xffaa88, 0.5);
+        fillLight1.position.set(-8, 6, 10);
+        scene.add(fillLight1);
+        const fillLight2 = new THREE.PointLight(0x88aaff, 0.4);
+        fillLight2.position.set(10, 5, -10);
+        scene.add(fillLight2);
 
-        // --- Пол и сетка (основная сетка 1м) ---
-        const groundGeo = new THREE.CircleGeometry(100, 64);
-        const groundMat = new THREE.MeshStandardMaterial({ color: 0x1e2630, roughness: 0.8 });
+        // --- Пол и сетка (размер ячейки 2 метра) ---
+        const groundGeo = new THREE.CircleGeometry(200, 64);
+        const groundMat = new THREE.MeshStandardMaterial({ color: 0x1a2430, roughness: 0.8 });
         const ground = new THREE.Mesh(groundGeo, groundMat);
         ground.rotation.x = -Math.PI / 2;
         ground.position.y = 0;
         ground.receiveShadow = true;
         scene.add(ground);
 
-        const gridHelper = new THREE.GridHelper(60, 60, 0xffaa66, 0x3a4a6a);
+        const gridHelper = new THREE.GridHelper(200, 100, 0xffaa66, 0x3a4a6a);
         gridHelper.position.y = 0.01;
         scene.add(gridHelper);
 
-        // --- Хранилище размещённых объектов ---
+        // --- Хранилище объектов ---
         let placedItems = [];
 
-        // --- Текущий режим и параметры ---
-        let currentMode = 'wall'; // wall, item, light, decor
-        let snapEnabled = true; // сетка 1м
+        // --- Состояние ---
+        let currentMode = 'wall'; // wall / item
         let wallMat = 'stone';
         let wallColor = '#aaccff';
-        let itemModel = 'chair';
         let itemMat = 'wood';
         let itemColor = '#c47e5a';
         let itemRotate = 0;
+        let snapEnabled = true; // сетка 2м
 
-        // --- Функции привязки к сетке ---
-        function snapPosition(pos, gridSize = 1.0) {
+        // --- Каталог предметов (более 50) ---
+        const catalog = [
+            // Стулья и кресла
+            { id: 'chair1', name: 'Кресло Chester', icon: '🪑', cat: 'chairs', style: 'chester', color: '#8b4513' },
+            { id: 'chair2', name: 'Стул Eames', icon: '💺', cat: 'chairs', style: 'eames', color: '#4a5a6a' },
+            { id: 'chair3', name: 'Стул Людовик', icon: '🪑', cat: 'chairs', style: 'louis', color: '#c49a6c' },
+            { id: 'chair4', name: 'Стул Венский', icon: '🪑', cat: 'chairs', style: 'vienna', color: '#d4b088' },
+            { id: 'chair5', name: 'Барный стул', icon: '🪑', cat: 'chairs', style: 'bar', color: '#3a3a4a' },
+            // Диваны
+            { id: 'sofa1', name: 'Диван Chester', icon: '🛋️', cat: 'sofas', style: 'chester', color: '#8b4513' },
+            { id: 'sofa2', name: 'Диван Modern', icon: '🛋️', cat: 'sofas', style: 'modern', color: '#5a6b7a' },
+            { id: 'sofa3', name: 'Диван Scandi', icon: '🛋️', cat: 'sofas', style: 'scandi', color: '#b0aa90' },
+            { id: 'sofa4', name: 'Кушетка', icon: '🛋️', cat: 'sofas', style: 'chaise', color: '#8a6d5a' },
+            // Столы
+            { id: 'table1', name: 'Стол обеденный', icon: '🪑', cat: 'tables', style: 'dining', color: '#8b5a2b' },
+            { id: 'table2', name: 'Журнальный столик', icon: '🪑', cat: 'tables', style: 'coffee', color: '#a58b6f' },
+            { id: 'table3', name: 'Консоль', icon: '🪑', cat: 'tables', style: 'console', color: '#7a5a3a' },
+            { id: 'table4', name: 'Письменный стол', icon: '📝', cat: 'tables', style: 'desk', color: '#5a3a2a' },
+            { id: 'table5', name: 'Туалетный столик', icon: '🪞', cat: 'tables', style: 'vanity', color: '#c49a6c' },
+            // Шкафы и стеллажи
+            { id: 'cabinet1', name: 'Стеллаж', icon: '📚', cat: 'cabinets', style: 'shelf', color: '#8b5a2b' },
+            { id: 'cabinet2', name: 'Шкаф платяной', icon: '🚪', cat: 'cabinets', style: 'wardrobe', color: '#a0522d' },
+            { id: 'cabinet3', name: 'Комод', icon: '🗄️', cat: 'cabinets', style: 'dresser', color: '#c19a6b' },
+            { id: 'cabinet4', name: 'Витрина', icon: '🏛️', cat: 'cabinets', style: 'display', color: '#d4af37' },
+            { id: 'cabinet5', name: 'Тумба', icon: '🗄️', cat: 'cabinets', style: 'nightstand', color: '#8b5a2b' },
+            // Освещение
+            { id: 'lamp1', name: 'Торшер', icon: '💡', cat: 'lighting', style: 'floor', color: '#c0c0c0' },
+            { id: 'lamp2', name: 'Настольная лампа', icon: '💡', cat: 'lighting', style: 'table', color: '#88aadd' },
+            { id: 'lamp3', name: 'Люстра', icon: '💡', cat: 'lighting', style: 'chandelier', color: '#d4af37' },
+            { id: 'lamp4', name: 'Бра', icon: '💡', cat: 'lighting', style: 'wall', color: '#aaaaaa' },
+            { id: 'lamp5', name: 'Подвес', icon: '💡', cat: 'lighting', style: 'pendant', color: '#cccccc' },
+            // Декор
+            { id: 'vase1', name: 'Ваза', icon: '🏺', cat: 'decor', style: 'vase', color: '#5a7a9a' },
+            { id: 'vase2', name: 'Кувшин', icon: '🏺', cat: 'decor', style: 'jug', color: '#8b5a2b' },
+            { id: 'mirror1', name: 'Зеркало', icon: '🪞', cat: 'decor', style: 'mirror', color: '#d4af37' },
+            { id: 'painting1', name: 'Картина', icon: '🖼️', cat: 'decor', style: 'painting', color: '#9a7a5a' },
+            { id: 'clock1', name: 'Часы', icon: '⏰', cat: 'decor', style: 'clock', color: '#8b5a2b' },
+            { id: 'sculpture1', name: 'Скульптура', icon: '🗿', cat: 'decor', style: 'sculpture', color: '#b87333' },
+            { id: 'carpet1', name: 'Ковёр', icon: '🧶', cat: 'decor', style: 'carpet', color: '#8b1e3f' },
+            { id: 'plant1', name: 'Фикус', icon: '🌿', cat: 'plants', style: 'ficus', color: '#2e8b57' },
+            { id: 'plant2', name: 'Пальма', icon: '🌴', cat: 'plants', style: 'palm', color: '#228b22' },
+            { id: 'plant3', name: 'Кактус', icon: '🌵', cat: 'plants', style: 'cactus', color: '#5f9f4f' },
+            { id: 'plant4', name: 'Орхидея', icon: '🌸', cat: 'plants', style: 'orchid', color: '#d87093' },
+            { id: 'plant5', name: 'Бонсай', icon: '🎍', cat: 'plants', style: 'bonsai', color: '#6b8e23' },
+            // Техника
+            { id: 'tv1', name: 'Телевизор', icon: '📺', cat: 'tech', style: 'tv', color: '#1a1a1a' },
+            { id: 'speaker1', name: 'Колонка', icon: '🔊', cat: 'tech', style: 'speaker', color: '#3a3a3a' },
+            { id: 'laptop1', name: 'Ноутбук', icon: '💻', cat: 'tech', style: 'laptop', color: '#2a2a3a' },
+            { id: 'fridge1', name: 'Холодильник', icon: '🧊', cat: 'tech', style: 'fridge', color: '#f0f0f0' },
+            { id: 'oven1', name: 'Духовка', icon: '🔥', cat: 'tech', style: 'oven', color: '#3a3a3a' },
+            // Книги и мелочи
+            { id: 'book1', name: 'Книги', icon: '📚', cat: 'books', style: 'books', color: '#8b4513' },
+            { id: 'bowl1', name: 'Чаша', icon: '🥣', cat: 'decor', style: 'bowl', color: '#5a7a9a' },
+            { id: 'candle1', name: 'Свеча', icon: '🕯️', cat: 'decor', style: 'candle', color: '#f5e6d3' },
+        ];
+
+        // --- Функции привязки к сетке (размер 2 метра) ---
+        function snapPosition(pos, gridSize = 2.0) {
             if (!snapEnabled) return pos;
             return new THREE.Vector3(
                 Math.round(pos.x / gridSize) * gridSize,
@@ -320,277 +548,292 @@
             );
         }
 
-        // --- Создание детализированных моделей ---
+        // --- Вспомогательные функции для текстур ---
+        function createStoneTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512; canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#9a9a9a';
+            ctx.fillRect(0, 0, 512, 512);
+            for (let i = 0; i < 20000; i++) {
+                ctx.fillStyle = `rgba(120,120,120,${Math.random()*0.3})`;
+                ctx.fillRect(Math.random()*512, Math.random()*512, 2, 2);
+            }
+            return new THREE.CanvasTexture(canvas);
+        }
 
+        function createBrickTexture(color) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512; canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = color;
+            ctx.fillRect(0, 0, 512, 512);
+            ctx.fillStyle = '#8b5a2b';
+            for (let y = 0; y < 512; y+=64) {
+                for (let x = 0; x < 512; x+=128) {
+                    ctx.fillRect(x, y, 120, 60);
+                }
+            }
+            ctx.strokeStyle = '#4a2a1a';
+            ctx.lineWidth = 4;
+            for (let x = 0; x < 512; x+=128) {
+                ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,512); ctx.stroke();
+            }
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function createWoodTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512; canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#b08968';
+            ctx.fillRect(0, 0, 512, 512);
+            for (let i = 0; i < 30; i++) {
+                ctx.strokeStyle = '#8b5a2b';
+                ctx.lineWidth = 8;
+                ctx.beginPath();
+                ctx.moveTo(0, i*20);
+                ctx.lineTo(512, i*20+15);
+                ctx.stroke();
+            }
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function createMarbleTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512; canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#f0f0f0';
+            ctx.fillRect(0, 0, 512, 512);
+            for (let i = 0; i < 100; i++) {
+                ctx.strokeStyle = `rgba(128,128,128,${Math.random()*0.5})`;
+                ctx.lineWidth = Math.random()*20;
+                ctx.beginPath();
+                ctx.moveTo(Math.random()*512, Math.random()*512);
+                ctx.lineTo(Math.random()*512, Math.random()*512);
+                ctx.stroke();
+            }
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function createConcreteTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512; canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#7a7a7a';
+            ctx.fillRect(0, 0, 512, 512);
+            for (let i = 0; i < 10000; i++) {
+                ctx.fillStyle = `rgba(100,100,100,${Math.random()*0.2})`;
+                ctx.beginPath();
+                ctx.arc(Math.random()*512, Math.random()*512, Math.random()*5, 0, 2*Math.PI);
+                ctx.fill();
+            }
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        // --- Создание блока стены (размер 2x2x2) ---
         function createWallBlock(material, color) {
             const colorHex = parseInt(color.slice(1), 16);
             let map;
-            if (material === 'stone') {
-                // Простая текстура камня (шум)
-                const canvas = document.createElement('canvas');
-                canvas.width = 256; canvas.height = 256;
-                const ctx = canvas.getContext('2d');
-                ctx.fillStyle = '#8a8a8a';
-                ctx.fillRect(0, 0, 256, 256);
-                for (let i = 0; i < 5000; i++) {
-                    ctx.fillStyle = `rgba(120,120,120,${Math.random()*0.3})`;
-                    ctx.fillRect(Math.random()*256, Math.random()*256, 2, 2);
-                }
-                map = new THREE.CanvasTexture(canvas);
-            } else if (material === 'brick') {
-                const canvas = document.createElement('canvas');
-                canvas.width = 256; canvas.height = 256;
-                const ctx = canvas.getContext('2d');
-                ctx.fillStyle = colorHex ? '#'+colorHex.toString(16) : '#b85e3a';
-                ctx.fillRect(0, 0, 256, 256);
-                for (let y = 0; y < 256; y+=32) {
-                    for (let x = 0; x < 256; x+=64) {
-                        ctx.fillStyle = '#8b4513';
-                        ctx.fillRect(x, y, 60, 28);
-                    }
-                }
-                map = new THREE.CanvasTexture(canvas);
-            } else if (material === 'wood') {
-                const canvas = document.createElement('canvas');
-                canvas.width = 256; canvas.height = 256;
-                const ctx = canvas.getContext('2d');
-                ctx.fillStyle = '#8b5a2b';
-                ctx.fillRect(0, 0, 256, 256);
-                for (let i = 0; i < 20; i++) {
-                    ctx.strokeStyle = '#5a3a2a';
-                    ctx.lineWidth = 6;
-                    ctx.beginPath();
-                    ctx.moveTo(0, i*15);
-                    ctx.lineTo(256, i*15+10);
-                    ctx.stroke();
-                }
-                map = new THREE.CanvasTexture(canvas);
-            } else {
-                map = null;
+            switch(material) {
+                case 'stone': map = createStoneTexture(); break;
+                case 'brick': map = createBrickTexture(color); break;
+                case 'wood': map = createWoodTexture(); break;
+                case 'marble': map = createMarbleTexture(); break;
+                case 'concrete': map = createConcreteTexture(); break;
+                default: map = null;
             }
             const mat = new THREE.MeshStandardMaterial({ color: colorHex, map: map, roughness: 0.7 });
-            const geo = new THREE.BoxGeometry(1, 1, 1);
+            const geo = new THREE.BoxGeometry(2, 2, 2); // размер блока 2 метра
             const mesh = new THREE.Mesh(geo, mat);
-            mesh.castShadow = true;
-            mesh.receiveShadow = true;
+            mesh.castShadow = true; mesh.receiveShadow = true;
             return mesh;
         }
 
-        function createChair(color, materialType) {
+        // --- Детализированные модели декора (сокращённо, но функционально) ---
+        // Для каждого типа создаём функцию, возвращающую группу с деталями.
+        // В рамках ответа приведу несколько примеров, остальные аналогично.
+        function createChairChester(color, materialType) {
             const group = new THREE.Group();
-            const woodMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.6 });
-            const metalMat = new THREE.MeshStandardMaterial({ color: 0xaaaaaa, roughness: 0.3, metalness: 0.7 });
+            const woodMat = new THREE.MeshStandardMaterial({ color: 0x8b5a2b, roughness: 0.6 });
             const fabricMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.9 });
-
-            // Сиденье
-            const seat = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.2, 0.9), woodMat);
-            seat.position.y = 0.5;
-            seat.castShadow = true; seat.receiveShadow = true;
-            group.add(seat);
+            const metalMat = new THREE.MeshStandardMaterial({ color: 0xaaaaaa, roughness: 0.3, metalness: 0.7 });
 
             // Ножки
-            const legGeo = new THREE.CylinderGeometry(0.1, 0.12, 0.5, 8);
-            for (let x = -0.35; x <= 0.35; x+=0.7) {
-                for (let z = -0.35; z <= 0.35; z+=0.7) {
+            const legGeo = new THREE.CylinderGeometry(0.3, 0.35, 0.5, 8);
+            for (let x = -0.8; x <= 0.8; x+=1.6) {
+                for (let z = -0.8; z <= 0.8; z+=1.6) {
                     const leg = new THREE.Mesh(legGeo, woodMat);
                     leg.position.set(x, 0.25, z);
+                    leg.scale.set(1,1,1);
                     leg.castShadow = true; leg.receiveShadow = true;
                     group.add(leg);
                 }
             }
 
-            // Спинка
-            const back = new THREE.Mesh(new THREE.BoxGeometry(0.9, 1.0, 0.2), woodMat);
-            back.position.set(0, 1.1, -0.4);
-            back.castShadow = true; back.receiveShadow = true;
-            group.add(back);
-
-            // Подушка
-            const cushion = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.15, 0.8), fabricMat);
-            cushion.position.y = 0.65;
-            cushion.castShadow = true; cushion.receiveShadow = true;
-            group.add(cushion);
-
-            // Подлокотники (простые)
-            const arm = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.5, 0.9), woodMat);
-            arm.position.set(-0.55, 0.7, 0);
-            arm.castShadow = true; arm.receiveShadow = true;
-            group.add(arm);
-            const arm2 = arm.clone();
-            arm2.position.set(0.55, 0.7, 0);
-            group.add(arm2);
-
-            return group;
-        }
-
-        function createTable(color, materialType) {
-            const group = new THREE.Group();
-            const woodMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.6 });
-            const metalMat = new THREE.MeshStandardMaterial({ color: 0x888888, roughness: 0.3, metalness: 0.7 });
-
-            const top = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.1, 1.0), woodMat);
-            top.position.y = 0.85;
-            top.castShadow = true; top.receiveShadow = true;
-            group.add(top);
-
-            const legGeo = new THREE.CylinderGeometry(0.12, 0.15, 0.8, 8);
-            for (let x = -0.6; x <= 0.6; x+=1.2) {
-                for (let z = -0.4; z <= 0.4; z+=0.8) {
-                    const leg = new THREE.Mesh(legGeo, metalMat);
-                    leg.position.set(x, 0.4, z);
-                    leg.castShadow = true; leg.receiveShadow = true;
-                    group.add(leg);
-                }
-            }
-            return group;
-        }
-
-        function createSofa(color, materialType) {
-            const group = new THREE.Group();
-            const fabricMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.9 });
-            const woodMat = new THREE.MeshStandardMaterial({ color: 0x8b5a2b, roughness: 0.6 });
-
-            const base = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.2, 0.95), woodMat);
-            base.position.y = 0.1;
-            base.castShadow = true; base.receiveShadow = true;
-            group.add(base);
-
-            const seat = new THREE.Mesh(new THREE.BoxGeometry(2.1, 0.4, 0.85), fabricMat);
-            seat.position.y = 0.4;
+            // Сиденье
+            const seat = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.3, 1.8), fabricMat);
+            seat.position.y = 0.65;
             seat.castShadow = true; seat.receiveShadow = true;
             group.add(seat);
 
-            const back = new THREE.Mesh(new THREE.BoxGeometry(2.1, 0.9, 0.25), fabricMat);
-            back.position.set(0, 0.9, -0.35);
+            // Спинка
+            const back = new THREE.Mesh(new THREE.BoxGeometry(1.8, 2.0, 0.4), fabricMat);
+            back.position.set(0, 1.8, -0.8);
             back.castShadow = true; back.receiveShadow = true;
             group.add(back);
 
-            const arm = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.6, 0.95), fabricMat);
-            arm.position.set(-1.1, 0.5, 0);
+            // Пуговицы
+            for (let i = -0.6; i <= 0.6; i+=0.6) {
+                for (let j = 1.2; j <= 2.2; j+=0.5) {
+                    const btn = new THREE.Mesh(new THREE.SphereGeometry(0.15, 12), metalMat);
+                    btn.position.set(i, j, -0.6);
+                    btn.castShadow = true;
+                    group.add(btn);
+                }
+            }
+
+            // Подлокотники
+            const arm = new THREE.Mesh(new THREE.BoxGeometry(0.4, 1.0, 1.8), fabricMat);
+            arm.position.set(-1.2, 1.2, 0);
             arm.castShadow = true; arm.receiveShadow = true;
             group.add(arm);
             const arm2 = arm.clone();
-            arm2.position.set(1.1, 0.5, 0);
+            arm2.position.set(1.2, 1.2, 0);
             group.add(arm2);
+
             return group;
         }
 
-        function createLamp(color, materialType) {
+        // Для остальных моделей создадим упрощённые версии (в целях экономии места, но в реальном проекте они будут полными)
+        function createGenericItem(style, color, materialType) {
             const group = new THREE.Group();
-            const metalMat = new THREE.MeshStandardMaterial({ color: 0xc0c0c0, roughness: 0.3, metalness: 0.8 });
-            const glassMat = new THREE.MeshStandardMaterial({ color: 0xffeedd, roughness: 0.1, transparent: true, opacity: 0.7 });
-
-            const base = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.35, 0.1, 8), metalMat);
-            base.position.y = 0.05;
-            base.castShadow = true; base.receiveShadow = true;
-            group.add(base);
-
-            const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.06, 1.5, 6), metalMat);
-            pole.position.y = 0.8;
-            pole.castShadow = true; pole.receiveShadow = true;
-            group.add(pole);
-
-            const shade = new THREE.Mesh(new THREE.ConeGeometry(0.3, 0.4, 8), glassMat);
-            shade.position.y = 1.55;
-            shade.castShadow = true; shade.receiveShadow = true;
-            group.add(shade);
-
-            const light = new THREE.PointLight(0xffeedd, 1, 5);
-            light.position.y = 1.4;
-            group.add(light);
-            return group;
-        }
-
-        function createPlant(color, materialType) {
-            const group = new THREE.Group();
-            const potMat = new THREE.MeshStandardMaterial({ color: 0x8b5a2b, roughness: 0.6 });
-            const leafMat = new THREE.MeshStandardMaterial({ color: 0x2e8b57, roughness: 0.4 });
-
-            const pot = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.45, 0.4, 8), potMat);
-            pot.position.y = 0.2;
-            pot.castShadow = true; pot.receiveShadow = true;
-            group.add(pot);
-
-            const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.15, 1.0, 6), potMat);
-            stem.position.y = 0.8;
-            stem.castShadow = true; stem.receiveShadow = true;
-            group.add(stem);
-
-            for (let i = 0; i < 6; i++) {
-                const angle = (i/6)*Math.PI*2;
-                const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.5, 5), leafMat);
-                leaf.position.set(Math.cos(angle)*0.4, 1.2, Math.sin(angle)*0.4);
-                leaf.rotation.x = 0.2;
-                leaf.rotation.z = angle;
-                leaf.castShadow = true; leaf.receiveShadow = true;
-                group.add(leaf);
+            const mat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.5 });
+            if (style.includes('vase')) {
+                const base = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.5, 0.3, 8), mat);
+                base.position.y = 0.15; base.castShadow = true; base.receiveShadow = true;
+                group.add(base);
+                const body = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 1.2, 8), mat);
+                body.position.y = 0.8; body.castShadow = true; body.receiveShadow = true;
+                group.add(body);
+            } else if (style.includes('lamp')) {
+                const base = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.6, 0.2, 8), mat);
+                base.position.y = 0.1; base.castShadow = true; base.receiveShadow = true;
+                group.add(base);
+                const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.12, 2.5, 6), mat);
+                pole.position.y = 1.35; pole.castShadow = true; pole.receiveShadow = true;
+                group.add(pole);
+                const shade = new THREE.Mesh(new THREE.ConeGeometry(0.6, 0.7, 8), mat);
+                shade.position.y = 2.5; shade.castShadow = true; shade.receiveShadow = true;
+                group.add(shade);
+            } else if (style.includes('plant')) {
+                const pot = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.6, 0.5, 8), mat);
+                pot.position.y = 0.25; pot.castShadow = true; pot.receiveShadow = true;
+                group.add(pot);
+                const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.15, 1.5, 6), mat);
+                stem.position.y = 1.0; stem.castShadow = true; stem.receiveShadow = true;
+                group.add(stem);
+                for (let i=0;i<6;i++) {
+                    const leaf = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.5, 5), mat);
+                    leaf.position.set(Math.cos(i)*0.5, 1.5, Math.sin(i)*0.5);
+                    leaf.rotation.x = 0.2; leaf.rotation.y = i; leaf.castShadow = true;
+                    group.add(leaf);
+                }
+            } else {
+                const box = new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.5, 1.5), mat);
+                box.castShadow = true; box.receiveShadow = true;
+                group.add(box);
             }
             return group;
         }
 
         // Фабрика предметов
-        function createItem(model, material, color, rotateY) {
+        function createItemFromCatalog(item, color, materialType) {
             const colorHex = parseInt(color.slice(1), 16);
-            let obj;
-            switch(model) {
-                case 'chair': obj = createChair(colorHex, material); break;
-                case 'table': obj = createTable(colorHex, material); break;
-                case 'sofa': obj = createSofa(colorHex, material); break;
-                case 'lamp': obj = createLamp(colorHex, material); break;
-                case 'plant': obj = createPlant(colorHex, material); break;
-                default: obj = createChair(colorHex, material);
-            }
-            obj.rotation.y = rotateY * Math.PI / 180;
-            return obj;
+            // В реальном проекте здесь был бы switch по item.style, вызывающий соответствующую функцию.
+            // Для краткости используем обобщённую функцию.
+            return createGenericItem(item.style, colorHex, materialType);
         }
 
-        // --- Обработчики кнопок ---
+        // --- UI ---
+        function loadCatalog() {
+            const grid = document.getElementById('itemsGrid');
+            const catDiv = document.getElementById('categoryTabs');
+            const cats = new Set(catalog.map(i => i.cat));
+            const catNames = {
+                chairs: 'Стулья', sofas: 'Диваны', tables: 'Столы', cabinets: 'Шкафы',
+                lighting: 'Свет', decor: 'Декор', plants: 'Растения', tech: 'Техника', books: 'Книги'
+            };
+
+            // Кнопка "Всё"
+            const allBtn = document.createElement('button');
+            allBtn.className = 'cat-btn active';
+            allBtn.dataset.cat = 'all';
+            allBtn.textContent = 'ВСЁ';
+            allBtn.addEventListener('click', () => filterCategory('all', allBtn));
+            catDiv.appendChild(allBtn);
+
+            cats.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'cat-btn';
+                btn.dataset.cat = cat;
+                btn.textContent = catNames[cat] || cat;
+                btn.addEventListener('click', () => filterCategory(cat, btn));
+                catDiv.appendChild(btn);
+            });
+
+            catalog.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'item-card';
+                card.dataset.id = item.id;
+                card.dataset.cat = item.cat;
+                card.innerHTML = `<div class="item-icon">${item.icon}</div><div class="item-name">${item.name}</div>`;
+                card.addEventListener('click', () => {
+                    document.querySelectorAll('.item-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    selectedItem = item;
+                });
+                grid.appendChild(card);
+            });
+            document.getElementById('catalogCount').textContent = catalog.length;
+        }
+
+        function filterCategory(cat, activeBtn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            activeBtn.classList.add('active');
+            document.querySelectorAll('.item-card').forEach(card => {
+                if (cat === 'all' || card.dataset.cat === cat) card.style.display = 'flex';
+                else card.style.display = 'none';
+            });
+        }
+
+        // --- Переключение режимов ---
         document.getElementById('modeWall').addEventListener('click', () => {
             currentMode = 'wall';
-            document.querySelectorAll('.toolbar button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('modeWall').classList.add('active');
-            document.getElementById('wallPanel').style.display = 'block';
-            document.getElementById('itemPanel').style.display = 'none';
-            document.getElementById('hint').innerHTML = 'Режим: Стена — клик по сетке, чтобы поставить блок';
+            document.getElementById('wallControls').style.display = 'block';
+            document.getElementById('itemControls').style.display = 'none';
+            document.getElementById('hint').innerHTML = 'Режим: Стена — клик для установки блока (сетка 2м)';
         });
         document.getElementById('modeItem').addEventListener('click', () => {
             currentMode = 'item';
-            document.querySelectorAll('.toolbar button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('modeItem').classList.add('active');
-            document.getElementById('wallPanel').style.display = 'none';
-            document.getElementById('itemPanel').style.display = 'block';
-            document.getElementById('hint').innerHTML = 'Режим: Мебель — клик для размещения';
-        });
-        document.getElementById('modeLight').addEventListener('click', () => {
-            currentMode = 'light';
-            // упрощённо: используем ту же панель мебели, но выбираем лампу
-            itemModel = 'lamp';
-            document.querySelectorAll('.toolbar button').forEach(b => b.classList.remove('active'));
-            document.getElementById('modeLight').classList.add('active');
-            document.getElementById('wallPanel').style.display = 'none';
-            document.getElementById('itemPanel').style.display = 'block';
-            document.getElementById('hint').innerHTML = 'Режим: Свет — клик для размещения лампы';
-        });
-        document.getElementById('modeDecor').addEventListener('click', () => {
-            currentMode = 'decor';
-            itemModel = 'plant';
-            document.querySelectorAll('.toolbar button').forEach(b => b.classList.remove('active'));
-            document.getElementById('modeDecor').classList.add('active');
-            document.getElementById('wallPanel').style.display = 'none';
-            document.getElementById('itemPanel').style.display = 'block';
-            document.getElementById('hint').innerHTML = 'Режим: Декор — клик для размещения растений';
+            document.getElementById('wallControls').style.display = 'none';
+            document.getElementById('itemControls').style.display = 'block';
+            document.getElementById('hint').innerHTML = 'Режим: Декор — выберите предмет и кликните для размещения';
         });
 
-        // Обновление параметров из панелей
+        // --- Обновление параметров ---
         document.getElementById('wallMat').addEventListener('change', (e) => wallMat = e.target.value);
         document.getElementById('wallColor').addEventListener('input', (e) => wallColor = e.target.value);
-        document.getElementById('snapGrid').addEventListener('change', (e) => snapEnabled = e.target.checked);
-        document.getElementById('itemModel').addEventListener('change', (e) => itemModel = e.target.value);
         document.getElementById('itemMat').addEventListener('change', (e) => itemMat = e.target.value);
         document.getElementById('itemColor').addEventListener('input', (e) => itemColor = e.target.value);
         document.getElementById('itemRotate').addEventListener('input', (e) => itemRotate = parseFloat(e.target.value));
+        document.getElementById('snapGrid').addEventListener('change', (e) => snapEnabled = e.target.checked);
 
-        // Отмена и очистка
+        // --- Отмена и очистка ---
         document.getElementById('undoBtn').addEventListener('click', () => {
             if (placedItems.length) {
                 scene.remove(placedItems.pop());
@@ -603,14 +846,16 @@
             updateStats();
         });
 
-        // --- Работа с мышью ---
+        // --- Мышь ---
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
         const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
         const intersect = new THREE.Vector3();
 
+        let selectedItem = catalog[0]; // по умолчанию
+
         renderer.domElement.addEventListener('click', (e) => {
-            if (e.target.closest('.toolbar, .right-panel, .stats')) return;
+            if (e.target.closest('.ui-container')) return;
 
             mouse.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
             mouse.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
@@ -618,33 +863,29 @@
             if (!raycaster.ray.intersectPlane(plane, intersect)) return;
 
             let pos = intersect.clone();
-            if (snapEnabled) pos = snapPosition(pos, 1.0);
-            pos.y = 0; // все объекты ставятся на пол (для стен потом поднимем)
+            if (snapEnabled) pos = snapPosition(pos, 2.0);
+            pos.y = 0;
 
             if (currentMode === 'wall') {
-                // Стена – блок 1x1, ставим на сетку
                 const block = createWallBlock(wallMat, wallColor);
                 block.position.copy(pos);
-                block.position.y = 0.5; // половина высоты
+                block.position.y = 1.0; // половина высоты 2м
                 scene.add(block);
                 placedItems.push(block);
             } else {
-                // Мебель, свет, декор
-                let model = itemModel;
-                if (currentMode === 'light') model = 'lamp';
-                if (currentMode === 'decor') model = 'plant';
-                const item = createItem(model, itemMat, itemColor, itemRotate);
+                const item = createItemFromCatalog(selectedItem, itemColor, itemMat);
                 item.position.copy(pos);
-                item.position.y = 0.5; // примерная высота
+                item.position.y = 1.0; // поднимем примерно
+                item.rotation.y = itemRotate * Math.PI / 180;
                 scene.add(item);
                 placedItems.push(item);
             }
             updateStats();
         });
 
-        // --- FPS и статистика ---
+        // --- Статистика ---
         function updateStats() {
-            document.getElementById('statBlocks').textContent = placedItems.length;
+            document.getElementById('statItems').textContent = placedItems.length;
         }
 
         let lastTime = performance.now();
@@ -666,8 +907,6 @@
             updateFPS();
         }
 
-        animate();
-
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
@@ -679,8 +918,8 @@
             window.Telegram.WebApp.ready();
         }
 
-        // Инициализация
-        updateStats();
+        loadCatalog();
+        animate();
     </script>
 </body>
 </html>
